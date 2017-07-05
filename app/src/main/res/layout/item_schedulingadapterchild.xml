@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:paddingLeft="@dimen/d_16"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
+    <ercs.com.ercshouseresources.view.NoScrollListView
+        android:id="@+id/litviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

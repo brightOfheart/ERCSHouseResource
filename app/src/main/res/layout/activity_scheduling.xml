@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white4"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/include_title" />
+
+        <LinearLayout
+            android:id="@+id/ly_chose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="@dimen/d_16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_5"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/icon_chose" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/str_chose"
+                android:textColor="@color/white"
+                android:textSize="@dimen/d_18" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d_16"
+        android:background="@drawable/dialog_cornerbg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/d_10"
+        android:paddingRight="@dimen/d_10">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_search" />
+
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="@dimen/d_40"
+            android:layout_marginLeft="@dimen/d_5"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:hint="@string/str_inputname"
+            android:imeOptions="actionSearch"
+            android:maxLines="1" />
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_cancel" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingLeft="@dimen/d_16"
+        android:paddingRight="@dimen/d_16"
+        android:paddingTop="@dimen/d_10">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_40"
+            android:background="@drawable/button_corners_bg"
+            android:text="@string/str_onlyselectmyscheduling"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_16" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:dividerHeight="@dimen/d_1"
+            android:scrollbars="none" />
+
+        <ListView
+            android:id="@+id/list_right"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/black" />
+
+</LinearLayout>
