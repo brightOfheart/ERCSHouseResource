@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.img_show)
     ImageView img_show;//显示与隐藏密码的图标
     private SPUtil spUtil;
-    private String LOGINRIGHT = "1";
+    private String  LOGINRIGHT = "1";
     private LoadingDialog dialog;
 
     @Override
