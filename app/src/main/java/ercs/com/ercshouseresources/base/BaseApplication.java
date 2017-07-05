@@ -20,7 +20,7 @@ public class BaseApplication extends Application {
     public static final String DEPNAME="depname";//本地保存登录人的职称
     public static String Token="";
     public LocationService locationService;
-    private String string="";
+    private String string="0";
     @Override
     public void onCreate() {
         super.onCreate();
