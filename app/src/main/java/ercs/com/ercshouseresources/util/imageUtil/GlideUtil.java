@@ -3,6 +3,9 @@ package ercs.com.ercshouseresources.util.imageUtil;
 import android.content.Context;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+
+import static ercs.com.ercshouseresources.base.BaseApplication.context;
+
 /**
  * Created by Administrator on 2017/3/17.
  */
@@ -53,7 +56,7 @@ public class GlideUtil {
      * @param url
      * @param imageView
      */
-    public static void loadCircleImage(Context context,String url, ImageView imageView){
+    public static void loadCircleImage(String url, ImageView imageView){
         Glide.with(context)
                 .load(url)
                 .centerCrop()

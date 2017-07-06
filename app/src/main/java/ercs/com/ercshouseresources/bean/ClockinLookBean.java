@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.bean;
 
 /**
  * Created by Administrator on 2017/7/1.
+ * 封装打卡的bean
  */
 
 public class ClockinLookBean extends BaseBean {

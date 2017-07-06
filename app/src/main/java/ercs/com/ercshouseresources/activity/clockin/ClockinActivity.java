@@ -1,14 +1,11 @@
 package ercs.com.ercshouseresources.activity.clockin;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,16 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.model.LatLng;
-
 import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,6 +44,7 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.CustomView;
 import ercs.com.ercshouseresources.view.dialog.CustomerDatePickerDialog;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
+import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
 /**
  * Created by Administrator on 2017/6/27.
@@ -86,7 +81,6 @@ public class ClockinActivity extends BaseActivity {
     private LoadingDialog dialog;
     private ClockinSetBean clockinSetBean;//打卡设置返回
     private double latNow, lngNow;
-
     public final static int ALBUM_REQUEST_CODE = 1;
     public final static int CROP_REQUEST = 2;
     public final static int CAMERA_REQUEST_CODE = 3;
@@ -139,11 +133,11 @@ public class ClockinActivity extends BaseActivity {
      */
     private void initTitle() {
         TitleControl t = new TitleControl(this);
-        t.setTitle(getString(R.string.str_clockin));
+        t.setTitle(getStr(R.string.str_clockin));
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
         tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
-        GlideUtil.loadCircleImage(this, NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
         dialog = new LoadingDialog(ClockinActivity.this, 0);
     }
 
@@ -163,7 +157,7 @@ public class ClockinActivity extends BaseActivity {
                     String str = OtherUitl.imageToBase64(cameraPath);
                     upLoadPic(str);
                 } else {
-                    ToastUtil.showToast(this, "请选择图片");
+                    ToastUtil.showToast(this, getStr(R.string.str_chosepic));
                 }
 
             }
@@ -255,8 +249,7 @@ public class ClockinActivity extends BaseActivity {
             public void onSuccess(String data) {
                 final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
                 dialog.dismiss();
-                if(baseBean.getType().equals("1"))
-                {
+                if (baseBean.getType().equals("1")) {
                     getNetData(getYear() + "-" + getMonth() + "-" + getDay());
                 }
                 runOnUiThread(new Runnable() {
@@ -406,7 +399,6 @@ public class ClockinActivity extends BaseActivity {
                 tv_address.setText(str);
             }
         });
-
         locationService.stop();// 定位SDK
     }
 

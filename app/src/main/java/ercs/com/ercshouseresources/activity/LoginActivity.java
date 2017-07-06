@@ -6,7 +6,6 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

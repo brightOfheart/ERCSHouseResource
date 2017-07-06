@@ -17,6 +17,7 @@ import ercs.com.ercshouseresources.activity.clockin.ClockinActivity;
 import ercs.com.ercshouseresources.activity.field.FieldActivity;
 import ercs.com.ercshouseresources.activity.field.FieldClockInActivity;
 import ercs.com.ercshouseresources.activity.process.ProcessAcvitity;
+import ercs.com.ercshouseresources.activity.process.ProcessApplyAcvitity;
 import ercs.com.ercshouseresources.activity.scheduling.SchedulingActivity;
 import ercs.com.ercshouseresources.bean.MineBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
@@ -61,13 +62,13 @@ public class MineAdapter extends ViewHolderAdapter<MineBean> {
                         context.startActivity(new Intent(context, FieldActivity.class));
                         break;
                     case 4:
-                        context.startActivity(new Intent(context, SchedulingActivity.class));
+                        context.startActivity(new Intent(context, ProcessApplyAcvitity.class));
                         break;
                     case 5:
-                        context.startActivity(new Intent(context, ProcessAcvitity.class));
+                        context.startActivity(new Intent(context, AllProcessActivity.class));
                         break;
                     case 6:
-                        context.startActivity(new Intent(context, AllProcessActivity.class));
+                        context.startActivity(new Intent(context, SchedulingActivity.class));
                         break;
                 }
             }
