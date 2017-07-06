@@ -48,11 +48,11 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/zhaopian"
-
-                    />
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/zhaopian" />
             </LinearLayout>
 
             <View
@@ -74,6 +74,7 @@
                     android:src="@mipmap/pazhaodaka" />
 
                 <LinearLayout
+                    android:id="@+id/ly_clockin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -87,22 +88,22 @@
                         android:textColor="@color/white" />
 
                     <TextView
+                        android:id="@+id/tv_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/d_0"
-                        android:text="17:36:15"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="@dimen/d_1"
-            android:drawableLeft="@mipmap/quedingweizhi"
-            android:text="定位地址:沈阳市皇姑区" />
+            android:drawableLeft="@mipmap/quedingweizhi" />
     </FrameLayout>
 
     <View
@@ -126,6 +127,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_0"
             android:layout_weight="1"
@@ -147,8 +149,16 @@
             android:background="@color/white2" />
 
         <Button
+            android:id="@+id/btn_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="提交" />
+            android:layout_height="@dimen/d_50"
+            android:layout_marginLeft="@dimen/d_10"
+            android:layout_marginRight="@dimen/d_10"
+            android:layout_marginTop="@dimen/d_18"
+            android:background="@drawable/button_corners_bg"
+            android:text="@string/str_post"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/d_5"
+            android:textSize="@dimen/d_16" />
     </LinearLayout>
 </LinearLayout>

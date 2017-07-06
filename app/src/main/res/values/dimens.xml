@@ -22,7 +22,7 @@
     <dimen name="d_35">35dp</dimen>
     <dimen name="d_8">8dp</dimen>
     <dimen name="d_3">3dp</dimen>
-    <dimen name="d_1">1dp</dimen>
+    <dimen name="d_1">0.5dp</dimen>
     <dimen name="d_12">12dp</dimen>
     <dimen name="d_9">9dp</dimen>
     <dimen name="d_7">7dp</dimen>

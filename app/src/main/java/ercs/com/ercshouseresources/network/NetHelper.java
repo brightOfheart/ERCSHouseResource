@@ -2,9 +2,6 @@ package ercs.com.ercshouseresources.network;
 
 import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +9,6 @@ import java.util.Map;
  * Created by Administrator on 2017/3/23.
  * 网络接口访问辅助类
  */
-
 public class NetHelper {
     public static final String URL = "http://192.168.1.157:8001";//IP地址
     private static final String LOGIN = "/API/Account/LOGIN";//用户登录
@@ -28,6 +24,7 @@ public class NetHelper {
     private static final String INSIDESETINFO = "/API/InSide/InSideSetInfo";//打卡设置信息接口
     private static final String UPLOADPIC = "/API/OutSide/UploadImageAsync";//上传打开图片
     private static final String PUNCHCLOCK = "/API/InSide/InsertInSide";//打卡接口
+    private static final String OUTSIDEPUNCHCLOCK = "/API/OutSide/InsertOutSide";//外勤打卡接口
 
     /**
      * 登录
@@ -203,11 +200,12 @@ public class NetHelper {
 
     /**
      * 上班打卡接口
+     *
      * @param
      * @param Id
      * @param callback
      */
-    public static void punchClock(String StartImagePage ,String Id,String CreatorId,String StartLocation, HttpUtils.HttpCallback callback) {
+    public static void punchClock(String StartImagePage, String Id, String CreatorId, String StartLocation, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("Id", Id);
         map.put("StartImagePage", StartImagePage);
@@ -215,16 +213,18 @@ public class NetHelper {
         map.put("StartContent", "1");
         map.put("StartLocation", StartLocation);
         String json = MyGson.getInstance().toJson(map);
-        Log.d("Json",json);
+        Log.d("Json", json);
         new HttpUtils().postJson(URL + PUNCHCLOCK, json, callback);
     }
+
     /**
      * 下班打卡接口
+     *
      * @param
      * @param Id
      * @param callback
      */
-    public static void punchClock2(String EndImagePage ,String Id,String CreatorId,String EndLocation, HttpUtils.HttpCallback callback) {
+    public static void punchClock2(String EndImagePage, String Id, String CreatorId, String EndLocation, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("Id", Id);
         map.put("EndImagePage", EndImagePage);
@@ -233,5 +233,24 @@ public class NetHelper {
         map.put("EndLocation", EndLocation);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + PUNCHCLOCK, json, callback);
+    }
+
+    /**
+     * 外勤打卡接口
+     *
+     * @param Location
+     * @param ImagePage
+     * @param CreatorId
+     * @param OutSideContent
+     * @param callback
+     */
+    public static void outsidePunchClock(String Location, String ImagePage, String CreatorId, String OutSideContent, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Location", Location);
+        map.put("ImagePage", ImagePage);
+        map.put("CreatorId", CreatorId);
+        map.put("OutSideContent", OutSideContent);
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + OUTSIDEPUNCHCLOCK, json, callback);
     }
 }

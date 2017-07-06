@@ -40,6 +40,15 @@ public class LoginBean {
         private String Name;
         private String PhotoPath;
         private String DepName;
+        private String Authority;
+
+        public String getAuthority() {
+            return Authority;
+        }
+
+        public void setAuthority(String authority) {
+            Authority = authority;
+        }
 
         public String getId() {
             return Id;

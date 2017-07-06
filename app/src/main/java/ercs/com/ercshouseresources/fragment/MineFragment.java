@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +44,8 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
     TextView tv_dep;
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
+    @BindView(R.id.ly_manager)
+    LinearLayout ly_manager;
     private SPUtil spUtil;
 
     @Nullable
@@ -78,6 +84,10 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
         listview.setAdapter(new MineAdapter(getContext(), setData()));
         tv_name.setText("欢迎您," + spUtil.getString(BaseApplication.NAME, ""));
         tv_dep.setText("[" + spUtil.getString(BaseApplication.DEPNAME, "") + "]");
+        if (spUtil.getString(BaseApplication.AUTHORITY, "").equals("1") || spUtil.getString(BaseApplication.AUTHORITY, "").equals("2"))
+            ly_manager.setVisibility(View.VISIBLE);
+        else
+            ly_manager.setVisibility(View.GONE);
         GlideUtil.loadCircleImage(getContext(), NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
     }
 
@@ -86,7 +96,7 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
      */
     private List<MineBean> setData() {
         List<MineBean> listData = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             MineBean mineBean = new MineBean();
             switch (i) {
                 case 0:
@@ -106,17 +116,18 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
                     mineBean.setIconid(R.mipmap.icon_field);
                     break;
                 case 4:
-                    mineBean.setTitle(getResources().getString(R.string.str_scheduling));
+                    mineBean.setTitle(getResources().getString(R.string.str_processpay));
                     mineBean.setIconid(R.mipmap.icon_scheduling);
                     break;
                 case 5:
-                    mineBean.setTitle(getResources().getString(R.string.str_process));
-                    mineBean.setIconid(R.mipmap.icon_process);
-                    break;
-                case 6:
                     mineBean.setTitle(getResources().getString(R.string.str_allprocess));
                     mineBean.setIconid(R.mipmap.icon_allprocess);
                     break;
+                case 6:
+                    mineBean.setTitle(getResources().getString(R.string.str_scheduling));
+                    mineBean.setIconid(R.mipmap.icon_scheduling);
+                    break;
+
             }
             listData.add(mineBean);
         }

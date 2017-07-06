@@ -2,14 +2,10 @@ package ercs.com.ercshouseresources.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-import com.zyao89.view.zloading.ZLoadingDialog;
-import com.zyao89.view.zloading.Z_TYPE;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +36,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.img_show)
     ImageView img_show;//显示与隐藏密码的图标
     private SPUtil spUtil;
-    private String  LOGINRIGHT = "1";
+    private String LOGINRIGHT = "1";
     private LoadingDialog dialog;
 
     @Override
@@ -136,12 +132,13 @@ public class LoginActivity extends BaseActivity {
      * @param id
      * @param pwd
      */
-    private void saveIdPwd(String id, String pwd, String photopath, String name, String depname) {
+    private void saveIdPwd(String id, String pwd, String photopath, String name, String depname, String Authority) {
         spUtil.putString(BaseApplication.ID, id);
         spUtil.putString(BaseApplication.PWD, pwd);
         spUtil.putString(BaseApplication.PHOTOPATH, photopath);
         spUtil.putString(BaseApplication.NAME, name);
         spUtil.putString(BaseApplication.DEPNAME, depname);
+        spUtil.putString(BaseApplication.AUTHORITY, Authority);
     }
 
     /**
@@ -164,7 +161,7 @@ public class LoginActivity extends BaseActivity {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
                 if (loginBean.getType().equals(LOGINRIGHT)) {
-                    saveIdPwd(getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName());
+                    saveIdPwd(getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
                     saveLogin(1);
                 }
                 runOnUiThread(new Runnable() {

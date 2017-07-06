@@ -69,6 +69,120 @@
                     android:layout_marginTop="@dimen/d_10" />
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10"
+                    android:orientation="vertical"
+                    android:id="@+id/ly_manager">
+
+                    <LinearLayout
+                        android:id="@+id/ly_process"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/d_8"
+                        android:paddingTop="@dimen/d_8">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_16"
+                            android:src="@mipmap/icon_set" />
+
+                        <TextView
+                            android:layout_width="@dimen/d_0"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/d_5"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:text="@string/str_process"
+                            android:textColor="@color/black1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/d_10"
+                            android:src="@mipmap/gonext" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d_1"
+                        android:background="@color/white2" />
+
+                    <LinearLayout
+                        android:id="@+id/ly_memberAssess"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/d_8"
+                        android:paddingTop="@dimen/d_8">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_16"
+                            android:src="@mipmap/icon_set" />
+
+                        <TextView
+                            android:layout_width="@dimen/d_0"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/d_5"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:text="@string/str_memberAssess"
+                            android:textColor="@color/black1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/d_10"
+                            android:src="@mipmap/gonext" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d_1"
+                        android:background="@color/white2" />
+
+                    <LinearLayout
+                        android:id="@+id/ly_memberOutAssess"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/d_8"
+                        android:paddingTop="@dimen/d_8">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_16"
+                            android:src="@mipmap/icon_set" />
+
+                        <TextView
+                            android:layout_width="@dimen/d_0"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/d_5"
+                            android:layout_weight="1"
+                            android:gravity="center|left"
+                            android:text="@string/str_memberOutAssess"
+                            android:textColor="@color/black1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/d_10"
+                            android:src="@mipmap/gonext" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ly_set"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

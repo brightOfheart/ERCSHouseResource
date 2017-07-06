@@ -14,12 +14,15 @@
     <string name="str_message">消息</string>
     <string name="str_mine">我的</string>
     <string name="str_clerk">职员列表</string>
-    <string name="str_clockin">打卡</string>
-    <string name="str_attendance">考勤统计</string>
-    <string name="str_field">外勤统计</string>
+    <string name="str_clockin">考勤打卡</string>
+    <string name="str_attendance">考勤记录</string>
+    <string name="str_field">外勤记录</string>
     <string name="str_fieldclockin">外勤打卡</string>
     <string name="str_scheduling">排班情况</string>
+    <string name="str_processpay">流程申请</string>
     <string name="str_process">流程审批</string>
+    <string name="str_memberAssess">员工考核记录</string>
+    <string name="str_memberOutAssess">员工外勤记录</string>
     <string name="str_allprocess">所有流程</string>
     <string name="str_set">设置</string>
     <string name="str_callphone">拨打电话</string>
@@ -47,6 +50,7 @@
     <string name="str_onlyselectmyscheduling">只查看我的排班</string>
     <string name="str_loading">Loading...</string>
     <string name="str_chose">筛选</string>
+    <string name="str_post">提交</string>
     <!--异常字符串-->
     <string name="error_tel">请输入正确手机号！</string>
     <string name="error_tel_number">请填写手机号码</string>
