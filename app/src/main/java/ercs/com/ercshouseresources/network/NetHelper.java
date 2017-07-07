@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.network;
 import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * Created by Administrator on 2017/3/23.
  * 网络接口访问辅助类
