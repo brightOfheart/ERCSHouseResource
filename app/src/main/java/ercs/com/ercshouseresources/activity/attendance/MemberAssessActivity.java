@@ -1,7 +1,6 @@
 package ercs.com.ercshouseresources.activity.attendance;
 
 import android.os.Bundle;
-
 import ercs.com.ercshouseresources.activity.BaseActivity;
 
 /**

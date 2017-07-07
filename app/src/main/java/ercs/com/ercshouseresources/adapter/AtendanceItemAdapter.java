@@ -3,12 +3,9 @@ package ercs.com.ercshouseresources.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.AtendanceBean;
 

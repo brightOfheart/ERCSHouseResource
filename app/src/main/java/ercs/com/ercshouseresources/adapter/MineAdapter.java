@@ -4,24 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.allprocess.AllProcessActivity;
 import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
 import ercs.com.ercshouseresources.activity.clockin.ClockinActivity;
 import ercs.com.ercshouseresources.activity.field.FieldActivity;
 import ercs.com.ercshouseresources.activity.field.FieldClockInActivity;
-import ercs.com.ercshouseresources.activity.process.ProcessAcvitity;
 import ercs.com.ercshouseresources.activity.process.ProcessApplyAcvitity;
 import ercs.com.ercshouseresources.activity.scheduling.SchedulingActivity;
 import ercs.com.ercshouseresources.bean.MineBean;
-import ercs.com.ercshouseresources.network.HttpUtils;
-import ercs.com.ercshouseresources.network.NetHelper;
+
 
 /**
  * Created by Administrator on 2017/6/22.

@@ -8,18 +8,15 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.LoginActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.FieldBean;
 import ercs.com.ercshouseresources.bean.FieldCustomBean;

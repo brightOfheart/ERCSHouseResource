@@ -1,7 +1,6 @@
 package ercs.com.ercshouseresources.view.atendance;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,20 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.activity.PWDFindActivity;
-import ercs.com.ercshouseresources.activity.process.ProcessContentAcvitity;
 import ercs.com.ercshouseresources.adapter.AtendanceItemAdapter;
 import ercs.com.ercshouseresources.bean.AtendanceBean;
-import ercs.com.ercshouseresources.bean.ProcessBean;
-import ercs.com.ercshouseresources.network.NetHelper;
-import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
+
 
 /**
  * Created by Administrator on 2017/6/27.

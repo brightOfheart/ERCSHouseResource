@@ -3,13 +3,7 @@ package ercs.com.ercshouseresources.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.activity.process.ProcessContentAcvitity;
-import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import uk.co.senab.photoview.PhotoView;
 

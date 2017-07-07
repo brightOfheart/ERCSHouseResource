@@ -2,14 +2,11 @@ package ercs.com.ercshouseresources.activity.allprocess;
 
 import android.os.Bundle;
 import android.widget.ListView;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
 import ercs.com.ercshouseresources.adapter.AllProcessAdapter;
 import ercs.com.ercshouseresources.bean.AllProcessBean;
 import ercs.com.ercshouseresources.network.HttpUtils;

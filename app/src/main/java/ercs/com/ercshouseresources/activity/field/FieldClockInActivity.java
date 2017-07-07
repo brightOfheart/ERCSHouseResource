@@ -1,7 +1,5 @@
 package ercs.com.ercshouseresources.activity.field;
-
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,52 +10,41 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
-
 import java.io.File;
 import java.util.Calendar;
 import java.util.TimeZone;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.clockin.ClockinActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.UpLoadPicBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.service.LocationService;
-import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
-import ercs.com.ercshouseresources.view.dialog.CustomerDatePickerDialog;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
-
-import static com.baidu.location.d.j.ac;
 import static ercs.com.ercshouseresources.util.OtherUitl.getBitmapDegree;
 import static ercs.com.ercshouseresources.util.OtherUitl.rotateBitmapByDegree;
 
