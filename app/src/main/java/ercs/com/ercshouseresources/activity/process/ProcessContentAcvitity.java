@@ -109,7 +109,7 @@ public class ProcessContentAcvitity extends BaseActivity {
      * 设置数据
      */
     private void setData() {
-        GlideUtil.loadCircleImage(this, NetHelper.URL + getPhoto(), iv_photo);
+        GlideUtil.loadCircleImage(NetHelper.URL + getPhoto(), iv_photo);
         tv_name.setText(getName());
         tv_time.setText(getTime());
         tv_processtype.setText(getProcesstype(getLeaveType()));

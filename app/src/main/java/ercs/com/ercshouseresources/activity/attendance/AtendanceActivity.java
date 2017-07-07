@@ -8,9 +8,11 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -58,13 +60,6 @@ public class AtendanceActivity extends BaseActivity {
     TextView tv_name;//姓名
     @BindView(R.id.iv_photo)
     ImageView iv_photo;//头像
-    private List<AtendanceBean.DataBean> list1 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list2 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list3 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list4 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list5 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list6 = new ArrayList<>();
-    private List<AtendanceBean.DataBean> list7 = new ArrayList<>();
     private SPUtil spUtil;
     private LoadingDialog dialog;
 
@@ -76,7 +71,7 @@ public class AtendanceActivity extends BaseActivity {
         initTitle();
         createDate();
         if (NetWorkUtil.check(getApplicationContext()))
-        getNetData(getYear() + "-" + getMonth() + "-" + getDay());
+            getNetData(getYear() + "-" + getMonth() + "-" + getDay());
     }
 
     /**
@@ -162,34 +157,21 @@ public class AtendanceActivity extends BaseActivity {
     private void setData(AtendanceBean atendanceBean) {
         for (int i = 0; i < atendanceBean.getData().size(); i++) {
             if (atendanceBean.getData().get(i).getStatisticsType().equals("1"))
-                list1.add(atendanceBean.getData().get(i));
+                ly1.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("2"))
-                list2.add(atendanceBean.getData().get(i));
+                ly2.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("3"))
-                list3.add(atendanceBean.getData().get(i));
+                ly3.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("4"))
-                list4.add(atendanceBean.getData().get(i));
+                ly4.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("5"))
-                list5.add(atendanceBean.getData().get(i));
+                ly5.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("6"))
-                list6.add(atendanceBean.getData().get(i));
+                ly6.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("7"))
-                list7.add(atendanceBean.getData().get(i));
+                ly7.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode()));
         }
-        if (list1.size() > 0)
-            ly1.addView(new AtendanceItem(AtendanceActivity.this, list1));
-        if (list2.size() > 0)
-            ly2.addView(new AtendanceItem(AtendanceActivity.this, list2));
-        if (list3.size() > 0)
-            ly3.addView(new AtendanceItem(AtendanceActivity.this, list3));
-        if (list4.size() > 0)
-            ly4.addView(new AtendanceItem(AtendanceActivity.this, list4));
-        if (list5.size() > 0)
-            ly5.addView(new AtendanceItem(AtendanceActivity.this, list5));
-        if (list6.size() > 0)
-            ly6.addView(new AtendanceItem(AtendanceActivity.this, list6));
-        if (list7.size() > 0)
-            ly7.addView(new AtendanceItem(AtendanceActivity.this, list7));
+
     }
 
     /**
@@ -221,13 +203,6 @@ public class AtendanceActivity extends BaseActivity {
      * 清空
      */
     private void clear() {
-        list1.clear();
-        list2.clear();
-        list3.clear();
-        list4.clear();
-        list5.clear();
-        list6.clear();
-        list7.clear();
         ly1.removeAllViews();
         ly2.removeAllViews();
         ly3.removeAllViews();

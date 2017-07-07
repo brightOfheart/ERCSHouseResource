@@ -49,7 +49,7 @@ public class ProcessAdapterChildItem extends RelativeLayout {
     private void setData(ProcessBean.DataBean datas) {
         tv_name.setText(datas.getUserName());
         tv_time.setText(datas.getCreatedTime());
-        GlideUtil.loadCircleImage(activity, NetHelper.URL + datas.getPhotoPath(), iv_photo);
+        GlideUtil.loadCircleImage(NetHelper.URL + datas.getPhotoPath(), iv_photo);
     }
 
     @OnClick({R.id.iv_next})

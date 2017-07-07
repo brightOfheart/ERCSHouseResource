@@ -39,7 +39,7 @@ public class AllProcessAdapter extends ViewHolderAdapter<AllProcessBean.DataBean
         holder.setText(R.id.tv_title,"我的"+type(dataBean.getLeaveType())+"申请");
         holder.setText(R.id.tv_state, state(dataBean.getLeaveState()));
         holder.setText(R.id.tv_time, getDay(dataBean.getCreatedTime()));
-        GlideUtil.loadCircleImage(context, NetHelper.URL + dataBean.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
+        GlideUtil.loadCircleImage(NetHelper.URL + dataBean.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
     }
 
     /**

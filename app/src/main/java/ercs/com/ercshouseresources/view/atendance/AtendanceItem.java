@@ -42,7 +42,7 @@ public class AtendanceItem extends RelativeLayout {
     LinearLayout ly_item;
     private Activity activity;
     private boolean isclick=true;
-    public AtendanceItem(Activity activity,List<AtendanceBean.DataBean> dataBean) {
+    public AtendanceItem(Activity activity, AtendanceBean.DataBean dataBean, List<AtendanceBean.DataBean.InSideStatisticsListModeBean> data) {
         super(activity);
         this.activity=activity;
         LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -53,9 +53,9 @@ public class AtendanceItem extends RelativeLayout {
         params.setMargins(0, 0, 0, 0);
         this.addView(linearLayout, params);
         ButterKnife.bind(this);
-        tv_kind.setText(dataBean.get(0).getStatisticsTypeName());
-        tv_day.setText(dataBean.get(0).getTypeExplain());
-        listview.setAdapter(new AtendanceItemAdapter(activity,dataBean));
+        tv_kind.setText(dataBean.getStatisticsTypeName());
+        tv_day.setText(dataBean.getTypeExplain());
+        listview.setAdapter(new AtendanceItemAdapter(activity,data));
     }
 
     /**

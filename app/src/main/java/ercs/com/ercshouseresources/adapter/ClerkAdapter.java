@@ -41,7 +41,7 @@ public class ClerkAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas> {
     @Override
     public void bindViewDatas(final ViewHolder holder, final ClerkBean.Datas datas, final int position) {
         holder.setText(R.id.tv_name, datas.getName());
-        GlideUtil.loadCircleImage(context, NetHelper.URL + datas.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
+        GlideUtil.loadCircleImage(NetHelper.URL + datas.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

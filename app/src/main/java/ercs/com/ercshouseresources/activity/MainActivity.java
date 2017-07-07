@@ -33,7 +33,8 @@ public class MainActivity extends BaseActivity {
     TextView tv_msg;
     @BindView(R.id.tv_mine)
     TextView tv_mine;
-    private static final int NUM=2;//设置Viewpager 里面的 fragment的数量
+    private static final int NUM = 2;//设置Viewpager 里面的 fragment的数量
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         initview();
     }
+
     /**
      * 初始化
      */
@@ -48,6 +50,7 @@ public class MainActivity extends BaseActivity {
         setBottomLabState(0);
         viewpager.setAdapter(new CustomLazyFragmentPagerAdapter(getSupportFragmentManager()));
     }
+
     /**
      * 底部类别点击事件处理
      *
@@ -100,9 +103,10 @@ public class MainActivity extends BaseActivity {
         if (isBlue) {
             tv.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         } else {
-            tv.setTextColor(ContextCompat.getColor(this,R.color.white));
+            tv.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
     }
+
     private static class CustomLazyFragmentPagerAdapter extends LazyFragmentPagerAdapter {
 
         private CustomLazyFragmentPagerAdapter(FragmentManager fm) {

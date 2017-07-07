@@ -130,7 +130,7 @@ public class FieldActivity extends BaseActivity {
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
         tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
-        GlideUtil.loadCircleImage(this, NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
         tv_year.setText(getYear() + "年" + getMonth() + "月");
     }
 

@@ -2,7 +2,6 @@ package ercs.com.ercshouseresources.base;
 
 import android.app.Application;
 import android.content.Context;
-
 import com.baidu.mapapi.SDKInitializer;
 import ercs.com.ercshouseresources.service.LocationService;
 

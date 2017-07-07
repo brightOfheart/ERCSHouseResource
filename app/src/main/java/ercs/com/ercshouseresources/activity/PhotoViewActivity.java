@@ -24,7 +24,7 @@ public class PhotoViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photoview);
         iv_photo=(PhotoView)findViewById(R.id.iv_photo);
-        GlideUtil.loadCircleImage(this, getUrl(), iv_photo);
+        GlideUtil.loadCircleImage(getUrl(), iv_photo);
 
     }
 

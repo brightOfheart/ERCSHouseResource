@@ -32,7 +32,7 @@ public class SchedulingAdapterChildItemAdapter  extends ViewHolderAdapter<Schedu
 
     @Override
     public void bindViewDatas(ViewHolder holder, SchedulingBean.DataBean.UDataBean uDataBean, final int position) {
-        GlideUtil.loadCircleImage(context, NetHelper.URL + uDataBean.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
+        GlideUtil.loadCircleImage(NetHelper.URL + uDataBean.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
         holder.setText(R.id.tv_name, uDataBean.getUserName());
         holder.setOnClickListener(R.id.iv_phoneNum, new View.OnClickListener() {
             @Override

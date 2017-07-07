@@ -43,7 +43,7 @@ public class FieldItemAdapter extends ViewHolderAdapter<FieldCustomContentBean> 
         holder.setText(R.id.tv_hour, dataBean.getHour());
         holder.setText(R.id.tv_address,dataBean.getAddress());
         holder.setText(R.id.tv_content, dataBean.getContent());
-        GlideUtil.loadCircleImage(context, NetHelper.URL + dataBean.getPath(), (ImageView) holder.getView(R.id.iv_content));
+        GlideUtil.loadCircleImage(NetHelper.URL + dataBean.getPath(), (ImageView) holder.getView(R.id.iv_content));
         holder.getView(R.id.iv_content).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
