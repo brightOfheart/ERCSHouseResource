@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;

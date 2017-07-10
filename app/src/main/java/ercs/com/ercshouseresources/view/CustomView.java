@@ -5,11 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.clockin.ClockinActivity;
 import ercs.com.ercshouseresources.util.DisplayUtil;
