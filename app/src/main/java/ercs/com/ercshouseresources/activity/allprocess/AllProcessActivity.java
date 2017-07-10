@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.allprocess;
-
 import android.os.Bundle;
 import android.widget.ListView;
 import java.util.List;
@@ -16,7 +15,6 @@ import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
-
 /**
  * Created by Administrator on 2017/6/27.
  * 所有流程

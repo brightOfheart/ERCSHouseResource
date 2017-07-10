@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.clerk;
-
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;

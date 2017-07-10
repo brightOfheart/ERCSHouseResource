@@ -22,6 +22,7 @@ public class BaseApplication extends Application {
     public static String Token = "";//登录接口获取 除了登录其它接口需要添加的Token
     public LocationService locationService;//百度定位服务类
     public static Context context;//定义一个静态的全局变量
+    private String asd="";
     @Override
     public void onCreate() {
         super.onCreate();
