@@ -8,7 +8,7 @@ import java.util.Map;
  * 网络接口访问辅助类
  */
 public class NetHelper {
-    public static final String URL = "http://192.168.1.157:8001";//IP地址
+    public static final String URL = "http://192.168.1.55:1111";//IP地址
     private static final String LOGIN = "/API/Account/LOGIN";//用户登录
     private static final String CLERK = "/API/User/UserList";//职员列表
     private static final String PROCESS = "/API/Leave/LeaveApprovaList";//流程审批
