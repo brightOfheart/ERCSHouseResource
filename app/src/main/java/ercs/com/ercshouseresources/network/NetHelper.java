@@ -1,5 +1,7 @@
 package ercs.com.ercshouseresources.network;
+
 import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +25,8 @@ public class NetHelper {
     private static final String UPLOADPIC = "/API/OutSide/UploadImageAsync";//上传打开图片
     private static final String PUNCHCLOCK = "/API/InSide/InsertInSide";//打卡接口
     private static final String OUTSIDEPUNCHCLOCK = "/API/OutSide/InsertOutSide";//外勤打卡接口
+    private static final String PROCESSAPPLYOUTSIDE = "/API/Leave/InsertLeave";//流程申请 休息、外出
+    private static final String PROCESSRETROACTIVE = "/API/Leave/InsertRetroactive";//流程申请 补签 上班 下班
 
     /**
      * 登录
@@ -250,5 +254,51 @@ public class NetHelper {
         map.put("OutSideContent", OutSideContent);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + OUTSIDEPUNCHCLOCK, json, callback);
+    }
+
+    /**
+     * 流程审批 休息 外出
+     *
+     * @param UserId
+     * @param RetroactiveClass
+     * @param RetroactiveTime
+     * @param RetroactiveState
+     * @param ApplicationContent
+     * @param ApplicationTime
+     * @param callback
+     */
+    public static void processApplyOutside(String UserId, String RetroactiveClass, String RetroactiveTime, String RetroactiveState, String ApplicationContent, String ApplicationTime, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("UserId", UserId);
+        map.put("RetroactiveClass", RetroactiveClass);
+        map.put("RetroactiveTime", RetroactiveTime);
+        map.put("RetroactiveState", RetroactiveState);
+        map.put("ApplicationContent", ApplicationContent);
+        map.put("ApplicationTime", ApplicationTime);
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + PROCESSAPPLYOUTSIDE, json, callback);
+    }
+
+    /**
+     * 流程审批 补签：上班、下班
+     *
+     * @param UserId
+     * @param RetroactiveClass
+     * @param RetroactiveTime
+     * @param RetroactiveState
+     * @param ApplicationContent
+     * @param ApplicationTime
+     * @param callback
+     */
+    public static void processRetroactive(String UserId, String RetroactiveClass, String RetroactiveTime, String RetroactiveState, String ApplicationContent, String ApplicationTime, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("UserId", UserId);
+        map.put("RetroactiveClass", RetroactiveClass);
+        map.put("RetroactiveTime", RetroactiveTime);
+        map.put("RetroactiveState", RetroactiveState);
+        map.put("ApplicationContent", ApplicationContent);
+        map.put("ApplicationTime", ApplicationTime);
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + PROCESSRETROACTIVE, json, callback);
     }
 }
