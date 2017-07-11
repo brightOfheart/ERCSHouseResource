@@ -33,7 +33,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 public class MemberOutAssessActivity extends BaseActivity {
     @BindView(R.id.gridview)
     GridView gridview;
-    private LoadingDialog dialog ;
+    private LoadingDialog dialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
