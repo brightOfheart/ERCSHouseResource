@@ -56,14 +56,14 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.iv_msg, R.id.iv_mine})
+    @OnClick({R.id.ly_msg, R.id.ly_mine})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_msg:
+            case R.id.ly_msg:
                 setBottomLabState(0);
                 viewpager.setCurrentItem(0, false);
                 break;
-            case R.id.iv_mine:
+            case R.id.ly_mine:
                 setBottomLabState(1);
                 viewpager.setCurrentItem(1, false);
                 break;

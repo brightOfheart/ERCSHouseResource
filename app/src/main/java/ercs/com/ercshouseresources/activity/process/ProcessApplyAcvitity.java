@@ -2,7 +2,6 @@ package ercs.com.ercshouseresources.activity.process;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -58,7 +57,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.img_show, R.id.btn_login, R.id.ly_findpwd})
+    @OnClick({R.id.tv_protype, R.id.tv_retroactivedata, R.id.tv_processtypes, R.id.btn_post})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_protype://流程类型
