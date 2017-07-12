@@ -95,6 +95,11 @@
             android:name=".activity.attendance.AtendanceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!--考勤统计详情-->
+        <activity
+            android:name=".activity.attendance.AtendanceDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!--外勤统计-->
         <activity
             android:name=".activity.field.FieldActivity"

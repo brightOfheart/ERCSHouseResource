@@ -17,6 +17,7 @@
     <string name="str_clerk">职员列表</string>
     <string name="str_clockin">考勤打卡</string>
     <string name="str_attendance">考勤记录</string>
+    <string name="str_attendancedetail">考勤详情</string>
     <string name="str_field">外勤记录</string>
     <string name="str_fieldclockin">外勤打卡</string>
     <string name="str_scheduling">排班情况</string>

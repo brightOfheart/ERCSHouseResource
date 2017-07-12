@@ -27,7 +27,7 @@ public class NetHelper {
     private static final String OUTSIDEPUNCHCLOCK = "/API/OutSide/InsertOutSide";//外勤打卡接口
     private static final String PROCESSAPPLYOUTSIDE = "/API/Leave/InsertLeave";//流程申请 休息、外出
     private static final String PROCESSRETROACTIVE = "/API/Leave/InsertRetroactive";//流程申请 补签 上班 下班
-
+    private static final String ATENDANCEDETAIL = "/API/InSide/InSideInfo";//外勤统计详情接口
     /**
      * 登录
      *
@@ -301,5 +301,19 @@ public class NetHelper {
         map.put("ApplicationTime", ApplicationTime);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + PROCESSRETROACTIVE, json, callback);
+    }
+
+    /**
+     * 考勤统计详情
+     * @param UserId
+     * @param ParamsDate
+     * @param callback
+     */
+    public static void atendanceDetail(String UserId, String ParamsDate, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("UserId", "2");
+        map.put("ParamsDate", "2017-07-12");
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + ATENDANCEDETAIL, json, callback);
     }
 }
