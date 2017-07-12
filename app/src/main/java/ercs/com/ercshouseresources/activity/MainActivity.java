@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.fragment.HouseFragment;
 import ercs.com.ercshouseresources.fragment.MessageFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
@@ -56,14 +57,14 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.ly_msg, R.id.ly_mine})
+    @OnClick({R.id.ly_house, R.id.ly_mine})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ly_msg:
+            case R.id.ly_house://房源
                 setBottomLabState(0);
                 viewpager.setCurrentItem(0, false);
                 break;
-            case R.id.ly_mine:
+            case R.id.ly_mine://我的
                 setBottomLabState(1);
                 viewpager.setCurrentItem(1, false);
                 break;
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(ViewGroup container, int position) {
             if (position == 0) {
-                return new MessageFragment();
+                return new HouseFragment();
             } else if (position == 1) {
                 return new MineFragment();
             }

@@ -12,6 +12,7 @@
     <string name="str_input_vcode">填写验证码</string>
     <string name="str_input_pwd">填写密码</string>
     <string name="str_message">消息</string>
+    <string name="str_houseResources">房源</string>
     <string name="str_mine">我的</string>
     <string name="str_clerk">职员列表</string>
     <string name="str_clockin">考勤打卡</string>

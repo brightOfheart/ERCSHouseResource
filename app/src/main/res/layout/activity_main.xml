@@ -25,7 +25,7 @@
         android:paddingTop="@dimen/d_7">
 
         <LinearLayout
-            android:id="@+id/ly_msg"
+            android:id="@+id/ly_house"
             android:layout_width="@dimen/d_0"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/d_5"
-                android:text="@string/str_message"
+                android:text="@string/str_houseResources"
                 android:textColor="@color/white" />
         </LinearLayout>
 
