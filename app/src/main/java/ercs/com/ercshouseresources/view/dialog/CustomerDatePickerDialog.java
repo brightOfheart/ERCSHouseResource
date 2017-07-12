@@ -26,6 +26,14 @@ public class CustomerDatePickerDialog extends DatePickerDialog {
         setDatePickerDividerColor(this.getDatePicker());
     }
 
+    public CustomerDatePickerDialog(Context context,
+                                    OnDateSetListener callBack, int year, int monthOfYear,
+                                    int dayOfMonth,int isDay) {
+        super(context,DatePickerDialog.THEME_HOLO_LIGHT, callBack, year, monthOfYear, dayOfMonth);
+        this.show();
+
+        setDatePickerDividerColor(this.getDatePicker());
+    }
     @Override
     public void onDateChanged(DatePicker view, int year, int month, int day) {
         super.onDateChanged(view, year, month, day);

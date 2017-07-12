@@ -76,8 +76,10 @@ public class ClockinActivity extends BaseActivity {
     TextView tv_ads2;
     @BindView(R.id.tv_sta2)
     TextView tv_sta2;
-    @BindView(R.id.btn_timer)
-    Button btn_timer;
+    @BindView(R.id.tv_timer)
+    TextView tv_timer;
+    @BindView(R.id.iv_right)
+    ImageView iv_right;//考勤范围小对号
     private LoadingDialog dialog;
     private ClockinSetBean clockinSetBean;//打卡设置返回
     private double latNow, lngNow;
@@ -108,18 +110,21 @@ public class ClockinActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.btn_timer, R.id.iv_post})
+    @OnClick({R.id.tv_timer, R.id.iv_post})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_timer://选择年月
+            case R.id.tv_timer://选择年月
                 new CustomerDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        tv_timer.setText(year+"年"+(month + 1)+"月"+day+"日");
                         if (NetWorkUtil.check(getApplicationContext())) {
+
                             getNetData(year + "-" + (month + 1) + "-" + day);
+
                         }
                     }
-                }, getYear(), getMonth(), getDay());
+                }, getYear(), getMonth(), getDay(),1);
                 break;
             case R.id.iv_post://上传照片
                 savePath();
@@ -139,6 +144,7 @@ public class ClockinActivity extends BaseActivity {
         tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
         GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
         dialog = new LoadingDialog(ClockinActivity.this, 0);
+        tv_timer.setText(getYear()+"年"+getMonth()+"月"+getDay()+"日");
     }
 
     @Override
@@ -329,6 +335,10 @@ public class ClockinActivity extends BaseActivity {
      */
     public boolean isWifiLiveMac() {
         boolean b = false;
+        if (clockinSetBean==null||clockinSetBean.getData()==null)
+        {
+            return false;
+        }
         for (int i = 0; i < clockinSetBean.getData().size(); i++) {
             if (NetWorkUtil.getWifiMac(this).equals(clockinSetBean.getData().get(i).getMacAddress())) {
                 b = true;
@@ -346,6 +356,10 @@ public class ClockinActivity extends BaseActivity {
      */
     public boolean isDistanceLive() {
         boolean b = false;
+        if (clockinSetBean==null||clockinSetBean.getData()==null)
+        {
+            return false;
+        }
         for (int i = 0; i < clockinSetBean.getData().size(); i++) {
             String lat = clockinSetBean.getData().get(i).getLatitude();
             String lng = clockinSetBean.getData().get(i).getLongitude();
@@ -396,7 +410,16 @@ public class ClockinActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tv_address.setText(str);
+                if (isWifiLiveMac()||isDistanceLive())
+                {
+                    tv_address.setText(str);
+                    iv_right.setImageResource(R.mipmap.right);
+                }else
+                {
+                    tv_address.setText(getString(R.string.str_outofbounds));
+                    iv_right.setImageResource(R.mipmap.icon_cancel);
+                }
+
             }
         });
         locationService.stop();// 定位SDK

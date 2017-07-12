@@ -32,4 +32,8 @@
     <color name="orange">#fc7d45</color>
     <color name="system_color">#1AB394</color>
     <color name="bg_color">#f4f4f4</color>
+    <color name="lightgreen">#E7F6F3</color>
+    <color name="darkgreen">#128870</color>
+    <color name="darkred">#DE1935</color>
+
 </resources>
