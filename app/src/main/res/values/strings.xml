@@ -58,6 +58,9 @@
     <string name="str_retroactivecount">补签班次</string>
     <string name="str_inputreason">请输入事由(必填)</string>
     <string name="str_pic">图片</string>
+    <string name="str_timeslong">时长</string>
+    <string name="str_erquired">必填</string>
+
     <!--异常字符串-->
     <string name="error_tel">请输入正确手机号！</string>
     <string name="error_tel_number">请填写手机号码</string>
@@ -66,6 +69,12 @@
     <string name="error_pwd">请输入密码！</string>
     <string name="error_name">请输入查询的姓名！</string>
     <string name="error_nodata">没有查询到相关数据！</string>
+    <string name="error_tyve">请选择流程类型！</string>
+    <string name="error_reson">请输入申请事由！</string>
+    <string name="error_starttime">请选择开始时间！</string>
+    <string name="error_endtime">请选择结束时间！</string>
+    <string name="error_retroactivedata">请选择补签日期！</string>
+    <string name="error_retroactivetype">请选择补签班次！</string>
     <!--其它字符串-->
     <string name="str_welcome">欢迎您</string>
     <string name="str_leftbracket">[</string>

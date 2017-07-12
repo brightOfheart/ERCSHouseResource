@@ -17,13 +17,14 @@
         android:paddingTop="@dimen/d_10">
 
         <TextView
-            android:id="@+id/tv_protype"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/d_16"
             android:text="@string/str_processtypes" />
 
         <TextView
+            android:id="@+id/tv_protype"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@mipmap/gonext"
@@ -46,6 +47,102 @@
         android:layout_height="@dimen/d_1"
         android:background="@color/white2" />
 
+    <!--休息 外出-->
+    <LinearLayout
+        android:id="@+id/ll_rest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/d_10"
+            android:paddingTop="@dimen/d_10">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/d_16"
+                android:text="@string/str_starttime" />
+
+            <TextView
+                android:id="@+id/tv_starttime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@mipmap/gonext"
+                android:gravity="right"
+                android:paddingRight="@dimen/d_16"
+                android:text="@string/str_pleasechose" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/d_10"
+            android:paddingTop="@dimen/d_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/d_16"
+                android:text="@string/str_endtime" />
+
+            <TextView
+                android:id="@+id/tv_endtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@mipmap/gonext"
+                android:gravity="right"
+                android:paddingRight="@dimen/d_16"
+                android:text="@string/str_pleasechose" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/d_10"
+            android:paddingTop="@dimen/d_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/d_16"
+                android:text="@string/str_timeslong" />
+
+            <TextView
+                android:id="@+id/tv_timelong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/d_16"
+                android:text="@string/str_erquired" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--补签-->
+    <LinearLayout
+        android:id="@+id/ll_retroactive"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,13 +152,14 @@
         android:paddingTop="@dimen/d_10">
 
         <TextView
-            android:id="@+id/tv_retroactivedata"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/d_16"
             android:text="@string/str_retroactivedata" />
 
         <TextView
+            android:id="@+id/tv_retroactivedata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@mipmap/gonext"
@@ -98,6 +196,9 @@
             android:paddingRight="@dimen/d_16"
             android:text="@string/str_retroactivecount" />
     </LinearLayout>
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -137,6 +238,7 @@
         android:background="@color/white2" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_0"
         android:layout_weight="1"
@@ -144,6 +246,7 @@
         android:background="@color/white">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/d_10"
@@ -185,6 +288,10 @@
             android:background="@color/white2" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_0"
+        android:layout_weight="1"></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

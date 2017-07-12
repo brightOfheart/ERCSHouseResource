@@ -258,23 +258,24 @@ public class NetHelper {
 
     /**
      * 流程审批 休息 外出
-     *
      * @param UserId
-     * @param RetroactiveClass
-     * @param RetroactiveTime
-     * @param RetroactiveState
-     * @param ApplicationContent
-     * @param ApplicationTime
+     * @param StartTime
+     * @param EndTime
+     * @param TimeCount
+     * @param LeaveType
+     * @param LeaveState
+     * @param LeaveContent
      * @param callback
      */
-    public static void processApplyOutside(String UserId, String RetroactiveClass, String RetroactiveTime, String RetroactiveState, String ApplicationContent, String ApplicationTime, HttpUtils.HttpCallback callback) {
+    public static void processApplyOutside(String UserId, String StartTime, String EndTime, String TimeCount, String LeaveType, String LeaveState,String LeaveContent, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("UserId", UserId);
-        map.put("RetroactiveClass", RetroactiveClass);
-        map.put("RetroactiveTime", RetroactiveTime);
-        map.put("RetroactiveState", RetroactiveState);
-        map.put("ApplicationContent", ApplicationContent);
-        map.put("ApplicationTime", ApplicationTime);
+        map.put("StartTime", StartTime);
+        map.put("EndTime", EndTime);
+        map.put("TimeCount", TimeCount);
+        map.put("LeaveType", LeaveType);
+        map.put("LeaveState", LeaveState);
+        map.put("LeaveContent", LeaveContent );
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + PROCESSAPPLYOUTSIDE, json, callback);
     }

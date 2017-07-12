@@ -42,4 +42,8 @@ dependencies {
     compile 'com.zyao89:zloading:1.0.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile('com.bigkoo:pickerview:2.1.1') {
+        exclude group: 'com.android.support'
+    }
 }

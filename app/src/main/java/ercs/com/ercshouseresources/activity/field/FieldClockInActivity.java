@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.activity.field;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +27,8 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.GeoPoint;
+
 import java.io.File;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -66,7 +69,7 @@ public class FieldClockInActivity extends BaseActivity {
     EditText edit_content;//填写外出事由
     private LocationService locationService;
     private double latNow, lngNow;
-    private String Id, CreatorId, StartLocation;
+    private String Id, CreatorId, StartLocation,streetDetail;
     private LoadingDialog dialog;
     private BaiduMap mBaidumap;
     private static final int msgKey1 = 1;
@@ -358,6 +361,7 @@ public class FieldClockInActivity extends BaseActivity {
                 latNow = location.getLatitude();
                 lngNow = location.getLongitude();
                 StartLocation = location.getAddrStr();
+                 streetDetail = location.getDistrict()+location.getStreet();
                 logMsg("已在考勤范围:" + location.getCity() + location.getDistrict() + location.getStreet() + location.getStreetNumber());
             }
         }
@@ -437,12 +441,15 @@ public class FieldClockInActivity extends BaseActivity {
      * @param latitude
      * @param longitude
      */
-    private void showLocation(Double latitude, Double longitude) {  //显示气泡
+    private void showLocation(Double latitude, Double longitude) {
+
+
+        //显示气泡
         // 创建InfoWindow展示的view
         LatLng pt = null;
         View view = LayoutInflater.from(this).inflate(R.layout.map_item, null); //自定义气泡形状
         TextView textView = (TextView) view.findViewById(R.id.my_postion);
-        textView.setText("我在附件");
+        textView.setText(streetDetail);
         BitmapDescriptor bd = null;
         try {
             bd = BitmapDescriptorFactory.fromView(view);
@@ -453,7 +460,18 @@ public class FieldClockInActivity extends BaseActivity {
             return;
         }
         MarkerOptions oo = new MarkerOptions().position(new LatLng(latitude, longitude)).icon(bd);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.down_icon);
+        BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
+        MarkerOptions oo2 = new MarkerOptions().position(new LatLng(latitude, longitude)).icon(bitmapDescriptor);
+
+
+        mBaidumap.addOverlay(oo2);
         mBaidumap.addOverlay(oo);
+
+
+
+
+
         // Marker mMarker = (Marker) (mBaidumap.addOverlay(oo));
     }
 

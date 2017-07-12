@@ -42,24 +42,25 @@ public class ClerkAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BottomDialog bottomDialog = new BottomDialog(activity, new BottomDialog.OnSelectListener() {
-
-                    @Override
-                    public void callphone() {//拨打电话
-                        OtherUitl.callPage(context, datas.getPhone());
-                    }
-
-                    @Override
-                    public void selectattendance() {//查看考勤
-
-                    }
-
-                    @Override
-                    public void selectfield() {//查看外勤
-
-                    }
-                }, datas.getName());
-                bottomDialog.show();
+                OtherUitl.callPage(context, datas.getPhone());
+//                BottomDialog bottomDialog = new BottomDialog(activity, new BottomDialog.OnSelectListener() {
+//
+//                    @Override
+//                    public void callphone() {//拨打电话
+//                        OtherUitl.callPage(context, datas.getPhone());
+//                    }
+//
+//                    @Override
+//                    public void selectattendance() {//查看考勤
+//
+//                    }
+//
+//                    @Override
+//                    public void selectfield() {//查看外勤
+//
+//                    }
+//                }, datas.getName());
+//                bottomDialog.show();
             }
         });
     }

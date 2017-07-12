@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/d_20"
     >
+
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textSize="@dimen/sp_12"
+     android:text="我在"/>
  <TextView
      android:layout_width="match_parent"
-     android:layout_height="match_parent"
+     android:layout_height="wrap_content"
      android:id="@+id/my_postion"
-     android:textColor="@color/black"/>
-</FrameLayout>
+     android:textColor="@color/black"
+     android:textSize="@dimen/sp_14"
+     android:paddingLeft="@dimen/d_5"
+     android:paddingRight="@dimen/d_5"
+     />
+ <TextView
+     android:textSize="@dimen/sp_12"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="附近"
+     android:drawableRight="@mipmap/gonext"
+     />
+
+
+</LinearLayout>

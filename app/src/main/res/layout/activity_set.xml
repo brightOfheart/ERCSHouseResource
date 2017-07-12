@@ -6,6 +6,7 @@
         android:id="@+id/title"
         layout="@layout/include_title"/>
     <FrameLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
@@ -29,14 +30,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/gonext"/>
     </FrameLayout>
     <TextView
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/d_10"
+        android:layout_marginBottom="@dimen/d_10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_0"
         android:layout_weight="1"/>
-    <Button
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_exit"/>
+        android:padding="10dp"
+        android:background="@color/white">
+        <Button
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_exit"
+            android:textColor="@color/white"
+            android:background="@drawable/button_red_bg"/>
+    </RelativeLayout>
+
 </LinearLayout>

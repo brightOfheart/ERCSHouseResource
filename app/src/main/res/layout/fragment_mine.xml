@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_16"
-                        android:src="@mipmap/icon_clerk" />
+                        android:src="@mipmap/zhiyuanliebiao" />
 
                     <TextView
                         android:layout_width="@dimen/d_0"
@@ -89,7 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/d_16"
-                            android:src="@mipmap/icon_set" />
+                            android:src="@mipmap/liuchengshenpi" />
 
                         <TextView
                             android:layout_width="@dimen/d_0"
@@ -126,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/d_16"
-                            android:src="@mipmap/icon_set" />
+                            android:src="@mipmap/ygkqjl" />
 
                         <TextView
                             android:layout_width="@dimen/d_0"
@@ -163,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/d_16"
-                            android:src="@mipmap/icon_set" />
+                            android:src="@mipmap/ygwqjl" />
 
                         <TextView
                             android:layout_width="@dimen/d_0"
@@ -197,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_16"
-                        android:src="@mipmap/icon_set" />
+                        android:src="@mipmap/shezhi" />
 
                     <TextView
                         android:layout_width="@dimen/d_0"

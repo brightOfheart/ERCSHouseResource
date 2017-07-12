@@ -126,13 +126,29 @@
         android:layout_weight="3"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_content"
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_0"
-            android:layout_weight="1"
-            android:gravity="top|left"
-            android:hint="外出事由：必填最多不超过50个字" />
+            android:layout_weight="1.5"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="外出事由"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:hint="必填最多不超过50个字"
+                android:textSize="@dimen/sp_14"
+                android:background="@color/white"/>
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
@@ -148,17 +164,23 @@
             android:layout_height="@dimen/d_1"
             android:background="@color/white2" />
 
-        <Button
-            android:id="@+id/btn_post"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/d_50"
-            android:layout_marginLeft="@dimen/d_10"
-            android:layout_marginRight="@dimen/d_10"
-            android:layout_marginTop="@dimen/d_18"
-            android:background="@drawable/button_corners_bg"
-            android:text="@string/str_post"
-            android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/d_5"
-            android:textSize="@dimen/d_16" />
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <Button
+                android:id="@+id/btn_post"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:layout_marginLeft="@dimen/d_10"
+                android:layout_marginRight="@dimen/d_10"
+                android:layout_marginTop="@dimen/d_18"
+                android:background="@drawable/button_corners_bg"
+                android:text="@string/str_post"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/d_16" />
+        </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>

@@ -106,31 +106,31 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
             switch (i) {
                 case 0:
                     mineBean.setTitle(getStr(R.string.str_clockin));
-                    mineBean.setIconid(R.mipmap.icon_clockin);
+                    mineBean.setIconid(R.mipmap.daka);
                     break;
                 case 1:
                     mineBean.setTitle(getStr(R.string.str_attendance));
-                    mineBean.setIconid(R.mipmap.icon_attendance);
+                    mineBean.setIconid(R.mipmap.kaoqintongji);
                     break;
                 case 2:
                     mineBean.setTitle(getStr(R.string.str_fieldclockin));
-                    mineBean.setIconid(R.mipmap.icon_field);
+                    mineBean.setIconid(R.mipmap.waiqindaka);
                     break;
                 case 3:
                     mineBean.setTitle(getStr(R.string.str_field));
-                    mineBean.setIconid(R.mipmap.icon_field);
+                    mineBean.setIconid(R.mipmap.waiqintongji);
                     break;
                 case 4:
                     mineBean.setTitle(getStr(R.string.str_processpay));
-                    mineBean.setIconid(R.mipmap.icon_scheduling);
+                    mineBean.setIconid(R.mipmap.liuchengshenqing);
                     break;
                 case 5:
                     mineBean.setTitle(getStr(R.string.str_allprocess));
-                    mineBean.setIconid(R.mipmap.icon_allprocess);
+                    mineBean.setIconid(R.mipmap.suoyouliucheng);
                     break;
                 case 6:
                     mineBean.setTitle(getStr(R.string.str_scheduling));
-                    mineBean.setIconid(R.mipmap.icon_scheduling);
+                    mineBean.setIconid(R.mipmap.paibanqingkuang);
                     break;
 
             }

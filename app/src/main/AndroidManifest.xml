@@ -43,7 +43,7 @@
         <!--百度地图开发者的key-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="2sACU3m5FRjl7Gu5R4yifkBYqSiGlt1o" />
+            android:value="BQr8mwebag6iRsq8GOL9H9aTI1GGqpF2" />
         <!--主页-->
         <activity
             android:name=".activity.MainActivity"
@@ -145,7 +145,11 @@
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2"></action>
             </intent-filter>
-        </service>
+        </service><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
