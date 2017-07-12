@@ -1,20 +1,12 @@
 package ercs.com.ercshouseresources.activity.attendance;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.widget.GridView;
-
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
-import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.clerk.ClerkActivity;
-import ercs.com.ercshouseresources.adapter.ClerkAdapter;
 import ercs.com.ercshouseresources.adapter.MemberOutAssessAdapter;
 import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
