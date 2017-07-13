@@ -54,7 +54,7 @@ public class ClerkActivity extends BaseActivity {
      */
     private void createDialog() {
         dialog = new LoadingDialog(ClerkActivity.this, 0);
-    }
+}
 
     /**
      * 初始化
