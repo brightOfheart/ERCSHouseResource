@@ -5,4 +5,241 @@
     <include
         android:id="@+id/title"
         layout="@layout/include_title" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/d_8"
+        android:paddingTop="@dimen/d_8"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="@dimen/d_50"
+                android:layout_height="@dimen/d_50"
+                android:layout_marginLeft="@dimen/d_16"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_10" />
+        </LinearLayout>
+
+
+            <TextView
+                android:layout_gravity="right|center"
+                android:layout_marginRight="@dimen/d_16"
+                android:id="@+id/tv_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/black" />
+
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+    <TextView
+        android:id="@+id/tv_frequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/d_10"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingLeft="@dimen/d_16"
+        android:paddingRight="@dimen/d_16"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:drawableLeft="@mipmap/message_over"
+        android:drawablePadding="@dimen/d_10"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+    <!--下面-->
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_0"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/d_16"
+        android:paddingTop="@dimen/d_16">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/shang" />
+
+        <View
+            android:layout_width="@dimen/d_1"
+            android:layout_height="@dimen/d_100"
+            android:background="@color/white2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/xia" />
+    </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/d_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--上-->
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <TextView
+                     android:id="@+id/tv_uptime"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textColor="@color/black2"
+
+                     />
+                 <TextView
+                     android:id="@+id/tv_upbantime"
+                     android:layout_marginLeft="@dimen/d_10"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_toRightOf="@id/tv_uptime"
+
+                     android:textSize="@dimen/sp_12"/>
+                 <TextView
+                     android:visibility="gone"
+                     android:id="@+id/tv_upaddress"
+
+                     android:layout_marginTop="@dimen/d_5"
+                     android:layout_alignLeft="@id/tv_uptime"
+                     android:layout_below="@id/tv_uptime"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:drawableLeft="@mipmap/xzuobiao"
+                     />
+                 <TextView
+                     android:textSize="@dimen/d_10"
+                     android:textColor="@color/white"
+                     android:padding="3dp"
+                     android:background="@drawable/text_orange_bg"
+                     android:id="@+id/tv_uptype"
+
+
+                     android:layout_alignLeft="@id/tv_upaddress"
+                     android:layout_below="@id/tv_upaddress"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     />
+             </RelativeLayout>
+
+            <!--站位-->
+            <LinearLayout
+                android:id="@+id/ll"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/shang" />
+
+                <View
+                    android:layout_width="@dimen/d_1"
+                    android:layout_height="@dimen/d_100"
+                    android:background="@color/white2" />
+            </LinearLayout>
+
+            <!--下面-->
+            <RelativeLayout
+                android:layout_below="@id/ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_downtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black2"
+                   />
+                <TextView
+                    android:id="@+id/tv_downbantime"
+                    android:layout_marginLeft="@dimen/d_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_downtime"
+
+                    android:textSize="@dimen/sp_12"/>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_downaddress"
+
+                    android:layout_marginTop="@dimen/d_5"
+                    android:layout_alignLeft="@id/tv_downtime"
+                    android:layout_below="@id/tv_downtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/xzuobiao"
+                    />
+                <TextView
+                    android:textSize="@dimen/d_10"
+                    android:textColor="@color/white"
+                    android:padding="3dp"
+                    android:background="@drawable/text_orange_bg"
+                    android:id="@+id/tv_downtype"
+
+
+                    android:layout_alignLeft="@id/tv_downaddress"
+                    android:layout_below="@id/tv_downaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_lookanother"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_50"
+        android:layout_marginLeft="@dimen/d_10"
+        android:layout_marginRight="@dimen/d_10"
+        android:layout_marginTop="@dimen/d_18"
+        android:layout_marginBottom="@dimen/d_10"
+        android:background="@drawable/button_corners_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/d_16"
+        android:text="@string/str_contactadministrator" />
 </LinearLayout>

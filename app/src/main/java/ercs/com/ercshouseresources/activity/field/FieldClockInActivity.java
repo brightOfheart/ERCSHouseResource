@@ -362,7 +362,7 @@ public class FieldClockInActivity extends BaseActivity {
                 lngNow = location.getLongitude();
                 StartLocation = location.getAddrStr();
                  streetDetail = location.getDistrict()+location.getStreet();
-                logMsg("已在考勤范围:" + location.getCity() + location.getDistrict() + location.getStreet() + location.getStreetNumber());
+                logMsg("定位地址:" + location.getCity() + location.getDistrict() + location.getStreet() + location.getStreetNumber());
             }
         }
 

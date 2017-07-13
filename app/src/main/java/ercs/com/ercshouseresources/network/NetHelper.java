@@ -311,8 +311,8 @@ public class NetHelper {
      */
     public static void atendanceDetail(String UserId, String ParamsDate, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserId", "2");
-        map.put("ParamsDate", "2017-07-12");
+        map.put("UserId", UserId);
+        map.put("ParamsDate", ParamsDate);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + ATENDANCEDETAIL, json, callback);
     }

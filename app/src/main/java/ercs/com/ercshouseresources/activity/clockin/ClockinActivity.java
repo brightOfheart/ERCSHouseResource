@@ -78,6 +78,8 @@ public class ClockinActivity extends BaseActivity {
     TextView tv_sta2;
     @BindView(R.id.tv_timer)
     TextView tv_timer;
+    @BindView(R.id.ll_bottom)
+    LinearLayout ll_bottom;
     @BindView(R.id.iv_right)
     ImageView iv_right;//考勤范围小对号
     private LoadingDialog dialog;
@@ -188,6 +190,7 @@ public class ClockinActivity extends BaseActivity {
                     @Override
                     public void run() {
                         if (clockinLookBean.getType().equals("1")) {
+                            ll_bottom.setVisibility(View.VISIBLE);
                             tv_tit1.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getStartTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttstrtime()) + ")");
                             tv_ads1.setText(clockinLookBean.getData().getStartLocation());
                             tv_sta1.setText(kind(clockinLookBean.getData().getStartContent()));
