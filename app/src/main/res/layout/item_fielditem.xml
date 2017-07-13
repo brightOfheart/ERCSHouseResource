@@ -25,7 +25,8 @@
             android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/d_10"/>
+            android:layout_marginRight="@dimen/d_10"
+            android:textColor="@color/gray"/>
 
         <ImageView
             android:id="@+id/iv_icon"

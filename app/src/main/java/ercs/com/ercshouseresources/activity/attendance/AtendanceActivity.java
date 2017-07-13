@@ -30,7 +30,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 
 /**
  * Created by Administrator on 2017/6/22.
- * 考勤统计
+ * 考勤记录
  */
 
 public class AtendanceActivity extends BaseActivity {

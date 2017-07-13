@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white4">
+    android:background="@color/white4"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/title"
@@ -74,8 +74,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_0"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:scrollbars="none">
 
         <LinearLayout
@@ -84,16 +83,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
     <Button
         android:id="@+id/btn_lookanother"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_50"
+        android:layout_marginBottom="@dimen/d_10"
         android:layout_marginLeft="@dimen/d_10"
         android:layout_marginRight="@dimen/d_10"
         android:layout_marginTop="@dimen/d_18"
-        android:layout_marginBottom="@dimen/d_10"
         android:background="@drawable/button_corners_bg"
+        android:text="@string/str_lookanothers"
         android:textColor="@color/white"
         android:textSize="@dimen/d_16"
-        android:text="@string/str_lookanothers" />
+        android:visibility="gone" />
 </LinearLayout>

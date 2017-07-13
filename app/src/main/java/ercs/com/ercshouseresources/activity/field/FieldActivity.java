@@ -36,7 +36,7 @@ import ercs.com.ercshouseresources.view.item.FieldItem;
 
 /**
  * Created by Administrator on 2017/6/27.
- * 外勤统计
+ * 外勤记录
  */
 
 public class FieldActivity extends BaseActivity {

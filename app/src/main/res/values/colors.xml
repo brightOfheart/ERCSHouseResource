@@ -35,6 +35,6 @@
     <color name="lightgreen">#E7F6F3</color>
     <color name="darkgreen">#128870</color>
     <color name="darkred">#DE1935</color>
-
+    <color name="gray">#c5c5c5</color>
 
 </resources>
