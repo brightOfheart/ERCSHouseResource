@@ -46,9 +46,9 @@ public class ProcessAcvitity extends BaseActivity {
         for (int i = 0; i < datas.size(); i++) {
             if (datas.get(i).getLeaveType().equals("1")) {
                 ly_rest.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
-            } else if (datas.get(i).getLeaveType().equals("2")) {
-                ly_out.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
             } else if (datas.get(i).getLeaveType().equals("3")) {
+                ly_out.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
+            } else if (datas.get(i).getLeaveType().equals("2")) {
                 ly_retroactive.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
             }
         }

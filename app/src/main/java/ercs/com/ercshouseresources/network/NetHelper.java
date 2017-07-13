@@ -168,7 +168,7 @@ public class NetHelper {
      */
     public static void inside(String ParamsDate, String UserId, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("ParamsDate", "2017-06-24");
+        map.put("ParamsDate", ParamsDate);
         map.put("UserId", "2");
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + INSIDE, json, callback);

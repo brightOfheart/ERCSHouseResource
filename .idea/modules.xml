@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ERCSHouseResource.iml" filepath="$PROJECT_DIR$/ERCSHouseResource.iml" />
       <module fileurl="file://$PROJECT_DIR$/ERCSHouseResources.iml" filepath="$PROJECT_DIR$/ERCSHouseResources.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

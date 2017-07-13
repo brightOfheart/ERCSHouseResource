@@ -17,8 +17,8 @@ public class ClockinLookBean extends BaseBean {
     }
 
     public class DataBean {
-        private String Attstrtime;
-        private String Attendtime;
+        private String AttStrtime;
+        private String AttEndtime;
         private String StartImagePageName;
         private String EndImagePageName;
         private String StartTime;
@@ -43,20 +43,21 @@ public class ClockinLookBean extends BaseBean {
             EndContent = endContent;
         }
 
-        public String getAttendtime() {
-            return Attendtime;
+
+        public String getAttStrtime() {
+            return AttStrtime;
         }
 
-        public void setAttendtime(String attendtime) {
-            Attendtime = attendtime;
+        public void setAttStrtime(String attStrtime) {
+            AttStrtime = attStrtime;
         }
 
-        public String getAttstrtime() {
-            return Attstrtime;
+        public String getAttEndtime() {
+            return AttEndtime;
         }
 
-        public void setAttstrtime(String attstrtime) {
-            Attstrtime = attstrtime;
+        public void setAttEndtime(String attEndtime) {
+            AttEndtime = attEndtime;
         }
 
         public String getStartImagePageName() {

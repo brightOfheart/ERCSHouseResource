@@ -37,7 +37,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
     @BindView(R.id.tv_retroactivedata)
     TextView tv_retroactivedata;//补签日期
     @BindView(R.id.tv_processtypes)
-    TextView tv_processtypes;//流程类型
+    TextView tv_processtypes;//补签类型
     @BindView(R.id.edit_reason)
     EditText edit_reason;//输入事由的文本框
     @BindView(R.id.iv_photo)
@@ -61,6 +61,8 @@ public class ProcessApplyAcvitity extends BaseActivity {
     private  SimpleDateFormat sd,ymd;
 
     private int protype=0;//流程类型 0 未选择 1休息 2 外出 3补签
+    private int retroactivetype=0;//补签类型 0 未选择 1上班 2 下班 4上班和下班
+
 
     private  long hours;//间隔时间
 
@@ -223,17 +225,17 @@ public class ProcessApplyAcvitity extends BaseActivity {
                             case 1:
                                 //上班
                                 tv_processtypes.setText("上班");
-
+                                retroactivetype=1;
 
                                 break;
                             case 2:
                                 tv_processtypes.setText("下班");
-
+                                retroactivetype=3;
                                 //下班
                                 break;
                             case 3:
                                 tv_processtypes.setText("上班和下班");
-
+                                retroactivetype=4;
                                 //补签
                                 break;
                         }
@@ -281,6 +283,14 @@ public class ProcessApplyAcvitity extends BaseActivity {
         }
         return true;
     }
+
+    /**
+     * 提交数据
+     * 休息1 外出3
+     * 申请1 同意2 驳回3
+     * 上班1 下班3 上班和下班4
+     * @param protype
+     */
     private void submitApply(int protype) {
         switch (protype)
         {
@@ -294,7 +304,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                     ToastUtil.showToast(getApplicationContext(), getString(R.string.error_endtime));
                 }else {
                     dialog.show();
-                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(), hours + "", "休息", "申请", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(), hours + "", "1", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();
@@ -336,7 +346,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                 }else
                 {
                     dialog.show();
-                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(),  hours+"", "外出", "申请", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(),  hours+"", "3", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();
@@ -372,7 +382,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                     ToastUtil.showToast(getApplicationContext(), getString(R.string.error_retroactivetype));
                 }else {
                     dialog.show();
-                    NetHelper.processRetroactive("2", tv_processtypes.getText().toString(), tv_retroactivedata.getText().toString(), "申请", edit_reason.getText().toString(), tv_retroactivedata.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processRetroactive("2", retroactivetype+"", tv_retroactivedata.getText().toString(), "1", edit_reason.getText().toString(), tv_retroactivedata.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();

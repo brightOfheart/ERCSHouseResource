@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
 import java.text.ParseException;
@@ -34,7 +36,26 @@ public class AllProcessAdapter extends ViewHolderAdapter<AllProcessBean.DataBean
     @Override
     public void bindViewDatas(ViewHolder holder, AllProcessBean.DataBean dataBean, final int position) {
         holder.setText(R.id.tv_title,"我的"+type(dataBean.getLeaveType())+"申请");
+
         holder.setText(R.id.tv_state, state(dataBean.getLeaveState()));
+        switch (dataBean.getLeaveState())
+        {
+            case "1":
+                //待审核
+                ((TextView)holder.getView(R.id.tv_state)).setTextColor(context.getResources().getColor(R.color.orange));
+                holder.setImageResource(R.id.iv_state,R.mipmap.right);
+                break;
+            case "2":
+                //通过
+                ((TextView)holder.getView(R.id.tv_state)).setTextColor(context.getResources().getColor(R.color.black));
+                holder.setImageResource(R.id.iv_state,R.mipmap.right);
+                break;
+            case "3":
+                //通过
+                ((TextView)holder.getView(R.id.tv_state)).setTextColor(context.getResources().getColor(R.color.red));
+                holder.setImageResource(R.id.iv_state,R.mipmap.icon_cancel);
+            break;
+        }
         holder.setText(R.id.tv_time, getDay(dataBean.getCreatedTime()));
         GlideUtil.loadCircleImage(NetHelper.URL + dataBean.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
     }

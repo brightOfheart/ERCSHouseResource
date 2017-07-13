@@ -191,10 +191,10 @@ public class ClockinActivity extends BaseActivity {
                     public void run() {
                         if (clockinLookBean.getType().equals("1")) {
                             ll_bottom.setVisibility(View.VISIBLE);
-                            tv_tit1.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getStartTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttstrtime()) + ")");
+                            tv_tit1.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getStartTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttStrtime()) + ")");
                             tv_ads1.setText(clockinLookBean.getData().getStartLocation());
                             tv_sta1.setText(kind(clockinLookBean.getData().getStartContent()));
-                            tv_tit2.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getEndTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttendtime()) + ")");
+                            tv_tit2.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getEndTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttEndtime()) + ")");
                             tv_ads2.setText(clockinLookBean.getData().getEndLocation());
                             tv_sta2.setText(kind(clockinLookBean.getData().getEndContent()));
                         }
@@ -338,6 +338,7 @@ public class ClockinActivity extends BaseActivity {
      */
     public boolean isWifiLiveMac() {
         boolean b = false;
+
         if (clockinSetBean==null||clockinSetBean.getData()==null)
         {
             return false;
