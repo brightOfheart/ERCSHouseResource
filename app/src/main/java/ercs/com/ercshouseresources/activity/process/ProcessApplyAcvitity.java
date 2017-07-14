@@ -15,11 +15,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ProcessApplicationBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -65,6 +67,8 @@ public class ProcessApplyAcvitity extends BaseActivity {
 
 
     private  long hours;//间隔时间
+
+    private SPUtil spUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -172,6 +176,8 @@ public class ProcessApplyAcvitity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_processpay));
         dialog = new LoadingDialog(ProcessApplyAcvitity.this, 0);
+        if (spUtil == null)
+            spUtil = new SPUtil(this, "fileName");
     }
 
     /**
@@ -285,6 +291,14 @@ public class ProcessApplyAcvitity extends BaseActivity {
     }
 
     /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
+    /**
      * 提交数据
      * 休息1 外出3
      * 申请1 同意2 驳回3
@@ -304,7 +318,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                     ToastUtil.showToast(getApplicationContext(), getString(R.string.error_endtime));
                 }else {
                     dialog.show();
-                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(), hours + "", "1", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processApplyOutside(getId(), tv_starttime.getText().toString(), tv_endtime.getText().toString(), hours + "", "1", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();
@@ -346,7 +360,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                 }else
                 {
                     dialog.show();
-                    NetHelper.processApplyOutside("2", tv_starttime.getText().toString(), tv_endtime.getText().toString(),  hours+"", "3", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processApplyOutside(getId(), tv_starttime.getText().toString(), tv_endtime.getText().toString(),  hours+"", "3", "1", edit_reason.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();
@@ -382,7 +396,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
                     ToastUtil.showToast(getApplicationContext(), getString(R.string.error_retroactivetype));
                 }else {
                     dialog.show();
-                    NetHelper.processRetroactive("2", retroactivetype+"", tv_retroactivedata.getText().toString(), "1", edit_reason.getText().toString(), tv_retroactivedata.getText().toString(), new HttpUtils.HttpCallback() {
+                    NetHelper.processRetroactive(getId(), retroactivetype+"", tv_retroactivedata.getText().toString(), "1", edit_reason.getText().toString(), tv_retroactivedata.getText().toString(), new HttpUtils.HttpCallback() {
                         @Override
                         public void onSuccess(String data) {
                             dialog.dismiss();

@@ -151,13 +151,20 @@ public class FieldActivity extends BaseActivity {
         t.setTitle(getString(R.string.str_field));
         dialog = new LoadingDialog(FieldActivity.this, 0);
     }
-
+    /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
     /**
      * 获取网络数据
      */
     private void loadData(String date) {
         dialog.show();
-        NetHelper.outside("", date, new HttpUtils.HttpCallback() {
+        NetHelper.outside(getId(), date, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final FieldBean fieldBean = MyGson.getInstance().fromJson(data, FieldBean.class);

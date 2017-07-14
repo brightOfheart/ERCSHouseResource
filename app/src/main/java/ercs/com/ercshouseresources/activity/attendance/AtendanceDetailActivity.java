@@ -109,8 +109,8 @@ public class AtendanceDetailActivity extends BaseActivity {
         loadingDialog.show();
         int i = paramsDate.indexOf("(");
         String substring = paramsDate.substring(0, i);
-        Log.i("-->","substring:"+substring+" id="+spUtil.getString(BaseApplication.ID, ""));
-        NetHelper.atendanceDetail("2", substring, new HttpUtils.HttpCallback() {
+
+        NetHelper.atendanceDetail(spUtil.getString(BaseApplication.ID, ""), substring, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 loadingDialog.dismiss();

@@ -172,11 +172,19 @@ public class ClockinActivity extends BaseActivity {
     }
 
     /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
+    /**
      * 获取网络数据
      */
     private void getNetData(String time) {
         dialog.show();
-        NetHelper.inside(time, "", new HttpUtils.HttpCallback() {
+        NetHelper.inside(time,getId() , new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ClockinLookBean clockinLookBean = MyGson.getInstance().fromJson(data, ClockinLookBean.class);
@@ -307,12 +315,13 @@ public class ClockinActivity extends BaseActivity {
         });
     }
 
+
     /**
      * 访问打卡设置的接口
      */
     private void getDatas() {
         dialog.show();
-        NetHelper.insideSetInfo("", new HttpUtils.HttpCallback() {
+        NetHelper.insideSetInfo(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
