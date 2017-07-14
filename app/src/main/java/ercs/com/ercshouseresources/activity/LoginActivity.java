@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.img_show)
     ImageView img_show;//显示与隐藏密码的图标
     private SPUtil spUtil;
-    private String LOGINRIGHT = "1";
+    private int LOGINRIGHT = 1;
     private LoadingDialog dialog;
 
     @Override
@@ -131,7 +131,7 @@ public class LoginActivity extends BaseActivity {
      * @param id
      * @param pwd
      */
-    private void saveIdPwd(String id, String phone, String pwd, String photopath, String name, String depname, String Authority) {
+    private void saveIdPwd(String id,String phone, String pwd, String photopath, String name, String depname, String Authority,String SuperiorPhone) {
         spUtil.putString(BaseApplication.ID, id);
         spUtil.putString(BaseApplication.PHONE, phone);
         spUtil.putString(BaseApplication.PWD, pwd);
@@ -139,6 +139,7 @@ public class LoginActivity extends BaseActivity {
         spUtil.putString(BaseApplication.NAME, name);
         spUtil.putString(BaseApplication.DEPNAME, depname);
         spUtil.putString(BaseApplication.AUTHORITY, Authority);
+        spUtil.putString(BaseApplication.SUPERIORPHONE, SuperiorPhone);
     }
 
     /**
@@ -160,8 +161,8 @@ public class LoginActivity extends BaseActivity {
             public void onSuccess(String data) {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
-                if (loginBean.getType().equals(LOGINRIGHT)) {
-                    saveIdPwd(loginBean.getData().getId(), getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
+                if (loginBean.getType()==LOGINRIGHT) {
+                    saveIdPwd(loginBean.getData().getId()+"",getId(),getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority()+"",loginBean.getData().getSuperiorUser().getPhone());
                     saveLogin(1);
                 }
                 runOnUiThread(new Runnable() {

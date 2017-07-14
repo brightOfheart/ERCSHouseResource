@@ -8,19 +8,27 @@ import java.util.List;
  */
 
 public class AtendanceBean extends BaseBean {
+
     private List<DataBean> Data;
 
     public List<DataBean> getData() {
         return Data;
     }
 
-    public void setData(List<DataBean> data) {
-        Data = data;
+    public void setData(List<DataBean> Data) {
+        this.Data = Data;
     }
 
-    public class DataBean {
+    public static class DataBean {
+        /**
+         * TypeExplain : 5次
+         * StatisticsType : 6
+         * StatisticsTypeName : 旷工
+         * InSideStatisticsListMode : [{"Id":19,"UserId":2009,"TypeExplain":"5次","StatisticsType":6,"StatisticsTypeName":"旷工","StatisticsDateTime":"2017-07-06(星期四)","StatisticsDateTimeExplain":"","StatisticsExplain":"","ParamsDate":"sss"},{"Id":29,"UserId":2009,"TypeExplain":"5次","StatisticsType":6,"StatisticsTypeName":"旷工","StatisticsDateTime":"2017-07-07(星期五)","StatisticsDateTimeExplain":"","StatisticsExplain":"","ParamsDate":null},{"Id":39,"UserId":2009,"TypeExplain":"5次","StatisticsType":6,"StatisticsTypeName":"旷工","StatisticsDateTime":"2017-07-11(星期二)","StatisticsDateTimeExplain":"","StatisticsExplain":"","ParamsDate":null},{"Id":84,"UserId":2009,"TypeExplain":"5次","StatisticsType":6,"StatisticsTypeName":"旷工","StatisticsDateTime":"2017-07-12(星期三)","StatisticsDateTimeExplain":"","StatisticsExplain":"","ParamsDate":null},{"Id":95,"UserId":2009,"TypeExplain":"5次","StatisticsType":6,"StatisticsTypeName":"旷工","StatisticsDateTime":"2017-07-13(星期四)","StatisticsDateTimeExplain":"","StatisticsExplain":"","ParamsDate":null}]
+         */
+
         private String TypeExplain;
-        private String StatisticsType;
+        private int StatisticsType;
         private String StatisticsTypeName;
         private List<InSideStatisticsListModeBean> InSideStatisticsListMode;
 
@@ -28,106 +36,127 @@ public class AtendanceBean extends BaseBean {
             return TypeExplain;
         }
 
-        public void setTypeExplain(String typeExplain) {
-            TypeExplain = typeExplain;
+        public void setTypeExplain(String TypeExplain) {
+            this.TypeExplain = TypeExplain;
         }
 
         public String getStatisticsType() {
-            return StatisticsType;
+            return StatisticsType+"";
         }
 
-        public void setStatisticsType(String statisticsType) {
-            StatisticsType = statisticsType;
+        public void setStatisticsType(int StatisticsType) {
+            this.StatisticsType = StatisticsType;
         }
 
         public String getStatisticsTypeName() {
             return StatisticsTypeName;
         }
 
-        public void setStatisticsTypeName(String statisticsTypeName) {
-            StatisticsTypeName = statisticsTypeName;
+        public void setStatisticsTypeName(String StatisticsTypeName) {
+            this.StatisticsTypeName = StatisticsTypeName;
         }
 
         public List<InSideStatisticsListModeBean> getInSideStatisticsListMode() {
             return InSideStatisticsListMode;
         }
 
-        public void setInSideStatisticsListMode(List<InSideStatisticsListModeBean> inSideStatisticsListMode) {
-            InSideStatisticsListMode = inSideStatisticsListMode;
+        public void setInSideStatisticsListMode(List<InSideStatisticsListModeBean> InSideStatisticsListMode) {
+            this.InSideStatisticsListMode = InSideStatisticsListMode;
         }
 
-        public class InSideStatisticsListModeBean {
-            private String UserId;
+        public static class InSideStatisticsListModeBean {
+            /**
+             * Id : 19
+             * UserId : 2009
+             * TypeExplain : 5次
+             * StatisticsType : 6
+             * StatisticsTypeName : 旷工
+             * StatisticsDateTime : 2017-07-06(星期四)
+             * StatisticsDateTimeExplain :
+             * StatisticsExplain :
+             * ParamsDate : sss
+             */
+
+            private int Id;
+            private int UserId;
             private String TypeExplain;
-            private String StatisticsType;
+            private int StatisticsType;
             private String StatisticsTypeName;
             private String StatisticsDateTime;
             private String StatisticsDateTimeExplain;
             private String StatisticsExplain;
             private String ParamsDate;
 
-            public String getUserId() {
+            public int getId() {
+                return Id;
+            }
+
+            public void setId(int Id) {
+                this.Id = Id;
+            }
+
+            public int getUserId() {
                 return UserId;
             }
 
-            public void setUserId(String userId) {
-                UserId = userId;
+            public void setUserId(int UserId) {
+                this.UserId = UserId;
             }
 
             public String getTypeExplain() {
                 return TypeExplain;
             }
 
-            public void setTypeExplain(String typeExplain) {
-                TypeExplain = typeExplain;
+            public void setTypeExplain(String TypeExplain) {
+                this.TypeExplain = TypeExplain;
             }
 
-            public String getStatisticsType() {
+            public int getStatisticsType() {
                 return StatisticsType;
             }
 
-            public void setStatisticsType(String statisticsType) {
-                StatisticsType = statisticsType;
+            public void setStatisticsType(int StatisticsType) {
+                this.StatisticsType = StatisticsType;
             }
 
             public String getStatisticsTypeName() {
                 return StatisticsTypeName;
             }
 
-            public void setStatisticsTypeName(String statisticsTypeName) {
-                StatisticsTypeName = statisticsTypeName;
+            public void setStatisticsTypeName(String StatisticsTypeName) {
+                this.StatisticsTypeName = StatisticsTypeName;
             }
 
             public String getStatisticsDateTime() {
                 return StatisticsDateTime;
             }
 
-            public void setStatisticsDateTime(String statisticsDateTime) {
-                StatisticsDateTime = statisticsDateTime;
+            public void setStatisticsDateTime(String StatisticsDateTime) {
+                this.StatisticsDateTime = StatisticsDateTime;
             }
 
             public String getStatisticsDateTimeExplain() {
                 return StatisticsDateTimeExplain;
             }
 
-            public void setStatisticsDateTimeExplain(String statisticsDateTimeExplain) {
-                StatisticsDateTimeExplain = statisticsDateTimeExplain;
+            public void setStatisticsDateTimeExplain(String StatisticsDateTimeExplain) {
+                this.StatisticsDateTimeExplain = StatisticsDateTimeExplain;
             }
 
             public String getStatisticsExplain() {
                 return StatisticsExplain;
             }
 
-            public void setStatisticsExplain(String statisticsExplain) {
-                StatisticsExplain = statisticsExplain;
+            public void setStatisticsExplain(String StatisticsExplain) {
+                this.StatisticsExplain = StatisticsExplain;
             }
 
             public String getParamsDate() {
                 return ParamsDate;
             }
 
-            public void setParamsDate(String paramsDate) {
-                ParamsDate = paramsDate;
+            public void setParamsDate(String ParamsDate) {
+                this.ParamsDate = ParamsDate;
             }
         }
     }

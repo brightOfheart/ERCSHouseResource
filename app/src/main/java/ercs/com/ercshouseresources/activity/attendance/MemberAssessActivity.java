@@ -1,6 +1,8 @@
 package ercs.com.ercshouseresources.activity.attendance;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.List;
@@ -98,7 +100,15 @@ public class MemberAssessActivity extends BaseActivity {
     /**
      * 初始化
      */
-    private void initView(List<ClerkBean.Datas> datas) {
+    private void initView(final List<ClerkBean.Datas> datas) {
         gridview.setAdapter(new MemberOutAssessAdapter(this,datas));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ClerkBean.Datas data = datas.get(i);
+                if (data!=null)
+                AtendanceActivity.start(MemberAssessActivity.this,data.getPhotoPath(),data.getName(),data.getId());
+            }
+        });
     }
 }

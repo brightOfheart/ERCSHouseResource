@@ -1,6 +1,8 @@
 package ercs.com.ercshouseresources.activity.field;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.FieldBean;
 import ercs.com.ercshouseresources.bean.FieldCustomBean;
@@ -84,6 +87,48 @@ public class FieldActivity extends BaseActivity {
     ImageView iv_photo;//头像
     private SPUtil spUtil;
 
+
+    /**
+     * 页面跳转
+     * @param mactivity
+     * @param PhonePaht
+     * @param Name
+     * @param OtherId
+     */
+    public static void start(Activity mactivity, String PhonePaht, String Name, String OtherId)
+    {
+        Intent intent = new Intent(mactivity, FieldActivity.class);
+        intent.putExtra("PhonePath",PhonePaht);
+        intent.putExtra("Name",Name);
+        intent.putExtra("OtherId",OtherId);
+        mactivity.startActivity(intent);
+    }
+    private String getPhonePath()
+    {
+        return getIntent().getStringExtra("PhonePath");
+    }
+    private String getName()
+    {
+        return getIntent().getStringExtra("Name");
+    }
+    private String getOtherId()
+    {
+        return getIntent().getStringExtra("OtherId");
+    }
+
+
+    /**
+     * 是否展示自己数据
+     * @return
+     */
+    private boolean isMyself()
+    {
+        if(null!=getIntent().getStringExtra("PhonePath"))
+        {
+            return false;
+        }
+        return true;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +138,17 @@ public class FieldActivity extends BaseActivity {
         createData();
         setDays();
         if (NetWorkUtil.check(getApplicationContext()))
-            loadData(getYear() + "-" + getMonth() + "-" + getDay());
+        {
+
+            if (isMyself())
+            {
+                loadData(getId(),getYear() + "-" + getMonth() + "-" + getDay());
+            }else
+            {
+                loadData(getOtherId(),getYear() + "-" + getMonth() + "-" + getDay());
+            }
+        }
+
     }
 
     /**
@@ -111,7 +166,14 @@ public class FieldActivity extends BaseActivity {
                         if (NetWorkUtil.check(getApplicationContext())) {
                             tv_year.setText(year + "年" + (month + 1) + "月");
                             clear();
-                            loadData(year + "-" + (month + 1) + "-" + day);
+                            if (isMyself())
+                            {
+                                loadData(getId(),year + "-" + (month + 1) + "-" + day);
+                            }else
+                            {
+                                loadData(getOtherId(),year + "-" + (month + 1) + "-" + day);
+                            }
+
                         }
                     }
                 }, getYear(), getMonth(), getDay());
@@ -126,8 +188,16 @@ public class FieldActivity extends BaseActivity {
     private void createData() {
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
-        tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
-        GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        if (isMyself())
+        {
+            tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
+            GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        }else
+        {
+            tv_name.setText(getName());
+            GlideUtil.loadCircleImage(NetHelper.URL +getPhonePath(), iv_photo);
+        }
+
         tv_year.setText(getYear() + "年" + getMonth() + "月");
     }
 
@@ -162,9 +232,9 @@ public class FieldActivity extends BaseActivity {
     /**
      * 获取网络数据
      */
-    private void loadData(String date) {
+    private void loadData(String id,String date) {
         dialog.show();
-        NetHelper.outside(getId(), date, new HttpUtils.HttpCallback() {
+        NetHelper.outside(id, date, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final FieldBean fieldBean = MyGson.getInstance().fromJson(data, FieldBean.class);

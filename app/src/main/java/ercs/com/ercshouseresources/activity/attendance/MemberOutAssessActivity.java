@@ -1,12 +1,15 @@
 package ercs.com.ercshouseresources.activity.attendance;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.field.FieldActivity;
 import ercs.com.ercshouseresources.adapter.MemberOutAssessAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ClerkBean;
@@ -95,7 +98,15 @@ public class MemberOutAssessActivity extends BaseActivity {
     /**
      * 初始化
      */
-    private void initView(List<ClerkBean.Datas> datas) {
+    private void initView(final List<ClerkBean.Datas> datas) {
         gridview.setAdapter(new MemberOutAssessAdapter(this,datas));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ClerkBean.Datas data = datas.get(i);
+                if (data!=null)
+                    FieldActivity.start(MemberOutAssessActivity.this,data.getPhotoPath(),data.getName(),data.getId());
+            }
+        });
     }
 }

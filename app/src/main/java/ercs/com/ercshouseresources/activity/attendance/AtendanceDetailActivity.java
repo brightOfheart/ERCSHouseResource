@@ -40,7 +40,7 @@ import static ercs.com.ercshouseresources.R.id.tv_timelong;
 public class AtendanceDetailActivity extends BaseActivity {
 
     private LoadingDialog loadingDialog;
-    private SPUtil spUtil;
+
 
     @BindView(R.id.iv_photo)
      ImageView iv_photo;
@@ -84,33 +84,30 @@ public class AtendanceDetailActivity extends BaseActivity {
         initTitle();
         creatData();
 
-        downLoad(getParamsDate());
+        downLoad();
     }
 
     /**\
      * 初始化数据
      */
     private void creatData() {
-        if (spUtil==null)
-            spUtil = new SPUtil(this, "fileName");
 
-        tv_name.setText(spUtil.getString(BaseApplication.NAME,""));
 
-        GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        tv_name.setText(getName());
+
+        GlideUtil.loadCircleImage(NetHelper.URL + getphotoPath(), iv_photo);
         tv_year.setText(getParamsDate()+" ");
     }
 
     /**
      * 网络请求数据
-     * @param paramsDate
      */
-    private void downLoad(String paramsDate) {
+    private void downLoad() {
 
         loadingDialog.show();
-        int i = paramsDate.indexOf("(");
-        String substring = paramsDate.substring(0, i);
 
-        NetHelper.atendanceDetail(spUtil.getString(BaseApplication.ID, ""), substring, new HttpUtils.HttpCallback() {
+
+        NetHelper.RecordDetail(getKaoQinId(), getStatisticsType(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 loadingDialog.dismiss();
@@ -188,12 +185,12 @@ public class AtendanceDetailActivity extends BaseActivity {
         tv_downtime.setText("下班打卡时间"+getTime(atendanceDetailBean.getData().getEndTime()));
         tv_upbantime.setText("(上班时间"+atendanceDetailBean.getData().getAttStrtime()+")");
         tv_downbantime.setText("(下班时间"+atendanceDetailBean.getData().getAttEndtime()+")");
-        if (atendanceDetailBean.getData().getStartLocation()!=null)
+        if (atendanceDetailBean.getData().getStartLocation()!=null&&!"".equals(atendanceDetailBean.getData().getStartLocation()))
         {
             tv_upaddress.setVisibility(View.VISIBLE);
             tv_upaddress.setText(atendanceDetailBean.getData().getStartLocation());
         }
-        if (atendanceDetailBean.getData().getStartLocation()!=null)
+        if (atendanceDetailBean.getData().getEndLocation()!=null&&!"".equals(atendanceDetailBean.getData().getStartLocation()))
         {
             tv_downaddress.setVisibility(View.VISIBLE);
             tv_downaddress.setText(atendanceDetailBean.getData().getEndLocation());
@@ -313,11 +310,16 @@ public class AtendanceDetailActivity extends BaseActivity {
      * @param mActivity
      * @param ParamsDate
      */
-    public static void start(Activity mActivity,String ParamsDate){
+    public static void start(Activity mActivity,String ParamsDate,String KaoQinId,String StatisticsType,String name,String photoPath){
 
         Intent intent=new Intent(mActivity,AtendanceDetailActivity.class);
 
         intent.putExtra("ParamsDate",ParamsDate);
+        intent.putExtra("KaoQinId",KaoQinId);
+        intent.putExtra("StatisticsType",StatisticsType);
+        intent.putExtra("name",name);
+        intent.putExtra("photoPath",photoPath);
+
         mActivity.startActivity(intent);
     }
 
@@ -326,7 +328,23 @@ public class AtendanceDetailActivity extends BaseActivity {
         return getIntent().getStringExtra("ParamsDate");
     }
 
+    private String getKaoQinId()
+    {
+        return getIntent().getStringExtra("KaoQinId");
+    }
 
+    private String getStatisticsType()
+    {
+        return getIntent().getStringExtra("StatisticsType");
+    }
+    private String getphotoPath()
+    {
+        return getIntent().getStringExtra("photoPath");
+    }
+    private String getName()
+    {
+        return getIntent().getStringExtra("name");
+    }
     /**
      * 点击事件处理
      * @param view
@@ -336,8 +354,18 @@ public class AtendanceDetailActivity extends BaseActivity {
         switch (view.getId())
         {
             case R.id.btn_contact:
-                OtherUitl.callPage(AtendanceDetailActivity.this, "12321235545");
+                OtherUitl.callPage(AtendanceDetailActivity.this,getSuperiorPhone());
                 break;
         }
+    }
+
+    /**
+     * 获取管理员电话号
+     * @return
+     */
+    private String getSuperiorPhone() {
+        SPUtil spUtil = new SPUtil(this, "fileName");
+
+        return  spUtil.getString(BaseApplication.SUPERIORPHONE,"");
     }
 }

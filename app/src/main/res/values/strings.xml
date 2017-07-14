@@ -4,6 +4,7 @@
     <string name="str_phone_id">手机账号</string>
     <string name="str_pwd">密码</string>
     <string name="str_surepwd">确认密码</string>
+    <string name="str_resetpassword">重置密码</string>
     <string name="str_code">识别码</string>
     <string name="str_find_pwd">忘记密码</string>
     <string name="str_phone_number">手机号码</string>
@@ -34,6 +35,7 @@
     <string name="str_exit">退出</string>
     <string name="str_cancel">取消</string>
     <string name="str_againinputsure">在次填写确认</string>
+    <string name="str_resetpasswordhit">重置至少六位密码</string>
     <string name="str_lookanother">查看其它员工考勤记录</string>
     <string name="str_lookanothers">查看其它员工外勤记录</string>
     <string name="str_rest">休息</string>
