@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.activity.attendance;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -118,11 +119,19 @@ public class AtendanceActivity extends BaseActivity {
     }
 
     /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
+    /**
      * 获取网络数据
      */
     private void getNetData(String date) {
         dialog.show();
-        NetHelper.atendance("", date, new HttpUtils.HttpCallback() {
+        NetHelper.atendance(getId(), date, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final AtendanceBean atendanceBean = MyGson.getInstance().fromJson(data, AtendanceBean.class);

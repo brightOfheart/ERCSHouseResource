@@ -14,6 +14,7 @@ public class BaseApplication extends Application {
     public static final String ISSHOWPWD = "IsShowpwd";//是否显示密码
     public static final String ISLOGIN = "IsLogin";//是否自动登录
     public static final String ID = "id";//本地保存的账号
+    public static final String PHONE = "phone";//本地保存的手机账号
     public static final String PWD = "pwd";//本地保存的密码
     public static final String NAME = "name";//本地保存登录人的姓名
     public static final String PHOTOPATH = "photopath";//本地保存登录人的头像

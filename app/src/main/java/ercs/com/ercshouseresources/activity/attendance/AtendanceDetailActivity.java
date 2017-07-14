@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
@@ -21,6 +23,7 @@ import ercs.com.ercshouseresources.bean.AtendanceDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
@@ -70,6 +73,8 @@ public class AtendanceDetailActivity extends BaseActivity {
      @BindView(R.id.tv_frequency)
      TextView tv_frequency;//打卡次数
 
+    @BindView(R.id.btn_contact)
+    Button btn_contact;//联系管理员
     private int n=0;//签到次数
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,8 +109,8 @@ public class AtendanceDetailActivity extends BaseActivity {
         loadingDialog.show();
         int i = paramsDate.indexOf("(");
         String substring = paramsDate.substring(0, i);
-        Log.i("-->","substring:"+substring+" id="+spUtil.getString(BaseApplication.ID, ""));
-        NetHelper.atendanceDetail("2", substring, new HttpUtils.HttpCallback() {
+
+        NetHelper.atendanceDetail(spUtil.getString(BaseApplication.ID, ""), substring, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 loadingDialog.dismiss();
@@ -319,5 +324,20 @@ public class AtendanceDetailActivity extends BaseActivity {
     private String getParamsDate()
     {
         return getIntent().getStringExtra("ParamsDate");
+    }
+
+
+    /**
+     * 点击事件处理
+     * @param view
+     */
+    @OnClick({R.id.btn_contact})
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_contact:
+                OtherUitl.callPage(AtendanceDetailActivity.this, "12321235545");
+                break;
+        }
     }
 }

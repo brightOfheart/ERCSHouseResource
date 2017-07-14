@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -173,11 +172,19 @@ public class ClockinActivity extends BaseActivity {
     }
 
     /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
+    /**
      * 获取网络数据
      */
     private void getNetData(String time) {
         dialog.show();
-        NetHelper.inside(time, "", new HttpUtils.HttpCallback() {
+        NetHelper.inside(time,getId() , new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ClockinLookBean clockinLookBean = MyGson.getInstance().fromJson(data, ClockinLookBean.class);
@@ -191,10 +198,10 @@ public class ClockinActivity extends BaseActivity {
                     public void run() {
                         if (clockinLookBean.getType().equals("1")) {
                             ll_bottom.setVisibility(View.VISIBLE);
-                            tv_tit1.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getStartTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttstrtime()) + ")");
+                            tv_tit1.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getStartTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttStrtime()) + ")");
                             tv_ads1.setText(clockinLookBean.getData().getStartLocation());
                             tv_sta1.setText(kind(clockinLookBean.getData().getStartContent()));
-                            tv_tit2.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getEndTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttendtime()) + ")");
+                            tv_tit2.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getEndTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttEndtime()) + ")");
                             tv_ads2.setText(clockinLookBean.getData().getEndLocation());
                             tv_sta2.setText(kind(clockinLookBean.getData().getEndContent()));
                         }
@@ -308,12 +315,13 @@ public class ClockinActivity extends BaseActivity {
         });
     }
 
+
     /**
      * 访问打卡设置的接口
      */
     private void getDatas() {
         dialog.show();
-        NetHelper.insideSetInfo("", new HttpUtils.HttpCallback() {
+        NetHelper.insideSetInfo(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
@@ -338,6 +346,7 @@ public class ClockinActivity extends BaseActivity {
      */
     public boolean isWifiLiveMac() {
         boolean b = false;
+
         if (clockinSetBean==null||clockinSetBean.getData()==null)
         {
             return false;

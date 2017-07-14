@@ -131,8 +131,9 @@ public class LoginActivity extends BaseActivity {
      * @param id
      * @param pwd
      */
-    private void saveIdPwd(String id, String pwd, String photopath, String name, String depname, String Authority) {
+    private void saveIdPwd(String id,String phone, String pwd, String photopath, String name, String depname, String Authority) {
         spUtil.putString(BaseApplication.ID, id);
+        spUtil.putString(BaseApplication.PHONE, phone);
         spUtil.putString(BaseApplication.PWD, pwd);
         spUtil.putString(BaseApplication.PHOTOPATH, photopath);
         spUtil.putString(BaseApplication.NAME, name);
@@ -144,7 +145,7 @@ public class LoginActivity extends BaseActivity {
      * 显示账号和密码
      */
     private void showId() {
-        edit_phone.setText(spUtil.getString(BaseApplication.ID, ""));
+        edit_phone.setText(spUtil.getString(BaseApplication.PHONE, ""));
         edit_pwd.setText(spUtil.getString(BaseApplication.PWD, ""));
         edit_phone.setSelection(edit_phone.getText().toString().length());//设置光标位置
     }
@@ -160,7 +161,7 @@ public class LoginActivity extends BaseActivity {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
                 if (loginBean.getType().equals(LOGINRIGHT)) {
-                    saveIdPwd(getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
+                    saveIdPwd(loginBean.getData().getId(),getId(),getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
                     saveLogin(1);
                 }
                 runOnUiThread(new Runnable() {

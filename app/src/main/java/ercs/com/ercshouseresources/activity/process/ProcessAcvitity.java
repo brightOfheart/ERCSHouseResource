@@ -6,11 +6,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ProcessBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.item.ProcessAdapterChildItem;
@@ -29,6 +31,7 @@ public class ProcessAcvitity extends BaseActivity {
     LinearLayout ly_retroactive;
     private String SUCCESS = "1";
 
+    private SPUtil spUtil;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +49,9 @@ public class ProcessAcvitity extends BaseActivity {
         for (int i = 0; i < datas.size(); i++) {
             if (datas.get(i).getLeaveType().equals("1")) {
                 ly_rest.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
-            } else if (datas.get(i).getLeaveType().equals("2")) {
-                ly_out.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
             } else if (datas.get(i).getLeaveType().equals("3")) {
+                ly_out.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
+            } else if (datas.get(i).getLeaveType().equals("2")) {
                 ly_retroactive.addView(new ProcessAdapterChildItem(ProcessAcvitity.this, datas.get(i)));
             }
         }
@@ -61,13 +64,23 @@ public class ProcessAcvitity extends BaseActivity {
     private void initTitle() {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_process));
+        if (spUtil==null)
+            spUtil = new SPUtil(this, "fileName");
     }
 
+    /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
     /**
      * 获取网络数据
      */
     private void loadData() {
-        NetHelper.process("", new HttpUtils.HttpCallback() {
+        NetHelper.process(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ProcessBean processBean = MyGson.getInstance().fromJson(data, ProcessBean.class);

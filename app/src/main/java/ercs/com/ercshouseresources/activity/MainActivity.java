@@ -14,7 +14,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.fragment.HouseFragment;
-import ercs.com.ercshouseresources.fragment.MessageFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 

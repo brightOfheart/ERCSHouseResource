@@ -9,11 +9,13 @@ import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.ClerkAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -29,6 +31,7 @@ public class ClerkActivity extends BaseActivity {
     private String SUCCESS = "1";
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
     private LoadingDialog dialog;
+    private SPUtil spUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class ClerkActivity extends BaseActivity {
     private void initTitle() {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_clerk));
+        if (spUtil == null)
+            spUtil = new SPUtil(this, "fileName");
     }
 
     /**
@@ -67,11 +72,19 @@ public class ClerkActivity extends BaseActivity {
     }
 
     /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
+    /**
      * 加载网络数据
      */
     private void loadData() {
         dialog.show();
-        NetHelper.clerk("0", new HttpUtils.HttpCallback() {
+        NetHelper.clerk(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ClerkBean clerkBean = MyGson.getInstance().fromJson(data, ClerkBean.class);

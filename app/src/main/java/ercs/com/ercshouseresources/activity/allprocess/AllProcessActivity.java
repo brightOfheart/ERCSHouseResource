@@ -7,11 +7,13 @@ import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.AllProcessAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.AllProcessBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -24,6 +26,7 @@ public class AllProcessActivity extends BaseActivity {
     @BindView(R.id.listview)
     ListView listview;
     private LoadingDialog dialog;
+    private SPUtil spUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,14 +45,24 @@ public class AllProcessActivity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_allprocess));
         dialog = new LoadingDialog(AllProcessActivity.this, 0);
+        if (spUtil == null)
+            spUtil = new SPUtil(this, "fileName");
     }
 
+    /**
+     * 获取id
+     * @return
+     */
+    private String getId()
+    {
+        return spUtil.getString(BaseApplication.ID,"");
+    }
     /**
      * 获取网络数据
      */
     private void loadData() {
         dialog.show();
-        NetHelper.leavealllis("", new HttpUtils.HttpCallback() {
+        NetHelper.leavealllis(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final AllProcessBean allProcessBean = MyGson.getInstance().fromJson(data, AllProcessBean.class);

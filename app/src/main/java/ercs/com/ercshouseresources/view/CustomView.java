@@ -66,9 +66,10 @@ public class CustomView extends View {
                 if (((ClockinActivity) context).isWifiLiveMac() || ((ClockinActivity) context).isDistanceLive()) {
                     if (((ClockinActivity) context).bln_UpLoad)//如果上传打开图片了
                         b = true;
-                    else
+                    else {
                         b = false;
-                    ToastUtil.showToast(context, "请上传您的打卡照片~");
+                        ToastUtil.showToast(context, "请上传您的打卡照片~");
+                    }
                 } else {
                     b = false;
                     ToastUtil.showToast(context, "不在考勤打卡范围内,请从新进入~");
@@ -87,14 +88,18 @@ public class CustomView extends View {
                             bln_mor = false;
                             ((ClockinActivity) context).pushClocked();
                         }
+                        else
+                        {
+                            ToastUtil.showToast(context, "您已经打过卡了~");
+                        }
                     } else {
                         p_x = right_point - width - space;
-                        if (bln_afr) {
-                            Log.d("下午打卡", "下午打卡");
-                            bln_afr = false;
-                            ((ClockinActivity) context).pushClocked2();
-                        }
-
+//                        if (bln_afr) {
+//                            Log.d("下午打卡", "下午打卡");
+//                            bln_afr = false;
+//                            ((ClockinActivity) context).pushClocked2();
+//                        }
+                        ((ClockinActivity) context).pushClocked2();
                     }
 
                     invalidate();// 刷新

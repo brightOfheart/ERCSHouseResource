@@ -1,7 +1,5 @@
 package ercs.com.ercshouseresources.network;
-
 import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +48,7 @@ public class NetHelper {
      */
     public static void clerk(String id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id", "0");
+        map.put("Id", id);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + CLERK, json, callback);
     }
@@ -63,7 +61,7 @@ public class NetHelper {
      */
     public static void process(String id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("ApprovalUserId", "2");
+        map.put("ApprovalUserId", id);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + PROCESS, json, callback);
     }
@@ -126,7 +124,7 @@ public class NetHelper {
      */
     public static void atendance(String UserId, String date, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserId", "2");
+        map.put("UserId", UserId);
         map.put("ParamsDate", date);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + ATENDANCE, json, callback);
@@ -141,7 +139,7 @@ public class NetHelper {
      */
     public static void outside(String CreatorId, String ParamsDate, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("CreatorId", "2");
+        map.put("CreatorId", CreatorId);
         map.put("ParamsDate", ParamsDate);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + OUTSIDE, json, callback);
@@ -155,7 +153,7 @@ public class NetHelper {
      */
     public static void leavealllis(String UserId, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserId", "2");
+        map.put("UserId", UserId);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + LEAVEALL, json, callback);
     }
@@ -168,8 +166,8 @@ public class NetHelper {
      */
     public static void inside(String ParamsDate, String UserId, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("ParamsDate", "2017-06-24");
-        map.put("UserId", "2");
+        map.put("ParamsDate", ParamsDate);
+        map.put("UserId", UserId);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + INSIDE, json, callback);
     }
@@ -182,7 +180,7 @@ public class NetHelper {
      */
     public static void insideSetInfo(String UserId, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserId", "2");
+        map.put("UserId", UserId);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + INSIDESETINFO, json, callback);
     }

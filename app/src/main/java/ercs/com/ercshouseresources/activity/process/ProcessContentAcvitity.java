@@ -184,9 +184,9 @@ public class ProcessContentAcvitity extends BaseActivity {
     private String getProcesstype(String count) {
         if (count.equals("1"))
             return getResources().getString(R.string.str_rest);
-        else if (count.equals("2"))
-            return getResources().getString(R.string.str_out);
         else if (count.equals("3"))
+            return getResources().getString(R.string.str_out);
+        else if (count.equals("2"))
             return getResources().getString(R.string.str_retroactive);
         else
             return "";

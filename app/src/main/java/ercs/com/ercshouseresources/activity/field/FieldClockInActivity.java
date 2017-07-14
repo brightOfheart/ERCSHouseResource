@@ -464,9 +464,12 @@ public class FieldClockInActivity extends BaseActivity {
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
         MarkerOptions oo2 = new MarkerOptions().position(new LatLng(latitude, longitude)).icon(bitmapDescriptor);
 
+        mBaidumap.clear();
 
         mBaidumap.addOverlay(oo2);
         mBaidumap.addOverlay(oo);
+
+
 
 
 
