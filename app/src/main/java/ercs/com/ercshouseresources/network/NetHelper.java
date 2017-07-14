@@ -232,6 +232,7 @@ public class NetHelper {
         map.put("EndContent", "1");
         map.put("EndLocation", EndLocation);
         String json = MyGson.getInstance().toJson(map);
+        Log.d("xia班打卡",json);
         new HttpUtils().postJson(URL + PUNCHCLOCK, json, callback);
     }
 

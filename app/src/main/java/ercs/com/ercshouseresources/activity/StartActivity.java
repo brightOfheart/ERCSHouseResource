@@ -1,8 +1,11 @@
 package ercs.com.ercshouseresources.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import ercs.com.ercshouseresources.R;
+
 /**
  * Created by Administrator on 2017/6/21.
  * 启动页

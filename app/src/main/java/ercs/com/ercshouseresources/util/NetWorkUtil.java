@@ -65,4 +65,23 @@ public class NetWorkUtil {
         return netMac;
     }
 
+    /**
+     * 获取当前的wifi名称
+     * @param context
+     * @return
+     */
+    public static String getWifiName(Context context) {
+        String netName = "";
+        WifiManager mWifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        if (mWifi.isWifiEnabled()) {
+            WifiInfo wifiInfo = mWifi.getConnectionInfo();
+            netName = wifiInfo.getSSID(); //获取被连接网络的名称
+            String localMac = wifiInfo.getMacAddress();// 获得本机的MAC地址
+            Log.d("MainActivity", "---netName:" + netName);   //---netName:HUAWEI MediaPad
+
+            Log.d("MainActivity", "---localMac:" + localMac); //---localMac:BC:76:70:9F:56:BD
+            return netName;
+        }
+        return netName;
+    }
 }

@@ -43,7 +43,7 @@
         <!--百度地图开发者的key-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="BQr8mwebag6iRsq8GOL9H9aTI1GGqpF2" />
+            android:value="2sACU3m5FRjl7Gu5R4yifkBYqSiGlt1o" />
         <!--主页-->
         <activity
             android:name=".activity.MainActivity"

@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.clockin;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -12,13 +13,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.model.LatLng;
+
 import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,6 +47,7 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.CustomView;
 import ercs.com.ercshouseresources.view.dialog.CustomerDatePickerDialog;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
+
 import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
 /**
@@ -54,10 +59,14 @@ public class ClockinActivity extends BaseActivity {
     private LocationService locationService;
     @BindView(R.id.image)
     ImageView image;
+    @BindView(R.id.iv_post)
+    ImageView iv_post;
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
     @BindView(R.id.ly)
     LinearLayout ly;
+    @BindView(R.id.ly_top)
+    LinearLayout ly_top;
     @BindView(R.id.tv_address)
     TextView tv_address;
     @BindView(R.id.tv_name)
@@ -91,9 +100,11 @@ public class ClockinActivity extends BaseActivity {
             Environment.getExternalStorageDirectory().getPath()
                     + "/AppName/camera/";// 拍照路径
     private String cameraPath = "";
-    public boolean bln_UpLoad = false;
+    public boolean bln_UpLoad = false;//记录是否上传图片
     public String StartImagePage = "";
     private String Id, CreatorId, StartLocation;
+    public String StartContent = "", EndContent = "";
+    private BDLocation Location;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,14 +129,14 @@ public class ClockinActivity extends BaseActivity {
                 new CustomerDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        tv_timer.setText(year+"年"+(month + 1)+"月"+day+"日");
+                        tv_timer.setText(year + "年" + (month + 1) + "月" + day + "日");
                         if (NetWorkUtil.check(getApplicationContext())) {
 
                             getNetData(year + "-" + (month + 1) + "-" + day);
 
                         }
                     }
-                }, getYear(), getMonth(), getDay(),1);
+                }, getYear(), getMonth(), getDay(), 1);
                 break;
             case R.id.iv_post://上传照片
                 savePath();
@@ -145,7 +156,7 @@ public class ClockinActivity extends BaseActivity {
         tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
         GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
         dialog = new LoadingDialog(ClockinActivity.this, 0);
-        tv_timer.setText(getYear()+"年"+getMonth()+"月"+getDay()+"日");
+        tv_timer.setText(getYear() + "年" + getMonth() + "月" + getDay() + "日");
     }
 
     @Override
@@ -173,18 +184,19 @@ public class ClockinActivity extends BaseActivity {
 
     /**
      * 获取id
+     *
      * @return
      */
-    private String getId()
-    {
-        return spUtil.getString(BaseApplication.ID,"");
+    private String getId() {
+        return spUtil.getString(BaseApplication.ID, "");
     }
+
     /**
      * 获取网络数据
      */
     private void getNetData(String time) {
         dialog.show();
-        NetHelper.inside(time,getId() , new HttpUtils.HttpCallback() {
+        NetHelper.inside(time, getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ClockinLookBean clockinLookBean = MyGson.getInstance().fromJson(data, ClockinLookBean.class);
@@ -192,6 +204,9 @@ public class ClockinActivity extends BaseActivity {
                 if (clockinLookBean.getType().equals("1")) {
                     Id = clockinLookBean.getData().getId();
                     CreatorId = clockinLookBean.getData().getCreatorId();
+                    StartContent = clockinLookBean.getData().getStartContent();
+                    EndContent = clockinLookBean.getData().getEndContent();
+                    bln_UpLoad = false;//打卡成功了就关闭上传图片成功的状态
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -204,6 +219,13 @@ public class ClockinActivity extends BaseActivity {
                             tv_tit2.setText("打卡时间:" + getAllHm(getAllDay(clockinLookBean.getData().getEndTime())) + "(上班时间 " + getHm(clockinLookBean.getData().getAttEndtime()) + ")");
                             tv_ads2.setText(clockinLookBean.getData().getEndLocation());
                             tv_sta2.setText(kind(clockinLookBean.getData().getEndContent()));
+                            if (!StartContent.equals("0") && !EndContent.equals("0")) {//如果都打过卡则上面布局隐藏
+                                ly_top.setVisibility(View.GONE);
+                                iv_post.setVisibility(View.GONE);
+                            } else {
+                                iv_post.setVisibility(View.VISIBLE);
+                                ly_top.setVisibility(View.VISIBLE);
+                            }
                         }
                         getDatas();
                         ToastUtil.showToast(getApplicationContext(), clockinLookBean.getContent());
@@ -236,6 +258,7 @@ public class ClockinActivity extends BaseActivity {
                 if (upLoadPicBean.getType().equals("1")) {
                     bln_UpLoad = true;
                     StartImagePage = upLoadPicBean.getData().getId();
+                    ly.getChildAt(0).invalidate();//上传图片成功就刷新图片样式
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -326,10 +349,24 @@ public class ClockinActivity extends BaseActivity {
             public void onSuccess(String data) {
                 dialog.dismiss();
                 clockinSetBean = MyGson.getInstance().fromJson(data, ClockinSetBean.class);
-                if (clockinSetBean.getType().equals("1")) {
-                    isDistanceLive();
-                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (clockinSetBean.getType().equals("1")) {
+                            if (isWifiLiveMac())//如果在WIFI打卡范围内
+                            {
+                                tv_address.setText("已在考勤范围内:" + "连接wifi名称-" + NetWorkUtil.getWifiName(ClockinActivity.this));
+                                iv_right.setImageResource(R.mipmap.right);
+                            } else //如果在位置打卡范围内
+                            {
+                                logMsg("已在考勤范围:" + Location.getCity() + Location.getDistrict() + Location.getStreet() + Location.getStreetNumber());
+                            }
+                        }
+                        ToastUtil.showToast(getApplicationContext(), clockinSetBean.getContent());
+                    }
+                });
             }
+
 
             @Override
             public void onError(String msg) {
@@ -347,8 +384,7 @@ public class ClockinActivity extends BaseActivity {
     public boolean isWifiLiveMac() {
         boolean b = false;
 
-        if (clockinSetBean==null||clockinSetBean.getData()==null)
-        {
+        if (clockinSetBean == null || clockinSetBean.getData() == null) {
             return false;
         }
         for (int i = 0; i < clockinSetBean.getData().size(); i++) {
@@ -368,8 +404,7 @@ public class ClockinActivity extends BaseActivity {
      */
     public boolean isDistanceLive() {
         boolean b = false;
-        if (clockinSetBean==null||clockinSetBean.getData()==null)
-        {
+        if (clockinSetBean == null || clockinSetBean.getData() == null) {
             return false;
         }
         for (int i = 0; i < clockinSetBean.getData().size(); i++) {
@@ -419,22 +454,15 @@ public class ClockinActivity extends BaseActivity {
      * @param str
      */
     public void logMsg(final String str) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (isWifiLiveMac()||isDistanceLive())
-                {
-                    tv_address.setText(str);
-                    iv_right.setImageResource(R.mipmap.right);
-                }else
-                {
-                    tv_address.setText(getString(R.string.str_outofbounds));
-                    iv_right.setImageResource(R.mipmap.icon_cancel);
-                }
+        if (isDistanceLive())//如果满足位置信息
+        {
+            tv_address.setText(str);
+            iv_right.setImageResource(R.mipmap.right);
+        } else {
+            tv_address.setText(getString(R.string.str_outofbounds));
+            iv_right.setImageResource(R.mipmap.icon_cancel);
+        }
 
-            }
-        });
-        locationService.stop();// 定位SDK
     }
 
     /**
@@ -657,7 +685,8 @@ public class ClockinActivity extends BaseActivity {
                 latNow = location.getLatitude();
                 lngNow = location.getLongitude();
                 StartLocation = location.getAddrStr();
-                logMsg("已在考勤范围:" + location.getCity() + location.getDistrict() + location.getStreet() + location.getStreetNumber());
+                Location = location;
+                locationService.stop();// 定位SDK
             }
         }
 

@@ -3,6 +3,7 @@ package ercs.com.ercshouseresources.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import uk.co.senab.photoview.PhotoView;
@@ -13,11 +14,12 @@ import uk.co.senab.photoview.PhotoView;
 
 public class PhotoViewActivity extends BaseActivity {
     private PhotoView iv_photo;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photoview);
-        iv_photo=(PhotoView)findViewById(R.id.iv_photo);
+        iv_photo = (PhotoView) findViewById(R.id.iv_photo);
         GlideUtil.loadCircleImage(getUrl(), iv_photo);
 
     }
@@ -33,6 +35,7 @@ public class PhotoViewActivity extends BaseActivity {
         intent.putExtra("url", url);
         mActiivty.startActivity(intent);
     }
+
     private String getUrl() {
         return getIntent().getStringExtra("url");
     }
