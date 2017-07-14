@@ -29,6 +29,7 @@ public class UpdatePwdActivity extends BaseActivity {
     @BindView(R.id.tv_phone)
     TextView tv_phone;
 
+
     private TimeCountUtil timeCountUtil;//时间计时
     @Override
     public void onCreate(Bundle savedInstanceState) {

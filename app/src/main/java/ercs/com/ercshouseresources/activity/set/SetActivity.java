@@ -27,6 +27,7 @@ public class SetActivity extends BaseActivity {
         setContentView(R.layout.activity_set);
         ButterKnife.bind(this);
 
+
         initTitle();
     }
 
