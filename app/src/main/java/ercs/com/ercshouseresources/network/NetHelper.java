@@ -1,7 +1,5 @@
 package ercs.com.ercshouseresources.network;
-
 import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
