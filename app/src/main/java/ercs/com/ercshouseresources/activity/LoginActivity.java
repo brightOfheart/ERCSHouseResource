@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
                 if (loginBean.getType().equals(LOGINRIGHT)) {
-                    saveIdPwd(loginBean.getData().getId(),getPwd(),getId(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
+                    saveIdPwd(loginBean.getData().getId(),getId(),getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority());
                     saveLogin(1);
                 }
                 runOnUiThread(new Runnable() {
