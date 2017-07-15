@@ -27,6 +27,9 @@ public class NetHelper {
     private static final String PROCESSRETROACTIVE = "/API/Leave/InsertRetroactive";//流程申请 补签 上班 下班
     private static final String ATENDANCEDETAIL = "/API/InSide/InSideInfo";//外勤统计详情接口
     private static final String RECORDETAIL = "/api/Inside/UserInSideInfo";//考勤记录详情接口
+    private static final String AREALIST = "/api/HouseSource/AreaList";//房源区域列表接口
+    private static final String USERDICTIONARY = "/api/HouseSource/UserDictionary";//房源类型列表接口
+    private static final String HOUSESOURCELIST = "/api/HouseSource/HouseSourceList";//房源列表数据接口
     /**
      * 登录
      *
@@ -329,5 +332,45 @@ public class NetHelper {
         map.put("AttState", AttState);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postJson(URL + RECORDETAIL, json, callback);
+    }
+
+    /**
+     * 房源获取区域列表
+     * @param callback
+     */
+    public static void AreaList(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + AREALIST, json, callback);
+    }
+
+    /**
+     * 获取房源类型列表
+     * @param callback
+     */
+    public static void UserDictionary(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postJson(URL + USERDICTIONARY, json, callback);
+    }
+
+    /**
+     * 获取房源列表
+     * @param UserId
+     * @param pageIndex
+     * @param pageSize
+     * @param endDate
+     * @param callback
+     */
+    public static void getHouseList(String UserId,String pageIndex,String pageSize,String endDate,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("UserId", UserId);
+        map.put("pageIndex", pageIndex);
+        map.put("pageSize", pageSize);
+        map.put("beginDate", "2017-01-01");
+        map.put("endDate", endDate);
+        String json = MyGson.getInstance().toJson(map);
+        Log.d("json",json);
+        new HttpUtils().postJson(URL + HOUSESOURCELIST, json, callback);
     }
 }

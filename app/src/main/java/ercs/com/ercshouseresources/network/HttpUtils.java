@@ -7,7 +7,6 @@ package ercs.com.ercshouseresources.network;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import ercs.com.ercshouseresources.base.BaseApplication;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -18,7 +17,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;

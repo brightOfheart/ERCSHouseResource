@@ -16,6 +16,8 @@
             android:layout_height="30dp"
             android:background="@drawable/edit_darkgreen_bg"
             android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
            >
 
             <ImageView

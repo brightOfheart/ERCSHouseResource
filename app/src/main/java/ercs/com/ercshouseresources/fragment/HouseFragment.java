@@ -20,6 +20,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.HouseAdapter;
+import ercs.com.ercshouseresources.bean.HouseListBean;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -40,6 +45,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         View view = inflater.inflate(R.layout.fragment_house, container, false);
         ButterKnife.bind(this, view);
         initview();
+        getData();
         return view;
 
     }
@@ -65,6 +71,31 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
 
                 break;
         }
+    }
+
+    /**
+     * 获取网络数据
+     */
+    private void getData() {
+        NetHelper.getHouseList("4", "1", "3", "2018-01-01", new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+                final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showToast(getContext(), houseListBean.getContent());
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+            }
+        });
     }
 
     /**

@@ -204,11 +204,9 @@ public class ProcessContentAcvitity extends BaseActivity {
                     @Override
                     public void run() {
                         ToastUtil.showToast(getApplicationContext(), baseBean.getContent());
-
                     }
                 });
             }
-
             @Override
             public void onError(String msg) {
                 super.onError(msg);

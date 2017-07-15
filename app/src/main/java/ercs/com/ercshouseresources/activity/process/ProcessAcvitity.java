@@ -30,7 +30,6 @@ public class ProcessAcvitity extends BaseActivity {
     @BindView(R.id.ly_retroactive)
     LinearLayout ly_retroactive;
     private String SUCCESS = "1";
-
     private SPUtil spUtil;
     @Override
     public void onCreate(Bundle savedInstanceState) {
