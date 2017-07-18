@@ -13,4 +13,13 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFrame">@null</item>
     </style>
+
+    <style name="anim_pop_style">
+
+            <item name="android:windowEnterAnimation">@anim/pop_start</item>
+            <!-- 指定显示的动画xml -->
+            <item name="android:windowExitAnimation">@anim/pop_end</item>
+            <!-- 指定消失的动画xml -->
+    </style>
+
 </resources>

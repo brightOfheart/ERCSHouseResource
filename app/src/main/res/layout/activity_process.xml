@@ -17,62 +17,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:paddingLeft="@dimen/d_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_5"
+                android:paddingTop="@dimen/d_5"
+                android:text="@string/str_rest" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:background="@color/white2" />
             <LinearLayout
                 android:id="@+id/ly_rest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/d_5"
-                    android:paddingTop="@dimen/d_5"
-                    android:text="@string/str_rest" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/black" />
             </LinearLayout>
+            <TextView
+                android:paddingLeft="@dimen/d_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_5"
+                android:paddingTop="@dimen/d_5"
+                android:text="@string/str_out" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:background="@color/white2" />
             <LinearLayout
                 android:id="@+id/ly_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/d_5"
-                    android:paddingTop="@dimen/d_5"
-                    android:text="@string/str_out" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/black" />
             </LinearLayout>
+            <TextView
+                android:paddingLeft="@dimen/d_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_5"
+                android:paddingTop="@dimen/d_5"
+                android:text="@string/str_retroactive" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:background="@color/white2" />
             <LinearLayout
                 android:id="@+id/ly_retroactive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/d_5"
-                    android:paddingTop="@dimen/d_5"
-                    android:text="@string/str_retroactive" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/black" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

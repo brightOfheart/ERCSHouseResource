@@ -37,8 +37,7 @@ public class ProcessAcvitity extends BaseActivity {
         setContentView(R.layout.activity_process);
         ButterKnife.bind(this);
         initTitle();
-        if (NetWorkUtil.check(getApplicationContext()))
-            loadData();
+
     }
 
     /**
@@ -56,6 +55,23 @@ public class ProcessAcvitity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        clear();
+        if (NetWorkUtil.check(getApplicationContext()))
+            loadData();
+    }
+
+    /**
+     * 清空
+     */
+    private void clear() {
+         ly_rest.removeAllViews();
+        ly_out.removeAllViews();
+        ly_retroactive.removeAllViews();
+    }
 
     /**
      * 设置标题栏

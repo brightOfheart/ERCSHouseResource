@@ -67,6 +67,7 @@
     <dimen name="head_img">60dp</dimen>
     <dimen name="d_32">32dp</dimen>
     <dimen name="img_size_28">28dp</dimen>
+    <dimen name="pop_listview">182.5dp</dimen>
 
 
 </resources>

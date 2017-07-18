@@ -37,7 +37,7 @@ public class AtendanceItem extends RelativeLayout  {
     LinearLayout ly_item;
     private Activity activity;
     private boolean isclick=true;
-    public AtendanceItem(final Activity activity, AtendanceBean.DataBean dataBean, final List<AtendanceBean.DataBean.InSideStatisticsListModeBean> data, final String name, final String photoPath) {
+    public AtendanceItem(final Activity activity, final AtendanceBean.DataBean dataBean, final List<AtendanceBean.DataBean.InSideStatisticsListModeBean> data, final String name, final String photoPath) {
         super(activity);
         this.activity=activity;
         LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -54,9 +54,16 @@ public class AtendanceItem extends RelativeLayout  {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AtendanceBean.DataBean.InSideStatisticsListModeBean inSideStatisticsListModeBean = data.get(i);
-                String paramsDate = inSideStatisticsListModeBean.getStatisticsDateTime();
-                AtendanceDetailActivity.start(activity,paramsDate,inSideStatisticsListModeBean.getId()+"",inSideStatisticsListModeBean.getStatisticsType()+"",name,photoPath);
+                if ("2".equals(dataBean.getStatisticsType()))
+                {
+                    //休息
+                }else
+                {
+                    AtendanceBean.DataBean.InSideStatisticsListModeBean inSideStatisticsListModeBean = data.get(i);
+                    String paramsDate = inSideStatisticsListModeBean.getStatisticsDateTime();
+                    AtendanceDetailActivity.start(activity,paramsDate,inSideStatisticsListModeBean.getId()+"",inSideStatisticsListModeBean.getStatisticsType()+"",name,photoPath);
+                }
+
             }
         });
     }

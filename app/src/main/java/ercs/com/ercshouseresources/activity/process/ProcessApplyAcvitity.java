@@ -63,7 +63,7 @@ public class ProcessApplyAcvitity extends BaseActivity {
     private  SimpleDateFormat sd,ymd;
 
     private int protype=0;//流程类型 0 未选择 1休息 2 外出 3补签
-    private int retroactivetype=0;//补签类型 0 未选择 1上班 2 下班 4上班和下班
+    private int retroactivetype=0;//补签类型 0 未选择 1上班 3下班 4上班和下班
 
 
     private  long hours;//间隔时间

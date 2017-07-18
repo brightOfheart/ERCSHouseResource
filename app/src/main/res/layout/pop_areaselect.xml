@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ListView
+            android:scrollbars="none"
+            android:id="@+id/lv_areaone"
+            android:layout_width="@dimen/d_0"
+            android:layout_weight="1"
+            android:dividerHeight="@dimen/d_1"
+            android:divider="@color/gray"
+            android:layout_height="@dimen/pop_listview"></ListView>
+
+        <View
+            android:layout_width="@dimen/d_1"
+            android:background="@color/white2"
+            android:layout_height="match_parent"></View>
+        <ListView
+            android:scrollbars="none"
+            android:id="@+id/lv_areatwo"
+            android:layout_width="@dimen/d_0"
+            android:layout_weight="1"
+            android:dividerHeight="@dimen/d_1"
+            android:divider="@color/gray"
+            android:layout_height="@dimen/pop_listview"></ListView>
+    </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/white2"
+            android:layout_height="@dimen/d_1"></View>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></View>
+</LinearLayout>

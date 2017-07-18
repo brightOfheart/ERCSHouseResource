@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:paddingLeft="@dimen/d_10"
+        android:paddingBottom="@dimen/d_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+    <!--不限-->
+    <TextView
+        android:id="@+id/tv_unlimited"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:text="@string/str_unlimited"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+
+    <!--一室-->
+    <TextView
+        android:id="@+id/tv_onehouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:text="@string/str_onehouse"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+
+    <!--二室-->
+    <TextView
+        android:text="@string/str_twohouse"
+        android:id="@+id/tv_twohouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+
+    <!--三室-->
+    <TextView
+        android:text="@string/str_threehouse"
+        android:id="@+id/tv_threehouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+    <!--四室-->
+    <TextView
+        android:text="@string/str_fourhouse"
+        android:id="@+id/tv_fourhouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+
+    <!--五室-->
+    <TextView
+        android:text="@string/str_fivehouse"
+        android:id="@+id/tv_fivehouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+    <!--六室-->
+    <TextView
+        android:text="@string/str_sixhouse"
+        android:id="@+id/tv_sixhouse"
+        android:paddingTop="@dimen/d_5"
+        android:paddingBottom="@dimen/d_5"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></View>
+</LinearLayout>
