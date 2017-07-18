@@ -9,15 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.PriceSelectListviewAdapter;
+import ercs.com.ercshouseresources.bean.PriceBean;
 
 /**
  * 价格选择
@@ -31,18 +36,41 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
     private ListView lv_houseprice,lv_rentalprice;//售房价格，租房价格
 
 
-    private List<String> houseprices,rentalprices;//价格数据
+    private List<PriceBean> houseprices,rentalprices;//价格数据
 
     private EditText edit_minprice,edit_maxprice;
     private OnSelectPriceListener onSelectPriceListener;
-    public PriceSelectPop(Context context,List<String> houseprices,List<String> rentalprices,OnSelectPriceListener onSelectPriceListener) {
+    public PriceSelectPop(Context context,OnSelectPriceListener onSelectPriceListener) {
         super(context);
         this.context = (Activity) context;
-        this.houseprices=houseprices;
-        this.rentalprices=rentalprices;
         this.onSelectPriceListener=onSelectPriceListener;
+
+
+
+        initData();
         initPop();
         initView();
+    }
+
+    private void initData() {
+        houseprices=new ArrayList<>();
+
+        rentalprices=new ArrayList<>();
+
+
+        houseprices.add(new PriceBean("40万以下","0","400000"));
+        houseprices.add(new PriceBean("40-50万","400000","500000"));
+        houseprices.add(new PriceBean("50-60万","500000","600000"));
+        houseprices.add(new PriceBean("60-70万","600000","700000"));
+
+
+        rentalprices.add(new PriceBean("1000元以下","0","1000"));
+        rentalprices.add(new PriceBean("1000-1500万","1000","1500"));
+        rentalprices.add(new PriceBean("1500-2000万","1500","2000"));
+        rentalprices.add(new PriceBean("2000-2500万","2000","2500"));
+
+
+
     }
 
     /**
@@ -56,6 +84,9 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
         //确定按钮
         TextView tv_sure=view.findViewById(R.id.tv_sure);
         tv_sure.setOnClickListener(this);
+        //不限
+        TextView tv_unlimited=view.findViewById(R.id.tv_unlimited);
+        tv_unlimited.setOnClickListener(this);
 
         //半透明的view
         View v = view.findViewById(R.id.view_null);
@@ -67,6 +98,26 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
         lv_rentalprice.setAdapter(new PriceSelectListviewAdapter(context,rentalprices));
 
 
+        //售房列表点击
+        lv_houseprice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onSelectPriceListener.getPrice( houseprices.get(i).getMinprice(),houseprices.get(i).getMaxprice());
+
+                dismiss();
+            }
+        });
+
+
+        //租房列表点击
+        lv_rentalprice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onSelectPriceListener.getPrice( rentalprices.get(i).getMinprice(),rentalprices.get(i).getMaxprice());
+
+                dismiss();
+            }
+        });
     }
 
     /**
@@ -122,6 +173,10 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
                 break;
             case R.id.view_null:
                 //点击半透明
+                dismiss();
+                break;
+            case R.id.tv_unlimited:
+                //点击不限
                 dismiss();
                 break;
         }

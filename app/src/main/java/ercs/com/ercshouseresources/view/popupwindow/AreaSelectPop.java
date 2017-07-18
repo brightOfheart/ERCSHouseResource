@@ -22,6 +22,9 @@ import ercs.com.ercshouseresources.adapter.AreaSelectListviewAdapter;
 import ercs.com.ercshouseresources.adapter.PriceSelectListviewAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.AreaBean;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelper;
 
 /**
  * 区域选择
@@ -48,15 +51,44 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
 
         this.onSelectAreaListener= onSelectAreaListener;
         initPop();
-        initView();
+
+        if (BaseApplication.areas.size()==0)
+        {
+            //数据为空网络加载
+            downloadAreaList();
+        }else
+        {
+            initView(BaseApplication.areas);
+        }
+
     }
 
+    /**
+     * 下载区域信息
+     */
+    private void downloadAreaList() {
 
+        NetHelper.AreaList(new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+                AreaBean areaBean = MyGson.getInstance().fromJson(data, AreaBean.class);
+                BaseApplication.areas.addAll(areaBean.getData());
+                initView(areaBean.getData());
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+                Log.i("-->","下载区域信息失败"+msg);
+
+            }
+        });
+    }
 
     /**
      * 初始化控价
      */
-    private void initView() {
+    private void initView(final List<AreaBean.DataBean> dataBeanList) {
 
         areaone_list=new ArrayList<>();
         areaone_list.add(new AreaBean.DataBean(0,"不限",0));
@@ -71,7 +103,7 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
 
 
         for (int i = 0; i < BaseApplication.areas.size(); i++) {
-            AreaBean.DataBean dataBean = BaseApplication.areas.get(i);
+            AreaBean.DataBean dataBean = dataBeanList.get(i);
             if (468==dataBean.getParentId())
             {
                 areaone_list.add(dataBean);
@@ -103,8 +135,8 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
                     //区域二级列表赋值
                     areatwo_list.clear();
                     areatwo_list.add(new AreaBean.DataBean(0,"不限",0));
-                    for (int j = 0; j < BaseApplication.areas.size(); j++) {
-                        AreaBean.DataBean dataBean = BaseApplication.areas.get(j);
+                    for (int j = 0; j <dataBeanList.size(); j++) {
+                        AreaBean.DataBean dataBean =dataBeanList.get(j);
                         if (areaone_list.get(i).getId()==dataBean.getParentId())
                         {
                             areatwo_list.add(dataBean);
