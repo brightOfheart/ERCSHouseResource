@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.clockin;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -12,13 +13,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.model.LatLng;
+
 import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,6 +47,7 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.CustomView;
 import ercs.com.ercshouseresources.view.dialog.CustomerDatePickerDialog;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
+
 import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
 /**

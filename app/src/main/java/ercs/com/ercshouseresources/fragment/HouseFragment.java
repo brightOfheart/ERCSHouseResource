@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.housing.HouseListDetail;
 import ercs.com.ercshouseresources.adapter.HouseAdapter;
 import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
@@ -59,7 +61,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_area://区域
-
+                startActivity(new Intent(getContext(),HouseListDetail.class));
                 break;
             case R.id.ly_price://价格
 

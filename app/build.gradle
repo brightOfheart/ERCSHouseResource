@@ -41,6 +41,9 @@ dependencies {
     compile 'com.king.base:base:2.0.1'
     compile 'com.zyao89:zloading:1.0.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    compile 'com.xhb:xbanner:1.2.7'
+    //将latestVersion替换成上面最新的版本号
+    compile 'com.nineoldandroids:library:2.4.0'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile('com.bigkoo:pickerview:2.1.1') {

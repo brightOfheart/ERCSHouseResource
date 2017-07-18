@@ -143,6 +143,11 @@
             android:name=".activity.attendance.MemberOutAssessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!--房源详情-->
+        <activity
+            android:name=".activity.housing.HouseListDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
