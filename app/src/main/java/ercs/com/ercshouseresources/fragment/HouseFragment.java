@@ -41,7 +41,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
-    LRecyclerView mRecyclerView;
+    LRecyclerView mRecyclerView ;
     @BindView(R.id.view_line)
     View view_line;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
