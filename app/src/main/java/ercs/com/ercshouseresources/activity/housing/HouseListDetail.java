@@ -1,5 +1,7 @@
 package ercs.com.ercshouseresources.activity.housing;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.stx.xhb.xbanner.XBanner;
@@ -9,6 +11,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.process.ProcessContentAcvitity;
+import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -52,6 +56,18 @@ public class HouseListDetail extends BaseActivity {
             TextView tv_estateDictionary;
     @BindView(R.id.tv_blockSeat)//栋座位置
             TextView tv_blockSeat;
+    private HouseListBean.DataBean dataBean;
+    /**
+     * 页面跳转
+     * @param mActiivty
+     */
+    public static void start(Activity mActiivty, HouseListBean.DataBean dataBean) {
+        Intent intent = new Intent(mActiivty, HouseListDetail.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("dataBean", dataBean);
+        intent.putExtras(bundle);
+        mActiivty.startActivity(intent);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,8 @@ public class HouseListDetail extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         setbanner();
+        getDataBean();
+        setData();
     }
 
     /**
@@ -83,5 +101,32 @@ public class HouseListDetail extends BaseActivity {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
         new CustomBanner(this, xBanner, imgesUrl);
 
+    }
+
+    /**
+     * 获取房源详情的数据
+     */
+    private void getDataBean()
+    {
+        dataBean=(HouseListBean.DataBean)getIntent().getSerializableExtra("dataBean");
+    }
+
+    private void setData()
+    {
+        tv_title.setText(dataBean.getEstateName());
+        tv_sale.setText(dataBean.getSaleTotal());
+        tv_lease.setText(dataBean.getRentTotal());
+        tv_state.setText(dataBean.getDataStatusName());
+        tv_type.setText(dataBean.getRoomType());
+        tv_area.setText(dataBean.getSquare());
+        tv_houseNo.setText(dataBean.getNo());
+        tv_transaction.setText(dataBean.getTradeTypeName());
+        tv_cityp.setText(dataBean.getAreaName());
+        tv_aread.setText(dataBean.getStreetName());
+        tv_floor.setText(dataBean.getFloor()+"/"+dataBean.getFloorAll());
+        tv_housenumber.setText(dataBean.getRoomNo());
+        tv_oration.setText(dataBean.getOrientationName());
+        tv_estateDictionary.setText(dataBean.getEstateName());
+        tv_blockSeat.setText(dataBean.getBuildingPosition());
     }
 }

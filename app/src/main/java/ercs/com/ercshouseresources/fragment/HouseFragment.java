@@ -157,7 +157,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
      */
     private void initview() {
         houseListBeans=new ArrayList<>();
-        houseAdapter = new HouseAdapter(getContext(), houseListBeans);
+        houseAdapter = new HouseAdapter(getActivity(), houseListBeans);
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(houseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

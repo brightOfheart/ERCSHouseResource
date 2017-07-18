@@ -1,5 +1,6 @@
 package ercs.com.ercshouseresources.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class HouseListBean extends BaseBean {
         Data = data;
     }
 
-    public class DataBean {
+    public class DataBean implements Serializable {
         private String TradeType;
         private String TradeTypeChild;
         private String Orientation;
