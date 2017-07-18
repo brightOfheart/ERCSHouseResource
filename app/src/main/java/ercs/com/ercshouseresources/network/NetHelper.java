@@ -103,6 +103,7 @@ public class NetHelper {
         map.put("ApprovalContent", ApprovalContent);
         map.put("ApprovalUserId", ApprovalUserId);
         String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
         new HttpUtils().postJson(URL + PROCESSREVIEW, json, callback);
     }
 

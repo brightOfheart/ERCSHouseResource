@@ -1,10 +1,10 @@
 package ercs.com.ercshouseresources.fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +20,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.activity.housing.HouseListDetail;
 import ercs.com.ercshouseresources.adapter.HouseAdapter;
 import ercs.com.ercshouseresources.bean.HouseListBean;
+import ercs.com.ercshouseresources.bean.UserDictionaryBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
+import ercs.com.ercshouseresources.view.popupwindow.AreaSelectPop;
+import ercs.com.ercshouseresources.view.popupwindow.HouseLayoutSelectPop;
+import ercs.com.ercshouseresources.view.popupwindow.PriceSelectPop;
 
 /**
  * Created by Administrator on 2017/7/12.
@@ -39,7 +42,11 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
     LRecyclerView mRecyclerView;
+    @BindView(R.id.view_line)
+    View view_line;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
+    private List<HouseListBean.DataBean>  houseListBeans;
+    private HouseAdapter houseAdapter;//房源列表
 
     @Nullable
     @Override
@@ -48,8 +55,24 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         ButterKnife.bind(this, view);
         initview();
         getData();
+
+        getUserDictionary();
         return view;
 
+    }
+
+    /**
+     * 获取房源类型列表
+     */
+    private void getUserDictionary() {
+        NetHelper.UserDictionary(new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+
+                UserDictionaryBean userDictionaryBean = MyGson.getInstance().fromJson(data, UserDictionaryBean.class);
+
+            }
+        });
     }
 
     /**
@@ -61,13 +84,38 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_area://区域
-                startActivity(new Intent(getContext(),HouseListDetail.class));
+
+                AreaSelectPop areaSelectPop = new AreaSelectPop(getActivity(), new AreaSelectPop.OnSelectAreaListener() {
+                    @Override
+                    public void getAreaId(int id) {
+                        Log.i("-->","选择区域："+id);
+                    }
+                });
+                areaSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_price://价格
 
+
+
+                PriceSelectPop priceSelectPop = new PriceSelectPop(getActivity(),  new PriceSelectPop.OnSelectPriceListener() {
+                    @Override
+                    public void getPrice(String min, String max) {
+                        Log.i("-->","最高价："+min+" 最低价："+max);
+                    }
+                });
+
+                priceSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_housetype://房型
 
+                HouseLayoutSelectPop houseLayoutSelectPop = new HouseLayoutSelectPop(getActivity(), new HouseLayoutSelectPop.OnSelectHouseLayoutListener() {
+                    @Override
+                    public void selectHouseLayout(int i) {
+
+                        Log.i("-->","选择房型："+i);
+                    }
+                });
+                houseLayoutSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_more://更多
 
@@ -88,6 +136,9 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                     public void run() {
                         ToastUtil.showToast(getContext(), houseListBean.getContent());
 
+                        //更新数据
+                        houseListBeans.addAll(houseListBean.getData());
+                        houseAdapter.notifyDataSetChanged();
                     }
                 });
 
@@ -100,11 +151,15 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         });
     }
 
+
     /**
      * 初始化
      */
     private void initview() {
-        lRecyclerViewAdapter = new LRecyclerViewAdapter(new HouseAdapter(getContext(), getdata()));
+        houseListBeans=new ArrayList<>();
+        houseAdapter = new HouseAdapter(getContext(), houseListBeans);
+
+        lRecyclerViewAdapter = new LRecyclerViewAdapter(houseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(lRecyclerViewAdapter);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader); //设置下拉刷新Progress的样式
@@ -149,12 +204,6 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         });
     }
 
-    private List<String> getdata() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("" + i);
-        }
-        return list;
-    }
+
 
 }

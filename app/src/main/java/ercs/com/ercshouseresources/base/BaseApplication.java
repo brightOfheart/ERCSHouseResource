@@ -3,6 +3,11 @@ package ercs.com.ercshouseresources.base;
 import android.app.Application;
 import android.content.Context;
 import com.baidu.mapapi.SDKInitializer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ercs.com.ercshouseresources.bean.AreaBean;
 import ercs.com.ercshouseresources.service.LocationService;
 
 /**
@@ -26,6 +31,7 @@ public class BaseApplication extends Application {
     public static Context context;//定义一个静态的全局变量
     public static final String FILENAME = "fileName";//保存的名称
 
+    public static List<AreaBean.DataBean> areas;//区域信息
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,6 +41,8 @@ public class BaseApplication extends Application {
          * 初始化百度地图
          */
         SDKInitializer.initialize(getApplicationContext());
+
+        areas=new ArrayList<>();
     }
 
 

@@ -1,6 +1,7 @@
 package ercs.com.ercshouseresources.view.item;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class ProcessAdapterChildItem extends RelativeLayout {
 
     private void setData(ProcessBean.DataBean datas) {
         tv_name.setText(datas.getUserName());
-        tv_time.setText(datas.getCreatedTime());
+        tv_time.setText(getDateFormat(datas.getCreatedTime()));
         GlideUtil.loadCircleImage(NetHelper.URL + datas.getPhotoPath(), iv_photo);
     }
 
@@ -56,9 +57,28 @@ public class ProcessAdapterChildItem extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_next://
-                ProcessContentAcvitity.start(activity,datas.getUserName(),datas.getCreatedTime(),datas.getPhotoPath(),datas.getId(),datas.getLeaveType());
+                ProcessContentAcvitity.start(activity,datas.getUserName(),getDateFormat(datas.getCreatedTime()),datas.getPhotoPath(),datas.getId(),datas.getLeaveType());
                 break;
 
         }
+    }
+
+    /**
+     * 将2017-07-14T13:53:02.507转为 2017-07—14 13:53
+     * @param date
+     * @return
+     */
+    public String getDateFormat(String date)
+    {
+        if (date!=null)
+        {
+            String t = date.replace("T", " ");
+            String substring = t.substring(0, t.lastIndexOf(":"));
+            Log.i("-->","时间转换："+substring);
+            return substring;
+
+        }
+
+        return "";
     }
 }
