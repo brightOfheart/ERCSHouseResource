@@ -38,5 +38,7 @@
     <color name="gray">#c5c5c5</color>
     <color name="lightgray">#F3F3F3</color>
     <color name="gray_bg">#50000000</color>
-
+    <color name="house_orange">#FE9567</color>
+    <color name="house_gray">#B3B3B3</color>
+    <color name="house_deepgray">#8C8C8C</color>
 </resources>

@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.housing;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.process.ProcessContentAcvitity;
 import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.view.CustomBanner;
@@ -57,8 +55,10 @@ public class HouseListDetail extends BaseActivity {
     @BindView(R.id.tv_blockSeat)//栋座位置
             TextView tv_blockSeat;
     private HouseListBean.DataBean dataBean;
+
     /**
      * 页面跳转
+     *
      * @param mActiivty
      */
     public static void start(Activity mActiivty, HouseListBean.DataBean dataBean) {
@@ -106,13 +106,11 @@ public class HouseListDetail extends BaseActivity {
     /**
      * 获取房源详情的数据
      */
-    private void getDataBean()
-    {
-        dataBean=(HouseListBean.DataBean)getIntent().getSerializableExtra("dataBean");
+    private void getDataBean() {
+        dataBean = (HouseListBean.DataBean) getIntent().getSerializableExtra("dataBean");
     }
 
-    private void setData()
-    {
+    private void setData() {
         tv_title.setText(dataBean.getEstateName());
         tv_sale.setText(dataBean.getSaleTotal());
         tv_lease.setText(dataBean.getRentTotal());
@@ -123,7 +121,7 @@ public class HouseListDetail extends BaseActivity {
         tv_transaction.setText(dataBean.getTradeTypeName());
         tv_cityp.setText(dataBean.getAreaName());
         tv_aread.setText(dataBean.getStreetName());
-        tv_floor.setText(dataBean.getFloor()+"/"+dataBean.getFloorAll());
+        tv_floor.setText(dataBean.getFloor() + "/" + dataBean.getFloorAll());
         tv_housenumber.setText(dataBean.getRoomNo());
         tv_oration.setText(dataBean.getOrientationName());
         tv_estateDictionary.setText(dataBean.getEstateName());
