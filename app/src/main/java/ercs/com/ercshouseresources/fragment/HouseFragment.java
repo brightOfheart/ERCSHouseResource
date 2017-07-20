@@ -1,14 +1,21 @@
 package ercs.com.ercshouseresources.fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -30,6 +37,7 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 import ercs.com.ercshouseresources.view.popupwindow.AreaSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.HouseLayoutSelectPop;
+import ercs.com.ercshouseresources.view.popupwindow.MoreSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.PriceSelectPop;
 
 /**
@@ -48,17 +56,157 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     private List<HouseListBean.DataBean>  houseListBeans;
     private HouseAdapter houseAdapter;//房源列表
 
+    private UserDictionaryBean userDictionaryBean;// 房源类型列表 更多
+
+
+    private  String key="";// 关键字 “”
+    private int  areaId =0;//城区 0
+    private int streetId=0;// 片区 0
+    private String beginPrice="0";//  最低价格 0
+    private String endPrice="0";//  最高价格 0
+    private int scale=0;//  房型 0
+
+//    更多
+
+    private int AtradeType;//交易
+    private int Aorientation;//朝向
+    private String AminArea="0";//最小面积
+    private String AmaxArea="0";//最大面积
+    private int AbuildingType;//建筑类型
+    private int Apurpose;//用途
+    private int Arenovation;//装修
+    private String  Astartdate="2017-01-01";//开始时间
+    private String  Aenddate="2018-01-01";//结束时间
+    private int  Adatetype;//时间类型
+
+
+    private int pagenum=1;//页数
+
+
+    private PriceSelectPop priceSelectPop;
+    private  AreaSelectPop areaSelectPop;
+    private HouseLayoutSelectPop houseLayoutSelectPop;
+    private MoreSelectPop moreSelectPop;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_house, container, false);
         ButterKnife.bind(this, view);
         initview();
-        getData();
+        getData(pagenum);
 
         getUserDictionary();
+        initPriceSelectPop();
+        initAreaSelectPop();
+        initHouseLayoutSelectPop();
+
         return view;
 
+    }
+
+    /**
+     * 更多选择pop
+     */
+    private void initMoreSelectPop() {
+        if (userDictionaryBean!=null)
+        {
+             moreSelectPop = new MoreSelectPop(getActivity(), userDictionaryBean,Astartdate,Aenddate, new MoreSelectPop.OnSelectMoreListener() {
+                @Override
+                public void getMore(int tradeType, int orientation, String minArea, String maxArea, int buildingType, int purpose, int renovation, String startdate, String enddate, int datetype) {
+
+                    AtradeType=tradeType;
+                    Aorientation=orientation;
+                    AminArea=minArea;
+                    AmaxArea=maxArea;
+                    AbuildingType=buildingType;
+                    Apurpose=purpose;
+                    Arenovation=renovation;
+                    Astartdate=startdate;
+                    Aenddate=enddate;
+                    Adatetype=datetype;
+
+
+                    pagenum=1;
+                    houseListBeans.clear();
+                    houseAdapter.notifyDataSetChanged();
+                    getData(pagenum);
+                }
+            });
+
+        }
+    }
+
+    /**
+     * 房型选择pop
+     */
+    private void initHouseLayoutSelectPop() {
+         houseLayoutSelectPop = new HouseLayoutSelectPop(getActivity(), new HouseLayoutSelectPop.OnSelectHouseLayoutListener() {
+            @Override
+            public void selectHouseLayout(int i) {
+
+                Log.i("-->","选择房型："+i);
+                scale=i;
+
+                pagenum=1;
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                getData(pagenum);
+            }
+        });
+    }
+
+    /**
+     * 地区选择pop
+     */
+    private void initAreaSelectPop() {
+         areaSelectPop = new AreaSelectPop(getActivity(), new AreaSelectPop.OnSelectAreaListener() {
+            @Override
+            public void getAreaId(int areid, int steetid) {
+                Log.i("-->","区域："+areid+" "+steetid);
+                //获取区域ID
+                areaId=areid;
+                streetId=steetid;
+
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                pagenum=1;
+                getData(pagenum);
+
+            }
+        });
+    }
+
+    /**
+     * 初始化价格选择pop
+     */
+    private void initPriceSelectPop() {
+         priceSelectPop = new PriceSelectPop(getActivity(), new PriceSelectPop.OnSelectPriceListener() {
+            @Override
+            public void getPrice(String min, String max) {
+                Log.i("-->","最高价："+min+" 最低价："+max);
+                if ("".equals(min))
+                {
+                    beginPrice="0";
+                }else
+                {
+                    beginPrice=min;
+                }
+
+                if ("".equals(max))
+                {
+                    endPrice="0";
+                }else
+                {
+                    endPrice=max;
+                }
+
+
+                pagenum=1;
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                getData(pagenum);
+            }
+        });
     }
 
     /**
@@ -69,7 +217,14 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
             @Override
             public void onSuccess(String data) {
 
-                UserDictionaryBean userDictionaryBean = MyGson.getInstance().fromJson(data, UserDictionaryBean.class);
+                 userDictionaryBean = MyGson.getInstance().fromJson(data, UserDictionaryBean.class);
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initMoreSelectPop();
+                    }
+                });
 
             }
         });
@@ -85,49 +240,33 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         switch (view.getId()) {
             case R.id.ly_area://区域
 
-                AreaSelectPop areaSelectPop = new AreaSelectPop(getActivity(), new AreaSelectPop.OnSelectAreaListener() {
-                    @Override
-                    public void getAreaId(int id) {
-                        Log.i("-->","选择区域："+id);
-                    }
-                });
+
+                if (areaSelectPop!=null)
                 areaSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_price://价格
-
-
-
-                PriceSelectPop priceSelectPop = new PriceSelectPop(getActivity(),  new PriceSelectPop.OnSelectPriceListener() {
-                    @Override
-                    public void getPrice(String min, String max) {
-                        Log.i("-->","最高价："+min+" 最低价："+max);
-                    }
-                });
 
                 priceSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_housetype://房型
 
-                HouseLayoutSelectPop houseLayoutSelectPop = new HouseLayoutSelectPop(getActivity(), new HouseLayoutSelectPop.OnSelectHouseLayoutListener() {
-                    @Override
-                    public void selectHouseLayout(int i) {
-
-                        Log.i("-->","选择房型："+i);
-                    }
-                });
+               if (houseLayoutSelectPop!=null)
                 houseLayoutSelectPop.showAsDropDown(view_line,0,0);
                 break;
             case R.id.ly_more://更多
-
+                if ( moreSelectPop!=null)
+                moreSelectPop.showAsDropDown(view_line,0,0);
                 break;
         }
     }
 
+
     /**
      * 获取网络数据
      */
-    private void getData() {
-        NetHelper.getHouseList("4", "1", "3", "2018-01-01", new HttpUtils.HttpCallback() {
+    private void getData(int pageIndex) {
+
+        NetHelper.getHouseList("4", pageIndex+"", "10",key,areaId+"",streetId+"",beginPrice+"",endPrice+"",scale+"",AtradeType,Aorientation,AbuildingType,Apurpose,AminArea,AmaxArea,Astartdate,Aenddate,Adatetype,Arenovation, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
@@ -136,9 +275,12 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                     public void run() {
                         ToastUtil.showToast(getContext(), houseListBean.getContent());
 
+                        mRecyclerView.refreshComplete(10);
                         //更新数据
                         houseListBeans.addAll(houseListBean.getData());
+
                         houseAdapter.notifyDataSetChanged();
+                        pagenum++;
                     }
                 });
 
@@ -147,6 +289,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
             @Override
             public void onError(String msg) {
                 super.onError(msg);
+                mRecyclerView.refreshComplete(10);
             }
         });
     }
@@ -168,38 +311,52 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
         mRecyclerView.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
 //设置底部加载颜色
         mRecyclerView.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
+
+        //分割线
+        DividerDecoration divider = new DividerDecoration.Builder(getActivity())
+                .setHeight(R.dimen.d_1)
+                .setPadding(R.dimen.d_0)
+                .setColorResource(R.color.white2)
+                .build();
+        mRecyclerView.addItemDecoration(divider);
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                mRecyclerView.refreshComplete(0);
-                            }
-                        });
-                    }
-                }, 2000);
+                pagenum=1;
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                getData(pagenum);
             }
         });
+
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                getData(pagenum);
+            }
+        });
 
-                                mRecyclerView.refreshComplete(0);
-                            }
-                        });
+
+
+        //搜索框监听
+        edit_content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_SEARCH) {
+
+            /*隐藏软键盘*/
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if(inputMethodManager.isActive()){
+                        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                     }
-                }, 2000);
+                    key=edit_content.getText().toString();
+
+                    houseListBeans.clear();
+                    houseAdapter.notifyDataSetChanged();
+                    getData(pagenum);
+                    return true;
+                }
+                return false;
             }
         });
     }

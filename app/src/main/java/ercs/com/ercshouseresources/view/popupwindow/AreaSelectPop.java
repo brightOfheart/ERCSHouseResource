@@ -45,11 +45,16 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
 
     private AreaSelectListviewAdapter areaTwoSelectListviewAdapter;
 
+    private int areaid=0;//区域id
+    private int steetid=0;//片区id
+    private AreaSelectListviewAdapter areaOneSelectListviewAdapter;
+
     public AreaSelectPop(Context context,OnSelectAreaListener onSelectAreaListener) {
         super(context);
         this.context = (Activity) context;
 
         this.onSelectAreaListener= onSelectAreaListener;
+
         initPop();
 
         if (BaseApplication.areas.size()==0)
@@ -110,7 +115,8 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
             }
         }
 
-        lv_areaone.setAdapter(new AreaSelectListviewAdapter(context,areaone_list));
+        areaOneSelectListviewAdapter = new AreaSelectListviewAdapter(context,areaone_list);
+        lv_areaone.setAdapter(areaOneSelectListviewAdapter);
 
 
         //二级列表
@@ -124,14 +130,16 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("-->","点击了"+i);
+                areaOneSelectListviewAdapter.setSelected(i);
                 if (i==0)
                 {
+                    areaid=0;
                     Log.i("-->","到这了");
                     //选择一级不限
-                    onSelectAreaListener.getAreaId(0);
+                    onSelectAreaListener.getAreaId(0,0);
                     dismiss();
-                }else
-                {
+                }
+                    areaid=areaone_list.get(i).getId();
                     //区域二级列表赋值
                     areatwo_list.clear();
                     areatwo_list.add(new AreaBean.DataBean(0,"不限",0));
@@ -143,8 +151,9 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
                         }
                     }
 
-                    areaTwoSelectListviewAdapter.notifyDataSetChanged();
-                }
+                    areaTwoSelectListviewAdapter.setSelected(-1);
+
+
             }
         });
 
@@ -155,10 +164,12 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
         lv_areatwo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onSelectAreaListener.getAreaId(areatwo_list.get(i).getId());
+                areaTwoSelectListviewAdapter.setSelected(i);
+                onSelectAreaListener.getAreaId(areaid,areatwo_list.get(i).getId());
                 dismiss();
             }
         });
+
 
 
     }
@@ -216,6 +227,6 @@ public class AreaSelectPop extends PopupWindow implements View.OnClickListener {
      */
     public  interface OnSelectAreaListener
     {
-        public void getAreaId(int id);
+        public void getAreaId(int areaid,int steetid);
     }
 }

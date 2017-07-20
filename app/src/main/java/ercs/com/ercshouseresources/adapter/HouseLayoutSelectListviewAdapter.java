@@ -14,25 +14,25 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.AreaBean;
 
 /**
- * 区域选择适配器
+ * 房型选择适配器
  * Created by Administrator on 2017/7/17.
  */
 
-public class AreaSelectListviewAdapter extends ViewHolderAdapter<AreaBean.DataBean> {
+public class HouseLayoutSelectListviewAdapter extends ViewHolderAdapter<String> {
 
     private int selectedPos;//选中的id 没有为-1
-    public AreaSelectListviewAdapter(Context context, List<AreaBean.DataBean> listData) {
+    public HouseLayoutSelectListviewAdapter(Context context, List<String> listData) {
         super(context, listData);
     }
 
     @Override
-    public View buildConvertView(LayoutInflater layoutInflater, AreaBean.DataBean dataBean, int position) {
+    public View buildConvertView(LayoutInflater layoutInflater, String dataBean, int position) {
         return layoutInflater.inflate(R.layout.item_priceselect_listview,null);
     }
 
     @Override
-    public void bindViewDatas(ViewHolder holder, AreaBean.DataBean dataBean, int position) {
-               holder.setText(R.id.tv_content,dataBean.getName());
+    public void bindViewDatas(ViewHolder holder,String s, int position) {
+               holder.setText(R.id.tv_content,s);
         if (position==selectedPos)
         {
             //选中的项

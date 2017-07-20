@@ -3,6 +3,7 @@ package ercs.com.ercshouseresources.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
@@ -19,6 +20,7 @@ import ercs.com.ercshouseresources.bean.PriceBean;
 public class PriceSelectListviewAdapter extends ViewHolderAdapter<PriceBean> {
 
 
+    private int selectedPos=-1;//选中的id 没有为-1
     public PriceSelectListviewAdapter(Context context, List<PriceBean> listData) {
         super(context, listData);
     }
@@ -32,5 +34,33 @@ public class PriceSelectListviewAdapter extends ViewHolderAdapter<PriceBean> {
     public void bindViewDatas(ViewHolder holder, PriceBean priceBean, int position) {
 
         holder.setText(R.id.tv_content,priceBean.getTitle());
+
+        if (position==selectedPos)
+        {
+            //选中的项
+            ((TextView)holder.getView(R.id.tv_content)).setTextColor(context.getResources().getColor(R.color.system_color));
+        }else
+        {
+            ((TextView)holder.getView(R.id.tv_content)).setTextColor(context.getResources().getColor(R.color.black));
+
+
+        }
+    }
+
+    /**
+     * 设置选中
+     * @param i
+     */
+    public void setSelected(int i)
+    {
+        selectedPos=i;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 设置选中id
+     */
+    public int getSelectedPos() {
+        return selectedPos;
     }
 }

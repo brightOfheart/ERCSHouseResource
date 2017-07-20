@@ -35,11 +35,15 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
     private View view;
     private ListView lv_houseprice,lv_rentalprice;//售房价格，租房价格
 
+    private TextView tv_unlimited;//不限
 
     private List<PriceBean> houseprices,rentalprices;//价格数据
 
     private EditText edit_minprice,edit_maxprice;
     private OnSelectPriceListener onSelectPriceListener;
+    private PriceSelectListviewAdapter housepriceSelectListviewAdapter;
+    private PriceSelectListviewAdapter rentalpriceSelectListviewAdapter;
+
     public PriceSelectPop(Context context,OnSelectPriceListener onSelectPriceListener) {
         super(context);
         this.context = (Activity) context;
@@ -47,7 +51,7 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
 
 
 
-        initData();
+        initData( );
         initPop();
         initView();
     }
@@ -71,6 +75,7 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
 
 
 
+
     }
 
     /**
@@ -85,7 +90,7 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
         TextView tv_sure=view.findViewById(R.id.tv_sure);
         tv_sure.setOnClickListener(this);
         //不限
-        TextView tv_unlimited=view.findViewById(R.id.tv_unlimited);
+         tv_unlimited=view.findViewById(R.id.tv_unlimited);
         tv_unlimited.setOnClickListener(this);
 
         //半透明的view
@@ -94,8 +99,10 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
 
         edit_minprice=view.findViewById(R.id.edit_minprice);
         edit_maxprice=view.findViewById(R.id.edit_maxprice);
-        lv_houseprice.setAdapter(new PriceSelectListviewAdapter(context,houseprices));
-        lv_rentalprice.setAdapter(new PriceSelectListviewAdapter(context,rentalprices));
+        housepriceSelectListviewAdapter = new PriceSelectListviewAdapter(context,houseprices);
+        lv_houseprice.setAdapter(housepriceSelectListviewAdapter);
+        rentalpriceSelectListviewAdapter = new PriceSelectListviewAdapter(context,rentalprices);
+        lv_rentalprice.setAdapter(rentalpriceSelectListviewAdapter);
 
 
         //售房列表点击
@@ -103,8 +110,10 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 onSelectPriceListener.getPrice( houseprices.get(i).getMinprice(),houseprices.get(i).getMaxprice());
-
+                housepriceSelectListviewAdapter.setSelected(i);
+                rentalpriceSelectListviewAdapter.setSelected(-1);
                 dismiss();
+
             }
         });
 
@@ -114,7 +123,8 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 onSelectPriceListener.getPrice( rentalprices.get(i).getMinprice(),rentalprices.get(i).getMaxprice());
-
+                housepriceSelectListviewAdapter.setSelected(-1);
+                rentalpriceSelectListviewAdapter.setSelected(i);
                 dismiss();
             }
         });
@@ -168,6 +178,8 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
         {
             case R.id.tv_sure:
                 //点击确定
+                housepriceSelectListviewAdapter.setSelected(-1);
+                rentalpriceSelectListviewAdapter.setSelected(-1);
                 onSelectPriceListener.getPrice(edit_minprice.getText().toString(),edit_maxprice.getText().toString());
                 dismiss();
                 break;
@@ -177,13 +189,17 @@ public class PriceSelectPop extends PopupWindow implements View.OnClickListener 
                 break;
             case R.id.tv_unlimited:
                 //点击不限
+                onSelectPriceListener.getPrice("0","0");
                 dismiss();
+                housepriceSelectListviewAdapter.setSelected(-1);
+                rentalpriceSelectListviewAdapter.setSelected(-1);
                 break;
         }
     }
 
     public  interface OnSelectPriceListener
     {
-        public void getPrice(String min,String max);
+        public void getPrice(String min,String max);//其他点击
+
     }
 }

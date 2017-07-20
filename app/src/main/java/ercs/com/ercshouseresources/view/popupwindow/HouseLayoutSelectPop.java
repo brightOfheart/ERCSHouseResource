@@ -7,14 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.adapter.AreaSelectListviewAdapter;
+import ercs.com.ercshouseresources.adapter.HouseLayoutSelectListviewAdapter;
 import ercs.com.ercshouseresources.adapter.PriceSelectListviewAdapter;
 
 /**
@@ -30,6 +34,8 @@ public class HouseLayoutSelectPop extends PopupWindow implements View.OnClickLis
 
 
     private OnSelectHouseLayoutListener onSelectHouseLayoutListener;
+    private HouseLayoutSelectListviewAdapter houseLayoutSelectListviewAdapter;
+
     public HouseLayoutSelectPop(Context context, OnSelectHouseLayoutListener onSelectHouseLayoutListener) {
         super(context);
         this.context = (Activity) context;
@@ -45,20 +51,26 @@ public class HouseLayoutSelectPop extends PopupWindow implements View.OnClickLis
         View v=view.findViewById(R.id.view_null);
         v.setOnClickListener(this);
 
-        TextView tv_unlimited=view.findViewById(R.id.tv_unlimited);
-        tv_unlimited.setOnClickListener(this);
-        TextView tv_onehouse=view.findViewById(R.id.tv_onehouse);
-        tv_onehouse.setOnClickListener(this);
-        TextView tv_twohouse=view.findViewById(R.id.tv_twohouse);
-        tv_twohouse.setOnClickListener(this);
-        TextView tv_threehouse=view.findViewById(R.id.tv_threehouse);
-        tv_threehouse.setOnClickListener(this);
-        TextView tv_fourhouse=view.findViewById(R.id.tv_fourhouse);
-        tv_fourhouse.setOnClickListener(this);
-        TextView tv_fivehouse=view.findViewById(R.id.tv_fivehouse);
-        tv_fivehouse.setOnClickListener(this);
-        TextView tv_sixhouse=view.findViewById(R.id.tv_sixhouse);
-        tv_sixhouse.setOnClickListener(this);
+        ListView lv_houselayout=view.findViewById(R.id.lv_houselayout);
+        List<String> list=new ArrayList<>();
+        list.add("不限");
+        list.add("一室");
+        list.add("二室");
+        list.add("三室");
+        list.add("四室");
+        list.add("五室");
+        list.add("六室");
+        houseLayoutSelectListviewAdapter = new HouseLayoutSelectListviewAdapter(context,list);
+        lv_houselayout.setAdapter(houseLayoutSelectListviewAdapter);
+
+        lv_houselayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onSelectHouseLayoutListener.selectHouseLayout(i);
+                houseLayoutSelectListviewAdapter.setSelected(i);
+                dismiss();
+            }
+        });
     }
 
 
@@ -105,41 +117,7 @@ public class HouseLayoutSelectPop extends PopupWindow implements View.OnClickLis
                 //点击半透明
                 dismiss();
                 break;
-            case R.id.tv_unlimited:
-                //不限
-                onSelectHouseLayoutListener.selectHouseLayout(0);
-                dismiss();
-                break;
-            case R.id.tv_onehouse:
-                //一室
-                onSelectHouseLayoutListener.selectHouseLayout(1);
-                dismiss();
-                break;
-            case R.id.tv_twohouse:
-                //二室
-                onSelectHouseLayoutListener.selectHouseLayout(2);
-                dismiss();
-                break;
-            case R.id.tv_threehouse:
-                //三室
-                onSelectHouseLayoutListener.selectHouseLayout(3);
-                dismiss();
-                break;
-            case R.id.tv_fourhouse:
-                //四室
-                onSelectHouseLayoutListener.selectHouseLayout(4);
-                dismiss();
-                break;
-            case R.id.tv_fivehouse:
-                //五室
-                onSelectHouseLayoutListener.selectHouseLayout(5);
-                dismiss();
-                break;
-            case R.id.tv_sixhouse:
-                //六室
-                onSelectHouseLayoutListener.selectHouseLayout(6);
-                dismiss();
-                break;
+
         }
     }
 

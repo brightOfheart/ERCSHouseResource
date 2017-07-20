@@ -355,23 +355,53 @@ public class NetHelper {
         new HttpUtils().postJson(URL + USERDICTIONARY, json, callback);
     }
 
+
     /**
      * 获取房源列表
      * @param UserId
      * @param pageIndex
      * @param pageSize
-     * @param endDate
-     * @param callback
+     * @param key 关键字 “”
+     * @param areaId 城区 0
+     * @param streetId 片区 0
+     * @param beginPrice 最低价格 0
+     * @param endPrice 最高价格 0
+     * @param scale 房型 0
+     * @param tradeType 交易类型 0
+     * @param orientations  朝向 0
+     * @param buildingType   建筑类型 0
+     * @param purpose    用途 0
+     * @param beginSquare     最小面积 0
+     * @param endSquare      最大面积 0
+     * @param beginDate       开始日期 2017-01-01
+     * @param endDate       结束日期
+     * @param dateType       日期类型 0委托日期 1录入日期 2建房年代 3交房日期
+     * @param decoration      装修 0
      */
-    public static void getHouseList(String UserId,String pageIndex,String pageSize,String endDate,HttpUtils.HttpCallback callback) {
+    public static void getHouseList(String UserId,String pageIndex,String pageSize,String key,String areaId,String streetId,String beginPrice,String endPrice,String scale,int tradeType
+            ,int orientations,int buildingType,int purpose,String beginSquare,String endSquare,String beginDate ,String endDate ,int dateType     ,int decoration,HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("UserId", UserId);
         map.put("pageIndex", pageIndex);
         map.put("pageSize", pageSize);
-        map.put("beginDate", "2017-01-01");
-        map.put("endDate", endDate);
+        map.put("key", key);
+        map.put("areaId", areaId);
+        map.put("streetId", streetId);
+        map.put("beginPrice", beginPrice);
+        map.put("endPrice", endPrice);
+        map.put("scale", scale);
+        map.put("tradeType", tradeType+"" );
+        map.put("orientations", orientations+"" );
+        map.put("buildingType", buildingType +"" );
+        map.put("purpose", purpose  +"" );
+        map.put("beginSquare", beginSquare );
+        map.put("endSquare", endSquare );
+        map.put("beginDate", beginDate  +"" );
+        map.put("endDate", endDate  +"" );
+        map.put("dateType", dateType  +"" );
+        map.put("decoration", decoration  +"" );
         String json = MyGson.getInstance().toJson(map);
-        Log.d("json",json);
+        Log.d("Json",json);
         new HttpUtils().postJson(URL + HOUSESOURCELIST, json, callback);
     }
 }

@@ -39,6 +39,7 @@
                 android:textColorHint="@color/white"
                 android:singleLine="true"
                 android:textSize="14sp"
+                android:imeOptions="actionSearch"
                 />
         </LinearLayout>
     </LinearLayout>
