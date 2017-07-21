@@ -21,7 +21,11 @@ import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +96,8 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_house, container, false);
         ButterKnife.bind(this, view);
+
+        initNowDate();
         initview();
         getData(pagenum);
 
@@ -102,6 +108,28 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
 
         return view;
 
+    }
+
+    /**
+     * 获取当前时间
+     */
+    private void initNowDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        long time = date.getTime();
+
+        long starttime=time-3*30*24*60*60*1000;
+
+        Log.i("-->","DateLong:"+starttime);
+        Aenddate=sdf.format(time);
+//        Astartdate=sdf.format(new Date(starttime));
+//        Log.i("-->", "时间"+Astartdate);
+
+        Calendar calendar = Calendar.getInstance(); //得到日历
+        calendar.setTime(date);//把当前时间赋给日历
+        calendar.add(calendar.MONTH, -3);  //设置为前3月
+        Date dBefore = calendar.getTime();   //得到前3月的时间
+        Astartdate=sdf.format(dBefore);
     }
 
     /**
