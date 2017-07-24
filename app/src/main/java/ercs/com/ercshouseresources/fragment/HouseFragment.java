@@ -37,7 +37,9 @@ import ercs.com.ercshouseresources.bean.UserDictionaryBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
+import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 import ercs.com.ercshouseresources.view.popupwindow.AreaSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.HouseLayoutSelectPop;
@@ -91,6 +93,9 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     private  AreaSelectPop areaSelectPop;
     private HouseLayoutSelectPop houseLayoutSelectPop;
     private MoreSelectPop moreSelectPop;
+
+
+    private LoadingDialog loadingDialog;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -294,32 +299,39 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
      */
     private void getData(int pageIndex) {
 
-        NetHelper.getHouseList("4", pageIndex+"", "10",key,areaId+"",streetId+"",beginPrice+"",endPrice+"",scale+"",AtradeType,Aorientation,AbuildingType,Apurpose,AminArea,AmaxArea,Astartdate,Aenddate,Adatetype,Arenovation, new HttpUtils.HttpCallback() {
-            @Override
-            public void onSuccess(String data) {
-                final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getContext(), houseListBean.getContent());
+        if (NetWorkUtil.check(getActivity()))
+        {
+            loadingDialog.show();
+            NetHelper.getHouseList("4", pageIndex+"", "10",key,areaId+"",streetId+"",beginPrice+"",endPrice+"",scale+"",AtradeType,Aorientation,AbuildingType,Apurpose,AminArea,AmaxArea,Astartdate,Aenddate,Adatetype,Arenovation, new HttpUtils.HttpCallback() {
+                @Override
+                public void onSuccess(String data) {
+                    loadingDialog.dismiss();
+                    final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(getContext(), houseListBean.getContent());
 
-                        mRecyclerView.refreshComplete(10);
-                        //更新数据
-                        houseListBeans.addAll(houseListBean.getData());
+                            mRecyclerView.refreshComplete(10);
+                            //更新数据
+                            houseListBeans.addAll(houseListBean.getData());
 
-                        houseAdapter.notifyDataSetChanged();
-                        pagenum++;
-                    }
-                });
+                            houseAdapter.notifyDataSetChanged();
+                            pagenum++;
+                        }
+                    });
 
-            }
+                }
 
-            @Override
-            public void onError(String msg) {
-                super.onError(msg);
-                mRecyclerView.refreshComplete(10);
-            }
-        });
+                @Override
+                public void onError(String msg) {
+                    super.onError(msg);
+                    loadingDialog.dismiss();
+                    mRecyclerView.refreshComplete(10);
+                }
+            });
+        }
+
     }
 
 
@@ -327,6 +339,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
      * 初始化
      */
     private void initview() {
+        loadingDialog=new LoadingDialog(getActivity(),0);
         houseListBeans=new ArrayList<>();
         houseAdapter = new HouseAdapter(getActivity(), houseListBeans);
 
