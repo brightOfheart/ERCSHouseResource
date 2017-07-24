@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.fragment.HouseFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
+import ercs.com.ercshouseresources.fragment.ServiceFragment;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -28,11 +31,15 @@ public class MainActivity extends BaseActivity {
     ImageView iv_msg;
     @BindView(R.id.iv_mine)
     ImageView iv_mine;
+    @BindView(R.id.iv_service)
+    ImageView iv_service;
     @BindView(R.id.tv_msg)
     TextView tv_msg;
     @BindView(R.id.tv_mine)
     TextView tv_mine;
-    private static final int NUM = 2;//设置Viewpager 里面的 fragment的数量
+    @BindView(R.id.tv_service)
+    TextView tv_service;
+    private static final int NUM = 3;//设置Viewpager 里面的 fragment的数量
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,16 +62,20 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.ly_house, R.id.ly_mine})
+    @OnClick({R.id.ly_house, R.id.ly_service, R.id.ly_mine})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_house://房源
                 setBottomLabState(0);
                 viewpager.setCurrentItem(0, false);
                 break;
-            case R.id.ly_mine://我的
+            case R.id.ly_service://服务
                 setBottomLabState(1);
                 viewpager.setCurrentItem(1, false);
+                break;
+            case R.id.ly_mine://我的
+                setBottomLabState(2);
+                viewpager.setCurrentItem(2, false);
                 break;
 
         }
@@ -85,7 +96,10 @@ public class MainActivity extends BaseActivity {
                 setTextAndImg(tv_msg, iv_msg, R.mipmap.message_pre, false);
                 setTextAndImg(tv_mine, iv_mine, R.mipmap.mine_over, true);
                 break;
-
+            case 2:
+                setTextAndImg(tv_msg, iv_msg, R.mipmap.message_pre, false);
+                setTextAndImg(tv_mine, iv_mine, R.mipmap.mine_over, true);
+                break;
         }
     }
 
@@ -117,6 +131,8 @@ public class MainActivity extends BaseActivity {
             if (position == 0) {
                 return new HouseFragment();
             } else if (position == 1) {
+                return new ServiceFragment();
+            } else if (position == 2) {
                 return new MineFragment();
             }
             return null;

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -71,14 +70,11 @@ public class AtendanceActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         createDate();
-        if (NetWorkUtil.check(getApplicationContext()))
-        {
-            if (isMyself())
-            {
-                getNetData(getId(),getYear() + "-" + getMonth() + "-" + getDay());
-            }else
-            {
-                getNetData(getOtherId(),getYear() + "-" + getMonth() + "-" + getDay());
+        if (NetWorkUtil.check(getApplicationContext())) {
+            if (isMyself()) {
+                getNetData(getId(), getYear() + "-" + getMonth() + "-" + getDay());
+            } else {
+                getNetData(getOtherId(), getYear() + "-" + getMonth() + "-" + getDay());
             }
 
         }
@@ -87,44 +83,44 @@ public class AtendanceActivity extends BaseActivity {
 
     /**
      * 页面跳转
+     *
      * @param mactivity
      * @param PhonePaht
      * @param Name
      * @param OtherId
      */
-    public static void start(Activity mactivity,String PhonePaht,String Name,String OtherId)
-    {
+    public static void start(Activity mactivity, String PhonePaht, String Name, String OtherId) {
         Intent intent = new Intent(mactivity, AtendanceActivity.class);
-        intent.putExtra("PhonePath",PhonePaht);
-        intent.putExtra("Name",Name);
-        intent.putExtra("OtherId",OtherId);
+        intent.putExtra("PhonePath", PhonePaht);
+        intent.putExtra("Name", Name);
+        intent.putExtra("OtherId", OtherId);
         mactivity.startActivity(intent);
     }
-    private String getPhonePath()
-    {
+
+    private String getPhonePath() {
         return getIntent().getStringExtra("PhonePath");
     }
-    private String getName()
-    {
+
+    private String getName() {
         return getIntent().getStringExtra("Name");
     }
-    private String getOtherId()
-    {
+
+    private String getOtherId() {
         return getIntent().getStringExtra("OtherId");
     }
 
     /**
      * 是否展示自己数据
+     *
      * @return
      */
-    private boolean isMyself()
-    {
-        if(null!=getIntent().getStringExtra("PhonePath"))
-        {
+    private boolean isMyself() {
+        if (null != getIntent().getStringExtra("PhonePath")) {
             return false;
         }
         return true;
     }
+
     /**
      * 设置标题栏
      */
@@ -139,12 +135,10 @@ public class AtendanceActivity extends BaseActivity {
     private void createDate() {
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
-        if (isMyself())
-        {
+        if (isMyself()) {
             tv_name.setText(spUtil.getString(BaseApplication.NAME, ""));
             GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
-        }else
-        {
+        } else {
             tv_name.setText(getName());
             GlideUtil.loadCircleImage(NetHelper.URL + getPhonePath(), iv_photo);
         }
@@ -168,12 +162,10 @@ public class AtendanceActivity extends BaseActivity {
                         if (NetWorkUtil.check(getApplicationContext())) {
                             tv_year.setText(year + "年" + (month + 1) + "月");
                             clear();
-                            if (isMyself())
-                            {
-                                getNetData(getId(),year + "-" + (month + 1) + "-" + day);
-                            }else
-                            {
-                                getNetData(getOtherId(),year + "-" + (month + 1) + "-" + day);
+                            if (isMyself()) {
+                                getNetData(getId(), year + "-" + (month + 1) + "-" + day);
+                            } else {
+                                getNetData(getOtherId(), year + "-" + (month + 1) + "-" + day);
                             }
 
                         }
@@ -189,16 +181,17 @@ public class AtendanceActivity extends BaseActivity {
 
     /**
      * 获取id
+     *
      * @return
      */
-    private String getId()
-    {
-        return spUtil.getString(BaseApplication.ID,"");
+    private String getId() {
+        return spUtil.getString(BaseApplication.ID, "");
     }
+
     /**
      * 获取网络数据
      */
-    private void getNetData(String id,String date) {
+    private void getNetData(String id, String date) {
         dialog.show();
         NetHelper.atendance(id, date, new HttpUtils.HttpCallback() {
             @Override
@@ -229,32 +222,30 @@ public class AtendanceActivity extends BaseActivity {
      * @param atendanceBean
      */
     private void setData(AtendanceBean atendanceBean) {
-        String nameStr="";
-        String pathStr="";
-        if (isMyself())
-        {
-            nameStr=spUtil.getString(BaseApplication.NAME,"");
-            pathStr=spUtil.getString(BaseApplication.PHOTOPATH,"");
-        }else
-        {
-            nameStr=getName();
-            pathStr=getPhonePath();
+        String nameStr = "";
+        String pathStr = "";
+        if (isMyself()) {
+            nameStr = spUtil.getString(BaseApplication.NAME, "");
+            pathStr = spUtil.getString(BaseApplication.PHOTOPATH, "");
+        } else {
+            nameStr = getName();
+            pathStr = getPhonePath();
         }
         for (int i = 0; i < atendanceBean.getData().size(); i++) {
             if (atendanceBean.getData().get(i).getStatisticsType().equals("1"))
-                ly1.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly1.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("2"))
-                ly2.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly2.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("3"))
-                ly3.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly3.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("4"))
-                ly4.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly4.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("5"))
-                ly5.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly5.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("6"))
-                ly6.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly6.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
             else if (atendanceBean.getData().get(i).getStatisticsType().equals("7"))
-                ly7.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(),nameStr,pathStr));
+                ly7.addView(new AtendanceItem(AtendanceActivity.this, atendanceBean.getData().get(i), atendanceBean.getData().get(i).getInSideStatisticsListMode(), nameStr, pathStr));
         }
 
     }
