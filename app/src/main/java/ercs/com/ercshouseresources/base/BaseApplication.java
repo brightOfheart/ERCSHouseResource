@@ -28,6 +28,7 @@ public class BaseApplication extends Application {
     public static final String SUPERIORPHONE = "SuperiorPhone";//管理员电话
     public static String Token = "";//登录接口获取 除了登录其它接口需要添加的Token
     public static String NewToken = "";//新房登录接口获取 除了登录其它接口需要添加的Token
+    public static int NewIsLogin = 0;//新房是否登录成功 默认0未成功
     public LocationService locationService;//百度定位服务类
     public static Context context;//定义一个静态的全局变量
     public static final String FILENAME = "fileName";//保存的名称
