@@ -151,6 +151,37 @@ public class HttpUtils {
     }
 
     /**
+     * 新房post请求，json数据为body
+     *
+     * @param url
+     * @param json
+     * @param callback
+     */
+    public void postNewJson(String url, String json, final HttpCallback callback) {
+
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().url(url).post(body).addHeader("Token", BaseApplication.NewToken).build();
+        onStart(callback);
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                onError(callback, e.getMessage());
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Headers requestHeaders = response.networkResponse().request().headers();
+                Log.d("requestHeaders", response.headers().get("Token") + "");
+                if (response.isSuccessful()) {
+                    onSuccess(callback, response.body().string());
+                } else {
+                    onError(callback, response.message());
+                }
+            }
+        });
+    }
+    /**
      * post请求 map为body
      *
      * @param url
