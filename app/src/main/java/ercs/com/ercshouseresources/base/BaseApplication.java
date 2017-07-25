@@ -3,10 +3,8 @@ package ercs.com.ercshouseresources.base;
 import android.app.Application;
 import android.content.Context;
 import com.baidu.mapapi.SDKInitializer;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ercs.com.ercshouseresources.bean.AreaBean;
 import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.service.LocationService;

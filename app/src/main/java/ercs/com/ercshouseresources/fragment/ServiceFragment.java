@@ -18,8 +18,6 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.bean.AllProcessBean;
-import ercs.com.ercshouseresources.bean.BaseBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
