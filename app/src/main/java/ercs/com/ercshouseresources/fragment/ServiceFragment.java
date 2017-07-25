@@ -21,6 +21,9 @@ import ercs.com.ercshouseresources.activity.PhotoViewActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -31,7 +34,7 @@ import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapter.Laziable {
     @BindView(R.id.gridview)
     GridView gridview;
-
+    private LoadingDialog dialog;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,5 +62,25 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
 
             }
         });
+        getData();
+    }
+
+    /**
+     * 访问登录接口
+     */
+    private void getData()
+    {
+        NetHelperNew.login("13888888888", "123456", new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+            }
+        });
+
     }
 }

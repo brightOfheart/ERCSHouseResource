@@ -3,7 +3,6 @@ package ercs.com.ercshouseresources.network;
 /**
  * Created by Administrator on 2017/6/21.
  */
-
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -158,7 +157,6 @@ public class HttpUtils {
      * @param callback
      */
     public void postNewJson(String url, String json, final HttpCallback callback) {
-
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder().url(url).post(body).addHeader("Token", BaseApplication.NewToken).build();
         onStart(callback);
@@ -338,7 +336,6 @@ public class HttpUtils {
         }
 
         ;
-
         // 成功回调
         public abstract void onSuccess(String data);
 
