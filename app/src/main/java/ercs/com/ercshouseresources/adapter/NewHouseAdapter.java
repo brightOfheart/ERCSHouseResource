@@ -26,7 +26,7 @@ public class NewHouseAdapter extends ViewHolderRecyclerAdapter<String> {
     private Activity context;
     public NewHouseAdapter( Activity context, List<String> listData) {
         super(context, listData);
-        this.context=context;
+        this.context=context ;
     }
 
     @Override
