@@ -148,6 +148,31 @@
             android:name=".activity.housing.HouseListDetail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!--新房详情-->
+        <activity
+            android:name=".activity.service.NewHouseDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!--置业顾问-->
+        <activity
+            android:name=".activity.service.ProConActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!--成交奖励-->
+        <activity
+            android:name=".activity.service.ClosingBonusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!--动态-->
+        <activity
+            android:name=".activity.service.DynamicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!--庄园列表-->
+        <activity
+            android:name=".activity.service.ContentListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
