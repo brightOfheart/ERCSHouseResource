@@ -56,7 +56,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 startActivity(new Intent(getActivity(), NewHouseActivity.class));
-                 startActivity(new Intent(getActivity(), NewHouseDetailActivity.class));
+
             }
         });
     }

@@ -92,10 +92,11 @@
     <string name="str_closingbonus">成交奖励</string>
     <string name="str_dynamic">动态</string>
     <string name="str_settlementcycle">结算周期</string>
+    <string name="str_settlementcycles">结算周期-</string>
     <string name="str_lease">出租</string>
     <string name="str_sell">出售</string>
     <string name="str_leasesell">租售</string>
-    <string name="str_settlementcycle">结算周期-</string>
+
     <string name="str_addclient">添加客户</string>
     <string name="str_man">先生</string>
     <string name="str_woman">女生</string>

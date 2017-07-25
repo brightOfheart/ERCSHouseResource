@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
@@ -26,8 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.adapter.HouseAdapter;
-import ercs.com.ercshouseresources.adapter.NewHouseAdapter;
+import ercs.com.ercshouseresources.adapter.NewBuildingAdapter;
 import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
@@ -50,7 +48,7 @@ public class NewHouseActivity extends AppCompatActivity {
 
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private List<String> houseListBeans;
-    private NewHouseAdapter houseAdapter;//房源列表
+    private NewBuildingAdapter houseAdapter;//房源列表
     private LoadingDialog loadingDialog;
     private  String key="";// 关键字 “”
     private int pagenum=1;//页数
@@ -80,7 +78,7 @@ public class NewHouseActivity extends AppCompatActivity {
     private void initview() {
         loadingDialog=new LoadingDialog(this,0);
         houseListBeans=new ArrayList<>();
-        houseAdapter = new NewHouseAdapter(this, houseListBeans);
+        houseAdapter = new NewBuildingAdapter(this, houseListBeans);
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(houseAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -139,6 +137,7 @@ key=edit_content.getText().toString();
         return false;
         }
         });
+
 
 
 
