@@ -23,6 +23,7 @@ import ercs.com.ercshouseresources.bean.BaseBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -87,10 +88,11 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
-                final BaseBean baseBean = MyGson.getInstance().fromJson(data, AllProcessBean.class);
-                if (baseBean.getType().equals("1")) {
+                final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
+                if (loginBean.getType().equals("1")) {
                     btn_login.setVisibility(View.GONE);
                     BaseApplication.NewIsLogin = 1;
+                    BaseApplication.loginBean=loginBean;
                     initview();
                 } else {
                     btn_login.setVisibility(View.VISIBLE);
@@ -98,7 +100,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(getContext(), baseBean.getContent());
+                        ToastUtil.showToast(getContext(), loginBean.getContent());
                     }
                 });
             }
