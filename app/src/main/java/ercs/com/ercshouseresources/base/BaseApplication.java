@@ -33,7 +33,7 @@ public class BaseApplication extends Application {
     public LocationService locationService;//百度定位服务类
     public static Context context;//定义一个静态的全局变量
     public static final String FILENAME = "fileName";//保存的名称
-    public static LoginBean loginBean;//定义一个静态的全局变量
+    public static LoginBean loginBean;//定义一个静态的新房登录全局变量
     public static List<AreaBean.DataBean> areas;//区域信息
     @Override
     public void onCreate() {
