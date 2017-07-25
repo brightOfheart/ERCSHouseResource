@@ -104,7 +104,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
 
         initNowDate();
         initview();
-        getData(pagenum);
+        getData(pagenum,true);
 
         getUserDictionary();
         initPriceSelectPop();
@@ -162,7 +162,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                     pagenum=1;
                     houseListBeans.clear();
                     houseAdapter.notifyDataSetChanged();
-                    getData(pagenum);
+                    getData(pagenum,true);
                 }
             });
 
@@ -183,7 +183,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                 pagenum=1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,true);
             }
         });
     }
@@ -203,7 +203,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
                 pagenum=1;
-                getData(pagenum);
+                getData(pagenum,true);
 
             }
         });
@@ -237,7 +237,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                 pagenum=1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,true);
             }
         });
     }
@@ -297,14 +297,16 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
     /**
      * 获取网络数据
      */
-    private void getData(int pageIndex) {
+    private void getData(int pageIndex, final boolean isLoading) {
 
         if (NetWorkUtil.check(getActivity()))
         {
+            if (isLoading)
             loadingDialog.show();
             NetHelper.getHouseList("4", pageIndex+"", "10",key,areaId+"",streetId+"",beginPrice+"",endPrice+"",scale+"",AtradeType,Aorientation,AbuildingType,Apurpose,AminArea,AmaxArea,Astartdate,Aenddate,Adatetype,Arenovation, new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
+                    if (isLoading)
                     loadingDialog.dismiss();
                     final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
                     getActivity().runOnUiThread(new Runnable() {
@@ -326,6 +328,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                 @Override
                 public void onError(String msg) {
                     super.onError(msg);
+                    if (isLoading)
                     loadingDialog.dismiss();
                     mRecyclerView.refreshComplete(10);
                 }
@@ -366,14 +369,14 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
                 pagenum=1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,false);
             }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-                getData(pagenum);
+                getData(pagenum,false);
             }
         });
 
@@ -394,7 +397,7 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
 
                     houseListBeans.clear();
                     houseAdapter.notifyDataSetChanged();
-                    getData(pagenum);
+                    getData(pagenum,true);
                     return true;
                 }
                 return false;

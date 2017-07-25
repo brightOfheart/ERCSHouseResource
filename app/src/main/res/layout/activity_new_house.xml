@@ -113,25 +113,7 @@
                 android:src="@mipmap/down_icon" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ly_transactiontype"
-            android:layout_width="@dimen/d_0"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="交易类型" />
-
-            <ImageView
-                android:layout_marginLeft="@dimen/d_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/down_icon" />
-        </LinearLayout>
 
     </LinearLayout>
 

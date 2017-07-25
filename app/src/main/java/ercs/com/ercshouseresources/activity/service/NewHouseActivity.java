@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -26,13 +27,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.NewBuildingAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.HouseListBean;
+import ercs.com.ercshouseresources.bean.NewHouseAreaBean;
+import ercs.com.ercshouseresources.bean.NewHouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
+import ercs.com.ercshouseresources.view.popupwindow.BuildingTypeSelectPop;
+import ercs.com.ercshouseresources.view.popupwindow.HouseLayoutSelectPop;
+import ercs.com.ercshouseresources.view.popupwindow.NewHouseAreaSelectPop;
 
 /**
  * 新房
@@ -42,16 +50,23 @@ public class NewHouseActivity extends AppCompatActivity {
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
-    LRecyclerView mRecyclerView ;
+    LRecyclerView mRecyclerView;
     @BindView(R.id.view_line)
     View view_line;
 
     private LRecyclerViewAdapter lRecyclerViewAdapter;
-    private List<String> houseListBeans;
+    private List<NewHouseListBean.DataBean> houseListBeans;
     private NewBuildingAdapter houseAdapter;//房源列表
     private LoadingDialog loadingDialog;
-    private  String key="";// 关键字 “”
-    private int pagenum=1;//页数
+    private String key = "";// 关键字 “”
+    private int pagenum = 1;//页数
+
+
+    private int BuildingTypeID = 0;//房源类型
+    private int AreaID = 0;//区域类型
+
+    private BuildingTypeSelectPop buildingTypeSelectPop;//房源类型
+    private NewHouseAreaSelectPop newHouseAreaSelectPop;//区域类型
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +74,55 @@ public class NewHouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_house);
         ButterKnife.bind(this);
         initview();
-        getFalseData();
+
+        getData(pagenum);
+        initHouseLayoutSelectPop();
+        downLoadArea();
     }
 
+
     /**
-     * 假数据
+     *下载区域数据
      */
-    private void getFalseData() {
-        for (int i = 0; i < 10; i++) {
-            houseListBeans.add("");
-            houseAdapter.notifyDataSetChanged();
-        }
+    private void downLoadArea() {
+        NetHelperNew.AreaList(BaseApplication.loginBean.getData().getCityID(),new HttpUtils.HttpCallback() {
+
+
+            @Override
+            public void onSuccess(String data) {
+                Log.i("-->","新房区域:"+data);
+                final NewHouseAreaBean newHouseAreaBean = MyGson.getInstance().fromJson(data, NewHouseAreaBean.class);
+                if (1==newHouseAreaBean.getType())
+                {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                            initAreaSelectPop(newHouseAreaBean.getData());
+                        }
+                    });
+                }
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+                Log.i("-->","下载新房区域信息失败"+msg);
+
+            }
+        });
     }
+
 
     /**
      * 初始化
      */
     private void initview() {
-        loadingDialog=new LoadingDialog(this,0);
-        houseListBeans=new ArrayList<>();
+        loadingDialog = new LoadingDialog(this, 0);
+        houseListBeans = new ArrayList<>();
         houseAdapter = new NewBuildingAdapter(this, houseListBeans);
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(houseAdapter);
@@ -100,7 +145,7 @@ public class NewHouseActivity extends AppCompatActivity {
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
             public void onRefresh() {
-                pagenum=1;
+                pagenum = 1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
                 getData(pagenum);
@@ -115,66 +160,111 @@ public class NewHouseActivity extends AppCompatActivity {
         });
 
 
-
         //搜索框监听
         edit_content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if(i == EditorInfo.IME_ACTION_SEARCH) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
 
             /*隐藏软键盘*/
                     InputMethodManager inputMethodManager = (InputMethodManager) NewHouseActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if(inputMethodManager.isActive()){
+                    if (inputMethodManager.isActive()) {
                         inputMethodManager.hideSoftInputFromWindow(NewHouseActivity.this.getCurrentFocus().getWindowToken(), 0);
-}
-key=edit_content.getText().toString();
+                    }
+                    key = edit_content.getText().toString();
 
-        houseListBeans.clear();
-        houseAdapter.notifyDataSetChanged();
-        getData(pagenum);
-        return true;
-        }
-        return false;
-        }
+                    houseListBeans.clear();
+                    houseAdapter.notifyDataSetChanged();
+                    getData(pagenum);
+                    return true;
+                }
+                return false;
+            }
         });
 
 
+    }
 
+    /**
+     * 房源类型选择pop
+     */
+    private void initHouseLayoutSelectPop() {
+        buildingTypeSelectPop = new BuildingTypeSelectPop(this, new BuildingTypeSelectPop.OnSelectHouseLayoutListener() {
+            @Override
+            public void selectHouseLayout(int i) {
 
-        }
+                Log.i("-->","选择房型："+i);
+                BuildingTypeID=i;
 
-@OnClick({R.id.title_left})
-public void onClick(View view) {
-        switch (view.getId())
-        {
-        case R.id.title_left:
-        //返回键
-        finish();
-        break;
+                pagenum=1;
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                getData(pagenum);
+            }
+        });
+    }
+
+    /**
+     * 房源区域选择pop
+     */
+    private void initAreaSelectPop(List<NewHouseAreaBean.DataBean> dataBeanList) {
+        newHouseAreaSelectPop = new NewHouseAreaSelectPop(this,dataBeanList, new NewHouseAreaSelectPop.OnSelectNewAreaListener() {
+            @Override
+            public void selectArea(int i) {
+
+                Log.i("-->","选择区域："+i);
+                AreaID=i;
+
+                pagenum=1;
+                houseListBeans.clear();
+                houseAdapter.notifyDataSetChanged();
+                getData(pagenum);
+            }
+        });
+    }
+    @OnClick({R.id.title_left,R.id.ly_housingtype,R.id.ly_area})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.title_left:
+                //返回键
+                finish();
+                break;
+            case R.id.ly_housingtype:
+                //房源类型
+                if (buildingTypeSelectPop!=null)
+                    buildingTypeSelectPop.showAsDropDown(view_line,0,0);
+                break;
+            case R.id.ly_area:
+                //选择区域
+                if (newHouseAreaSelectPop!=null)
+                    newHouseAreaSelectPop.showAsDropDown(view_line,0,0);
+                break;
         }
-        }
+    }
+
     /**
      * 获取网络数据
+     *
      * @param pageIndex 页数
      */
     private void getData(int pageIndex) {
 
-        if (NetWorkUtil.check(this))
-        {
+        if (NetWorkUtil.check(this)) {
             loadingDialog.show();
-            NetHelper.getHouseList("4", pageIndex+"", "10",key,"0","0","0","0","0",0,0,0,0,0+"",0+"","2017-1-1","2018-1-1",0,0, new HttpUtils.HttpCallback() {
+            NetHelperNew.NewBuildingsList(pageIndex+"",AreaID==0?"":AreaID+"",BuildingTypeID+"", new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
                     loadingDialog.dismiss();
-                    final HouseListBean houseListBean = MyGson.getInstance().fromJson(data, HouseListBean.class);
+                    Log.i("-->","新房源列表："+data);
+                    final NewHouseListBean newHouseListBean = MyGson.getInstance().fromJson(data, NewHouseListBean.class);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showToast(NewHouseActivity.this, houseListBean.getContent());
+                            ToastUtil.showToast(NewHouseActivity.this, newHouseListBean.getContent());
 
                             mRecyclerView.refreshComplete(10);
                             //更新数据
-//                            houseListBeans.addAll(houseListBean.getData());
+                            houseListBeans.addAll(newHouseListBean.getData());
 
                             houseAdapter.notifyDataSetChanged();
                             pagenum++;
@@ -188,6 +278,7 @@ public void onClick(View view) {
                     super.onError(msg);
                     loadingDialog.dismiss();
                     mRecyclerView.refreshComplete(10);
+                    ToastUtil.showToast(getApplicationContext(), msg);
                 }
             });
         }

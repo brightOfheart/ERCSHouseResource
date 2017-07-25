@@ -12,13 +12,15 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
+import ercs.com.ercshouseresources.bean.NewHouseListBean;
 
 /**
+ * 新房列表适配器
  * Created by Administrator on 2017/7/25.
  */
 
-public class NewBuildingAdapter extends ViewHolderRecyclerAdapter<String> {
-    public NewBuildingAdapter(Context context, List<String> listData) {
+public class NewBuildingAdapter extends ViewHolderRecyclerAdapter<NewHouseListBean.DataBean> {
+    public NewBuildingAdapter(Context context, List<NewHouseListBean.DataBean> listData) {
         super(context, listData);
     }
 
@@ -28,7 +30,7 @@ public class NewBuildingAdapter extends ViewHolderRecyclerAdapter<String> {
     }
 
     @Override
-    public void bindViewDatas(ViewHolder holder, String s, int position) {
+    public void bindViewDatas(ViewHolder holder, NewHouseListBean.DataBean dataBean, int position) {
 
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,5 +38,10 @@ public class NewBuildingAdapter extends ViewHolderRecyclerAdapter<String> {
                 context.startActivity(new Intent(context, NewHouseDetailActivity.class));
             }
         });
+
+        holder.setText(R.id.tv_housename,dataBean.getEstateName());
+        holder.setText(R.id.tv_content,"");
+
+
     }
 }
