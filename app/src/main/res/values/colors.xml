@@ -41,4 +41,6 @@
     <color name="house_orange">#FE9567</color>
     <color name="house_gray">#B3B3B3</color>
     <color name="house_deepgray">#8C8C8C</color>
+    <color name="blue_boy">#589AFB</color>
+    <color name="blue_girl">#FF4FAA</color>
 </resources>

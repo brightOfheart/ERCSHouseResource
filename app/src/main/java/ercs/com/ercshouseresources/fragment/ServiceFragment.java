@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.PhotoViewActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
+import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
@@ -53,6 +54,8 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                startActivity(new Intent(getActivity(), NewHouseActivity.class));
                  startActivity(new Intent(getActivity(), NewHouseDetailActivity.class));
             }
         });

@@ -92,6 +92,17 @@
     <string name="str_closingbonus">成交奖励</string>
     <string name="str_dynamic">动态</string>
     <string name="str_settlementcycle">结算周期</string>
+    <string name="str_lease">出租</string>
+    <string name="str_sell">出售</string>
+    <string name="str_leasesell">租售</string>
+    <string name="str_settlementcycle">结算周期-</string>
+    <string name="str_addclient">添加客户</string>
+    <string name="str_man">先生</string>
+    <string name="str_woman">女生</string>
+    <string name="str_save">保存</string>
+    <string name="str_add">+</string>
+    <string name="str_minus">-</string>
+
     <!--异常字符串-->
     <string name="error_tel">请输入正确手机号！</string>
     <string name="error_tel_number">请填写手机号码</string>

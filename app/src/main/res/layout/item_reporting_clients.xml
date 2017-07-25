@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_10"
+        android:layout_marginTop="@dimen/d_10"
+        android:layout_marginBottom="@dimen/d_10"
+        android:layout_width="@dimen/d_40"
+        android:layout_height="@dimen/d_40"
+        android:text="张"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        android:gravity="center"
+        android:background="@drawable/circle_blue_bg"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张海燕"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_marginLeft="@dimen/d_10"
+            android:layout_toRightOf="@id/tv_name"
+            android:id="@+id/tv_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13902154254"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="@dimen/d_25"
+            android:layout_height="@dimen/d_25"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/d_16"
+            android:src="@mipmap/right"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2"
+            android:layout_alignParentBottom="true"></View>
+    </RelativeLayout>
+</LinearLayout>
