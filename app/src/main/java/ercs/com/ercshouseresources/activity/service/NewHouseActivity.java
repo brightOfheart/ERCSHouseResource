@@ -1,6 +1,7 @@
 package ercs.com.ercshouseresources.activity.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -87,7 +88,6 @@ public class NewHouseActivity extends AppCompatActivity {
     private void downLoadArea() {
         NetHelperNew.AreaList(BaseApplication.loginBean.getData().getCityID(),new HttpUtils.HttpCallback() {
 
-
             @Override
             public void onSuccess(String data) {
                 Log.i("-->","新房区域:"+data);
@@ -98,8 +98,6 @@ public class NewHouseActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-
                             initAreaSelectPop(newHouseAreaBean.getData());
                         }
                     });
@@ -227,8 +225,10 @@ public class NewHouseActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.title_left:
                 //返回键
-                finish();
+//                finish();
+                startActivity(new Intent(NewHouseActivity.this,ReportingClientsActivity.class));
                 break;
+
             case R.id.ly_housingtype:
                 //房源类型
                 if (buildingTypeSelectPop!=null)
@@ -251,7 +251,7 @@ public class NewHouseActivity extends AppCompatActivity {
 
         if (NetWorkUtil.check(this)) {
             loadingDialog.show();
-            NetHelperNew.NewBuildingsList(pageIndex+"",AreaID==0?"":AreaID+"",BuildingTypeID+"", new HttpUtils.HttpCallback() {
+            NetHelperNew.NewBuildingsList(pageIndex+"",AreaID==0?"":AreaID+"",BuildingTypeID+"",key, new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
                     loadingDialog.dismiss();

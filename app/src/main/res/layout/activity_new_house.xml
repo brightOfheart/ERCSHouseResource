@@ -93,6 +93,10 @@
                 android:src="@mipmap/down_icon" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="@dimen/d_1"
+            android:layout_height="match_parent"
+            android:background="@color/white2"/>
         <LinearLayout
             android:id="@+id/ly_housingtype"
             android:layout_width="@dimen/d_0"

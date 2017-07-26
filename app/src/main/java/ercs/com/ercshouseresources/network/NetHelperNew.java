@@ -38,13 +38,13 @@ public class NetHelperNew {
      * @param BuildingTypeID 房源类型
      * @param callback
      */
-    public static void NewBuildingsList(String PageIndex, String AreaID, String BuildingTypeID, HttpUtils.HttpCallback callback) {
+    public static void NewBuildingsList(String PageIndex, String AreaID, String BuildingTypeID, String KeyWord, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("AreaID", AreaID);
         map.put("BuildingTypeID", BuildingTypeID);
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
-        map.put("KeyWord", "");
+        map.put("KeyWord", KeyWord);
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + BuildingsList, json, callback);

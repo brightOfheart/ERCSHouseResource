@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_commission_explain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="ercs.com.ercshouseresources.activity.service.CommissionExplainActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/include_title" />
+    <ScrollView
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_16"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_seereward"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10元/客户"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/orange"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+    <TextView
+        android:padding="@dimen/d_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高层70-80平"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/gray"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/d_16"
+        android:background="@color/white">
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d_16"
+            android:paddingTop="@dimen/d_16"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_deservedcommission"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3000元/套"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/orange"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2"></View>
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d_16"
+            android:paddingTop="@dimen/d_16"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_pointcommission"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备案"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/gray"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+    <TextView
+        android:padding="@dimen/d_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="多层170-280平"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/gray"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/d_16"
+        android:background="@color/white">
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d_16"
+            android:paddingTop="@dimen/d_16"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_deservedcommission"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3000元/套"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/orange"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2"></View>
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d_16"
+            android:paddingTop="@dimen/d_16"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_pointcommission"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备案"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/gray"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_20"></View>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2"></View>
+
+            
+        </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d_16"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="@dimen/d_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="咨询业务员 刘海 12354232542"
+            android:background="@drawable/tv_system_bg"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/white"
+            android:drawableLeft="@mipmap/icon_phone"
+            />
+    </RelativeLayout>
+</RelativeLayout>

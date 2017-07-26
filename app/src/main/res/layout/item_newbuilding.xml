@@ -47,6 +47,7 @@
 
                 />
             <TextView
+                android:id="@+id/tv_commissionaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="实打实大双方发生地方是范德萨范德萨发生"
@@ -75,6 +76,7 @@
             android:layout_height="wrap_content"
             android:text="售 245万"/>
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_renttotal"
             android:layout_marginLeft="@dimen/d_10"
             android:textSize="@dimen/sp_14"

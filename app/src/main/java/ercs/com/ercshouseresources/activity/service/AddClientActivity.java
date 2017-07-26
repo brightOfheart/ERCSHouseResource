@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.activity.service;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.RadioButton;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import ercs.com.ercshouseresources.view.NoScrollListView;
 public class AddClientActivity extends AppCompatActivity {
 
     @BindView(R.id.listview)
-    NoScrollListView listView;
+    ListView listView;
     @BindView(R.id.radio_man)
     RadioButton radio_man;
     @BindView(R.id.radio_woman)
@@ -42,7 +43,7 @@ public class AddClientActivity extends AppCompatActivity {
     private void initView() {
         list=new ArrayList<>();
         list.add(new ClientTelBean(""));
-        list.add(new ClientTelBean(""));
+
         addClientAdapter = new AddClientAdapter(this, list, new AddClientAdapter.OnDataChangeListener() {
             @Override
             public void getData(List<ClientTelBean> lists) {

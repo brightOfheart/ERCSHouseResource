@@ -80,13 +80,13 @@
             android:text="电话"
             />
 
-        <ercs.com.ercshouseresources.view.NoScrollListView
+        <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:dividerHeight="@dimen/d_0"
             android:divider="@color/white"
-            ></ercs.com.ercshouseresources.view.NoScrollListView>
+            ></ListView>
     </LinearLayout>
 
     <Button

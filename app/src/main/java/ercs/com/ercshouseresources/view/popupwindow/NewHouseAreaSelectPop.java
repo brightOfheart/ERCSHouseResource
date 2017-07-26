@@ -46,9 +46,11 @@ public class NewHouseAreaSelectPop extends PopupWindow implements View.OnClickLi
 
         this.onSelectHouseLayoutListener=onSelectHouseLayoutListener;
         this.dataBeanList=dataBeanList;
+        this.dataBeanList.add(0,new NewHouseAreaBean.DataBean(0,"全部",0));
         initPop();
 
         initView();
+
 
 
     }
@@ -128,11 +130,11 @@ public class NewHouseAreaSelectPop extends PopupWindow implements View.OnClickLi
     }
 
     /**
-     * 房型选择回调
+     * 新房区域选择回调
      */
     public  interface OnSelectNewAreaListener
     {
-        public void selectArea(int i);//不限
+        public void selectArea(int i);//
 
     }
 }

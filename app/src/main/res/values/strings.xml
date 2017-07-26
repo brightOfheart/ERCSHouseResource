@@ -96,6 +96,9 @@
     <string name="str_lease">出租</string>
     <string name="str_sell">出售</string>
     <string name="str_leasesell">租售</string>
+    <string name="str_seereward">带看奖励</string>
+    <string name="str_deservedcommission">应得佣金</string>
+    <string name="str_pointcommission">结佣结点</string>
 
     <string name="str_addclient">添加客户</string>
     <string name="str_man">先生</string>

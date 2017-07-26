@@ -44,11 +44,19 @@ public class NewHouseAreaBean {
     }
 
     public static class DataBean {
+        public DataBean(int id, String name, int parentId) {
+            Id = id;
+            Name = name;
+            ParentId = parentId;
+        }
+
         /**
          * Id : 469
          * Name : 和平区
          * ParentId : 468
          */
+
+
 
         private int Id;
         private String Name;

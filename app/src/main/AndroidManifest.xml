@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ercs.com.ercshouseresources">
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <!-- 用于读取手机当前的状态-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <!-- 访问网络，网络定位需要上网-->
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- SD卡读取权限，用户写入离线定位数据-->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-    <!-- 拨打电话权限-->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 拨打电话权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!--请求访问使用照相设备-->
+    <!-- 请求访问使用照相设备 -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -37,169 +39,174 @@
         <activity android:name=".activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--百度地图开发者的key-->
+        <!-- 百度地图开发者的key -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="2sACU3m5FRjl7Gu5R4yifkBYqSiGlt1o" />
-        <!--主页-->
+        <!-- 主页 -->
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--登录页-->
+        <!-- 登录页 -->
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!--密码找回-->
+        <!-- 密码找回 -->
         <activity
             android:name=".activity.PWDFindActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--职员列表-->
+        <!-- 职员列表 -->
         <activity
             android:name=".activity.clerk.ClerkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--设置-->
+        <!-- 设置 -->
         <activity
             android:name=".activity.set.SetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--修改密码-->
+        <!-- 修改密码 -->
         <activity
             android:name=".activity.set.UpdatePwdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--流程审批-->
+        <!-- 流程审批 -->
         <activity
             android:name=".activity.process.ProcessAcvitity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--流程审批详情-->
+        <!-- 流程审批详情 -->
         <activity
             android:name=".activity.process.ProcessContentAcvitity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--排班情况-->
+        <!-- 排班情况 -->
         <activity
             android:name=".activity.scheduling.SchedulingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--考勤统计-->
+        <!-- 考勤统计 -->
         <activity
             android:name=".activity.attendance.AtendanceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--考勤统计详情-->
+        <!-- 考勤统计详情 -->
         <activity
             android:name=".activity.attendance.AtendanceDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--外勤统计-->
+        <!-- 外勤统计 -->
         <activity
             android:name=".activity.field.FieldActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--外勤打卡-->
+        <!-- 外勤打卡 -->
         <activity
             android:name=".activity.field.FieldClockInActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--所有流程-->
+        <!-- 所有流程 -->
         <activity
             android:name=".activity.allprocess.AllProcessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--打卡-->
+        <!-- 打卡 -->
         <activity
             android:name=".activity.clockin.ClockinActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <!--图片预览-->
+        <!-- 图片预览 -->
         <activity
             android:name=".activity.PhotoViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--流程申请-->
+        <!-- 流程申请 -->
         <activity
             android:name=".activity.process.ProcessApplyAcvitity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--员工考核记录-->
+        <!-- 员工考核记录 -->
         <activity
             android:name=".activity.attendance.MemberAssessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--员工外勤记录-->
+        <!-- 员工外勤记录 -->
         <activity
             android:name=".activity.attendance.MemberOutAssessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--房源详情-->
+        <!-- 房源详情 -->
         <activity
             android:name=".activity.housing.HouseListDetail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--新房详情-->
+        <!-- 新房详情 -->
         <activity
             android:name=".activity.service.NewHouseDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--置业顾问-->
+        <!-- 置业顾问 -->
         <activity
             android:name=".activity.service.ProConActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--成交奖励-->
+        <!-- 成交奖励 -->
         <activity
             android:name=".activity.service.ClosingBonusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--动态-->
+        <!-- 动态 -->
         <activity
             android:name=".activity.service.DynamicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--庄园列表-->
+        <!-- 庄园列表 -->
         <activity
             android:name=".activity.service.ContentListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2"></action>
+                <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
-        </service><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        </service>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!--新房-->
+        <!-- 新房 -->
         <activity
             android:name=".activity.service.NewHouseActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <!--报备客户-->
+        <!-- 报备客户 -->
         <activity
             android:name=".activity.service.ReportingClientsActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
-
-        </activity>
-        <!--添加客户-->
-        <activity android:name=".activity.service.AddClientActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+        <!-- 添加客户 -->
+        <activity
+            android:name=".activity.service.AddClientActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".activity.service.CommissionExplainActivity"></activity>
     </application>
 
 </manifest>
