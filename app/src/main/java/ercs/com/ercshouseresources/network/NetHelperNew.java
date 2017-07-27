@@ -15,7 +15,7 @@ public class NetHelperNew {
     private static final String LOGIN = "/API/Account/Login";//用户登录
     private static final String BuildingsList = "/API/NewHouse/ttGetBuildingsList";//新房列表
     private static final String AreaList = "/API/Common/ttGetAreaList";//新房区域列表
-
+    private static final String HOUSEDETAIL = "/API/NewHouse/ttGetBuildingModel";//房源详情
 
     /**
      *  登录接口
@@ -62,5 +62,19 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + AreaList, json, callback);
+    }
+
+    /**
+     * 房源详情
+     * @param BuildingID
+     * @param UserID
+     * @param callback
+     */
+    public static void getHouseDetail(String BuildingID,String UserID, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("BuildingID", BuildingID);
+        map.put("UserID", UserID);
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postNewJson(URL + HOUSEDETAIL, json, callback);
     }
 }

@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -90,7 +93,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
                 if (loginBean.getType().equals("1")) {
                     btn_login.setVisibility(View.GONE);
                     BaseApplication.NewIsLogin = 1;
-                    BaseApplication.loginBean=loginBean;
+                    BaseApplication.loginBean = loginBean;
                     initview();
                 } else {
                     btn_login.setVisibility(View.VISIBLE);
@@ -107,6 +110,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
             public void onError(final String msg) {
                 super.onError(msg);
                 dialog.dismiss();
+                btn_login.setVisibility(View.VISIBLE);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

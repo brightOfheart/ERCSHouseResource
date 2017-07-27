@@ -1,17 +1,26 @@
 package ercs.com.ercshouseresources.activity.service;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.stx.xhb.xbanner.XBanner;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
 import ercs.com.ercshouseresources.view.item.NewHouseItem;
@@ -24,6 +33,8 @@ import ercs.com.ercshouseresources.view.item.NewHouseItem;
 public class NewHouseDetailActivity extends BaseActivity implements ObservableScrollView.ScrollViewListener {
     @BindView(R.id.tv_title)
     TextView tv_title;
+    @BindView(R.id.tv_subTitle)
+    TextView tv_subTitle;
     @BindView(R.id.scrollview)
     ObservableScrollView scrollview;
     @BindView(R.id.banner)
@@ -32,6 +43,13 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
     LinearLayout ly_newhouse;
 
 
+    public static void start(Activity mactivity, String BuildingID, String UserID) {
+        Intent intent = new Intent(mactivity, NewHouseDetailActivity.class);
+        intent.putExtra("BuildingID", BuildingID);
+        intent.putExtra("UserID", UserID);
+        mactivity.startActivity(intent);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +57,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         ButterKnife.bind(this);
         setbanner();
         initview();
+        getData();
     }
 
     /**
@@ -98,5 +117,28 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         }
     }
 
+    /**
+     * 获取网络数据
+     */
+    private void getData() {
+        NetHelperNew.getHouseDetail(getBuildingID(), getUserID(), new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
 
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+            }
+        });
+    }
+
+    private String getBuildingID() {
+        return getIntent().getStringExtra("BuildingID");
+    }
+
+    private String getUserID() {
+        return getIntent().getStringExtra("UserID");
+    }
 }
