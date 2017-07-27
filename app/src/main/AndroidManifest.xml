@@ -206,7 +206,10 @@
             android:name=".activity.service.AddClientActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".activity.service.CommissionExplainActivity"></activity>
+        <!--佣金说明-->
+        <activity
+            android:name=".activity.service.CommissionExplainActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

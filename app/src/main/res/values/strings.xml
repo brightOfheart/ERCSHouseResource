@@ -99,6 +99,7 @@
     <string name="str_seereward">带看奖励</string>
     <string name="str_deservedcommission">应得佣金</string>
     <string name="str_pointcommission">结佣结点</string>
+    <string name="str_commission">佣金说明</string>
 
     <string name="str_addclient">添加客户</string>
     <string name="str_man">先生</string>

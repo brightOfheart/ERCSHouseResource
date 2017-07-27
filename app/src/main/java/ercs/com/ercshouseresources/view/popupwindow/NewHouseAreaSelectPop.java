@@ -87,7 +87,7 @@ public class NewHouseAreaSelectPop extends PopupWindow implements View.OnClickLi
      */
     private void initPop() {
 
-        view= LayoutInflater.from(context).inflate(R.layout.pop_houseayoutselect,null);
+        view= LayoutInflater.from(context).inflate(R.layout.pop_newhouseareaselect,null);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 
 
