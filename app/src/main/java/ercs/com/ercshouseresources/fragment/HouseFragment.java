@@ -125,7 +125,6 @@ public class HouseFragment extends Fragment implements LazyFragmentPagerAdapter.
 
         long starttime=time-3*30*24*60*60*1000;
 
-        Log.i("-->","DateLong:"+starttime);
         Aenddate=sdf.format(time);
 //        Astartdate=sdf.format(new Date(starttime));
 //        Log.i("-->", "时间"+Astartdate);

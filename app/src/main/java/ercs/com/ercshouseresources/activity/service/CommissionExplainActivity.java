@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,17 +37,24 @@ public class CommissionExplainActivity extends AppCompatActivity {
     @BindView(R.id.listview_deserved)
     NoScrollListView listview_deserved;//应得佣金列表
 
+    //带看奖励
+    @BindView(R.id.tv_bandsawbrokerage)
+    TextView tv_bandsawbrokerage;
     private CommissionExplainAdapter commissionExplainAdapter;//更改记录列表
     private List<CommissionExplainBean.DataBean.ModifyBuildingBrokerageLogListBean> recordlList;//更改记录列表数据
 
     private CommissionDeservedAdapter commissionDeservedAdapter;//应得佣金列表
-    private List<String> deservedList;//应得佣金列表数据
+    private List<CommissionExplainBean.DataBean.BuildingsBrokerageGroupListBean> deservedList;//应得佣金列表数据
+
+    private CommissionExplainBean commissionExplainBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commission_explain);
         ButterKnife.bind(this);
         initTitle();
+
+         commissionExplainBean = MyGson.getInstance().fromJson(getjsonString(), CommissionExplainBean.class);
         initListview();
         initdeserved();
 
@@ -59,9 +67,16 @@ public class CommissionExplainActivity extends AppCompatActivity {
     private void initData() {
 
         //更改记录
-        CommissionExplainBean commissionExplainBean = MyGson.getInstance().fromJson(getjsonString(), CommissionExplainBean.class);
+
         recordlList.addAll(commissionExplainBean.getData().getModifyBuildingBrokerageLogList());
         commissionExplainAdapter.notifyDataSetChanged();
+
+        //应得佣金列表
+        deservedList.addAll(commissionExplainBean.getData().getBuildingsBrokerageGroupList());
+        commissionDeservedAdapter.notifyDataSetChanged();
+
+
+        tv_bandsawbrokerage.setText(commissionExplainBean.getData().getBaseInfo().getBandSawBrokerage());
     }
 
 
@@ -90,10 +105,8 @@ public class CommissionExplainActivity extends AppCompatActivity {
      */
     private void initdeserved() {
         deservedList=new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            deservedList.add("");
-        }
-        commissionDeservedAdapter=new CommissionDeservedAdapter(this,deservedList);
+
+        commissionDeservedAdapter=new CommissionDeservedAdapter(this,deservedList,commissionExplainBean.getData().getBaseInfo().getCommissionAccount());
         listview_deserved.setAdapter(commissionDeservedAdapter);
     }
 

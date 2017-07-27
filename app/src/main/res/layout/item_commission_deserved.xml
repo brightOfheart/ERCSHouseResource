@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/tv_title"
         android:padding="@dimen/d_16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/tv_brokerage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3000元/套"
@@ -62,6 +64,7 @@
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/tv_node"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="备案"
