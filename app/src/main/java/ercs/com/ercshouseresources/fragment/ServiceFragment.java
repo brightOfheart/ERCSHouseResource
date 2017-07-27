@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -85,7 +82,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
      */
     private void getData() {
         dialog.show();
-        NetHelperNew.login("13888888885", "123456", new HttpUtils.HttpCallback() {
+        NetHelperNew.login("13888888883", "123456", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();

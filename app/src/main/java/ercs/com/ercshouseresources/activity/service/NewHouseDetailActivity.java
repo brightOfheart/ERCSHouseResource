@@ -19,8 +19,12 @@ import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
+import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.newbean.LoginBean;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
 import ercs.com.ercshouseresources.view.item.NewHouseItem;
@@ -35,13 +39,25 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
     TextView tv_title;
     @BindView(R.id.tv_subTitle)
     TextView tv_subTitle;
+    @BindView(R.id.tv_address)
+    TextView tv_address;
+    @BindView(R.id.tv_detail)
+    TextView tv_detail;
+    @BindView(R.id.tv_comdes)
+    TextView tv_comdes;
+    @BindView(R.id.tv_closingbonus)
+    TextView tv_closingbonus;
+    @BindView(R.id.tv_houserecom)
+    TextView tv_houserecom;
+    @BindView(R.id.tv_subaddress)
+    TextView tv_subaddress;
     @BindView(R.id.scrollview)
     ObservableScrollView scrollview;
     @BindView(R.id.banner)
     XBanner xBanner;
     @BindView(R.id.ly_newhouse)
     LinearLayout ly_newhouse;
-
+    private String JsonData="";
 
     public static void start(Activity mactivity, String BuildingID, String UserID) {
         Intent intent = new Intent(mactivity, NewHouseDetailActivity.class);
@@ -58,6 +74,25 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         setbanner();
         initview();
         getData();
+    }
+
+    /**
+     * 显示网络数据
+     */
+    private void showData(NewHouseDetailBean newHouseDetailBean) {
+        tv_subTitle.setText(newHouseDetailBean.getData().getBaseInfo().getName());
+        tv_address.setText(newHouseDetailBean.getData().getAreaName());
+        tv_detail.setText(newHouseDetailBean.getData().getBaseInfo().getSellingPrice());
+        tv_comdes.setText(newHouseDetailBean.getData().getBaseInfo().getSellingBrokerage());
+        if (newHouseDetailBean.getData().getBaseInfo().getAwardDescription() != null)
+            tv_closingbonus.setText(newHouseDetailBean.getData().getBaseInfo().getAwardDescription());
+        else
+            tv_closingbonus.setText("暂无数据");
+        tv_houserecom.setText("户型推荐(" + newHouseDetailBean.getData().getHouseTypeList().size() + "个)");
+        tv_subaddress.setText(newHouseDetailBean.getData().getBaseInfo().getAddress());
+        for (int i = 0; i < newHouseDetailBean.getData().getHouseTypeList().size(); i++) {
+            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i)));
+        }
     }
 
     /**
@@ -96,10 +131,6 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      */
     private void initview() {
 
-        for (int i = 0; i < 5; i++) {
-            ly_newhouse.addView(new NewHouseItem(this));
-        }
-
         scrollview.setScrollViewListener(NewHouseDetailActivity.this);
     }
 
@@ -124,7 +155,17 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         NetHelperNew.getHouseDetail(getBuildingID(), getUserID(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
-
+                final NewHouseDetailBean newHouseDetailBean = MyGson.getInstance().fromJson(data, NewHouseDetailBean.class);
+                if (newHouseDetailBean.getType().equals("1")) {
+                    JsonData=data;
+                    showData(newHouseDetailBean);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showToast(getApplicationContext(), newHouseDetailBean.getContent());
+                    }
+                });
             }
 
             @Override
