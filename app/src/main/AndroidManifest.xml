@@ -176,6 +176,11 @@
             android:name=".activity.service.ContentListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!-- 显示房源详情页的大图片 -->
+        <activity
+            android:name=".activity.service.HouseBigPicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
         <service
             android:name="com.baidu.location.f"

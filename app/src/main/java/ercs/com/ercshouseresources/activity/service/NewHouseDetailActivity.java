@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.service;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,23 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.stx.xhb.xbanner.XBanner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
-import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
@@ -91,7 +85,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         tv_houserecom.setText("户型推荐(" + newHouseDetailBean.getData().getHouseTypeList().size() + "个)");
         tv_subaddress.setText(newHouseDetailBean.getData().getBaseInfo().getAddress());
         for (int i = 0; i < newHouseDetailBean.getData().getHouseTypeList().size(); i++) {
-            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i)));
+            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i),JsonData,i+1+""));
         }
     }
 

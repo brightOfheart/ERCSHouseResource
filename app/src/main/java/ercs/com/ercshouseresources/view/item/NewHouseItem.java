@@ -1,7 +1,10 @@
 package ercs.com.ercshouseresources.view.item;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,7 +14,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.service.CommissionExplainActivity;
+import ercs.com.ercshouseresources.activity.service.HouseBigPicActivity;
+import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
+import ercs.com.ercshouseresources.activity.service.ReportingClientsActivity;
 import ercs.com.ercshouseresources.adapter.SchedulingAdapterChildItemAdapter;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.bean.SchedulingBean;
@@ -29,7 +37,10 @@ public class NewHouseItem extends RelativeLayout {
     TextView tv_price;
     @BindView(R.id.image)
     ImageView image;
-    public NewHouseItem(Context context, NewHouseDetailBean.DataBean.HouseTypeListBean bean) {
+    private String jsons;
+    private Activity activity;
+    private String counts;
+    public NewHouseItem(Activity context, NewHouseDetailBean.DataBean.HouseTypeListBean bean,String json,String count) {
         super(context);
         LayoutInflater mInflater = LayoutInflater.from(context);
         linearLayout = (LinearLayout) mInflater.inflate(
@@ -41,6 +52,23 @@ public class NewHouseItem extends RelativeLayout {
         ButterKnife.bind(this);
         tv_area.setText(bean.getName());
         tv_price.setText(bean.getPrice());
+        jsons=json;
+        activity=context;
+        counts=count;
     }
+    /**
+     * 点击事件的处理
+     *
+     * @param view
+     */
+    @OnClick({R.id.ly})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ly:
+                HouseBigPicActivity.start(activity,jsons,counts);
+                break;
 
+
+        }
+    }
 }

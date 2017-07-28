@@ -22,7 +22,7 @@ public class NewHouseDetailBean extends BaseBean {
         private BaseInfoBean BaseInfo;
         private String AreaName;
         private List<HouseTypeListBean> HouseTypeList;
-        private List<String> HouseTypeTagList;
+
 
         public BaseInfoBean getBaseInfo() {
             return BaseInfo;
@@ -48,13 +48,7 @@ public class NewHouseDetailBean extends BaseBean {
             HouseTypeList = houseTypeList;
         }
 
-        public List<String> getHouseTypeTagList() {
-            return HouseTypeTagList;
-        }
 
-        public void setHouseTypeTagList(List<String> houseTypeTagList) {
-            HouseTypeTagList = houseTypeTagList;
-        }
 
         public class BaseInfoBean {
             private String Name;
@@ -63,6 +57,9 @@ public class NewHouseDetailBean extends BaseBean {
             private String AwardDescription;
             private String CommissionAccount;
             private String Address;
+
+
+
 
             public String getName() {
                 return Name;
@@ -119,6 +116,15 @@ public class NewHouseDetailBean extends BaseBean {
             private String Price;
             private String Orientations;
             private String DecorationCondition;
+            private List<String> HouseTypeTagList;
+
+            public List<String> getHouseTypeTagList() {
+                return HouseTypeTagList;
+            }
+
+            public void setHouseTypeTagList(List<String> houseTypeTagList) {
+                HouseTypeTagList = houseTypeTagList;
+            }
 
             public String getImagePath() {
                 return ImagePath;
