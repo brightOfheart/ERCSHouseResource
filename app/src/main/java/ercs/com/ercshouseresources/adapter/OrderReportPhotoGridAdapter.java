@@ -30,6 +30,16 @@ import static ercs.com.ercshouseresources.util.OtherUitl.rotateBitmapByDegree;
 public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
     private OnCancelPhotoListener onCancelPhotoListener;
 
+    private boolean isCance=false;//是否显示删除图标
+
+    public boolean isCance() {
+        return isCance;
+    }
+
+    public void setCance(boolean cance) {
+        isCance = cance;
+    }
+
     public OrderReportPhotoGridAdapter(Context context, List<String> listData, OnCancelPhotoListener onCancelPhotoListener) {
         super(context, listData);
         this.onCancelPhotoListener = onCancelPhotoListener;
@@ -54,6 +64,13 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
         iv_photo.setImageBitmap(newbitmap);
 
        ImageView iv_cancel= holder.getView(R.id.iv_cancel);//删除
+        if (isCance)
+        {
+            iv_cancel.setVisibility(View.VISIBLE);
+        }else
+        {
+            iv_cancel.setVisibility(View.GONE);
+        }
         iv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +78,7 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
             }
         });
     }
+
 
     public interface OnCancelPhotoListener
     {

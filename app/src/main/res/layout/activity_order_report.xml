@@ -14,624 +14,704 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
-    <!--过期 再报备-->
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/d_10"
-        android:paddingTop="@dimen/d_10"
-        android:paddingLeft="@dimen/d_16"
-        android:paddingRight="@dimen/d_16"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@color/gray"
-            android:text="已过期"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@color/system_color"
-            android:text="再次报备"
-            android:layout_alignParentRight="true"
-            />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/white2"></View>
-    <View
-        android:layout_marginTop="@dimen/d_10"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/white2"></View>
-    <!--联系方式-->
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/d_10"
-        android:paddingTop="@dimen/d_10"
-        android:paddingLeft="@dimen/d_16"
-        android:paddingRight="@dimen/d_16"
-        >
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@color/black"
-            android:text="张海燕"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@color/gray"
-            android:text="13254525545"
-            android:layout_toRightOf="@id/tv_name"
-            android:layout_marginLeft="@dimen/d_10"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_phone"
-            android:layout_alignParentRight="true"
-            />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/white2"></View>
-    <View
-        android:layout_marginTop="@dimen/d_10"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/white2"></View>
-    <!--报备订单-->
-、
-    <FrameLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/d_16"
-        >
-        <!--竖线-->
-        <View
-            android:layout_width="@dimen/d_1"
-            android:layout_height="match_parent"
-            android:background="@color/white2"
-            android:layout_marginLeft="@dimen/d_8">
-        </View>
-
-        <LinearLayout
-
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!--报备-->
-            <LinearLayout
+            <!--过期 再报备-->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/tongguo"
-                    />
+                android:background="@color/white"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:paddingTop="@dimen/d_10">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="报备"
-                    android:layout_marginLeft="@dimen/d_10"
+                    android:text="已过期"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="再次报备"
                     android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
+                    android:textSize="@dimen/sp_14" />
+            </RelativeLayout>
 
-            <LinearLayout
-                android:layout_marginLeft="@dimen/d_30"
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_corners_bg"
-                android:padding="@dimen/d_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:id="@+id/tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="报备客户"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14"/>
-                    <TextView
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17-01-15 17:65"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_toRightOf="@id/tv"/>
-                    <TextView
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="审核通过"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-                <View
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/white2"></View>
-                <TextView
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="此邮件发送成功，并以保存到“大送饭”，此邮件发送成功，并以保存到“大送饭”"/>
-            </LinearLayout>
-
-            <!--带看-->
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/dengdai"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="带看"
-                    android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/d_30"
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_corners_bg"
-                android:padding="@dimen/d_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="可带看"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14"/>
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17-01-15 17:65"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_toRightOf="@id/tv3"/>
-                    <ImageView
-                        android:id="@+id/iv_seecamera"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_camera"
-                        android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-                <View
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/white2"></View>
-                <TextView
-                    android:id="@+id/tv_daikan"
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="带看后请上传图片，“客户带看单”照片为必传照片，带看单必须有置业顾问、经纪人、项目经理签字，其他照片可以是“客户与售楼员合影”、“客户和经纪人合影”等等！"/>
-
-                <ercs.com.ercshouseresources.view.MyGridView
-                    android:id="@+id/gridview_see"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:numColumns="3"
-                    android:verticalSpacing="@dimen/d_10"
-                    android:horizontalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
-
-                <TextView
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="查看案例"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_14"
-                    android:background="@drawable/tv_system_bg"
-                    android:padding="@dimen/d_10"
-                    android:gravity="center"
-                    />
-            </LinearLayout>
-
-            <!--定金-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/jujue"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="定金"
-                    android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/d_30"
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_corners_bg"
-                android:padding="@dimen/d_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="待交定金"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14"/>
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17-01-15 17:65"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_toRightOf="@id/tv2"/>
-                    <ImageView
-                        android:id="@+id/iv_deposit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_camera"
-                        android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-                <View
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/white2"></View>
-                <TextView
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="请上传“认购确认单”照片"/>
-
-                <ercs.com.ercshouseresources.view.MyGridView
-                    android:id="@+id/gridview_deposit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:numColumns="3"
-                    android:verticalSpacing="@dimen/d_10"
-                    android:horizontalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
-
-            </LinearLayout>
-
-
-            <!--首付-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/weidao"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="首付"
-                    android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginLeft="@dimen/d_30"
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_corners_bg"
-                android:padding="@dimen/d_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:id="@+id/tv4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="待交首付"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14"/>
-                    <TextView
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17-01-15 17:65"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_toRightOf="@id/tv4"/>
-                    <TextView
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="20万"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/orange"
-                        android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-
-
-            </LinearLayout>
-            <!--备案-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/tongguo"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="备案"
-                    android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/d_30"
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_corners_bg"
-                android:padding="@dimen/d_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="待备案"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_14"/>
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/d_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17-01-15 17:65"
-                        android:textSize="@dimen/sp_14"
-                        android:textColor="@color/black"
-                        android:layout_toRightOf="@id/tv5"/>
-                    <ImageView
-                        android:id="@+id/iv_record"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_camera"
-                        android:layout_alignParentRight="true"/>
-                </RelativeLayout>
-                <View
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1"
-                    android:background="@color/white2"></View>
-                <TextView
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="请上传“备案”照片"/>
-
-                <ercs.com.ercshouseresources.view.MyGridView
-                    android:id="@+id/gridview_record"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:numColumns="3"
-                    android:verticalSpacing="@dimen/d_10"
-                    android:horizontalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
-
-
-
-
-            </LinearLayout>
-            <!--完成-->
-            <LinearLayout
-                android:layout_marginTop="@dimen/d_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/d_16"
-                    android:layout_height="@dimen/d_16"
-                    android:src="@mipmap/tongguo"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="完成"
-                    android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/system_color"
-                    android:textSize="@dimen/sp_14"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </FrameLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_1"
                 android:background="@color/white2"></View>
+
             <View
-                android:layout_marginTop="@dimen/d_10"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_1"
+                android:layout_marginTop="@dimen/d_10"
+                android:background="@color/white2"></View>
+            <!--联系方式-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:paddingTop="@dimen/d_10">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张海燕"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10"
+                    android:layout_toRightOf="@id/tv_name"
+                    android:text="13254525545"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/sp_14" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/icon_phone" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:background="@color/white2"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginTop="@dimen/d_10"
+                android:background="@color/white2"></View>
+            <!--报备订单-->
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/d_16">
+                <!--竖线-->
+                <View
+                    android:layout_width="@dimen/d_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/d_8"
+                    android:background="@color/white2"></View>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--报备-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_report"
+                            android:layout_width="@dimen/d_16"
+                            android:layout_height="@dimen/d_16"
+                            android:src="@mipmap/tongguo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_10"
+                            android:text="报备"
+                            android:textColor="@color/system_color"
+                            android:textSize="@dimen/sp_14" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_30"
+                        android:layout_marginTop="@dimen/d_10"
+                        android:background="@drawable/edit_corners_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/d_10">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="报备客户"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:layout_toRightOf="@id/tv"
+                                android:text="17-01-15 17:65"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_reportstate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="审核通过"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+                        </RelativeLayout>
+
+                        <!--未通过显示-->
+                        <LinearLayout
+                            android:id="@+id/ll_reportno"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/d_1"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:background="@color/white2"></View>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:text="此邮件发送成功，并以保存到“大送饭”，此邮件发送成功，并以保存到“大送饭”" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--带看-->
+
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/d_16"
+                                android:layout_height="@dimen/d_16"
+                                android:src="@mipmap/dengdai" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:text="带看"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_see"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_30"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:background="@drawable/edit_corners_bg"
+                            android:orientation="vertical"
+                            android:padding="@dimen/d_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_see"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="已带看"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="@dimen/d_10"
+                                    android:layout_toRightOf="@id/tv_see"
+                                    android:text="17-01-15 17:65"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/iv_seecamera"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@mipmap/icon_camera" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/d_1"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:background="@color/white2"></View>
+
+                            <TextView
+                                android:id="@+id/tv_daikan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:text="带看后请上传图片，“客户带看单”照片为必传照片，带看单必须有置业顾问、经纪人、项目经理签字，其他照片可以是“客户与售楼员合影”、“客户和经纪人合影”等等！" />
+
+                            <ercs.com.ercshouseresources.view.MyGridView
+                                android:id="@+id/gridview_see"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:horizontalSpacing="@dimen/d_10"
+                                android:numColumns="3"
+                                android:verticalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:background="@drawable/tv_system_bg"
+                                android:gravity="center"
+                                android:padding="@dimen/d_10"
+                                android:text="查看案例"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                    <!--定金-->
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/d_16"
+                                android:layout_height="@dimen/d_16"
+                                android:src="@mipmap/jujue" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:text="定金"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_deposit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_30"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:background="@drawable/edit_corners_bg"
+                            android:orientation="vertical"
+                            android:padding="@dimen/d_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_deposit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="已付定金"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="@dimen/d_10"
+                                    android:layout_toRightOf="@id/tv_deposit"
+                                    android:text="17-01-15 17:65"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/iv_deposit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@mipmap/icon_camera" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/orange"
+                                    android:textSize="@dimen/sp_14"
+                                    android:layout_alignParentRight="true"/>
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/d_1"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:background="@color/white2"></View>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:text="请上传“认购确认单”照片" />
+
+                            <ercs.com.ercshouseresources.view.MyGridView
+                                android:id="@+id/gridview_deposit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:horizontalSpacing="@dimen/d_10"
+                                android:numColumns="3"
+                                android:verticalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
+
+                        </LinearLayout>
+
+
+
+                    <!--首付-->
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/d_16"
+                                android:layout_height="@dimen/d_16"
+                                android:src="@mipmap/weidao" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:text="首付"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_payments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_30"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:background="@drawable/edit_corners_bg"
+                            android:orientation="vertical"
+                            android:padding="@dimen/d_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_payments"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="已交首付"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/d_10"
+                                    android:layout_toRightOf="@id/tv_payments"
+                                    android:text="17-01-15 17:65"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginLeft="@dimen/d_10"
+                                    android:text=""
+                                    android:textColor="@color/orange"
+                                    android:textSize="@dimen/sp_14" />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    <!--备案-->
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/d_16"
+                                android:layout_height="@dimen/d_16"
+                                android:src="@mipmap/tongguo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:text="备案"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_record"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/d_30"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:background="@drawable/edit_corners_bg"
+                            android:orientation="vertical"
+                            android:padding="@dimen/d_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_record"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="已备案"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="@dimen/d_10"
+                                    android:layout_toRightOf="@id/tv_record"
+                                    android:text="17-01-15 17:65"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp_14" />
+
+                                <ImageView
+                                    android:id="@+id/iv_record"
+                                    android:visibility="gone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@mipmap/icon_camera" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/d_1"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:background="@color/white2"></View>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/d_10"
+                                android:text="请上传“备案”照片" />
+
+                            <ercs.com.ercshouseresources.view.MyGridView
+                                android:id="@+id/gridview_record"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:horizontalSpacing="@dimen/d_10"
+                                android:numColumns="3"
+                                android:verticalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
+
+
+                        </LinearLayout>
+
+                    <!--完成-->
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_finish"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/d_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/d_16"
+                                android:layout_height="@dimen/d_16"
+                                android:src="@mipmap/tongguo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/d_10"
+                                android:text="完成"
+                                android:textColor="@color/system_color"
+                                android:textSize="@dimen/sp_14" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:background="@color/white2"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginTop="@dimen/d_10"
                 android:background="@color/white2"></View>
             <!--佣金-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/d_16"
-                android:paddingRight="@dimen/d_16"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16">
+
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_marginBottom="@dimen/d_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_marginBottom="@dimen/d_10"
+                    android:layout_marginTop="@dimen/d_10">
+
                     <TextView
                         android:id="@+id/tv6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="应得佣金"
-                        android:textSize="@dimen/sp_14"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
-                        android:layout_toRightOf="@id/tv6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_10"
-                        android:text="通过"
+                        android:layout_toRightOf="@id/tv6"
                         android:background="@drawable/tv_system_bg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_12"
-                        android:paddingRight="@dimen/d_10"
+                        android:paddingBottom="@dimen/d_2"
                         android:paddingLeft="@dimen/d_10"
+                        android:paddingRight="@dimen/d_10"
                         android:paddingTop="@dimen/d_2"
-                        android:paddingBottom="@dimen/d_2"/>
+                        android:text="通过"
+                        android:textSize="@dimen/sp_12" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:text="1065元"
                         android:textColor="@color/orange"
-                        android:textSize="@dimen/sp_14"
-                        android:layout_alignParentRight="true"/>
+                        android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_1"
                     android:background="@color/white2"></View>
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_marginBottom="@dimen/d_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_marginBottom="@dimen/d_10"
+                    android:layout_marginTop="@dimen/d_10">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="已结"
-                        android:textSize="@dimen/sp_14"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:text="1065元"
                         android:textColor="@color/orange"
-                        android:textSize="@dimen/sp_14"
-                        android:layout_alignParentRight="true"/>
+                        android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_1"
                     android:background="@color/white2"></View>
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/d_10"
-                    android:layout_marginBottom="@dimen/d_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_marginBottom="@dimen/d_10"
+                    android:layout_marginTop="@dimen/d_10">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="未结佣金"
-                        android:textSize="@dimen/sp_14"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="@dimen/sp_14" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:text="1065元"
                         android:textColor="@color/gray"
-                        android:textSize="@dimen/sp_14"
-                        android:layout_alignParentRight="true"/>
+                        android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_1"
-                    android:background="@color/white2"
-                    android:layout_marginBottom="@dimen/d_10"></View>
+                    android:layout_marginBottom="@dimen/d_10"
+                    android:background="@color/white2"></View>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
