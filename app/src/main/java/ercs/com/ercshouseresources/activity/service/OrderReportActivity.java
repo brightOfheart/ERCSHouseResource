@@ -2,14 +2,19 @@ package ercs.com.ercshouseresources.activity.service;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -25,6 +30,7 @@ import ercs.com.ercshouseresources.bean.UpLoadPicBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
@@ -34,7 +40,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
 /**
- * 报备订单
+ * 报备订单详情
  */
 public class OrderReportActivity extends AppCompatActivity {
 
@@ -43,6 +49,8 @@ public class OrderReportActivity extends AppCompatActivity {
     @BindView(R.id.gridview_see)
     MyGridView gridview_see;   //带看图片
 
+    @BindView(R.id.tv_daikan)
+    TextView tv_daikan;//带看文字叙述
     @BindView(R.id.iv_deposit)
     ImageView iv_deposit;   //定金照相
     @BindView(R.id.gridview_deposit)
@@ -72,12 +80,36 @@ public class OrderReportActivity extends AppCompatActivity {
         initTitle();
         initSeeView();
         initDepositView();
+        downLoad();
+    }
+
+    /**
+     * 加载网络数据
+     */
+    private void downLoad() {
+        NetHelperNew.getReportingOrderDetail("", new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+                ToastUtil.showToast(OrderReportActivity.this,msg);
+            }
+        });
     }
 
     /**
      * 带看控件初始化
      */
     private void initSeeView() {
+
+        //文字叙述加橘色
+        Spannable span = new SpannableString(tv_daikan.getText().toString());//获取文字
+        span.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.orange)), 10, 15, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);//显示为橘色
+        tv_daikan.setText(span);
         seeCameraPaths=new ArrayList<>();
         seePhotoGridAdapter = new OrderReportPhotoGridAdapter(this, seeCameraPaths, new OrderReportPhotoGridAdapter.OnCancelPhotoListener() {
             @Override

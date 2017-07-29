@@ -19,6 +19,7 @@ public class NetHelperNew {
     private static final String CustomersList = "/API/Organization/ttGetCustomersList";//报备客户列表
     private static final String InsertNewCustomer = "/API/Organization/ttInsertNewCustomer";//添加客户
     private static final String InsertRunningsModel = "/API/NewHouse/ttInsertRunningsModel";//确认报备信息
+    private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//报备订单详情
 
     /**
      *  登录接口
@@ -134,5 +135,18 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + InsertRunningsModel, json, callback);
+    }
+
+    /**
+     * 查看报备订单详情
+     * @param Id
+     * @param callback
+     */
+    public static void getReportingOrderDetail(String Id ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id","2" );
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
     }
 }

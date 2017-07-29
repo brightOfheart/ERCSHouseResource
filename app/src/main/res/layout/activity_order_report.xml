@@ -254,10 +254,11 @@
                     android:layout_height="@dimen/d_1"
                     android:background="@color/white2"></View>
                 <TextView
+                    android:id="@+id/tv_daikan"
                     android:layout_marginTop="@dimen/d_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="此邮件发送成功，并以保存到“大送饭”，此邮件发送成功，并以保存到“大送饭”"/>
+                    android:text="带看后请上传图片，“客户带看单”照片为必传照片，带看单必须有置业顾问、经纪人、项目经理签字，其他照片可以是“客户与售楼员合影”、“客户和经纪人合影”等等！"/>
 
                 <ercs.com.ercshouseresources.view.MyGridView
                     android:id="@+id/gridview_see"
