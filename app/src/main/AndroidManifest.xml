@@ -28,9 +28,29 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 请求访问使用照相设备 -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 读取通讯录 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -183,6 +203,16 @@
             android:name=".activity.service.HouseBigPicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.nativ.BNDemoGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!--&lt;!&ndash; 新房地图页 &ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name=".activity.service.MapActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@style/AppTheme" />-->
+        <!-- 导航引导页 -->
 
         <service
             android:name="com.baidu.location.f"
@@ -207,13 +237,13 @@
         <!-- 报备客户 -->
         <activity
             android:name=".activity.service.ReportingClientsActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
         <!-- 添加客户 -->
         <activity
             android:name=".activity.service.AddClientActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <!-- 佣金说明 -->
+        <!--佣金说明-->
         <activity
             android:name=".activity.service.CommissionExplainActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />

@@ -1,26 +1,35 @@
 package ercs.com.ercshouseresources.activity.service;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.stx.xhb.xbanner.XBanner;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.LoginActivity;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
+import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.item.NewHouseItem;
 
 /**
@@ -31,6 +40,10 @@ import ercs.com.ercshouseresources.view.item.NewHouseItem;
 public class NewHouseDetailActivity extends BaseActivity implements ObservableScrollView.ScrollViewListener {
     @BindView(R.id.tv_title)
     TextView tv_title;
+    @BindView(R.id.tv_ywName)
+    TextView tv_ywName;//业务员的姓名
+    @BindView(R.id.tv_ywPhone)
+    TextView tv_ywPhone;//业务员的电话
     @BindView(R.id.tv_subTitle)
     TextView tv_subTitle;
     @BindView(R.id.tv_address)
@@ -51,12 +64,14 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
     XBanner xBanner;
     @BindView(R.id.ly_newhouse)
     LinearLayout ly_newhouse;
-    private String JsonData="";
+    private String JsonData = "";
+    private LoadingDialog dialog;
 
-    public static void start(Activity mactivity, String BuildingID, String UserID) {
+    public static void start(Activity mactivity, String BuildingID, String UserID, String name) {
         Intent intent = new Intent(mactivity, NewHouseDetailActivity.class);
         intent.putExtra("BuildingID", BuildingID);
         intent.putExtra("UserID", UserID);
+        intent.putExtra("name", name);
         mactivity.startActivity(intent);
     }
 
@@ -85,7 +100,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         tv_houserecom.setText("户型推荐(" + newHouseDetailBean.getData().getHouseTypeList().size() + "个)");
         tv_subaddress.setText(newHouseDetailBean.getData().getBaseInfo().getAddress());
         for (int i = 0; i < newHouseDetailBean.getData().getHouseTypeList().size(); i++) {
-            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i),JsonData,i+1+""));
+            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i), JsonData, i + 1 + ""));
         }
     }
 
@@ -94,7 +109,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left://返回点击事件
@@ -105,15 +120,11 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 break;
             case R.id.frame_commissionexplain://佣金说明点击事件
                 if (!"".equals(JsonData))
-                CommissionExplainActivity.start(NewHouseDetailActivity.this,JsonData);
+                    CommissionExplainActivity.start(NewHouseDetailActivity.this, JsonData);
                 break;
             case R.id.btn_reportingclients://报备客户点击事件
-                if (!"".equals(JsonData))
-                ReportingClientsActivity.start(NewHouseDetailActivity.this,JsonData);
-                break;
-            case R.id.ll_propertydetail://楼盘详情点击事件
-                if (!"".equals(JsonData))
-                    PropertyDetailActivity.start(NewHouseDetailActivity.this,JsonData);
+
+                startActivity(new Intent(NewHouseDetailActivity.this, ReportingClientsActivity.class));
                 break;
 
         }
@@ -136,34 +147,46 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      * 初始化
      */
     private void initview() {
-
+        dialog = new LoadingDialog(NewHouseDetailActivity.this, 0);
         scrollview.setScrollViewListener(NewHouseDetailActivity.this);
+        tv_title.setText(getName());
+        List<LoginBean.DataBean.StaffListBean> list = BaseApplication.loginBean.getData().getStaffList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getModuleID().equals("1")) {
+                tv_ywName.setText(list.get(i).getName());
+                tv_ywPhone.setText(list.get(i).getPhone());
+                break;
+            }
+        }
     }
 
     @Override
     public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
-        if (y <= 0) {
-            tv_title.setBackgroundColor(Color.argb((int) 0, 227, 29, 26));//AGB由相关工具获得，或者美工提供
-        } else if (y > 0 && y <= 200) {
-            float scale = (float) y / 200;
+        if (y <= 20) {
+            tv_title.setBackgroundColor(Color.argb((int) 255, 66, 69, 82));//AGB由相关工具获得，或者美工提供
+        } else if (y > 20 && y <= 300) {
+            float scale = (float) y / 300;
             float alpha = (255 * scale);
             // 只是layout背景透明(仿知乎滑动效果)
-            tv_title.setBackgroundColor(Color.argb((int) alpha, 227, 29, 26));
+            tv_title.setBackgroundColor(Color.argb((int) alpha, 24, 178, 148));
         } else {
-            tv_title.setBackgroundColor(Color.argb((int) 255, 227, 29, 26));
+            tv_title.setBackgroundColor(Color.argb((int) 255, 24, 178, 148));
         }
+
     }
 
     /**
      * 获取网络数据
      */
     private void getData() {
+        dialog.show();
         NetHelperNew.getHouseDetail(getBuildingID(), getUserID(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
+                dialog.dismiss();
                 final NewHouseDetailBean newHouseDetailBean = MyGson.getInstance().fromJson(data, NewHouseDetailBean.class);
                 if (newHouseDetailBean.getType().equals("1")) {
-                    JsonData=data;
+                    JsonData = data;
                     showData(newHouseDetailBean);
                 }
                 runOnUiThread(new Runnable() {
@@ -176,6 +199,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
 
             @Override
             public void onError(String msg) {
+                dialog.dismiss();
                 super.onError(msg);
             }
         });
@@ -187,5 +211,9 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
 
     private String getUserID() {
         return getIntent().getStringExtra("UserID");
+    }
+
+    private String getName() {
+        return getIntent().getStringExtra("name");
     }
 }

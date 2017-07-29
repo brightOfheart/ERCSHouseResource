@@ -37,7 +37,7 @@ public class NewBuildingAdapter extends ViewHolderRecyclerAdapter<NewHouseListBe
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewHouseDetailActivity.start(contexts,dataBean.getId()+"", BaseApplication.loginBean.getData().getId());
+                NewHouseDetailActivity.start(contexts,dataBean.getId()+"", BaseApplication.loginBean.getData().getId(),dataBean.getName());
 
             }
         });

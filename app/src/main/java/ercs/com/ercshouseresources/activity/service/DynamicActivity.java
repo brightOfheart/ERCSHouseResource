@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.adapter.DynamicAdapter;
 import ercs.com.ercshouseresources.adapter.ProConAdapter;
 import ercs.com.ercshouseresources.util.TitleControl;
 
@@ -47,7 +48,7 @@ public class DynamicActivity extends BaseActivity {
         for (int i = 0; i < 10; i++) {
             list.add("" + i);
         }
-        mLRecyclerViewAdapter = new LRecyclerViewAdapter(new ProConAdapter(DynamicActivity.this, this, list));
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(new DynamicAdapter(DynamicActivity.this, this, list));
         recyleview.setLayoutManager(new LinearLayoutManager(this));
         recyleview.setAdapter(mLRecyclerViewAdapter);
         recyleview.setPullRefreshEnabled(false);
