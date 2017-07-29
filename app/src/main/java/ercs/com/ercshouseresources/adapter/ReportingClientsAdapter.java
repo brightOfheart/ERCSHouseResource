@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.bean.CustomersListBean;
 import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
 
 /**
@@ -19,9 +20,11 @@ import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
  * Created by Administrator on 2017/7/24.
  */
 
-public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<String> {
-    public ReportingClientsAdapter(Context context, List<String> listData) {
+public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<CustomersListBean.DataBean> {
+    private String BuildingID;
+    public ReportingClientsAdapter(Context context, List<CustomersListBean.DataBean> listData,String BuildingID) {
         super(context, listData);
+        this.BuildingID=BuildingID;
     }
 
     @Override
@@ -30,16 +33,31 @@ public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<String> {
     }
 
     @Override
-    public void bindViewDatas(ViewHolder holder, String s, int position) {
+    public void bindViewDatas(ViewHolder holder, final CustomersListBean.DataBean dataBean, int position) {
+
+        holder.setText(R.id.tv_name,dataBean.getName());
+        if (dataBean.getPhoneList().get(0)!=null)
+        holder.setText(R.id.tv_tel,dataBean.getPhoneList().get(0).getPhone());
+
+        if (!"".equals(dataBean.getName()))
+        holder.setText(R.id.tv_title,dataBean.getName().substring(0,1));
+
+        if (dataBean.getSex()==0)
+        {
+            //男
+            holder.getView(R.id.tv_title).setBackgroundResource(R.drawable.circle_blue_bg);
+
+        }else
+        {
+            //女
+            holder.getView(R.id.tv_title).setBackgroundResource(R.drawable.circle_powder_bg);
+        }
 
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<String> list=new ArrayList<String>();
-                list.add("15426546554");
-                list.add("15426546555");
-                list.add("15426546558");
-                ConfirmationClientsDialog confirmationClientsDialog = new ConfirmationClientsDialog((Activity) context, "张燕", list);
+
+                ConfirmationClientsDialog confirmationClientsDialog = new ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
                 confirmationClientsDialog.show();
             }
         });

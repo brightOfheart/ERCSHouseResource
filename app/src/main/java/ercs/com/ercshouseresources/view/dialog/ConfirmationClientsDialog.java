@@ -10,6 +10,13 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.ConfirmationClientsAdapter;
+import ercs.com.ercshouseresources.bean.BaseBean;
+import ercs.com.ercshouseresources.bean.CustomersListBean;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.ToastUtil;
 
 /**
  * 确认报备信息
@@ -24,16 +31,22 @@ public class ConfirmationClientsDialog extends BaseDialog {
     private ListView listView;
 
     private String name;
-    private List<String> tels;
+    private List<CustomersListBean.DataBean.PhoneListBean> tels;
 
     private Activity context;
     private ConfirmationClientsAdapter confirmationClientsAdapter;
 
-    public ConfirmationClientsDialog(Activity mActivity, String name, List<String> tels) {
+    private String BuildingID;
+    private String CustomerID;
+    private LoadingDialog loadingDialog;
+    public ConfirmationClientsDialog(Activity mActivity, String name, List<CustomersListBean.DataBean.PhoneListBean> tels,String BuildingID,String CustomerID) {
         super(mActivity);
         this.name = name;
         this.tels = tels;
         context=mActivity;
+        this.BuildingID=BuildingID;
+        this.CustomerID=CustomerID;
+        loadingDialog=new LoadingDialog(context,0);
     }
 
     @Override
@@ -53,6 +66,7 @@ public class ConfirmationClientsDialog extends BaseDialog {
         tv_sure=findViewById(R.id.tv_sure);
         listView=findViewById(R.id.listview);
 
+        tv_name.setText(name);
         confirmationClientsAdapter = new ConfirmationClientsAdapter(context,tels);
         listView.setAdapter(confirmationClientsAdapter);
 
@@ -61,6 +75,49 @@ public class ConfirmationClientsDialog extends BaseDialog {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 confirmationClientsAdapter.setPos(i);
                 confirmationClientsAdapter.notifyDataSetChanged();
+            }
+        });
+        tv_quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+                //取消
+            }
+        });
+        tv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //确定
+                if (NetWorkUtil.check(context))
+                submit();
+            }
+        });
+    }
+
+    /**
+     * 确认报备信息
+     */
+    private void submit()
+    {
+        loadingDialog.show();
+        NetHelperNew.getInsertRunningsModel(BuildingID, CustomerID, tels.get(confirmationClientsAdapter.getPos()).getCustomerPhoneID() + "", new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+                final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
+                loadingDialog.dismiss();
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showToast(context,baseBean.getContent());
+                        dismiss();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String msg) {
+                super.onError(msg);
+                loadingDialog.dismiss();
             }
         });
     }

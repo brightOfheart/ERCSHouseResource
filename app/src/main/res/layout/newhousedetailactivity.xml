@@ -502,6 +502,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/ll_propertydetail"
                     android:layout_width="@dimen/d_0"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

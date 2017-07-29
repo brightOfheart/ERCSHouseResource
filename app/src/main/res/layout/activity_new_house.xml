@@ -62,7 +62,8 @@
             android:textSize="@dimen/sp_14"
             android:layout_marginRight="@dimen/d_10"
             android:layout_marginLeft="@dimen/d_10"
-            android:drawableLeft="@mipmap/xzuobiao"
+            android:drawablePadding="@dimen/d_5"
+            android:drawableLeft="@mipmap/dizhitubiao"
            />
     </LinearLayout>
 

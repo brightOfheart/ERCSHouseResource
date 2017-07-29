@@ -24,7 +24,7 @@
             android:layout_height="@dimen/d_40"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="赵海燕"
+
 
             android:textColor="@color/black"
             android:textSize="@dimen/sp_16"/>

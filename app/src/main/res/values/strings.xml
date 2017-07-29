@@ -122,6 +122,7 @@
     <string name="error_endtime">请选择结束时间！</string>
     <string name="error_retroactivedata">请选择补签日期！</string>
     <string name="error_retroactivetype">请选择补签班次！</string>
+    <string name="error_inputname">请输入姓名</string>
     <!--其它字符串-->
     <string name="str_welcome">欢迎您</string>
     <string name="str_leftbracket">[</string>

@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/d_16"
         android:layout_marginRight="@dimen/d_10"
@@ -26,7 +27,7 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="张海燕"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="@dimen/sp_14"
             android:layout_centerVertical="true"/>
@@ -36,7 +37,7 @@
             android:id="@+id/tv_tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13902154254"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="@dimen/sp_14"
             android:layout_centerVertical="true"/>

@@ -94,7 +94,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left://返回点击事件
@@ -108,8 +108,12 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 CommissionExplainActivity.start(NewHouseDetailActivity.this,JsonData);
                 break;
             case R.id.btn_reportingclients://报备客户点击事件
-
-                startActivity(new Intent(NewHouseDetailActivity.this,ReportingClientsActivity.class));
+                if (!"".equals(JsonData))
+                ReportingClientsActivity.start(NewHouseDetailActivity.this,JsonData);
+                break;
+            case R.id.ll_propertydetail://楼盘详情点击事件
+                if (!"".equals(JsonData))
+                    PropertyDetailActivity.start(NewHouseDetailActivity.this,JsonData);
                 break;
 
         }

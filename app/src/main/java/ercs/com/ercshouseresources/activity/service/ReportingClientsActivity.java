@@ -1,15 +1,18 @@
 package ercs.com.ercshouseresources.activity.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -26,6 +29,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.ReportingClientsAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.bean.CommissionExplainBean;
+import ercs.com.ercshouseresources.bean.CustomersListBean;
+import ercs.com.ercshouseresources.bean.NewHouseListBean;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 
 /**
@@ -37,33 +49,102 @@ public class ReportingClientsActivity extends AppCompatActivity {
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
     LRecyclerView mRecyclerView ;
+
     private LRecyclerViewAdapter lRecyclerViewAdapter;
-    private List<String> clientListBeans;
+    private List<CustomersListBean.DataBean> clientListBeans;
     private ReportingClientsAdapter reportingClientsAdapter;//客户列表
     private LoadingDialog loadingDialog;
     private  String key="";// 关键字 “”
     private int pagenum=1;//页数
+
+    /**
+     * 页面跳转
+     */
+    public static void start(Activity mactivity, String jsonString) {
+        Log.i("-->", "报备客户：" + jsonString);
+        Intent intent = new Intent(mactivity, ReportingClientsActivity.class);
+        intent.putExtra("jsonString", jsonString);
+        mactivity.startActivity(intent);
+    }
+
+    /**
+     * 获取BuildingID
+     *
+     * @return
+     */
+    private String getBuildingID() {
+
+        String jsonString = getIntent().getStringExtra("jsonString");
+        CommissionExplainBean commissionExplainBean = MyGson.getInstance().fromJson(jsonString, CommissionExplainBean.class);
+
+        return commissionExplainBean.getData().getBaseInfo().getId()+"";
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporting_clients);
         ButterKnife.bind(this);
         initview();
-        getData();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        pagenum=1;
+        clientListBeans.clear();
+        reportingClientsAdapter.notifyDataSetChanged();
+        getData(pagenum,true);
     }
 
     /**
      * 获取网络数据
+     *
+     * @param pageIndex 页数
      */
-    private void getData() {
-        for (int i = 0; i < 10; i++) {
-            clientListBeans.add("");
-            reportingClientsAdapter.notifyDataSetChanged();
+    private void getData(int pageIndex, final boolean isLoading) {
+
+        if (NetWorkUtil.check(this)) {
+            if (isLoading)
+                loadingDialog.show();
+            NetHelperNew.getCustomersList(BaseApplication.loginBean.getData().getId(),key,pageIndex+"", new HttpUtils.HttpCallback() {
+                @Override
+                public void onSuccess(String data) {
+                    if (isLoading)
+                        loadingDialog.dismiss();
+                    Log.i("-->","客户列表："+data);
+                    final CustomersListBean customersListBean = MyGson.getInstance().fromJson(data, CustomersListBean.class);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(ReportingClientsActivity.this, customersListBean.getContent());
+
+                            mRecyclerView.refreshComplete(10);
+                            //更新数据
+                            clientListBeans.addAll(customersListBean.getData());
+
+                            reportingClientsAdapter.notifyDataSetChanged();
+                            pagenum++;
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onError(String msg) {
+                    super.onError(msg);
+                    if (isLoading)
+                        loadingDialog.dismiss();
+                    mRecyclerView.refreshComplete(10);
+                    ToastUtil.showToast(getApplicationContext(), msg);
+                }
+            });
         }
 
     }
 
-    @OnClick({R.id.iv_addperson})
+    @OnClick({R.id.iv_addperson,R.id.title_left})
     public void onClick(View view)
     {
         switch (view.getId())
@@ -72,12 +153,15 @@ public class ReportingClientsActivity extends AppCompatActivity {
                 //添加客户
                 startActivity(new Intent(ReportingClientsActivity.this,AddClientActivity.class));
                 break;
+            case R.id.title_left:
+                finish();
+                break;
         }
     }
     private void initview() {
         loadingDialog=new LoadingDialog(this,0);
         clientListBeans=new ArrayList<>();
-        reportingClientsAdapter = new ReportingClientsAdapter(this, clientListBeans);
+        reportingClientsAdapter = new ReportingClientsAdapter(this, clientListBeans,getBuildingID());
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(reportingClientsAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -92,22 +176,20 @@ public class ReportingClientsActivity extends AppCompatActivity {
 
 
 
-        mRecyclerView.setLoadMoreEnabled(false);
-        mRecyclerView.setPullRefreshEnabled(false);
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
             public void onRefresh() {
                 pagenum=1;
                 clientListBeans.clear();
                 reportingClientsAdapter.notifyDataSetChanged();
-//                getData(pagenum);
+                getData(pagenum,false);
             }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-
+                getData(pagenum,false);
             }
         });
 
@@ -128,7 +210,8 @@ public class ReportingClientsActivity extends AppCompatActivity {
 
                     clientListBeans.clear();
                     reportingClientsAdapter.notifyDataSetChanged();
-//                    getData(pagenum);
+                    pagenum=1;
+                    getData(pagenum,true);
                     return true;
                 }
                 return false;

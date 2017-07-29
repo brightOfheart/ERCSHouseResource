@@ -23,6 +23,8 @@
             android:text="姓名"
             />
         <EditText
+            android:id="@+id/edit_name"
+            android:textSize="@dimen/sp_14"
             android:layout_gravity="center_vertical"
             android:background="@null"
             android:layout_width="@dimen/d_0"
@@ -90,6 +92,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/str_save"

@@ -76,7 +76,7 @@ public class NewHouseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initview();
 
-        getData(pagenum);
+        getData(pagenum,true);
         initHouseLayoutSelectPop();
         downLoadArea();
     }
@@ -146,14 +146,14 @@ public class NewHouseActivity extends AppCompatActivity {
                 pagenum = 1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,false);
             }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-                getData(pagenum);
+                getData(pagenum,false);
             }
         });
 
@@ -173,7 +173,8 @@ public class NewHouseActivity extends AppCompatActivity {
 
                     houseListBeans.clear();
                     houseAdapter.notifyDataSetChanged();
-                    getData(pagenum);
+                    pagenum=1;
+                    getData(pagenum,true);
                     return true;
                 }
                 return false;
@@ -197,7 +198,7 @@ public class NewHouseActivity extends AppCompatActivity {
                 pagenum=1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,true);
             }
         });
     }
@@ -216,7 +217,7 @@ public class NewHouseActivity extends AppCompatActivity {
                 pagenum=1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum);
+                getData(pagenum,true);
             }
         });
     }
@@ -225,7 +226,8 @@ public class NewHouseActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.title_left:
                 //返回键
-                finish();
+//                finish();
+                startActivity(new Intent(NewHouseActivity.this,OrderReportActivity.class));
                 break;
 
             case R.id.ly_housingtype:
@@ -246,13 +248,15 @@ public class NewHouseActivity extends AppCompatActivity {
      *
      * @param pageIndex 页数
      */
-    private void getData(int pageIndex) {
+    private void getData(int pageIndex, final boolean isLoading) {
 
         if (NetWorkUtil.check(this)) {
+            if (isLoading)
             loadingDialog.show();
             NetHelperNew.NewBuildingsList(pageIndex+"",AreaID==0?"":AreaID+"",BuildingTypeID+"",key, new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
+                    if (isLoading)
                     loadingDialog.dismiss();
                     Log.i("-->","新房源列表："+data);
                     final NewHouseListBean newHouseListBean = MyGson.getInstance().fromJson(data, NewHouseListBean.class);
@@ -275,6 +279,7 @@ public class NewHouseActivity extends AppCompatActivity {
                 @Override
                 public void onError(String msg) {
                     super.onError(msg);
+                    if (isLoading)
                     loadingDialog.dismiss();
                     mRecyclerView.refreshComplete(10);
                     ToastUtil.showToast(getApplicationContext(), msg);

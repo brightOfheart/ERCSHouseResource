@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.bean.CustomersListBean;
 
 /**
  * 确认报备信息电话列表
@@ -17,11 +18,11 @@ import ercs.com.ercshouseresources.R;
  */
 
 public class ConfirmationClientsAdapter extends BaseAdapter{
-    private List<String> list;
+    private List<CustomersListBean.DataBean.PhoneListBean> list;
     private Context context;
     private int pos=0;//选中
 
-    public ConfirmationClientsAdapter(Context context, List<String> list) {
+    public ConfirmationClientsAdapter(Context context, List<CustomersListBean.DataBean.PhoneListBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -46,7 +47,7 @@ public class ConfirmationClientsAdapter extends BaseAdapter{
         view=LayoutInflater.from(context).inflate(R.layout.item_confirmation_clients,null);
         TextView tv_tel=view.findViewById(R.id.tv_tel);
 
-        tv_tel.setText(list.get(i));
+        tv_tel.setText(list.get(i).getPhone());
         if (i==pos)
         {
             tv_tel.setTextColor(context.getResources().getColor(R.color.orange));
