@@ -57,9 +57,114 @@ public class NewHouseDetailBean extends BaseBean {
             private String AwardDescription;
             private String CommissionAccount;
             private String Address;
+            private String FilingRules;
+            private String BandSawRules;
+            private String TransactionRules;
+            private String PriceAdvantage;
+            private String HouseTypeArea;
+            private String LivingFacilities;
+            private String SchoolDistrict;
+            private String Transportation;
+            private String RegionalDevelopment;
+            private String Characteristic;
+            private String BrandAdvantage;
+            private String HaveProductComparison;
 
+            public String getPriceAdvantage() {
+                return PriceAdvantage;
+            }
 
+            public void setPriceAdvantage(String priceAdvantage) {
+                PriceAdvantage = priceAdvantage;
+            }
 
+            public String getHouseTypeArea() {
+                return HouseTypeArea;
+            }
+
+            public void setHouseTypeArea(String houseTypeArea) {
+                HouseTypeArea = houseTypeArea;
+            }
+
+            public String getLivingFacilities() {
+                return LivingFacilities;
+            }
+
+            public void setLivingFacilities(String livingFacilities) {
+                LivingFacilities = livingFacilities;
+            }
+
+            public String getSchoolDistrict() {
+                return SchoolDistrict;
+            }
+
+            public void setSchoolDistrict(String schoolDistrict) {
+                SchoolDistrict = schoolDistrict;
+            }
+
+            public String getTransportation() {
+                return Transportation;
+            }
+
+            public void setTransportation(String transportation) {
+                Transportation = transportation;
+            }
+
+            public String getRegionalDevelopment() {
+                return RegionalDevelopment;
+            }
+
+            public void setRegionalDevelopment(String regionalDevelopment) {
+                RegionalDevelopment = regionalDevelopment;
+            }
+
+            public String getCharacteristic() {
+                return Characteristic;
+            }
+
+            public void setCharacteristic(String characteristic) {
+                Characteristic = characteristic;
+            }
+
+            public String getBrandAdvantage() {
+                return BrandAdvantage;
+            }
+
+            public void setBrandAdvantage(String brandAdvantage) {
+                BrandAdvantage = brandAdvantage;
+            }
+
+            public String getHaveProductComparison() {
+                return HaveProductComparison;
+            }
+
+            public void setHaveProductComparison(String haveProductComparison) {
+                HaveProductComparison = haveProductComparison;
+            }
+
+            public String getFilingRules() {
+                return FilingRules;
+            }
+
+            public void setFilingRules(String filingRules) {
+                FilingRules = filingRules;
+            }
+
+            public String getBandSawRules() {
+                return BandSawRules;
+            }
+
+            public void setBandSawRules(String bandSawRules) {
+                BandSawRules = bandSawRules;
+            }
+
+            public String getTransactionRules() {
+                return TransactionRules;
+            }
+
+            public void setTransactionRules(String transactionRules) {
+                TransactionRules = transactionRules;
+            }
 
             public String getName() {
                 return Name;

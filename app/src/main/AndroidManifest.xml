@@ -209,6 +209,16 @@
             android:name=".activity.nativ.BNDemoGuideActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!-- 推荐规则 -->
+        <activity
+            android:name=".activity.service.RecRuleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 结算周期 -->
+        <activity
+            android:name=".activity.service.SettlementCycleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!--&lt;!&ndash; 新房地图页 &ndash;&gt;-->
         <!--<activity-->
         <!--android:name=".activity.service.MapActivity"-->
@@ -256,6 +266,7 @@
         <!--楼盘详情-->
         <activity android:name=".activity.service.PropertyDetailActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+
     </application>
 
 </manifest>

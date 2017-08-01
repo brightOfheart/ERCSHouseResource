@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.LoginActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
@@ -66,6 +64,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
     LinearLayout ly_newhouse;
     private String JsonData = "";
     private LoadingDialog dialog;
+    private NewHouseDetailBean newHouseDetailBean;
 
     public static void start(Activity mactivity, String BuildingID, String UserID, String name) {
         Intent intent = new Intent(mactivity, NewHouseDetailActivity.class);
@@ -109,7 +108,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients,R.id.ll_propertydetail})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left://返回点击事件
@@ -120,16 +119,39 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 break;
             case R.id.frame_commissionexplain://佣金说明点击事件
                 if (!"".equals(JsonData))
-                    CommissionExplainActivity.start(NewHouseDetailActivity.this,JsonData);
+                    CommissionExplainActivity.start(NewHouseDetailActivity.this, JsonData);
                 break;
             case R.id.btn_reportingclients://报备客户点击事件
                 if (!"".equals(JsonData))
-                    ReportingClientsActivity.start(NewHouseDetailActivity.this,JsonData);
+                    ReportingClientsActivity.start(NewHouseDetailActivity.this, JsonData);
                 break;
             case R.id.ll_propertydetail://楼盘详情点击事件
                 if (!"".equals(JsonData))
-                    PropertyDetailActivity.start(NewHouseDetailActivity.this,JsonData);
+                    PropertyDetailActivity.start(NewHouseDetailActivity.this, JsonData);
                 break;
+            case R.id.fr_recrule://推荐规则
+                RecRuleActivity.start(NewHouseDetailActivity.this, newHouseDetailBean.getData().getBaseInfo().getFilingRules(),
+                        newHouseDetailBean.getData().getBaseInfo().getBandSawRules(), newHouseDetailBean.getData().getBaseInfo().getTransactionRules());
+                break;
+            case R.id.fr_ad://成交奖励
+                ClosingBonusActivity.start(NewHouseDetailActivity.this, newHouseDetailBean.getData().getBaseInfo().getAwardDescription());
+
+                break;
+            case R.id.fr_setcycle://结算周期
+                SettlementCycleActivity.start(NewHouseDetailActivity.this, newHouseDetailBean.getData().getBaseInfo().getCommissionAccount());
+            case R.id.ly_sale://楼盘卖点
+                String str1 = newHouseDetailBean.getData().getBaseInfo().getPriceAdvantage();
+                String str2 = newHouseDetailBean.getData().getBaseInfo().getHouseTypeArea();
+                String str3 = newHouseDetailBean.getData().getBaseInfo().getLivingFacilities();
+                String str4= newHouseDetailBean.getData().getBaseInfo().getSchoolDistrict();
+                String str5= newHouseDetailBean.getData().getBaseInfo().getTransportation();
+                String str6= newHouseDetailBean.getData().getBaseInfo().getRegionalDevelopment();
+                String str7= newHouseDetailBean.getData().getBaseInfo().getCharacteristic();
+                String str8= newHouseDetailBean.getData().getBaseInfo().getBrandAdvantage();
+                String str9= newHouseDetailBean.getData().getBaseInfo().getHaveProductComparison();
+                ContentListActivity.start(NewHouseDetailActivity.this,str1,str2,str3,str4,str5,str6,str7,str8,str9);
+                break;
+
         }
     }
 
@@ -187,7 +209,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
-                final NewHouseDetailBean newHouseDetailBean = MyGson.getInstance().fromJson(data, NewHouseDetailBean.class);
+                newHouseDetailBean = MyGson.getInstance().fromJson(data, NewHouseDetailBean.class);
                 if (newHouseDetailBean.getType().equals("1")) {
                     JsonData = data;
                     showData(newHouseDetailBean);

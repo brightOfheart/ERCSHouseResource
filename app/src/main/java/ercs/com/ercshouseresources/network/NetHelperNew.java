@@ -1,7 +1,6 @@
 package ercs.com.ercshouseresources.network;
 
 import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +61,6 @@ public class NetHelperNew {
     public static void AreaList(String cityid, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("cityid", cityid);
-
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + AreaList, json, callback);

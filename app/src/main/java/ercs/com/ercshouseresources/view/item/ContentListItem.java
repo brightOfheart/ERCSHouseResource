@@ -2,8 +2,12 @@ package ercs.com.ercshouseresources.view.item;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 
@@ -13,12 +17,13 @@ import ercs.com.ercshouseresources.R;
 
 public class ContentListItem extends RelativeLayout {
     private LinearLayout linearLayout;
-
-    //    @BindView(R.id.tv_time)13591734
-//    TextView tv_time;
-//    @BindView(R.id.litviews)
-//    NoScrollListView litview;
-    public ContentListItem(Context context) {
+    @BindView(R.id.iv_icon)
+    ImageView iv_icon;
+    @BindView(R.id.tv_title)
+    TextView tv_title;
+    @BindView(R.id.tv_content)
+    TextView tv_content;
+    public ContentListItem(Context context,int icon ,String title,String content) {
         super(context);
         LayoutInflater mInflater = LayoutInflater.from(context);
         linearLayout = (LinearLayout) mInflater.inflate(
@@ -28,7 +33,9 @@ public class ContentListItem extends RelativeLayout {
         params.setMargins(0, 0, 0, 0);
         this.addView(linearLayout, params);
         ButterKnife.bind(this);
-
+        iv_icon.setImageResource(icon);
+        tv_title.setText(title);
+        tv_content.setText(content);
     }
 
 }
