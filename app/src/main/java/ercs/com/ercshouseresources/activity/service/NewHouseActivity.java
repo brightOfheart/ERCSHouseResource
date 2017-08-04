@@ -54,6 +54,8 @@ public class NewHouseActivity extends AppCompatActivity {
     LRecyclerView mRecyclerView;
     @BindView(R.id.view_line)
     View view_line;
+    @BindView(R.id.tv_city)
+    TextView tv_city;
 
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private List<NewHouseListBean.DataBean> houseListBeans;
@@ -120,6 +122,8 @@ public class NewHouseActivity extends AppCompatActivity {
      */
     private void initview() {
         loadingDialog = new LoadingDialog(this, 0);
+        if(BaseApplication.loginBean.getData()!=null)
+        tv_city.setText(BaseApplication.loginBean.getData().getCityName());
         houseListBeans = new ArrayList<>();
         houseAdapter = new NewBuildingAdapter(this, houseListBeans);
 
@@ -227,7 +231,7 @@ public class NewHouseActivity extends AppCompatActivity {
             case R.id.title_left:
                 //返回键
 //                finish();
-                startActivity(new Intent(NewHouseActivity.this,OrderReportActivity.class));
+                startActivity(new Intent(NewHouseActivity.this,OrderReportListActivity.class));
                 break;
 
             case R.id.ly_housingtype:

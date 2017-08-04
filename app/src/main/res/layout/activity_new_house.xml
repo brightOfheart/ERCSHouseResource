@@ -54,10 +54,10 @@
                 />
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_city"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="沈阳"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14"
             android:layout_marginRight="@dimen/d_10"

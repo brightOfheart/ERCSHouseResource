@@ -1,5 +1,7 @@
 package ercs.com.ercshouseresources.bean;
 
+import java.util.List;
+
 /**
  * 报备订单详情
  * Created by Administrator on 2017/7/29.
@@ -7,10 +9,11 @@ package ercs.com.ercshouseresources.bean;
 
 public class ReportOrderDetailBean {
 
+
     /**
      * Type : 1
      * Content : 成功
-     * Data : {"BuildingID":1,"BuildingName":"阳光经典公寓","IntermediaryID":1,"IntermediaryName":"IT不动产","UserID":1,"UserName":"张三","UserPhone":"13888888888","CustomerID":1,"CustomerName":"李磊","CustomerPhone":"13888888888","FilingTime":"2017-07-28T16:49:11.42","FilingAuditingTime":"2017-07-28T16:49:11.42","FilingAuditingStaffID":0,"FilingAuditingRemark":null,"BandSawTime":null,"BandSawStaffID":0,"BandSawRemark":null,"SubscribeTime":"2017-07-28T16:49:11.42","SubscribeStaffID":0,"SubscribeReamrk":null,"BuildingsBrokerageGroupID":0,"BuildingsBrokerageGroupName":null,"Brokerage":null,"TotalPrice":0,"Area":0,"Address":null,"BargainMoney":0,"DownPaymentTime":"2017-07-28T16:49:11.42","DownPaymentStaffID":0,"DownPaymentMoney":0,"DownPaymentRemark":null,"PutOnRecordTime":"2017-07-28T16:49:11.42","PutOnRecordStaffID":0,"PutOnRecordRemark":null,"CompleteTime":"2017-07-28T16:49:11.42","CompleteStaffID":0,"CompleteRemark":null,"ReturnHouseTime":"2017-07-28T16:49:11.42","ReturnHouseStaffID":0,"ReturnHouseRemark":null,"ReturnHouseAuditingTime":"2017-07-28T16:49:11.42","ReturnHouseAuditingStaffID":0,"ReturnHouseAuditingRemark":null,"State":0,"Remark":null,"StarTarget":null,"StarTargetRemark":null,"PropertyConsultantName":null,"OriginStaffID":0,"SellStaffID":0,"AgentID":0,"Id":2}
+     * Data : {"Id":7,"BuildingName":"","UserName":"张六","UserPhone":"13888888883","State":8,"NewHouseRunningsInfoShowList":[{"StyleID":1,"ModuleName":"报备","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"报备客户","OperTime":"17-07-29 09:53","ViceTitle":"审核通过","ViceTitleColor":"93B219","FilingAuditingRemark":"ssss","IsCameraButton":0,"ImageType":0,"ImageRemark":"","ImageList":[{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311114187765307.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":true,"CreatedTime":"2017-07-31T11:14:19.027","Id":39},{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311433408619410.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":false,"CreatedTime":"2017-07-31T14:33:41.127","Id":53}],"IsViewButton":0,"SortID":1},{"StyleID":3,"ModuleName":"带看","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已带看","OperTime":null,"ViceTitle":"","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":1,"ImageType":1,"ImageRemark":"带看后请上传照片，\"客户带看单\"照片为必传照片，带看单必需有置业顾问、经纪人、项目经理签字，其他照片可以是\"客户与售楼员合影\"、\"客户与经纪人合影\"等等!","ImageList":[],"IsViewButton":1,"SortID":2},{"StyleID":3,"ModuleName":"认购","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已付定金","OperTime":"17-07-29 09:53","ViceTitle":"0万元","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":2,"ImageRemark":"请上传\"认购确认单\"照片！","ImageList":[],"IsViewButton":0,"SortID":0},{"StyleID":1,"ModuleName":"首付","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已交首付","OperTime":"17-07-29 09:53","ViceTitle":"0万元","ViceTitleColor":"3370FD","FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":0,"ImageRemark":null,"ImageList":null,"IsViewButton":0,"SortID":4},{"StyleID":3,"ModuleName":"备案","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已备案","OperTime":"17-07-29 09:53","ViceTitle":"","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":1,"ImageType":1,"ImageRemark":"带看后请上传照片，\"客户带看单\"照片为必传照片，带看单必需有置业顾问、经纪人、项目经理签字，其他照片可以是\"客户与售楼员合影\"、\"客户与经纪人合影\"等等!","ImageList":[],"IsViewButton":0,"SortID":5},{"StyleID":4,"ModuleName":"完成","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":null,"OperTime":null,"ViceTitle":null,"ViceTitleColor":null,"FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":0,"ImageRemark":null,"ImageList":null,"IsViewButton":0,"SortID":6}],"TotalAmount":0,"TaxAmount":0,"AchieveAmount":0,"UnAchieveAmount":0,"BrokerageState":2}
      */
 
     private int Type;
@@ -43,119 +46,37 @@ public class ReportOrderDetailBean {
 
     public static class DataBean {
         /**
-         * BuildingID : 1
-         * BuildingName : 阳光经典公寓
-         * IntermediaryID : 1
-         * IntermediaryName : IT不动产
-         * UserID : 1
-         * UserName : 张三
-         * UserPhone : 13888888888
-         * CustomerID : 1
-         * CustomerName : 李磊
-         * CustomerPhone : 13888888888
-         * FilingTime : 2017-07-28T16:49:11.42
-         * FilingAuditingTime : 2017-07-28T16:49:11.42
-         * FilingAuditingStaffID : 0
-         * FilingAuditingRemark : null
-         * BandSawTime : null
-         * BandSawStaffID : 0
-         * BandSawRemark : null
-         * SubscribeTime : 2017-07-28T16:49:11.42
-         * SubscribeStaffID : 0
-         * SubscribeReamrk : null
-         * BuildingsBrokerageGroupID : 0
-         * BuildingsBrokerageGroupName : null
-         * Brokerage : null
-         * TotalPrice : 0.0
-         * Area : 0.0
-         * Address : null
-         * BargainMoney : 0.0
-         * DownPaymentTime : 2017-07-28T16:49:11.42
-         * DownPaymentStaffID : 0
-         * DownPaymentMoney : 0.0
-         * DownPaymentRemark : null
-         * PutOnRecordTime : 2017-07-28T16:49:11.42
-         * PutOnRecordStaffID : 0
-         * PutOnRecordRemark : null
-         * CompleteTime : 2017-07-28T16:49:11.42
-         * CompleteStaffID : 0
-         * CompleteRemark : null
-         * ReturnHouseTime : 2017-07-28T16:49:11.42
-         * ReturnHouseStaffID : 0
-         * ReturnHouseRemark : null
-         * ReturnHouseAuditingTime : 2017-07-28T16:49:11.42
-         * ReturnHouseAuditingStaffID : 0
-         * ReturnHouseAuditingRemark : null
-         * State : 0
-         * Remark : null
-         * StarTarget : null
-         * StarTargetRemark : null
-         * PropertyConsultantName : null
-         * OriginStaffID : 0
-         * SellStaffID : 0
-         * AgentID : 0
-         * Id : 2
+         * Id : 7
+         * BuildingName :
+         * UserName : 张六
+         * UserPhone : 13888888883
+         * State : 8
+         * NewHouseRunningsInfoShowList : [{"StyleID":1,"ModuleName":"报备","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"报备客户","OperTime":"17-07-29 09:53","ViceTitle":"审核通过","ViceTitleColor":"93B219","FilingAuditingRemark":"ssss","IsCameraButton":0,"ImageType":0,"ImageRemark":"","ImageList":[{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311114187765307.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":true,"CreatedTime":"2017-07-31T11:14:19.027","Id":39},{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311433408619410.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":false,"CreatedTime":"2017-07-31T14:33:41.127","Id":53}],"IsViewButton":0,"SortID":1},{"StyleID":3,"ModuleName":"带看","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已带看","OperTime":null,"ViceTitle":"","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":1,"ImageType":1,"ImageRemark":"带看后请上传照片，\"客户带看单\"照片为必传照片，带看单必需有置业顾问、经纪人、项目经理签字，其他照片可以是\"客户与售楼员合影\"、\"客户与经纪人合影\"等等!","ImageList":[],"IsViewButton":1,"SortID":2},{"StyleID":3,"ModuleName":"认购","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已付定金","OperTime":"17-07-29 09:53","ViceTitle":"0万元","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":2,"ImageRemark":"请上传\"认购确认单\"照片！","ImageList":[],"IsViewButton":0,"SortID":0},{"StyleID":1,"ModuleName":"首付","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已交首付","OperTime":"17-07-29 09:53","ViceTitle":"0万元","ViceTitleColor":"3370FD","FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":0,"ImageRemark":null,"ImageList":null,"IsViewButton":0,"SortID":4},{"StyleID":3,"ModuleName":"备案","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":"已备案","OperTime":"17-07-29 09:53","ViceTitle":"","ViceTitleColor":"","FilingAuditingRemark":null,"IsCameraButton":1,"ImageType":1,"ImageRemark":"带看后请上传照片，\"客户带看单\"照片为必传照片，带看单必需有置业顾问、经纪人、项目经理签字，其他照片可以是\"客户与售楼员合影\"、\"客户与经纪人合影\"等等!","ImageList":[],"IsViewButton":0,"SortID":5},{"StyleID":4,"ModuleName":"完成","ModuleNameColor":"93B219","ModuleIcon":2,"ModuleIconColor":"93B219","Title":null,"OperTime":null,"ViceTitle":null,"ViceTitleColor":null,"FilingAuditingRemark":null,"IsCameraButton":0,"ImageType":0,"ImageRemark":null,"ImageList":null,"IsViewButton":0,"SortID":6}]
+         * TotalAmount : 0
+         * TaxAmount : 0
+         * AchieveAmount : 0
+         * UnAchieveAmount : 0
+         * BrokerageState : 2
          */
 
-        private int BuildingID;
+        private int Id;
         private String BuildingName;
-        private int IntermediaryID;
-        private String IntermediaryName;
-        private int UserID;
         private String UserName;
         private String UserPhone;
-        private int CustomerID;
-        private String CustomerName;
-        private String CustomerPhone;
-        private String FilingTime;
-        private String FilingAuditingTime;
-        private int FilingAuditingStaffID;
-        private Object FilingAuditingRemark;
-        private Object BandSawTime;
-        private int BandSawStaffID;
-        private Object BandSawRemark;
-        private String SubscribeTime;
-        private int SubscribeStaffID;
-        private Object SubscribeReamrk;
-        private int BuildingsBrokerageGroupID;
-        private Object BuildingsBrokerageGroupName;
-        private Object Brokerage;
-        private double TotalPrice;
-        private double Area;
-        private Object Address;
-        private double BargainMoney;
-        private String DownPaymentTime;
-        private int DownPaymentStaffID;
-        private double DownPaymentMoney;
-        private Object DownPaymentRemark;
-        private String PutOnRecordTime;
-        private int PutOnRecordStaffID;
-        private Object PutOnRecordRemark;
-        private String CompleteTime;
-        private int CompleteStaffID;
-        private Object CompleteRemark;
-        private String ReturnHouseTime;
-        private int ReturnHouseStaffID;
-        private Object ReturnHouseRemark;
-        private String ReturnHouseAuditingTime;
-        private int ReturnHouseAuditingStaffID;
-        private Object ReturnHouseAuditingRemark;
         private int State;
-        private Object Remark;
-        private Object StarTarget;
-        private Object StarTargetRemark;
-        private Object PropertyConsultantName;
-        private int OriginStaffID;
-        private int SellStaffID;
-        private int AgentID;
-        private int Id;
+        private int TotalAmount;
+        private int TaxAmount;
+        private int AchieveAmount;
+        private int UnAchieveAmount;
+        private int BrokerageState;
+        private List<NewHouseRunningsInfoShowListBean> NewHouseRunningsInfoShowList;
 
-        public int getBuildingID() {
-            return BuildingID;
+        public int getId() {
+            return Id;
         }
 
-        public void setBuildingID(int BuildingID) {
-            this.BuildingID = BuildingID;
+        public void setId(int Id) {
+            this.Id = Id;
         }
 
         public String getBuildingName() {
@@ -164,30 +85,6 @@ public class ReportOrderDetailBean {
 
         public void setBuildingName(String BuildingName) {
             this.BuildingName = BuildingName;
-        }
-
-        public int getIntermediaryID() {
-            return IntermediaryID;
-        }
-
-        public void setIntermediaryID(int IntermediaryID) {
-            this.IntermediaryID = IntermediaryID;
-        }
-
-        public String getIntermediaryName() {
-            return IntermediaryName;
-        }
-
-        public void setIntermediaryName(String IntermediaryName) {
-            this.IntermediaryName = IntermediaryName;
-        }
-
-        public int getUserID() {
-            return UserID;
-        }
-
-        public void setUserID(int UserID) {
-            this.UserID = UserID;
         }
 
         public String getUserName() {
@@ -206,294 +103,6 @@ public class ReportOrderDetailBean {
             this.UserPhone = UserPhone;
         }
 
-        public int getCustomerID() {
-            return CustomerID;
-        }
-
-        public void setCustomerID(int CustomerID) {
-            this.CustomerID = CustomerID;
-        }
-
-        public String getCustomerName() {
-            return CustomerName;
-        }
-
-        public void setCustomerName(String CustomerName) {
-            this.CustomerName = CustomerName;
-        }
-
-        public String getCustomerPhone() {
-            return CustomerPhone;
-        }
-
-        public void setCustomerPhone(String CustomerPhone) {
-            this.CustomerPhone = CustomerPhone;
-        }
-
-        public String getFilingTime() {
-            return FilingTime;
-        }
-
-        public void setFilingTime(String FilingTime) {
-            this.FilingTime = FilingTime;
-        }
-
-        public String getFilingAuditingTime() {
-            return FilingAuditingTime;
-        }
-
-        public void setFilingAuditingTime(String FilingAuditingTime) {
-            this.FilingAuditingTime = FilingAuditingTime;
-        }
-
-        public int getFilingAuditingStaffID() {
-            return FilingAuditingStaffID;
-        }
-
-        public void setFilingAuditingStaffID(int FilingAuditingStaffID) {
-            this.FilingAuditingStaffID = FilingAuditingStaffID;
-        }
-
-        public Object getFilingAuditingRemark() {
-            return FilingAuditingRemark;
-        }
-
-        public void setFilingAuditingRemark(Object FilingAuditingRemark) {
-            this.FilingAuditingRemark = FilingAuditingRemark;
-        }
-
-        public Object getBandSawTime() {
-            return BandSawTime;
-        }
-
-        public void setBandSawTime(Object BandSawTime) {
-            this.BandSawTime = BandSawTime;
-        }
-
-        public int getBandSawStaffID() {
-            return BandSawStaffID;
-        }
-
-        public void setBandSawStaffID(int BandSawStaffID) {
-            this.BandSawStaffID = BandSawStaffID;
-        }
-
-        public Object getBandSawRemark() {
-            return BandSawRemark;
-        }
-
-        public void setBandSawRemark(Object BandSawRemark) {
-            this.BandSawRemark = BandSawRemark;
-        }
-
-        public String getSubscribeTime() {
-            return SubscribeTime;
-        }
-
-        public void setSubscribeTime(String SubscribeTime) {
-            this.SubscribeTime = SubscribeTime;
-        }
-
-        public int getSubscribeStaffID() {
-            return SubscribeStaffID;
-        }
-
-        public void setSubscribeStaffID(int SubscribeStaffID) {
-            this.SubscribeStaffID = SubscribeStaffID;
-        }
-
-        public Object getSubscribeReamrk() {
-            return SubscribeReamrk;
-        }
-
-        public void setSubscribeReamrk(Object SubscribeReamrk) {
-            this.SubscribeReamrk = SubscribeReamrk;
-        }
-
-        public int getBuildingsBrokerageGroupID() {
-            return BuildingsBrokerageGroupID;
-        }
-
-        public void setBuildingsBrokerageGroupID(int BuildingsBrokerageGroupID) {
-            this.BuildingsBrokerageGroupID = BuildingsBrokerageGroupID;
-        }
-
-        public Object getBuildingsBrokerageGroupName() {
-            return BuildingsBrokerageGroupName;
-        }
-
-        public void setBuildingsBrokerageGroupName(Object BuildingsBrokerageGroupName) {
-            this.BuildingsBrokerageGroupName = BuildingsBrokerageGroupName;
-        }
-
-        public Object getBrokerage() {
-            return Brokerage;
-        }
-
-        public void setBrokerage(Object Brokerage) {
-            this.Brokerage = Brokerage;
-        }
-
-        public double getTotalPrice() {
-            return TotalPrice;
-        }
-
-        public void setTotalPrice(double TotalPrice) {
-            this.TotalPrice = TotalPrice;
-        }
-
-        public double getArea() {
-            return Area;
-        }
-
-        public void setArea(double Area) {
-            this.Area = Area;
-        }
-
-        public Object getAddress() {
-            return Address;
-        }
-
-        public void setAddress(Object Address) {
-            this.Address = Address;
-        }
-
-        public double getBargainMoney() {
-            return BargainMoney;
-        }
-
-        public void setBargainMoney(double BargainMoney) {
-            this.BargainMoney = BargainMoney;
-        }
-
-        public String getDownPaymentTime() {
-            return DownPaymentTime;
-        }
-
-        public void setDownPaymentTime(String DownPaymentTime) {
-            this.DownPaymentTime = DownPaymentTime;
-        }
-
-        public int getDownPaymentStaffID() {
-            return DownPaymentStaffID;
-        }
-
-        public void setDownPaymentStaffID(int DownPaymentStaffID) {
-            this.DownPaymentStaffID = DownPaymentStaffID;
-        }
-
-        public double getDownPaymentMoney() {
-            return DownPaymentMoney;
-        }
-
-        public void setDownPaymentMoney(double DownPaymentMoney) {
-            this.DownPaymentMoney = DownPaymentMoney;
-        }
-
-        public Object getDownPaymentRemark() {
-            return DownPaymentRemark;
-        }
-
-        public void setDownPaymentRemark(Object DownPaymentRemark) {
-            this.DownPaymentRemark = DownPaymentRemark;
-        }
-
-        public String getPutOnRecordTime() {
-            return PutOnRecordTime;
-        }
-
-        public void setPutOnRecordTime(String PutOnRecordTime) {
-            this.PutOnRecordTime = PutOnRecordTime;
-        }
-
-        public int getPutOnRecordStaffID() {
-            return PutOnRecordStaffID;
-        }
-
-        public void setPutOnRecordStaffID(int PutOnRecordStaffID) {
-            this.PutOnRecordStaffID = PutOnRecordStaffID;
-        }
-
-        public Object getPutOnRecordRemark() {
-            return PutOnRecordRemark;
-        }
-
-        public void setPutOnRecordRemark(Object PutOnRecordRemark) {
-            this.PutOnRecordRemark = PutOnRecordRemark;
-        }
-
-        public String getCompleteTime() {
-            return CompleteTime;
-        }
-
-        public void setCompleteTime(String CompleteTime) {
-            this.CompleteTime = CompleteTime;
-        }
-
-        public int getCompleteStaffID() {
-            return CompleteStaffID;
-        }
-
-        public void setCompleteStaffID(int CompleteStaffID) {
-            this.CompleteStaffID = CompleteStaffID;
-        }
-
-        public Object getCompleteRemark() {
-            return CompleteRemark;
-        }
-
-        public void setCompleteRemark(Object CompleteRemark) {
-            this.CompleteRemark = CompleteRemark;
-        }
-
-        public String getReturnHouseTime() {
-            return ReturnHouseTime;
-        }
-
-        public void setReturnHouseTime(String ReturnHouseTime) {
-            this.ReturnHouseTime = ReturnHouseTime;
-        }
-
-        public int getReturnHouseStaffID() {
-            return ReturnHouseStaffID;
-        }
-
-        public void setReturnHouseStaffID(int ReturnHouseStaffID) {
-            this.ReturnHouseStaffID = ReturnHouseStaffID;
-        }
-
-        public Object getReturnHouseRemark() {
-            return ReturnHouseRemark;
-        }
-
-        public void setReturnHouseRemark(Object ReturnHouseRemark) {
-            this.ReturnHouseRemark = ReturnHouseRemark;
-        }
-
-        public String getReturnHouseAuditingTime() {
-            return ReturnHouseAuditingTime;
-        }
-
-        public void setReturnHouseAuditingTime(String ReturnHouseAuditingTime) {
-            this.ReturnHouseAuditingTime = ReturnHouseAuditingTime;
-        }
-
-        public int getReturnHouseAuditingStaffID() {
-            return ReturnHouseAuditingStaffID;
-        }
-
-        public void setReturnHouseAuditingStaffID(int ReturnHouseAuditingStaffID) {
-            this.ReturnHouseAuditingStaffID = ReturnHouseAuditingStaffID;
-        }
-
-        public Object getReturnHouseAuditingRemark() {
-            return ReturnHouseAuditingRemark;
-        }
-
-        public void setReturnHouseAuditingRemark(Object ReturnHouseAuditingRemark) {
-            this.ReturnHouseAuditingRemark = ReturnHouseAuditingRemark;
-        }
-
         public int getState() {
             return State;
         }
@@ -502,68 +111,350 @@ public class ReportOrderDetailBean {
             this.State = State;
         }
 
-        public Object getRemark() {
-            return Remark;
+        public int getTotalAmount() {
+            return TotalAmount;
         }
 
-        public void setRemark(Object Remark) {
-            this.Remark = Remark;
+        public void setTotalAmount(int TotalAmount) {
+            this.TotalAmount = TotalAmount;
         }
 
-        public Object getStarTarget() {
-            return StarTarget;
+        public int getTaxAmount() {
+            return TaxAmount;
         }
 
-        public void setStarTarget(Object StarTarget) {
-            this.StarTarget = StarTarget;
+        public void setTaxAmount(int TaxAmount) {
+            this.TaxAmount = TaxAmount;
         }
 
-        public Object getStarTargetRemark() {
-            return StarTargetRemark;
+        public int getAchieveAmount() {
+            return AchieveAmount;
         }
 
-        public void setStarTargetRemark(Object StarTargetRemark) {
-            this.StarTargetRemark = StarTargetRemark;
+        public void setAchieveAmount(int AchieveAmount) {
+            this.AchieveAmount = AchieveAmount;
         }
 
-        public Object getPropertyConsultantName() {
-            return PropertyConsultantName;
+        public int getUnAchieveAmount() {
+            return UnAchieveAmount;
         }
 
-        public void setPropertyConsultantName(Object PropertyConsultantName) {
-            this.PropertyConsultantName = PropertyConsultantName;
+        public void setUnAchieveAmount(int UnAchieveAmount) {
+            this.UnAchieveAmount = UnAchieveAmount;
         }
 
-        public int getOriginStaffID() {
-            return OriginStaffID;
+        public int getBrokerageState() {
+            return BrokerageState;
         }
 
-        public void setOriginStaffID(int OriginStaffID) {
-            this.OriginStaffID = OriginStaffID;
+        public void setBrokerageState(int BrokerageState) {
+            this.BrokerageState = BrokerageState;
         }
 
-        public int getSellStaffID() {
-            return SellStaffID;
+        public List<NewHouseRunningsInfoShowListBean> getNewHouseRunningsInfoShowList() {
+            return NewHouseRunningsInfoShowList;
         }
 
-        public void setSellStaffID(int SellStaffID) {
-            this.SellStaffID = SellStaffID;
+        public void setNewHouseRunningsInfoShowList(List<NewHouseRunningsInfoShowListBean> NewHouseRunningsInfoShowList) {
+            this.NewHouseRunningsInfoShowList = NewHouseRunningsInfoShowList;
         }
 
-        public int getAgentID() {
-            return AgentID;
-        }
+        public static class NewHouseRunningsInfoShowListBean {
+            /**
+             * StyleID : 1
+             * ModuleName : 报备
+             * ModuleNameColor : 93B219
+             * ModuleIcon : 2
+             * ModuleIconColor : 93B219
+             * Title : 报备客户
+             * OperTime : 17-07-29 09:53
+             * ViceTitle : 审核通过
+             * ViceTitleColor : 93B219
+             * FilingAuditingRemark : ssss
+             * IsCameraButton : 0
+             * ImageType : 0
+             * ImageRemark :
+             * ImageList : [{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311114187765307.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":true,"CreatedTime":"2017-07-31T11:14:19.027","Id":39},{"GroupID":3,"InterfixID":2,"ImageType":1,"ImagePath":"/Images/BuildingsRunningsImages/","FileName":"201707311433408619410.jpg","ShowIndex":0,"Tag":"","Remark":"","IsLocked":false,"IsDeleted":false,"CreatedTime":"2017-07-31T14:33:41.127","Id":53}]
+             * IsViewButton : 0
+             * SortID : 1
+             */
 
-        public void setAgentID(int AgentID) {
-            this.AgentID = AgentID;
-        }
+            private int StyleID;
+            private String ModuleName;
+            private String ModuleNameColor;
+            private int ModuleIcon;
+            private String ModuleIconColor;
+            private String Title;
+            private String OperTime;
+            private String ViceTitle;
+            private String ViceTitleColor;
+            private String FilingAuditingRemark;
+            private int IsCameraButton;
+            private int ImageType;
+            private String ImageRemark;
+            private int IsViewButton;
+            private int SortID;
+            private List<ImageListBean> ImageList;
 
-        public int getId() {
-            return Id;
-        }
+            public int getStyleID() {
+                return StyleID;
+            }
 
-        public void setId(int Id) {
-            this.Id = Id;
+            public void setStyleID(int StyleID) {
+                this.StyleID = StyleID;
+            }
+
+            public String getModuleName() {
+                return ModuleName;
+            }
+
+            public void setModuleName(String ModuleName) {
+                this.ModuleName = ModuleName;
+            }
+
+            public String getModuleNameColor() {
+                return ModuleNameColor;
+            }
+
+            public void setModuleNameColor(String ModuleNameColor) {
+                this.ModuleNameColor = ModuleNameColor;
+            }
+
+            public int getModuleIcon() {
+                return ModuleIcon;
+            }
+
+            public void setModuleIcon(int ModuleIcon) {
+                this.ModuleIcon = ModuleIcon;
+            }
+
+            public String getModuleIconColor() {
+                return ModuleIconColor;
+            }
+
+            public void setModuleIconColor(String ModuleIconColor) {
+                this.ModuleIconColor = ModuleIconColor;
+            }
+
+            public String getTitle() {
+                return Title;
+            }
+
+            public void setTitle(String Title) {
+                this.Title = Title;
+            }
+
+            public String getOperTime() {
+                return OperTime;
+            }
+
+            public void setOperTime(String OperTime) {
+                this.OperTime = OperTime;
+            }
+
+            public String getViceTitle() {
+                return ViceTitle;
+            }
+
+            public void setViceTitle(String ViceTitle) {
+                this.ViceTitle = ViceTitle;
+            }
+
+            public String getViceTitleColor() {
+                return ViceTitleColor;
+            }
+
+            public void setViceTitleColor(String ViceTitleColor) {
+                this.ViceTitleColor = ViceTitleColor;
+            }
+
+            public String getFilingAuditingRemark() {
+                return FilingAuditingRemark;
+            }
+
+            public void setFilingAuditingRemark(String FilingAuditingRemark) {
+                this.FilingAuditingRemark = FilingAuditingRemark;
+            }
+
+            public int getIsCameraButton() {
+                return IsCameraButton;
+            }
+
+            public void setIsCameraButton(int IsCameraButton) {
+                this.IsCameraButton = IsCameraButton;
+            }
+
+            public int getImageType() {
+                return ImageType;
+            }
+
+            public void setImageType(int ImageType) {
+                this.ImageType = ImageType;
+            }
+
+            public String getImageRemark() {
+                return ImageRemark;
+            }
+
+            public void setImageRemark(String ImageRemark) {
+                this.ImageRemark = ImageRemark;
+            }
+
+            public int getIsViewButton() {
+                return IsViewButton;
+            }
+
+            public void setIsViewButton(int IsViewButton) {
+                this.IsViewButton = IsViewButton;
+            }
+
+            public int getSortID() {
+                return SortID;
+            }
+
+            public void setSortID(int SortID) {
+                this.SortID = SortID;
+            }
+
+            public List<ImageListBean> getImageList() {
+                return ImageList;
+            }
+
+            public void setImageList(List<ImageListBean> ImageList) {
+                this.ImageList = ImageList;
+            }
+
+            public static class ImageListBean {
+                /**
+                 * GroupID : 3
+                 * InterfixID : 2
+                 * ImageType : 1
+                 * ImagePath : /Images/BuildingsRunningsImages/
+                 * FileName : 201707311114187765307.jpg
+                 * ShowIndex : 0
+                 * Tag :
+                 * Remark :
+                 * IsLocked : false
+                 * IsDeleted : true
+                 * CreatedTime : 2017-07-31T11:14:19.027
+                 * Id : 39
+                 */
+
+                private int GroupID;
+                private int InterfixID;
+                private int ImageType;
+                private String ImagePath;
+                private String FileName;
+                private int ShowIndex;
+                private String Tag;
+                private String Remark;
+                private boolean IsLocked;
+                private boolean IsDeleted;
+                private String CreatedTime;
+                private int Id;
+
+                public ImageListBean(String imagePath, String fileName, int id) {
+                    ImagePath = imagePath;
+                    FileName = fileName;
+                    Id = id;
+                }
+
+                public int getGroupID() {
+                    return GroupID;
+                }
+
+                public void setGroupID(int GroupID) {
+                    this.GroupID = GroupID;
+                }
+
+                public int getInterfixID() {
+                    return InterfixID;
+                }
+
+                public void setInterfixID(int InterfixID) {
+                    this.InterfixID = InterfixID;
+                }
+
+                public int getImageType() {
+                    return ImageType;
+                }
+
+                public void setImageType(int ImageType) {
+                    this.ImageType = ImageType;
+                }
+
+                public String getImagePath() {
+                    return ImagePath;
+                }
+
+                public void setImagePath(String ImagePath) {
+                    this.ImagePath = ImagePath;
+                }
+
+                public String getFileName() {
+                    return FileName;
+                }
+
+                public void setFileName(String FileName) {
+                    this.FileName = FileName;
+                }
+
+                public int getShowIndex() {
+                    return ShowIndex;
+                }
+
+                public void setShowIndex(int ShowIndex) {
+                    this.ShowIndex = ShowIndex;
+                }
+
+                public String getTag() {
+                    return Tag;
+                }
+
+                public void setTag(String Tag) {
+                    this.Tag = Tag;
+                }
+
+                public String getRemark() {
+                    return Remark;
+                }
+
+                public void setRemark(String Remark) {
+                    this.Remark = Remark;
+                }
+
+                public boolean isIsLocked() {
+                    return IsLocked;
+                }
+
+                public void setIsLocked(boolean IsLocked) {
+                    this.IsLocked = IsLocked;
+                }
+
+                public boolean isIsDeleted() {
+                    return IsDeleted;
+                }
+
+                public void setIsDeleted(boolean IsDeleted) {
+                    this.IsDeleted = IsDeleted;
+                }
+
+                public String getCreatedTime() {
+                    return CreatedTime;
+                }
+
+                public void setCreatedTime(String CreatedTime) {
+                    this.CreatedTime = CreatedTime;
+                }
+
+                public int getId() {
+                    return Id;
+                }
+
+                public void setId(int Id) {
+                    this.Id = Id;
+                }
+            }
         }
     }
 }

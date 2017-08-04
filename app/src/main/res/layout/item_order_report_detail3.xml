@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+    <!--竖线-->
+    <View
+        android:layout_width="@dimen/d_1"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/d_8"
+        android:background="@color/white2"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_state"
+                    android:layout_width="@dimen/d_16"
+                    android:layout_height="@dimen/d_16"
+                    android:src="@mipmap/weidao" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10"
+                    android:text="报备"
+                    android:textColor="@color/system_color"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/d_10"
+                android:id="@+id/ll_deposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_30"
+                android:layout_marginTop="@dimen/d_10"
+                android:background="@drawable/edit_corners_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/d_10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/d_10"
+                        android:layout_toRightOf="@id/tv_title"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14" />
+
+                    <ImageView
+                        android:id="@+id/iv_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@mipmap/icon_camera" />
+                    <TextView
+                        android:id="@+id/tv_vicetitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_1"
+                    android:layout_marginTop="@dimen/d_10"
+                    android:background="@color/white2"></View>
+
+                <TextView
+                    android:id="@+id/tv_imageremark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10"
+                    android:text="请上传“认购确认单”照片" />
+
+                <ercs.com.ercshouseresources.view.MyGridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="@dimen/d_10"
+                    android:numColumns="3"
+                    android:verticalSpacing="@dimen/d_10"></ercs.com.ercshouseresources.view.MyGridView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

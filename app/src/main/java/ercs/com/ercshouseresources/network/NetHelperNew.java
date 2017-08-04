@@ -19,6 +19,9 @@ public class NetHelperNew {
     private static final String InsertNewCustomer = "/API/Organization/ttInsertNewCustomer";//添加客户
     private static final String InsertRunningsModel = "/API/NewHouse/ttInsertRunningsModel";//确认报备信息
     private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//报备订单详情
+    private static final String UploadImage = "/API/Common/ttUploadImageModel";//上传图片
+    private static final String DelImage = "/API/Common/ttDelImageModel";//上传图片
+    private static final String RunningsList = "/API/NewHouse/ttGetRunningsList";//获取报备列表
 
     /**
      *  登录接口
@@ -146,5 +149,54 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
+    }
+
+    /**
+     * 上传图片
+     * @param GroupID 图片组ID 3
+     * @param InterfixID 相关ID 主键
+     * @param ImageType 图片类型 参照ImageGroup表 1带看 2确认单 3 备案
+     * @param Imagedata 图片字符串 用Base64加密
+     * @param callback
+     */
+    public static void uploadImage(String GroupID ,String InterfixID,String ImageType,String Imagedata ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("GroupID",GroupID );
+        map.put("InterfixID",InterfixID);
+        map.put("ImageType",ImageType );
+        map.put("Imagedata",Imagedata );
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        Log.i("-->","ImageType:"+ImageType);
+        new HttpUtils().postNewJson(URL + UploadImage, json, callback);
+    }
+
+
+    /**
+     * 删除图片
+     * @param Id 图片id
+     * @param callback
+     */
+    public static void DelImage(String Id ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id",Id );
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        new HttpUtils().postNewJson(URL + DelImage, json, callback);
+    }
+
+    /**
+     * 报备订单列表
+     * @param PageIndex
+     * @param callback
+     */
+    public static void RunningsList(String PageIndex ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex",PageIndex);
+        map.put("PageSize","10");
+        map.put("KeyWord","" );
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        new HttpUtils().postNewJson(URL + RunningsList, json, callback);
     }
 }

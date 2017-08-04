@@ -17,7 +17,11 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.field.FieldClockInActivity;
+import ercs.com.ercshouseresources.bean.NewHousePicBean;
+import ercs.com.ercshouseresources.bean.ReportOrderDetailBean;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.OtherUitl;
+import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 import static ercs.com.ercshouseresources.util.OtherUitl.getBitmapDegree;
 import static ercs.com.ercshouseresources.util.OtherUitl.rotateBitmapByDegree;
@@ -27,41 +31,35 @@ import static ercs.com.ercshouseresources.util.OtherUitl.rotateBitmapByDegree;
  * Created by Administrator on 2017/7/28.
  */
 
-public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
+public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean>{
     private OnCancelPhotoListener onCancelPhotoListener;
 
     private boolean isCance=false;//是否显示删除图标
 
-    public boolean isCance() {
-        return isCance;
-    }
+
+
+
 
     public void setCance(boolean cance) {
         isCance = cance;
     }
 
-    public OrderReportPhotoGridAdapter(Context context, List<String> listData, OnCancelPhotoListener onCancelPhotoListener) {
+    public OrderReportPhotoGridAdapter(Context context, List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean> listData, OnCancelPhotoListener onCancelPhotoListener) {
         super(context, listData);
         this.onCancelPhotoListener = onCancelPhotoListener;
     }
 
     @Override
-    public View buildConvertView(LayoutInflater layoutInflater, String s, int position) {
+    public View buildConvertView(LayoutInflater layoutInflater, ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean picBean, int position) {
         return layoutInflater.inflate(R.layout.item_photo_gridview,null);
     }
 
     @Override
-    public void bindViewDatas(ViewHolder holder, String s, final int position) {
+    public void bindViewDatas(ViewHolder holder, final ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean picBean, final int position) {
         ImageView iv_photo = holder.getView(R.id.iv_photo);
-        Bitmap photoBmp = null;
-        try {
-            photoBmp = OtherUitl.getBitmapFormUri((Activity) context, Uri.fromFile(new File(s)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int degree = getBitmapDegree(s);
-        Bitmap newbitmap = rotateBitmapByDegree(photoBmp, degree);
-        iv_photo.setImageBitmap(newbitmap);
+
+            //网络图片
+            GlideUtil.loadImage(context, NetHelperNew.URL+picBean.getImagePath()+picBean.getFileName(), iv_photo,R.mipmap.ic_launcher,R.mipmap.ic_launcher);
 
        ImageView iv_cancel= holder.getView(R.id.iv_cancel);//删除
         if (isCance)
@@ -74,7 +72,7 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
         iv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onCancelPhotoListener.cancelPhoto(position);
+                onCancelPhotoListener.cancelPhoto(picBean.getId(),position);
             }
         });
     }
@@ -82,6 +80,6 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<String>{
 
     public interface OnCancelPhotoListener
     {
-        void cancelPhoto(int i);//删除图片
+        void cancelPhoto(int id,int pos);//删除图片
     }
 }

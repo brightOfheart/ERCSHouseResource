@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.CommissionDeservedAdapter;
 import ercs.com.ercshouseresources.adapter.CommissionExplainAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.util.OtherUitl;
@@ -40,6 +41,8 @@ public class CommissionExplainActivity extends AppCompatActivity {
     //带看奖励
     @BindView(R.id.tv_bandsawbrokerage)
     TextView tv_bandsawbrokerage;
+    @BindView(R.id.tv_salesmaninformation)
+    TextView tv_salesmaninformation;//业务员
     private CommissionExplainAdapter commissionExplainAdapter;//更改记录列表
     private List<CommissionExplainBean.DataBean.ModifyBuildingBrokerageLogListBean> recordlList;//更改记录列表数据
 
@@ -123,6 +126,7 @@ public class CommissionExplainActivity extends AppCompatActivity {
     private void initTitle() {
         TitleControl titleControl = new TitleControl(this);
         titleControl.setTitle(getString(R.string.str_commission));
+        tv_salesmaninformation.setText("咨询业务员 "+BaseApplication.loginBean.getData().getStaffList().get(0).getName()+" "+BaseApplication.loginBean.getData().getStaffList().get(0).getPhone());
     }
     @OnClick({R.id.rl_bottom})
     public void onClick(View view)
@@ -130,7 +134,7 @@ public class CommissionExplainActivity extends AppCompatActivity {
         switch (view.getId())
         {
             case R.id.rl_bottom:
-                OtherUitl.callPage(CommissionExplainActivity.this, "15245412554");
+                OtherUitl.callPage(CommissionExplainActivity.this, BaseApplication.loginBean.getData().getStaffList().get(0).getPhone());
                 break;
         }
     }
