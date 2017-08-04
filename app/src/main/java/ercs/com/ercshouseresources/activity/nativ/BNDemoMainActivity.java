@@ -30,26 +30,21 @@ import ercs.com.ercshouseresources.R;
 public class BNDemoMainActivity extends Activity {
 
     public static List<Activity> activityList = new LinkedList<Activity>();
-
     private static final String APP_FOLDER_NAME = "BNSDKSimpleDemo";
-
     private Button mWgsNaviBtn = null;
     private Button mGcjNaviBtn = null;
     private Button mBdmcNaviBtn = null;
     private Button mDb06ll = null;
     private String mSDCardPath = null;
-
     public static final String ROUTE_PLAN_NODE = "routePlanNode";
     public static final String SHOW_CUSTOM_ITEM = "showCustomItem";
     public static final String RESET_END_NODE = "resetEndNode";
     public static final String VOID_MODE = "voidMode";
-
     private final static String authBaseArr[] =
             { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION };
     private final static String authComArr[] = { Manifest.permission.READ_PHONE_STATE };
     private final static int authBaseRequestCode = 1;
     private final static int authComRequestCode = 2;
-    
     private boolean hasInitSuccess = false;
     private boolean hasRequestComAuth = false;
     @Override

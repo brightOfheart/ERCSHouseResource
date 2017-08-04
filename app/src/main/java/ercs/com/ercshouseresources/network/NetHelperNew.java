@@ -22,6 +22,7 @@ public class NetHelperNew {
     private static final String UploadImage = "/API/Common/ttUploadImageModel";//上传图片
     private static final String DelImage = "/API/Common/ttDelImageModel";//上传图片
     private static final String RunningsList = "/API/NewHouse/ttGetRunningsList";//获取报备列表
+    private static final String DYNAMIC = "/API/DynamicInterface/ttGetDynamicInterfaceListNewHouse";//动态
 
     /**
      *  登录接口
@@ -149,6 +150,22 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
+    }
+
+    /**
+     * 动态管理接口
+     *
+     * @param PageIndex PageSize BuildingID
+     * @param callback
+     */
+    public static void getDynamic(String PageIndex, String PageSize, String BuildingID, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", PageSize);
+        map.put("BuildingID", BuildingID);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + DYNAMIC, json, callback);
     }
 
     /**

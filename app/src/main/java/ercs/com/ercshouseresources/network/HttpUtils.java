@@ -3,10 +3,14 @@ package ercs.com.ercshouseresources.network;
 /**
  * Created by Administrator on 2017/6/21.
  */
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.receiver.CheckReceiver;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -16,9 +20,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
+
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.WindowManager;
 
 /**
  * okhttp请求
@@ -85,6 +96,7 @@ public class HttpUtils {
             }
         });
     }
+
     /**
      * 新房登录的json请求
      *
@@ -134,11 +146,13 @@ public class HttpUtils {
             public void onFailure(Call call, IOException e) {
                 onError(callback, e.getMessage());
                 e.printStackTrace();
+
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Headers requestHeaders = response.networkResponse().request().headers();
+                Log.d("reqe", response.code() + "");
                 Log.d("requestHeaders", response.headers().get("Token") + "");
                 if (response.isSuccessful()) {
                     onSuccess(callback, response.body().string());
@@ -170,15 +184,22 @@ public class HttpUtils {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Headers requestHeaders = response.networkResponse().request().headers();
-                Log.d("requestHeaders", response.headers().get("Token") + "");
+                Log.d("reqe", response.code() + "");
+                if (response.code() == 401)//表示Token失效
+                {
+                    BaseApplication.context.sendBroadcast(new Intent("401"));
+                }
                 if (response.isSuccessful()) {
                     onSuccess(callback, response.body().string());
                 } else {
                     onError(callback, response.message());
                 }
+
+
             }
         });
     }
+
     /**
      * post请求 map为body
      *
@@ -336,6 +357,7 @@ public class HttpUtils {
         }
 
         ;
+
         // 成功回调
         public abstract void onSuccess(String data);
 

@@ -69,6 +69,15 @@ public class NewHouseDetailBean extends BaseBean {
             private String Characteristic;
             private String BrandAdvantage;
             private String HaveProductComparison;
+            private String BuildingID;
+
+            public String getBuildingID() {
+                return BuildingID;
+            }
+
+            public void setBuildingID(String buildingID) {
+                BuildingID = buildingID;
+            }
 
             public String getPriceAdvantage() {
                 return PriceAdvantage;

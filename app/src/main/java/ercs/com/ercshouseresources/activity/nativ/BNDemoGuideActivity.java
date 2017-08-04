@@ -1,9 +1,6 @@
 package ercs.com.ercshouseresources.activity.nativ;
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 import com.baidu.navisdk.adapter.BNRouteGuideManager;
 import com.baidu.navisdk.adapter.BNRouteGuideManager.CustomizedLayerItem;
 import com.baidu.navisdk.adapter.BNRouteGuideManager.OnNavigationListener;
@@ -13,7 +10,6 @@ import com.baidu.navisdk.adapter.BaiduNaviCommonModule;
 import com.baidu.navisdk.adapter.NaviModuleFactory;
 import com.baidu.navisdk.adapter.NaviModuleImpl;
 import com.baidu.navisdk.adapter.BNRoutePlanNode.CoordinateType;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
@@ -21,11 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 import ercs.com.ercshouseresources.R;
-
-
 /**
  * 诱导界面
  * 

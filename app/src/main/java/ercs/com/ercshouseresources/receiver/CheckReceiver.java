@@ -1,0 +1,39 @@
+package ercs.com.ercshouseresources.receiver;
+
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
+import android.view.WindowManager;
+
+import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.view.dialog.CheckDialog;
+
+import static ercs.com.ercshouseresources.R.style.dialog;
+
+/**
+ * Created by Administrator on 2017/8/4.
+ * 监听是否重复登录的广播
+ */
+
+public class CheckReceiver extends BroadcastReceiver {
+    private  CheckDialog dialog;
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        if(intent.getAction().equals("401"))
+        {
+            if(dialog==null)
+            dialog=new CheckDialog(BaseApplication.context, R.style.dialog);
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+
+            if (!dialog.isShowing()){//此时提示框未显示
+                dialog.show();
+            }
+
+        }
+    }
+}

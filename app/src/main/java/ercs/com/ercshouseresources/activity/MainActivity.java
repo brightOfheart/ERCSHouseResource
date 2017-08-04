@@ -15,6 +15,7 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.fragment.HouseFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
 import ercs.com.ercshouseresources.fragment.ServiceFragment;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -51,6 +52,10 @@ public class MainActivity extends BaseActivity {
      * 初始化
      */
     private void initview() {
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         setBottomLabState(0);
         viewpager.setAdapter(new CustomLazyFragmentPagerAdapter(getSupportFragmentManager()));
     }

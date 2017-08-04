@@ -2,11 +2,14 @@ package ercs.com.ercshouseresources.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.IntentFilter;
+
 import com.baidu.mapapi.SDKInitializer;
 import java.util.ArrayList;
 import java.util.List;
 import ercs.com.ercshouseresources.bean.AreaBean;
 import ercs.com.ercshouseresources.newbean.LoginBean;
+import ercs.com.ercshouseresources.receiver.CheckReceiver;
 import ercs.com.ercshouseresources.service.LocationService;
 
 /**
@@ -44,6 +47,12 @@ public class BaseApplication extends Application {
         SDKInitializer.initialize(getApplicationContext());
 
         areas=new ArrayList<>();
+        /**
+         * 注册广播
+         */
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("401");
+        BaseApplication.context.registerReceiver(new CheckReceiver(), filter);
     }
 
 

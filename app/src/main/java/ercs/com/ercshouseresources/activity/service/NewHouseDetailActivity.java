@@ -108,7 +108,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale,R.id.ly_dt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left://返回点击事件
@@ -151,7 +151,10 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 String str9= newHouseDetailBean.getData().getBaseInfo().getHaveProductComparison();
                 ContentListActivity.start(NewHouseDetailActivity.this,str1,str2,str3,str4,str5,str6,str7,str8,str9);
                 break;
+            case R.id.ly_dt://返回点击事件
 
+                DynamicActivity.start(NewHouseDetailActivity.this,newHouseDetailBean.getData().getBaseInfo().getBuildingID());
+                break;
         }
     }
 

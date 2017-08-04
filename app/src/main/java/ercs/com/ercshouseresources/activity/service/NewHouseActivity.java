@@ -36,6 +36,7 @@ import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -121,6 +122,10 @@ public class NewHouseActivity extends AppCompatActivity {
      * 初始化
      */
     private void initview() {
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         loadingDialog = new LoadingDialog(this, 0);
         if(BaseApplication.loginBean.getData()!=null)
         tv_city.setText(BaseApplication.loginBean.getData().getCityName());
