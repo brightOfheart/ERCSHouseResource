@@ -94,7 +94,7 @@ public class NetHelperNew {
      */
     public static void getCustomersList(String UserID,String KeyWord , String PageIndex ,HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserID", "1");
+        map.put("UserID", UserID);
         map.put("KeyWord", KeyWord);
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
@@ -113,7 +113,7 @@ public class NetHelperNew {
      */
     public static void getInsertNewCustomer(String UserID,String Name , String CustomerPhoneList, String Sex   ,HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("UserID", "1");
+        map.put("UserID", UserID);
         map.put("Name", Name);
         map.put("CustomerPhoneList", CustomerPhoneList);
         map.put("Sex", Sex );
@@ -146,7 +146,7 @@ public class NetHelperNew {
      */
     public static void getReportingOrderDetail(String Id ,HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id","2" );
+        map.put("Id",Id );
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
