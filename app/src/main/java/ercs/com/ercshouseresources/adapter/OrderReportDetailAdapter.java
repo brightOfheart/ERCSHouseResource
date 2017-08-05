@@ -14,6 +14,7 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.ReportOrderDetailBean;
+import ercs.com.ercshouseresources.util.ToastUtil;
 
 /**
  * 报备订单详情
@@ -25,7 +26,7 @@ public class OrderReportDetailAdapter extends BaseAdapter {
     private Context context;
     private OnCamreaListener onCamreaListener;
 
-    private OrderReportPhotoGridAdapter orderReportPhotoGridAdapter;
+
     public OrderReportDetailAdapter(List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean> list, Context context, OnCamreaListener onCamreaListener) {
         this.list = list;
         this.context = context;
@@ -97,7 +98,14 @@ public class OrderReportDetailAdapter extends BaseAdapter {
             iv_camera.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onCamreaListener.getImageType(i,newHouseRunningsInfoShowListBean.getImageType());
+                    if (!(newHouseRunningsInfoShowListBean.getImageList().size()>6))
+                    {
+                        onCamreaListener.getImageType(i,newHouseRunningsInfoShowListBean.getImageType());
+                    }else
+                    {
+                        ToastUtil.showToast(context,"最多传六张图片");
+                    }
+
                 }
             });
 
@@ -153,17 +161,20 @@ public class OrderReportDetailAdapter extends BaseAdapter {
     }
 
 
+    /**
+     * 图片操作回调
+     */
     public interface OnCamreaListener
     {
         /**
-         *
+         *拍照
          * @param pos 索引
          * @param ImageType 图片类型
          */
         public void getImageType(int pos,int ImageType);
 
         /**
-         *
+         *删除图片
          * @param pos 在整个listview索引
          * @param id 图片id
          * @param gridPos 图片在grid的索引
