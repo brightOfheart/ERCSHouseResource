@@ -28,7 +28,7 @@ public class StartActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         startacvity();
-        downloadAreaList();
+      //  downloadAreaList();
     }
 
     /**

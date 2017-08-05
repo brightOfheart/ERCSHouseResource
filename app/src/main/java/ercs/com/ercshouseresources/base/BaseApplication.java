@@ -1,9 +1,7 @@
 package ercs.com.ercshouseresources.base;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.IntentFilter;
-
 import com.baidu.mapapi.SDKInitializer;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,8 @@ public class BaseApplication extends Application {
     public static final String DEPNAME = "depname";//本地保存登录人的职称
     public static final String AUTHORITY = "Authority";//本地保存登录人的权限 1 2显示 其它隐藏
     public static final String SUPERIORPHONE = "SuperiorPhone";//管理员电话
+    public static final String LOGINJSON = "loginjson";//存储登录后的json
+    public static final String TOKEN = "token";//存储登录后的Token
     public static String Token = "";//登录接口获取 除了登录其它接口需要添加的Token
     public static String NewToken = "";//新房登录接口获取 除了登录其它接口需要添加的Token
     public static int NewIsLogin = 0;//新房是否登录成功 默认0未成功

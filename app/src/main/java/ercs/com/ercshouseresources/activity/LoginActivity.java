@@ -10,10 +10,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.bean.LoginBean;
+import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
@@ -72,13 +73,26 @@ public class LoginActivity extends BaseActivity {
     private void initialize() {
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
-        if (spUtil.getInt(BaseApplication.ISSHOWPWD, 0) == 1)//判断是否显示密码
-            showContent(1);
+//        if (spUtil.getInt(BaseApplication.ISSHOWPWD, 0) == 1)//判断是否显示密码
+//            showContent(1);
+//        else
+//            showContent(0);
+//        if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)
+//            showId();
+        if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)//如果登录过
+        {
+            BaseApplication.Token=spUtil.getString(BaseApplication.TOKEN, "");
+            String json=spUtil.getString(BaseApplication.LOGINJSON, "");
+            BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
         else
-            showContent(0);
-        if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)
-            showId();
-        dialog = new LoadingDialog(LoginActivity.this, 0);
+        {
+            dialog = new LoadingDialog(LoginActivity.this, 0);
+        }
+
+
     }
 
     /**
@@ -142,6 +156,19 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
+     * 保存存储后的json
+     * @param json
+     */
+    private void saveJson(String json)
+    {
+        spUtil.putString(BaseApplication.LOGINJSON, json);
+    }
+    private void saveToken()
+    {
+        spUtil.putString(BaseApplication.TOKEN, BaseApplication.NewToken);
+    }
+
+    /**
      * 显示账号和密码
      */
     private void showId() {
@@ -155,21 +182,25 @@ public class LoginActivity extends BaseActivity {
      */
     private void login() {
         dialog.show();
-        NetHelper.login(getId(), getPwd(), new HttpUtils.HttpCallback() {
+        NetHelperNew.login(getId(), getPwd(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
-                if (loginBean.getType() == LOGINRIGHT) {
-                    saveIdPwd(loginBean.getData().getId() + "", getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority() + "", loginBean.getData().getSuperiorUser().getPhone());
+                if (loginBean.getType().equals("1")) {
+                   // saveIdPwd(loginBean.getData().getId() + "", getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority() + "", loginBean.getData().getSuperiorUser().getPhone());
                     saveLogin(1);
+                    saveJson(data);
+                    saveToken();
+                    BaseApplication.loginBean = loginBean;
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         ToastUtil.showToast(getApplicationContext(), loginBean.getContent());
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
+
                     }
                 });
 

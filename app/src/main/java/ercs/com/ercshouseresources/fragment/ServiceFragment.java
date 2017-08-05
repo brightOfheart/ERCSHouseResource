@@ -45,13 +45,14 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         View view = inflater.inflate(R.layout.fragment_service, container, false);
         ButterKnife.bind(this, view);
         dialog = new LoadingDialog(getContext(), 0);
-        if (BaseApplication.NewIsLogin == 0)//判断是否登录过
-        {
-            if (NetWorkUtil.check(getContext()))
-                getData();
-        } else {
-            initview();
-        }
+//        if (BaseApplication.NewIsLogin == 0)//判断是否登录过
+//        {
+//            if (NetWorkUtil.check(getContext()))
+//                getData();
+//        } else {
+//            initview();
+//        }
+        initview();
         return view;
 
     }
@@ -80,44 +81,44 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     /**
      * 访问登录接口
      */
-    private void getData() {
-        dialog.show();
-        NetHelperNew.login("13888888883", "123456", new HttpUtils.HttpCallback() {
-            @Override
-            public void onSuccess(String data) {
-                dialog.dismiss();
-                final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
-                if (loginBean.getType().equals("1")) {
-                    btn_login.setVisibility(View.GONE);
-                    BaseApplication.NewIsLogin = 1;
-                    BaseApplication.loginBean = loginBean;
-                    initview();
-                } else {
-                    btn_login.setVisibility(View.VISIBLE);
-                }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getContext(), loginBean.getContent());
-                    }
-                });
-            }
-
-            @Override
-            public void onError(final String msg) {
-                super.onError(msg);
-                dialog.dismiss();
-                btn_login.setVisibility(View.VISIBLE);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getContext(), msg);
-                    }
-                });
-            }
-        });
-
-    }
+//    private void getData() {
+//        dialog.show();
+//        NetHelperNew.login("13888888883", "123456", new HttpUtils.HttpCallback() {
+//            @Override
+//            public void onSuccess(String data) {
+//                dialog.dismiss();
+//                final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
+//                if (loginBean.getType().equals("1")) {
+//                    btn_login.setVisibility(View.GONE);
+//                    BaseApplication.NewIsLogin = 1;
+//                    BaseApplication.loginBean = loginBean;
+//                    initview();
+//                } else {
+//                    btn_login.setVisibility(View.VISIBLE);
+//                }
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ToastUtil.showToast(getContext(), loginBean.getContent());
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onError(final String msg) {
+//                super.onError(msg);
+//                dialog.dismiss();
+//                btn_login.setVisibility(View.VISIBLE);
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ToastUtil.showToast(getContext(), msg);
+//                    }
+//                });
+//            }
+//        });
+//
+//    }
 
     /**
      * 点击事件的处理
@@ -129,7 +130,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         switch (view.getId()) {
             case R.id.btn_login://登录失败的点击事件
                 if (NetWorkUtil.check(getContext()))
-                    getData();
+                  //  getData();
                 break;
 
         }

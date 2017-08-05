@@ -10,6 +10,7 @@ import android.view.WindowManager;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.view.dialog.CheckDialog;
 
 import static ercs.com.ercshouseresources.R.style.dialog;
@@ -20,20 +21,27 @@ import static ercs.com.ercshouseresources.R.style.dialog;
  */
 
 public class CheckReceiver extends BroadcastReceiver {
-    private  CheckDialog dialog;
+    private CheckDialog dialog;
+    private SPUtil spUtil;
+
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        if(intent.getAction().equals("401"))
-        {
-            if(dialog==null)
-            dialog=new CheckDialog(BaseApplication.context, R.style.dialog);
+        if (spUtil == null)
+            spUtil = new SPUtil(context, "fileName");
+        if (intent.getAction().equals("401")) {
+            saveLogin(0);
+            if (dialog == null)
+                dialog = new CheckDialog(BaseApplication.context, R.style.dialog);
             dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
 
-            if (!dialog.isShowing()){//此时提示框未显示
+            if (!dialog.isShowing()) {//此时提示框未显示
                 dialog.show();
             }
 
         }
+    }
+
+    private void saveLogin(int count) {
+        spUtil.putInt(BaseApplication.ISLOGIN, count);
     }
 }
