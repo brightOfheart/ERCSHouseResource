@@ -108,7 +108,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale,R.id.ly_dt})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale,R.id.ly_dt,R.id.fr_address,R.id.fr_zyfw})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left://返回点击事件
@@ -139,6 +139,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 break;
             case R.id.fr_setcycle://结算周期
                 SettlementCycleActivity.start(NewHouseDetailActivity.this, newHouseDetailBean.getData().getBaseInfo().getCommissionAccount());
+                break;
             case R.id.ly_sale://楼盘卖点
                 String str1 = newHouseDetailBean.getData().getBaseInfo().getPriceAdvantage();
                 String str2 = newHouseDetailBean.getData().getBaseInfo().getHouseTypeArea();
@@ -152,8 +153,15 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                 ContentListActivity.start(NewHouseDetailActivity.this,str1,str2,str3,str4,str5,str6,str7,str8,str9);
                 break;
             case R.id.ly_dt://返回点击事件
-
                 DynamicActivity.start(NewHouseDetailActivity.this,newHouseDetailBean.getData().getBaseInfo().getBuildingID());
+                break;
+            case R.id.fr_address://地址点击事件
+                MapActivity.start(this,Double.valueOf(newHouseDetailBean.getData().getBaseInfo().getY()),Double.valueOf(newHouseDetailBean.getData().getBaseInfo().getX()));
+
+                break;
+            case R.id.fr_zyfw://地址点击事件
+                ProConActivity.start(this,newHouseDetailBean.getData().getPropertyConsultantList());
+
                 break;
         }
     }

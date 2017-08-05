@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.service;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,10 +30,11 @@ public class DynamicActivity extends BaseActivity {
     @BindView(R.id.recyleview)
     LRecyclerView recyleview;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
-    private int PageIndex=1;
-    private int PageSize=10;
+    private int PageIndex = 1;
+    private int PageSize = 10;
     private LoadingDialog dialog;
     private DynamicBean dynamicBean;
+
     /**
      * 页面跳转
      */
@@ -41,6 +43,7 @@ public class DynamicActivity extends BaseActivity {
         intent.putExtra("id", id);
         mactivity.startActivity(intent);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,7 @@ public class DynamicActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         getData();
-        initview();
+
     }
 
     /**
@@ -73,16 +76,17 @@ public class DynamicActivity extends BaseActivity {
         recyleview.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                PageIndex=1;
-                NetHelperNew.getDynamic(PageIndex+"", PageSize+"","1", new HttpUtils.HttpCallback() {
+                PageIndex = 1;
+                NetHelperNew.getDynamic(PageIndex + "", PageSize + "", "1", new HttpUtils.HttpCallback() {
                     @Override
                     public void onSuccess(String data) {
                         dialog.dismiss();
-                         dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
+                        dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
 
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
                                 mLRecyclerViewAdapter.notifyDataSetChanged();
                                 ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
 
@@ -103,7 +107,7 @@ public class DynamicActivity extends BaseActivity {
             @Override
             public void onLoadMore() {
                 PageIndex++;
-                NetHelperNew.getDynamic(PageIndex+"", PageSize+"","1", new HttpUtils.HttpCallback() {
+                NetHelperNew.getDynamic(PageIndex + "", PageSize + "", "1", new HttpUtils.HttpCallback() {
                     @Override
                     public void onSuccess(String data) {
                         dialog.dismiss();
@@ -111,6 +115,7 @@ public class DynamicActivity extends BaseActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
                                 mLRecyclerViewAdapter.notifyDataSetChanged();
                                 ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
 
@@ -134,11 +139,14 @@ public class DynamicActivity extends BaseActivity {
      */
     private void getData() {
         dialog.show();
-        NetHelperNew.getDynamic(PageIndex+"", PageSize+"","1", new HttpUtils.HttpCallback() {
+        NetHelperNew.getDynamic(PageIndex + "", PageSize + "", "1", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 dialog.dismiss();
                 dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
+                if (dynamicBean.getType().equals("1")) {
+                    initview();
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

@@ -274,6 +274,15 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".activity.service.OrderReportDetailActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" ></activity>
+        <!-- 动态详情页面 -->
+        <activity
+            android:name=".activity.service.DynamicDetailActivity"
+            android:theme="@style/AppTheme"  />
+        <!-- 地图页面 -->
+        <activity
+            android:name=".activity.service.MapActivity"
+            android:theme="@style/AppTheme"  />
+
     </application>
 
 </manifest>

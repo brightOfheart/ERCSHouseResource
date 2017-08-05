@@ -1,60 +1,42 @@
 package ercs.com.ercshouseresources.adapter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import com.king.base.adapter.ViewHolderRecyclerAdapter;
+import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
+
 import java.util.List;
+
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 
 
 /**
  * Created by Administrator on 2017/7/24.
  */
 
-public class ProConAdapter extends ViewHolderRecyclerAdapter<String> {
+public class ProConAdapter extends ViewHolderAdapter<NewHouseDetailBean.DataBean.PropertyConsultantList> {
     private Context context;
     private Activity activity;
 
-    public ProConAdapter(Activity activity, Context context, List<String> listData) {
+    public ProConAdapter(Activity activity, Context context, List<NewHouseDetailBean.DataBean.PropertyConsultantList> listData) {
         super(context, listData);
         this.context = context;
         this.activity = activity;
     }
 
     @Override
-    public View buildConvertView(LayoutInflater layoutInflater, int viewType) {
+    public View buildConvertView(LayoutInflater layoutInflater, NewHouseDetailBean.DataBean.PropertyConsultantList dataBean, int position) {
         return inflate(R.layout.item_procon);
     }
 
     @Override
-    public void bindViewDatas(final ViewHolder holder, String datas, final int position) {
-//        holder.setText(R.id.tv_name, datas.getName());
-//        GlideUtil.loadCircleImage(NetHelper.URL + datas.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                OtherUitl.callPage(context, datas.getPhone());
-////                BottomDialog bottomDialog = new BottomDialog(activity, new BottomDialog.OnSelectListener() {
-////
-////                    @Override
-////                    public void callphone() {//拨打电话
-////                        OtherUitl.callPage(context, datas.getPhone());
-////                    }
-////
-////                    @Override
-////                    public void selectattendance() {//查看考勤
-////
-////                    }
-////
-////                    @Override
-////                    public void selectfield() {//查看外勤
-////
-////                    }
-////                }, datas.getName());
-////                bottomDialog.show();
-//            }
-//        });
+    public void bindViewDatas(final ViewHolder holder, NewHouseDetailBean.DataBean.PropertyConsultantList datas, final int position) {
+        holder.setText(R.id.tv_x, datas.getName().substring(0, 1));
+        holder.setText(R.id.tv_name, datas.getName() + "  " + datas.getPhone());
+        holder.setText(R.id.tv_type, datas.getDuties());
+
     }
 }

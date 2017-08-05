@@ -509,7 +509,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/d_10"
-                android:paddingTop="@dimen/d_10">
+                android:paddingTop="@dimen/d_10"
+                android:id="@+id/fr_address">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -555,7 +556,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/d_10"
-                android:paddingTop="@dimen/d_10">
+                android:paddingTop="@dimen/d_10"
+                android:id="@+id/fr_zyfw">
 
                 <LinearLayout
                     android:layout_width="match_parent"

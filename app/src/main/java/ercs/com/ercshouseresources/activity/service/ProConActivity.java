@@ -1,9 +1,15 @@
 package ercs.com.ercshouseresources.activity.service;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.ListView;
+
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -11,6 +17,7 @@ import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.ProConAdapter;
+import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 
@@ -21,9 +28,18 @@ import ercs.com.ercshouseresources.util.TitleControl;
 
 public class ProConActivity extends BaseActivity {
     @BindView(R.id.recyleview)
-    LRecyclerView recyleview;
-    private LRecyclerViewAdapter mLRecyclerViewAdapter;
+    ListView recyleview;
 
+    /**
+     * 页面跳转
+     */
+    public static void start(Activity mactivity, List<NewHouseDetailBean.DataBean.PropertyConsultantList> list) {
+        Intent intent = new Intent(mactivity, ProConActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("serinfo", (Serializable) list);
+        intent.putExtras(bundle);
+        mactivity.startActivity(intent);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +62,14 @@ public class ProConActivity extends BaseActivity {
      * 初始化
      */
     private void initview() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("" + i);
-        }
-        mLRecyclerViewAdapter = new LRecyclerViewAdapter(new ProConAdapter(ProConActivity.this, this, list));
-        recyleview.setLayoutManager(new LinearLayoutManager(this));
-        recyleview.setAdapter(mLRecyclerViewAdapter);
-        recyleview.setPullRefreshEnabled(false);
+
+
+        recyleview.setAdapter(new ProConAdapter(ProConActivity.this, this, getList()));
+    }
+
+    private List<NewHouseDetailBean.DataBean.PropertyConsultantList> getList()
+    {
+
+        return (List<NewHouseDetailBean.DataBean.PropertyConsultantList>) getIntent().getSerializableExtra("serinfo");
     }
 }

@@ -1,5 +1,6 @@
 package ercs.com.ercshouseresources.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -22,7 +23,15 @@ public class NewHouseDetailBean extends BaseBean {
         private BaseInfoBean BaseInfo;
         private String AreaName;
         private List<HouseTypeListBean> HouseTypeList;
+        private List<PropertyConsultantList> PropertyConsultantList;
 
+        public List<DataBean.PropertyConsultantList> getPropertyConsultantList() {
+            return PropertyConsultantList;
+        }
+
+        public void setPropertyConsultantList(List<DataBean.PropertyConsultantList> propertyConsultantList) {
+            PropertyConsultantList = propertyConsultantList;
+        }
 
         public BaseInfoBean getBaseInfo() {
             return BaseInfo;
@@ -48,6 +57,89 @@ public class NewHouseDetailBean extends BaseBean {
             HouseTypeList = houseTypeList;
         }
 
+        public class PropertyConsultantList implements Serializable {
+            private String BuildingID;
+            private String Name;
+            private String Sex;
+            private String Phone;
+            private String Duties;
+            private String ShowIndex;
+            private String CreateStaffID;
+            private String CreatedTime;
+            private String Id;
+
+            public String getBuildingID() {
+                return BuildingID;
+            }
+
+            public void setBuildingID(String buildingID) {
+                BuildingID = buildingID;
+            }
+
+            public String getName() {
+                return Name;
+            }
+
+            public void setName(String name) {
+                Name = name;
+            }
+
+            public String getSex() {
+                return Sex;
+            }
+
+            public void setSex(String sex) {
+                Sex = sex;
+            }
+
+            public String getPhone() {
+                return Phone;
+            }
+
+            public void setPhone(String phone) {
+                Phone = phone;
+            }
+
+            public String getDuties() {
+                return Duties;
+            }
+
+            public void setDuties(String duties) {
+                Duties = duties;
+            }
+
+            public String getShowIndex() {
+                return ShowIndex;
+            }
+
+            public void setShowIndex(String showIndex) {
+                ShowIndex = showIndex;
+            }
+
+            public String getCreateStaffID() {
+                return CreateStaffID;
+            }
+
+            public void setCreateStaffID(String createStaffID) {
+                CreateStaffID = createStaffID;
+            }
+
+            public String getCreatedTime() {
+                return CreatedTime;
+            }
+
+            public void setCreatedTime(String createdTime) {
+                CreatedTime = createdTime;
+            }
+
+            public String getId() {
+                return Id;
+            }
+
+            public void setId(String id) {
+                Id = id;
+            }
+        }
 
 
         public class BaseInfoBean {
@@ -70,6 +162,24 @@ public class NewHouseDetailBean extends BaseBean {
             private String BrandAdvantage;
             private String HaveProductComparison;
             private String BuildingID;
+            private String X;
+            private String Y;
+
+            public String getX() {
+                return X;
+            }
+
+            public void setX(String x) {
+                X = x;
+            }
+
+            public String getY() {
+                return Y;
+            }
+
+            public void setY(String y) {
+                Y = y;
+            }
 
             public String getBuildingID() {
                 return BuildingID;

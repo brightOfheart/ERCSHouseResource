@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|center"
             android:layout_marginRight="@dimen/d_16"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:visibility="invisible"/>
     </FrameLayout>
 
     <LinearLayout

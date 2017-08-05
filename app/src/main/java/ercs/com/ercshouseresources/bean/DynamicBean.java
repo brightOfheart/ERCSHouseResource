@@ -23,7 +23,7 @@ public class DynamicBean extends BaseBean {
         private String Title;
         private String Subject;
         private String ReleaseTime;
-        private List<ImagePathBean> ImagePath;
+        private List<String> ImagePath;
 
         public String getId() {
             return Id;
@@ -57,114 +57,12 @@ public class DynamicBean extends BaseBean {
             ReleaseTime = releaseTime;
         }
 
-        public List<ImagePathBean> getImagePath() {
+        public List<String> getImagePath() {
             return ImagePath;
         }
 
-        public void setImagePath(List<ImagePathBean> imagePath) {
+        public void setImagePath(List<String> imagePath) {
             ImagePath = imagePath;
-        }
-
-        public class ImagePathBean {
-            private String GroupID;
-            private String InterfixID;
-            private String ImageType;
-            private String ImagePath;
-            private String FileName;
-            private String ShowIndex;
-            private String Tag;
-            private String Remark;
-            private String IsLocked;
-            private String IsDeleted;
-            private String CreatedTime;
-
-            public String getGroupID() {
-                return GroupID;
-            }
-
-            public void setGroupID(String groupID) {
-                GroupID = groupID;
-            }
-
-            public String getInterfixID() {
-                return InterfixID;
-            }
-
-            public void setInterfixID(String interfixID) {
-                InterfixID = interfixID;
-            }
-
-            public String getImageType() {
-                return ImageType;
-            }
-
-            public void setImageType(String imageType) {
-                ImageType = imageType;
-            }
-
-            public String getImagePath() {
-                return ImagePath;
-            }
-
-            public void setImagePath(String imagePath) {
-                ImagePath = imagePath;
-            }
-
-            public String getFileName() {
-                return FileName;
-            }
-
-            public void setFileName(String fileName) {
-                FileName = fileName;
-            }
-
-            public String getShowIndex() {
-                return ShowIndex;
-            }
-
-            public void setShowIndex(String showIndex) {
-                ShowIndex = showIndex;
-            }
-
-            public String getTag() {
-                return Tag;
-            }
-
-            public void setTag(String tag) {
-                Tag = tag;
-            }
-
-            public String getIsLocked() {
-                return IsLocked;
-            }
-
-            public void setIsLocked(String isLocked) {
-                IsLocked = isLocked;
-            }
-
-            public String getRemark() {
-                return Remark;
-            }
-
-            public void setRemark(String remark) {
-                Remark = remark;
-            }
-
-            public String getIsDeleted() {
-                return IsDeleted;
-            }
-
-            public void setIsDeleted(String isDeleted) {
-                IsDeleted = isDeleted;
-            }
-
-            public String getCreatedTime() {
-                return CreatedTime;
-            }
-
-            public void setCreatedTime(String createdTime) {
-                CreatedTime = createdTime;
-            }
         }
     }
 }

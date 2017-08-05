@@ -5,7 +5,7 @@
     <include
         android:id="@+id/title"
         layout="@layout/include_title" />
-    <com.github.jdsjlzx.recyclerview.LRecyclerView
+    <ListView
         android:id="@+id/recyleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
