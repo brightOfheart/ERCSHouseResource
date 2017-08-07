@@ -13,7 +13,6 @@ import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
-import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
@@ -73,26 +72,34 @@ public class LoginActivity extends BaseActivity {
     private void initialize() {
         if (spUtil == null)
             spUtil = new SPUtil(this, "fileName");
-//        if (spUtil.getInt(BaseApplication.ISSHOWPWD, 0) == 1)//判断是否显示密码
-//            showContent(1);
-//        else
-//            showContent(0);
+
 //        if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)
 //            showId();
         if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)//如果登录过
         {
-            BaseApplication.Token=spUtil.getString(BaseApplication.TOKEN, "");
-            String json=spUtil.getString(BaseApplication.LOGINJSON, "");
+            BaseApplication.Token = spUtil.getString(BaseApplication.TOKEN, "");
+            String json = spUtil.getString(BaseApplication.LOGINJSON, "");
             BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-        }
-        else
-        {
+        } else {
             dialog = new LoadingDialog(LoginActivity.this, 0);
         }
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(spUtil.getString(BaseApplication.ID,"").length()>0)
+        {
+            showId();
+        }
+        if (spUtil.getInt(BaseApplication.ISSHOWPWD, 0) == 1)//判断是否显示密码
+            showContent(1);
+        else
+            showContent(0);
     }
 
     /**
@@ -156,15 +163,23 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
+     * 保存账号和密码
+     */
+    private void saveIdpwd(String id,String pwd)
+    {
+        spUtil.putString(BaseApplication.PHONE, id);
+        spUtil.putString(BaseApplication.PWD, pwd);
+    }
+    /**
      * 保存存储后的json
+     *
      * @param json
      */
-    private void saveJson(String json)
-    {
+    private void saveJson(String json) {
         spUtil.putString(BaseApplication.LOGINJSON, json);
     }
-    private void saveToken()
-    {
+
+    private void saveToken() {
         spUtil.putString(BaseApplication.TOKEN, BaseApplication.NewToken);
     }
 
@@ -188,10 +203,11 @@ public class LoginActivity extends BaseActivity {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
                 if (loginBean.getType().equals("1")) {
-                   // saveIdPwd(loginBean.getData().getId() + "", getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority() + "", loginBean.getData().getSuperiorUser().getPhone());
+                    // saveIdPwd(loginBean.getData().getId() + "", getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority() + "", loginBean.getData().getSuperiorUser().getPhone());
                     saveLogin(1);
                     saveJson(data);
                     saveToken();
+                    saveIdpwd(getId(),getPwd());
                     BaseApplication.loginBean = loginBean;
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();

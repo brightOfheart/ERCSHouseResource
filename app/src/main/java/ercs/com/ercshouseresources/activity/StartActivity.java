@@ -1,19 +1,15 @@
 package ercs.com.ercshouseresources.activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.RadioGroup;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.AreaBean;
-import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
-import ercs.com.ercshouseresources.util.ToastUtil;
+
 
 /**
  * Created by Administrator on 2017/6/21.

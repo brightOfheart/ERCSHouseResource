@@ -62,9 +62,12 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
      */
     private void initview() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            list.add("" + i);
-        }
+        list.add("中介");
+        list.add("新房");
+        list.add("低价房");
+        list.add("装修");
+        list.add("金融");
+        list.add("个人中心");
         gridview.setAdapter(new ServiceAdapter(getContext(), list));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,8 +133,8 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         switch (view.getId()) {
             case R.id.btn_login://登录失败的点击事件
                 if (NetWorkUtil.check(getContext()))
-                  //  getData();
-                break;
+                    //  getData();
+                    break;
 
         }
     }

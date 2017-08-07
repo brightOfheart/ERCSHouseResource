@@ -1,14 +1,10 @@
 package ercs.com.ercshouseresources.adapter;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.king.base.adapter.ViewHolderAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 
 /**
@@ -31,7 +27,7 @@ public class ServiceAdapter extends ViewHolderAdapter<String> {
 
     @Override
     public void bindViewDatas(ViewHolder holder, String string, final int position) {
-//        holder.setText(R.id.tv_date, string);
+         holder.setText(R.id.tv_title, string);
 
     }
 }
