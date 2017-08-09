@@ -8,7 +8,6 @@ import android.view.View;
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
@@ -17,13 +16,12 @@ import ercs.com.ercshouseresources.view.dialog.CheapConfirmationClientsDialog;
 import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
 
 /**
- * 报备客户列表
- * Created by Administrator on 2017/7/24.
+ * Created by Administrator on 2017/8/9.
  */
 
-public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<CustomersListBean.DataBean> {
+public class CheapReportingClientsAdapter  extends ViewHolderRecyclerAdapter<CustomersListBean.DataBean> {
     private String BuildingID;
-    public ReportingClientsAdapter(Context context, List<CustomersListBean.DataBean> listData,String BuildingID) {
+    public CheapReportingClientsAdapter(Context context, List<CustomersListBean.DataBean> listData, String BuildingID) {
         super(context, listData);
         this.BuildingID=BuildingID;
     }
@@ -38,10 +36,10 @@ public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<Customers
 
         holder.setText(R.id.tv_name,dataBean.getName());
         if (dataBean.getPhoneList().get(0)!=null)
-        holder.setText(R.id.tv_tel,dataBean.getPhoneList().get(0).getPhone());
+            holder.setText(R.id.tv_tel,dataBean.getPhoneList().get(0).getPhone());
 
         if (!"".equals(dataBean.getName()))
-        holder.setText(R.id.tv_title,dataBean.getName().substring(0,1));
+            holder.setText(R.id.tv_title,dataBean.getName().substring(0,1));
 
         if (dataBean.getSex()==0)
         {
@@ -58,8 +56,9 @@ public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<Customers
             @Override
             public void onClick(View view) {
 
-                ConfirmationClientsDialog confirmationClientsDialog = new ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
+                CheapConfirmationClientsDialog confirmationClientsDialog = new CheapConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
                 confirmationClientsDialog.show();
+
             }
         });
     }

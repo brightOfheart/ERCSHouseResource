@@ -54,6 +54,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -272,17 +273,53 @@
         <activity
             android:name=".activity.service.OrderReportListActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <activity android:name=".activity.service.OrderReportDetailActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" ></activity>
+        <activity
+            android:name=".activity.service.OrderReportDetailActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
         <!-- 动态详情页面 -->
         <activity
             android:name=".activity.service.DynamicDetailActivity"
-            android:theme="@style/AppTheme"  />
+            android:theme="@style/AppTheme" />
         <!-- 地图页面 -->
         <activity
             android:name=".activity.service.MapActivity"
-            android:theme="@style/AppTheme"  />
-
+            android:theme="@style/AppTheme" />
+        <!-- 低价房 -->
+        <activity
+            android:name=".activity.cheaproom.CheapRoomListActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房详情页 -->
+        <activity
+            android:name=".activity.cheaproom.CheapRoomDetailActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 佣金说明 -->
+        <activity
+            android:name=".activity.cheaproom.CommissionDescription"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房规则 -->
+        <activity
+            android:name=".activity.cheaproom.CheapRoomRuleActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 贷款规则 -->
+        <activity
+            android:name=".activity.cheaproom.LoanRuleActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 小区详情 -->
+        <activity
+            android:name=".activity.cheaproom.ResidentialDetailActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 小区卖点 -->
+        <activity
+            android:name=".activity.cheaproom.ResidePayActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房动态 -->
+        <activity
+            android:name=".activity.cheaproom.CheapDynamicActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房报备客户 -->
+        <activity
+            android:name=".activity.cheaproom.CheapReportingClientsActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

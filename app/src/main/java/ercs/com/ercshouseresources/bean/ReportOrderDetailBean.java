@@ -64,11 +64,36 @@ public class ReportOrderDetailBean {
         private String UserName;
         private String UserPhone;
         private int State;
-        private int TotalAmount;
-        private int TaxAmount;
-        private int AchieveAmount;
-        private int UnAchieveAmount;
+        private String TotalAmount;
+        private String TaxAmount;
+        private String AchieveAmount;
+        private String UnAchieveAmount;
         private int BrokerageState;
+
+        public String getTotalAmount() {
+            return TotalAmount;
+        }
+
+        public void setTotalAmount(String totalAmount) {
+            TotalAmount = totalAmount;
+        }
+
+        public String getUnAchieveAmount() {
+            return UnAchieveAmount;
+        }
+
+        public void setUnAchieveAmount(String unAchieveAmount) {
+            UnAchieveAmount = unAchieveAmount;
+        }
+
+        public String getAchieveAmount() {
+            return AchieveAmount;
+        }
+
+        public void setAchieveAmount(String achieveAmount) {
+            AchieveAmount = achieveAmount;
+        }
+
         private List<NewHouseRunningsInfoShowListBean> NewHouseRunningsInfoShowList;
 
         public int getId() {
@@ -111,37 +136,17 @@ public class ReportOrderDetailBean {
             this.State = State;
         }
 
-        public int getTotalAmount() {
-            return TotalAmount;
-        }
 
-        public void setTotalAmount(int TotalAmount) {
-            this.TotalAmount = TotalAmount;
-        }
 
-        public int getTaxAmount() {
+        public String getTaxAmount() {
             return TaxAmount;
         }
 
-        public void setTaxAmount(int TaxAmount) {
+        public void setTaxAmount(String TaxAmount) {
             this.TaxAmount = TaxAmount;
         }
 
-        public int getAchieveAmount() {
-            return AchieveAmount;
-        }
 
-        public void setAchieveAmount(int AchieveAmount) {
-            this.AchieveAmount = AchieveAmount;
-        }
-
-        public int getUnAchieveAmount() {
-            return UnAchieveAmount;
-        }
-
-        public void setUnAchieveAmount(int UnAchieveAmount) {
-            this.UnAchieveAmount = UnAchieveAmount;
-        }
 
         public int getBrokerageState() {
             return BrokerageState;

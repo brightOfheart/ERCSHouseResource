@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +10,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.cheaproom.CheapRoomListActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
@@ -72,9 +76,13 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                startActivity(new Intent(getActivity(), NewHouseActivity.class));
-
+                if (i == 0) {
+                } else if (i == 1)//新房
+                    startActivity(new Intent(getActivity(), NewHouseActivity.class));
+                else if (i == 2)//低价房
+                    startActivity(new Intent(getActivity(), CheapRoomListActivity.class));
+                else {
+                }
             }
         });
 

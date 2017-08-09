@@ -169,10 +169,10 @@ public class OrderReportDetailActivity extends AppCompatActivity {
 
         tv_name.setText(reportOrderDetailBean.getData().getUserName());
         tv_tel.setText(reportOrderDetailBean.getData().getUserPhone());
-        tv_totalamount.setText(reportOrderDetailBean.getData().getTotalAmount()+"元");
-        tv_achieveamount.setText(reportOrderDetailBean.getData().getAchieveAmount()+"元");
-        tv_taxamount.setText(reportOrderDetailBean.getData().getTaxAmount()+"元");
-        tv_unachieveamount.setText(reportOrderDetailBean.getData().getUnAchieveAmount()+"元");
+        tv_totalamount.setText(reportOrderDetailBean.getData().getTotalAmount());
+        tv_achieveamount.setText(reportOrderDetailBean.getData().getAchieveAmount());
+        tv_taxamount.setText(reportOrderDetailBean.getData().getTaxAmount());
+        tv_unachieveamount.setText(reportOrderDetailBean.getData().getUnAchieveAmount());
 
         switch (reportOrderDetailBean.getData().getBrokerageState())
         {

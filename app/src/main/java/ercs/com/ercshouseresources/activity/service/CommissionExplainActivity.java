@@ -56,8 +56,7 @@ public class CommissionExplainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commission_explain);
         ButterKnife.bind(this);
         initTitle();
-
-         commissionExplainBean = MyGson.getInstance().fromJson(getjsonString(), CommissionExplainBean.class);
+        commissionExplainBean = MyGson.getInstance().fromJson(getjsonString(), CommissionExplainBean.class);
         initListview();
         initdeserved();
 
@@ -108,7 +107,6 @@ public class CommissionExplainActivity extends AppCompatActivity {
      */
     private void initdeserved() {
         deservedList=new ArrayList<>();
-
         commissionDeservedAdapter=new CommissionDeservedAdapter(this,deservedList,commissionExplainBean.getData().getBaseInfo().getCommissionAccount());
         listview_deserved.setAdapter(commissionDeservedAdapter);
     }

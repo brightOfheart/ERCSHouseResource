@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/system_color"
+        android:orientation="horizontal"
+        android:padding="@dimen/d_10">
+        <ImageView
+            android:id="@+id/title_left"
+            android:layout_width="@dimen/img_size1"
+            android:layout_height="@dimen/img_size1"
+            android:scaleType="fitXY"
+            android:background="@mipmap/goback"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/d_5"
+            android:layout_marginRight="@dimen/d_5"
+            />
+
+        <LinearLayout
+            android:layout_width="@dimen/d_0"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/edit_darkgreen_bg"
+            android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_search"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="请输入关键字查询"
+                android:background="@null"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:imeOptions="actionSearch"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginRight="@dimen/d_10"
+            android:layout_marginLeft="@dimen/d_10"
+            android:drawablePadding="@dimen/d_5"
+            android:drawableLeft="@mipmap/dizhitubiao"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/d_14"
+        android:paddingTop="@dimen/d_14">
+
+        <LinearLayout
+            android:id="@+id/ly_area"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择区域" />
+
+            <ImageView
+                android:layout_marginLeft="@dimen/d_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/down_icon" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="@dimen/d_1"
+            android:layout_height="match_parent"
+            android:background="@color/white2"/>
+        <LinearLayout
+            android:id="@+id/ly_housingtype"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="房源类型" />
+
+            <ImageView
+                android:layout_marginLeft="@dimen/d_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/down_icon" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/recyleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
