@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.service;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,12 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.stx.xhb.xbanner.XBanner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

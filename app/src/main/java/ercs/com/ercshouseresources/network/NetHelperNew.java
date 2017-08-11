@@ -28,7 +28,8 @@ public class NetHelperNew {
     private static final String RunningsList = "/API/NewHouse/ttGetRunningsList";//获取报备列表
     private static final String DYNAMIC = "/API/DynamicInterface/ttGetDynamicInterfaceListNewHouse";//动态
     private static final String CHEAPDYNAMIC = "/API/DynamicInterface/ttGetDynamicInterfaceListLowPriceHouse";//低价房动态
-
+    private static final String RENOVATIONLIST = "/API/Decoration/ttGetDecorationCompanyList";//装修列表
+    private static final String RENOVATIONLISTDETAIL = "/API/Decoration/ttGetDecorationCompanyInfo";//装修列表详情
     /**
      *  登录接口
      * @param LoginName
@@ -300,5 +301,33 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json",json);
         new HttpUtils().postNewJson(URL + RunningsList, json, callback);
+    }
+
+    /**
+     * 获取装修列表
+     * @param PageIndex
+     * @param callback
+     */
+    public static void getRenovationList(String PageIndex ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex",PageIndex);
+        map.put("PageSize","20");
+        map.put("KeyWord","");
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        new HttpUtils().postNewJson(URL + RENOVATIONLIST, json, callback);
+    }
+
+    /**
+     * 装修列表详情
+     * @param Id
+     * @param callback
+     */
+    public static void getRenovationListDetail(String Id ,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id",Id);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json",json);
+        new HttpUtils().postNewJson(URL + RENOVATIONLISTDETAIL, json, callback);
     }
 }

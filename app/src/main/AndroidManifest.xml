@@ -320,6 +320,42 @@
         <activity
             android:name=".activity.cheaproom.CheapReportingClientsActivity"
             android:theme="@style/AppTheme" />
+        <!-- 装修列表 -->
+        <activity
+            android:name=".activity.renovation.RenovationListActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修列表详情 -->
+        <activity
+            android:name=".activity.renovation.RenovationDetailActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修佣金说明 -->
+        <activity
+            android:name=".activity.renovation.CommissionDesActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修推荐规则 -->
+        <activity
+            android:name=".activity.renovation.Ren_RecRuleActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修成交奖励 -->
+        <activity
+            android:name=".activity.renovation.Ren_ClosingBonusActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修的结算周期 -->
+        <activity
+            android:name=".activity.renovation.Ren_SettlementCycleActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修的公司简介 -->
+        <activity
+            android:name=".activity.renovation.Ren_companyIntroActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修的报备客户 -->
+        <activity
+            android:name=".activity.renovation.Ren_ReportingClientsActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修订单 -->
+        <activity
+            android:name=".activity.renovation.Ren_OrderActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

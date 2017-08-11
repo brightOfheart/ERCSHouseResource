@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.cheaproom.CheapRoomListActivity;
+import ercs.com.ercshouseresources.activity.renovation.RenovationListActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
@@ -81,8 +82,8 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
                     startActivity(new Intent(getActivity(), NewHouseActivity.class));
                 else if (i == 2)//低价房
                     startActivity(new Intent(getActivity(), CheapRoomListActivity.class));
-                else {
-                }
+                else if (i == 3)//装修
+                    startActivity(new Intent(getActivity(), RenovationListActivity.class));
             }
         });
 
