@@ -1,15 +1,13 @@
 package ercs.com.ercshouseresources.activity.renovation;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.util.TitleControl;
-import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
+
 
 /**
  * Created by Administrator on 2017/8/11.

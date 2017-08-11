@@ -1,15 +1,12 @@
 package ercs.com.ercshouseresources.activity.renovation;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.service.ClosingBonusActivity;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**

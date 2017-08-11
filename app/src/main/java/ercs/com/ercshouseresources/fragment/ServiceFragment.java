@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,13 +19,7 @@ import ercs.com.ercshouseresources.activity.cheaproom.CheapRoomListActivity;
 import ercs.com.ercshouseresources.activity.renovation.RenovationListActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.adapter.ServiceAdapter;
-import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.network.HttpUtils;
-import ercs.com.ercshouseresources.network.MyGson;
-import ercs.com.ercshouseresources.network.NetHelperNew;
-import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
-import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 

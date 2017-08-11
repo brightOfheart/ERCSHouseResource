@@ -356,6 +356,18 @@
         <activity
             android:name=".activity.renovation.Ren_OrderActivity"
             android:theme="@style/AppTheme" />
+        <!-- 装修设计方案列表 -->
+        <activity
+            android:name=".activity.renovation.Ren_DesignSchemeActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 装修报备信息 -->
+        <activity
+            android:name=".activity.renovation.Ren_PrepareInformationActivity"
+            android:theme="@style/AppTheme" />
+        <!-- 设计方案详情 -->
+        <activity
+            android:name=".activity.renovation.Ren_resignDetailActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
