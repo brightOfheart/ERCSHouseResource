@@ -15,6 +15,7 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.CustomersListBean;
 import ercs.com.ercshouseresources.view.dialog.CheapConfirmationClientsDialog;
 import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
+import ercs.com.ercshouseresources.view.dialog.Ren_ConfirmationClientsDialog;
 
 /**
  * 报备客户列表
@@ -58,7 +59,7 @@ public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<Customers
                 @Override
                 public void onClick(View view) {
 
-                    ConfirmationClientsDialog confirmationClientsDialog = new ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
+                    Ren_ConfirmationClientsDialog confirmationClientsDialog = new Ren_ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
                     confirmationClientsDialog.show();
                 }
             });

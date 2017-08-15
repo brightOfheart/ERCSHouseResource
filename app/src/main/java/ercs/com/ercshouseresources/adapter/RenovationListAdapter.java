@@ -42,7 +42,6 @@ public class RenovationListAdapter extends ViewHolderRecyclerAdapter<RenovationL
 
     @Override
     public void bindViewDatas(final ViewHolder holder, final RenovationListBean.DataBean datas, final int position) {
-        Log.d("XXX",datas.getName());
         holder.setText(R.id.tv_title, datas.getName());
         holder.setText(R.id.tv_typeContent, datas.getBrokerage());
         holder.setText(R.id.tv_setc, datas.getCommissionAccount());

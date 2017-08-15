@@ -16,8 +16,8 @@
         app:speed="100"
         app:startPoint="end"
         app:textSize="15sp"
-        app:marqueebackground="@color/gray"
-        app:textcolor="#E72803" />
+        app:marqueebackground="@color/clor_backgray"
+        app:textcolor="@color/clor_fontgray" />
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/recyleview"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
@@ -32,6 +33,10 @@ public class Ren_SettlementCycleActivity  extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         createData();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
     private void createData()
     {

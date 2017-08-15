@@ -1,6 +1,7 @@
 package ercs.com.ercshouseresources.view.item;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +39,7 @@ public class RenovatinDetailItem extends RelativeLayout {
         ButterKnife.bind(this);
         GlideUtil.loadImage(context, NetHelperNew.URL+icon,image,R.mipmap.ic_launcher,R.mipmap.ic_launcher);
         tv_1.setText(title);
-        tv_1.setText(content);
+        tv_2.setText(content);
     }
 
 }

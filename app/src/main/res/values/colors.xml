@@ -43,4 +43,8 @@
     <color name="house_deepgray">#8C8C8C</color>
     <color name="blue_boy">#589AFB</color>
     <color name="blue_girl">#FF4FAA</color>
+    <color name="clor_orange">#FC7033</color>
+    <color name="clor_backgray">#F4F4F4</color>
+    <color name="clor_fontgray">#989898</color>
+
 </resources>

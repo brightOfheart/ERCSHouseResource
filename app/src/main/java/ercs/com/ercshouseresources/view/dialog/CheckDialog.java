@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.LoginActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.DisplayUtil;
@@ -41,6 +43,7 @@ public class CheckDialog extends Dialog {
             public void onClick(View view) {
                 dismiss();
                 CloseActivityClass.exitClient();
+
             }
         });
         this.setCanceledOnTouchOutside(false);//点击屏幕不消失

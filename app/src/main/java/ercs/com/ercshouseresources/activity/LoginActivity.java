@@ -14,6 +14,7 @@ import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
@@ -43,6 +44,10 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initialize();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -81,11 +86,9 @@ public class LoginActivity extends BaseActivity {
             String json = spUtil.getString(BaseApplication.LOGINJSON, "");
             BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        } else {
-            dialog = new LoadingDialog(LoginActivity.this, 0);
+           // finish();
         }
-
+        dialog = new LoadingDialog(LoginActivity.this, 0);
 
     }
 
@@ -210,7 +213,7 @@ public class LoginActivity extends BaseActivity {
                     saveIdpwd(getId(),getPwd());
                     BaseApplication.loginBean = loginBean;
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                   // finish();
                 }
                 runOnUiThread(new Runnable() {
                     @Override

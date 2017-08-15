@@ -13,6 +13,7 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.ClerkBean;
+import ercs.com.ercshouseresources.bean.Ren_OrderBean;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
@@ -22,11 +23,11 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
  * 装修订单
  */
 
-public class Ren_OrderAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas> {
+public class Ren_OrderAdapter extends ViewHolderRecyclerAdapter<Ren_OrderBean.DataBean> {
     private Context context;
     private Activity activity;
 
-    public Ren_OrderAdapter(Activity activity, Context context, List<ClerkBean.Datas> listData) {
+    public Ren_OrderAdapter(Activity activity, Context context, List<Ren_OrderBean.DataBean> listData) {
         super(context, listData);
         this.context = context;
         this.activity = activity;
@@ -38,14 +39,14 @@ public class Ren_OrderAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas>
     }
 
     @Override
-    public void bindViewDatas(final ViewHolder holder, final ClerkBean.Datas datas, final int position) {
-//        holder.setText(R.id.tv_name, datas.getName());
-//        holder.setText(R.id.tv_phone, datas.getName());
-//        holder.setText(R.id.tv_area, datas.getName());
-//        holder.setText(R.id.tv_address, datas.getName());
-//        holder.setText(R.id.tv_remarks, datas.getName());
-//        holder.setText(R.id.tv_company, datas.getName());
-//        holder.setText(R.id.tv_economicman, datas.getName());
-//        holder.setText(R.id.tv_state, datas.getName());
+    public void bindViewDatas(final ViewHolder holder, final Ren_OrderBean.DataBean datas, final int position) {
+        holder.setText(R.id.tv_name, datas.getCustomerName());
+        holder.setText(R.id.tv_phone, datas.getCustomerPhone());
+        holder.setText(R.id.tv_area, datas.getArea());
+        holder.setText(R.id.tv_address, datas.getCustomerAddress());
+        holder.setText(R.id.tv_remarks, datas.getRemark());
+        holder.setText(R.id.tv_company, datas.getDecorationCompanyName());
+        holder.setText(R.id.tv_economicman, "经济人:" + datas.getUserName());
+        holder.setText(R.id.tv_state, datas.getOperTime() + "  " + datas.getState());
     }
 }

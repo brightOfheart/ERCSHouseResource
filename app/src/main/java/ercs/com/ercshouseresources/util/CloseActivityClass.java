@@ -16,7 +16,7 @@ public class CloseActivityClass  {
     public static void exitClient()
     {
         // 关闭所有Activity
-        for (int i = 0; i < activityList.size(); i++)
+        for (int i = 1; i < activityList.size(); i++)
         {
             if (null != activityList.get(i))
             {

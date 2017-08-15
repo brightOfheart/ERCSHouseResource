@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <include
         android:id="@+id/title"
@@ -11,15 +12,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="#FFF7FF"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingTop="@dimen/d_10">
 
         <LinearLayout
+            android:id="@+id/ly_style"
             android:layout_width="@dimen/d_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/ly_style">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -28,16 +32,18 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_5"
+                android:src="@mipmap/down_icon" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ly_room"
             android:layout_width="@dimen/d_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/ly_room">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,16 +52,18 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_5"
+                android:src="@mipmap/down_icon" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ly_areo"
             android:layout_width="@dimen/d_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/ly_areo">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,16 +72,22 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_5"
+                android:src="@mipmap/down_icon" />
         </LinearLayout>
     </LinearLayout>
+
     <View
+        android:id="@+id/v_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1"
-        android:id="@+id/v_line"/>
+        android:background="@color/white2" />
+
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/recyleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
 
 </LinearLayout>

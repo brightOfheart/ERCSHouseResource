@@ -16,6 +16,7 @@ import ercs.com.ercshouseresources.bean.RenovationListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
@@ -35,13 +36,18 @@ public class RenovationListActivity extends BaseActivity {
     private LoadingDialog dialog;
     private int PageIndex = 1;
     private List<RenovationListBean.DataBean> list;
-
+    private RenovationListAdapter renovationListAdapter;
+    private boolean b=false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renovationlist);
         ButterKnife.bind(this);
         initTitle();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         if (NetWorkUtil.check(getApplicationContext()))
             loadData();
     }
@@ -67,13 +73,23 @@ public class RenovationListActivity extends BaseActivity {
         marqueeView.requestFocus();
         marqueeView.setText(str);//设置文本
         marqueeView.startScroll(); //开始
+        b=true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(b)
+        marqueeView.startScroll(); //开始
+
     }
 
     /**
      * 初始化
      */
     private void initView() {
-        mLRecyclerViewAdapter = new LRecyclerViewAdapter(new RenovationListAdapter(RenovationListActivity.this, this, list));
+        renovationListAdapter=new RenovationListAdapter(RenovationListActivity.this, this, list);
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(renovationListAdapter);
         recyleview.setLayoutManager(new LinearLayoutManager(this));
         recyleview.setAdapter(mLRecyclerViewAdapter);
         recyleview.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -86,6 +102,7 @@ public class RenovationListActivity extends BaseActivity {
                         final RenovationListBean renovationListBean = MyGson.getInstance().fromJson(data, RenovationListBean.class);
                         if (renovationListBean.getType().equals("1")) {
                             list.addAll(renovationListBean.getData());
+                            renovationListAdapter.setListData(list);
                             mLRecyclerViewAdapter.notifyDataSetChanged();
 
                         }
@@ -109,12 +126,14 @@ public class RenovationListActivity extends BaseActivity {
                     @Override
                     public void onSuccess(String data) {
                         final RenovationListBean renovationListBean = MyGson.getInstance().fromJson(data, RenovationListBean.class);
+                        recyleview.refreshComplete(10);
                         if (renovationListBean.getType().equals("1")) {
                             list.clear();
                             list = renovationListBean.getData();
+                            renovationListAdapter.setListData(list);
                             mLRecyclerViewAdapter.notifyDataSetChanged();
                         }
-                        recyleview.refreshComplete(10);
+
                     }
 
                     @Override
@@ -145,13 +164,7 @@ public class RenovationListActivity extends BaseActivity {
                     if (renovationListBean.getData().size() > 0)
                         startMarquee(renovationListBean.getData().get(0).getAdList());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.dismiss();
-                        ToastUtil.showToast(getApplicationContext(), renovationListBean.getContent());
-                    }
-                });
+                dialog.dismiss();
             }
 
             @Override

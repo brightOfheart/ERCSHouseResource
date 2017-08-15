@@ -1,41 +1,35 @@
 package ercs.com.ercshouseresources.view.renpop;
 
 import android.content.Context;
-
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-
 
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.RenDesignPopAdapter;
+import ercs.com.ercshouseresources.adapter.RenDesignStylePopAdapter;
 import ercs.com.ercshouseresources.bean.RenSelectListBean;
 
-
-
 /**
- * Created by Administrator on 2017/8/11.
+ * Created by Administrator on 2017/8/14.
  */
 
-public class RenDesignPop extends PopupWindow {
+public class RenDesignStylePop extends PopupWindow {
     private Context context;
     private View view;
     private GridView gridview;
     private OnSelectContentListener listener;
-    private List<RenSelectListBean.DataBean.HouseTypeBean> list;
-    private RenDesignPopAdapter renpop;
+    private List<RenSelectListBean.DataBean.StyleBean> list;
+
     private int kind = 0;
 
-    public RenDesignPop(Context context, OnSelectContentListener listener, List<RenSelectListBean.DataBean.HouseTypeBean> list) {
+    public RenDesignStylePop(Context context, OnSelectContentListener listener, List<RenSelectListBean.DataBean.StyleBean> list) {
         super(context);
         this.context = context;
         this.listener = listener;
@@ -50,8 +44,7 @@ public class RenDesignPop extends PopupWindow {
 
         view = LayoutInflater.from(context).inflate(R.layout.pop_rendesign, null);
         gridview = (GridView) view.findViewById(R.id.gridview);
-        renpop=new RenDesignPopAdapter(context, list);
-        gridview.setAdapter(renpop);
+        gridview.setAdapter(new RenDesignStylePopAdapter(context, list));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

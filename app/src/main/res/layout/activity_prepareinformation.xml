@@ -65,9 +65,9 @@
                 android:layout_height="wrap_content"
                 android:text="装修面积" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_areao"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
         </LinearLayout>
@@ -94,9 +94,9 @@
             android:layout_height="wrap_content"
             android:text="装修地址" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -115,9 +115,9 @@
             android:layout_height="wrap_content"
             android:text="备注说明" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_remarks"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

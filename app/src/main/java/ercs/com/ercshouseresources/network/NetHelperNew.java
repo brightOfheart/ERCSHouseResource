@@ -1,6 +1,7 @@
 package ercs.com.ercshouseresources.network;
 
 import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class NetHelperNew {
     private static final String CheapCustomersList = "/API/LowPriceHouses/ttGetRunningsList";//低价房报备客户列表
     private static final String InsertNewCustomer = "/API/Organization/ttInsertNewCustomer";//添加客户
     private static final String InsertRunningsModel = "/API/NewHouse/ttInsertRunningsModel";//确认报备信息
-    private static final String CheapInsertRunningsModel ="/API/LowPriceHouses/ttInsertRunningsModel";//低价房确认报备信息
+    private static final String CheapInsertRunningsModel = "/API/LowPriceHouses/ttInsertRunningsModel";//低价房确认报备信息
     private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//报备订单详情
     private static final String UploadImage = "/API/Common/ttUploadImageModel";//上传图片
     private static final String DelImage = "/API/Common/ttDelImageModel";//上传图片
@@ -30,8 +31,15 @@ public class NetHelperNew {
     private static final String CHEAPDYNAMIC = "/API/DynamicInterface/ttGetDynamicInterfaceListLowPriceHouse";//低价房动态
     private static final String RENOVATIONLIST = "/API/Decoration/ttGetDecorationCompanyList";//装修列表
     private static final String RENOVATIONLISTDETAIL = "/API/Decoration/ttGetDecorationCompanyInfo";//装修列表详情
+    private static final String DecorationPreparation = "/API/Decoration/ttInsertDecorationRunning";//装修报备信息
+    private static final String DecorationPreparationOrder = "/API/Decoration/ttGetDecorationRunningList";//装修报备订单信息
+    private static final String REN_SELECTLIST = "/API/Decoration/ttGetCaseCondition";//装修案例列表条件查询
+    private static final String REN_LIST = "/API/Decoration/ttGetDecorationCaseList";//装修列表查询
+    private static final String REN_LISTDETAIL = "/API/Decoration/ttGetDecorationCaseInfo";//装修列表详情查询
+
     /**
-     *  登录接口
+     * 登录接口
+     *
      * @param LoginName
      * @param LoginPass
      * @param callback
@@ -47,6 +55,7 @@ public class NetHelperNew {
 
     /**
      * 新房列表
+     *
      * @param AreaID
      * @param BuildingTypeID 房源类型
      * @param callback
@@ -59,12 +68,13 @@ public class NetHelperNew {
         map.put("PageSize", "10");
         map.put("KeyWord", KeyWord);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + BuildingsList, json, callback);
     }
 
     /**
      * 低价房列表
+     *
      * @param PageIndex
      * @param AreaID
      * @param BuildingTypeID
@@ -79,12 +89,13 @@ public class NetHelperNew {
         map.put("PageSize", "10");
         map.put("KeyWord", KeyWord);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CHEAPROOMLIST, json, callback);
     }
 
     /**
      * 新房区域列表
+     *
      * @param cityid
      * @param callback
      */
@@ -92,17 +103,18 @@ public class NetHelperNew {
         Map<String, String> map = new HashMap<>();
         map.put("cityid", cityid);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + AreaList, json, callback);
     }
 
     /**
      * 房源详情
+     *
      * @param BuildingID
      * @param UserID
      * @param callback
      */
-    public static void getHouseDetail(String BuildingID,String UserID, HttpUtils.HttpCallback callback) {
+    public static void getHouseDetail(String BuildingID, String UserID, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("BuildingID", BuildingID);
         map.put("UserID", UserID);
@@ -112,113 +124,121 @@ public class NetHelperNew {
 
     /**
      * 获取低价房详情的ID
+     *
      * @param Id
      * @param callback
      */
-    public static void getCheapRoomHouseDetail(String Id ,HttpUtils.HttpCallback callback) {
+    public static void getCheapRoomHouseDetail(String Id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id",Id);
+        map.put("Id", Id);
         String json = MyGson.getInstance().toJson(map);
         new HttpUtils().postNewJson(URL + CHEAPROOMHOUSEDETAIL, json, callback);
     }
+
     /**
      * 报备客户列表
+     *
      * @param UserID
      * @param KeyWord
      * @param KeyWord
      * @param PageIndex
      * @param callback
      */
-    public static void getCustomersList(String UserID,String KeyWord , String PageIndex ,HttpUtils.HttpCallback callback) {
+    public static void getCustomersList(String UserID, String KeyWord, String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("UserID", UserID);
         map.put("KeyWord", KeyWord);
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CustomersList, json, callback);
     }
 
     /**
      * 低价房报备列表
+     *
      * @param KeyWord
      * @param PageIndex
      * @param callback
      */
-    public static void getCheapCustomersList(String KeyWord , String PageIndex ,HttpUtils.HttpCallback callback) {
+    public static void getCheapCustomersList(String KeyWord, String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("KeyWord", KeyWord);
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CheapCustomersList, json, callback);
     }
 
     /**
      * 添加客户
+     *
      * @param UserID
      * @param Name
-     * @param CustomerPhoneList  电话集合，用 | 分隔
-     * @param Sex 性别 0 男 1 女
+     * @param CustomerPhoneList 电话集合，用 | 分隔
+     * @param Sex               性别 0 男 1 女
      * @param callback
      */
-    public static void getInsertNewCustomer(String UserID,String Name , String CustomerPhoneList, String Sex   ,HttpUtils.HttpCallback callback) {
+    public static void getInsertNewCustomer(String UserID, String Name, String CustomerPhoneList, String Sex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("UserID", UserID);
         map.put("Name", Name);
         map.put("CustomerPhoneList", CustomerPhoneList);
-        map.put("Sex", Sex );
+        map.put("Sex", Sex);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + InsertNewCustomer, json, callback);
     }
 
     /**
      * 确认报备信息
+     *
      * @param BuildingID
      * @param CustomerID
      * @param CustomerPhoneID
      * @param callback
      */
-    public static void getInsertRunningsModel(String BuildingID,String CustomerID , String CustomerPhoneID    ,HttpUtils.HttpCallback callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("BuildingID", BuildingID);
-        map.put("CustomerID", CustomerID);
-        map.put("CustomerPhoneID", CustomerPhoneID );
-        String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
-        new HttpUtils().postNewJson(URL + InsertRunningsModel, json, callback);
-    }
-
-    /**
-     * 低价房报备信息
-     * @param BuildingID
-     * @param CustomerID
-     * @param CustomerPhoneID
-     * @param callback
-     */
-    public static void getInsertCheapRunningsModel(String BuildingID,String CustomerID , String CustomerPhoneID    ,HttpUtils.HttpCallback callback) {
+    public static void getInsertRunningsModel(String BuildingID, String CustomerID, String CustomerPhoneID, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("BuildingID", BuildingID);
         map.put("CustomerID", CustomerID);
         map.put("CustomerPhoneID", CustomerPhoneID);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + InsertRunningsModel, json, callback);
+    }
+
+    /**
+     * 低价房报备信息
+     *
+     * @param BuildingID
+     * @param CustomerID
+     * @param CustomerPhoneID
+     * @param callback
+     */
+    public static void getInsertCheapRunningsModel(String BuildingID, String CustomerID, String CustomerPhoneID, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("BuildingID", BuildingID);
+        map.put("CustomerID", CustomerID);
+        map.put("CustomerPhoneID", CustomerPhoneID);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CheapInsertRunningsModel, json, callback);
     }
 
     /**
      * 查看报备订单详情
+     *
      * @param Id
      * @param callback
      */
-    public static void getReportingOrderDetail(String Id ,HttpUtils.HttpCallback callback) {
+    public static void getReportingOrderDetail(String Id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id",Id );
+        map.put("Id", Id);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
     }
 
@@ -240,6 +260,7 @@ public class NetHelperNew {
 
     /**
      * 获取低价房的动态
+     *
      * @param PageIndex
      * @param PageSize
      * @param LowPriceHousesID
@@ -254,68 +275,165 @@ public class NetHelperNew {
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CHEAPDYNAMIC, json, callback);
     }
+
     /**
      * 上传图片
-     * @param GroupID 图片组ID 3
+     *
+     * @param GroupID    图片组ID 3
      * @param InterfixID 相关ID 主键
-     * @param ImageType 图片类型 参照ImageGroup表 1带看 2确认单 3 备案
-     * @param Imagedata 图片字符串 用Base64加密
+     * @param ImageType  图片类型 参照ImageGroup表 1带看 2确认单 3 备案
+     * @param Imagedata  图片字符串 用Base64加密
      * @param callback
      */
-    public static void uploadImage(String GroupID ,String InterfixID,String ImageType,String Imagedata ,HttpUtils.HttpCallback callback) {
+    public static void uploadImage(String GroupID, String InterfixID, String ImageType, String Imagedata, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("GroupID",GroupID );
-        map.put("InterfixID",InterfixID);
-        map.put("ImageType",ImageType );
-        map.put("Imagedata",Imagedata );
+        map.put("GroupID", GroupID);
+        map.put("InterfixID", InterfixID);
+        map.put("ImageType", ImageType);
+        map.put("Imagedata", Imagedata);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
-        Log.i("-->","ImageType:"+ImageType);
+        Log.i("Json", json);
+        Log.i("-->", "ImageType:" + ImageType);
         new HttpUtils().postNewJson(URL + UploadImage, json, callback);
     }
 
 
     /**
      * 删除图片
-     * @param Id 图片id
+     *
+     * @param Id       图片id
      * @param callback
      */
-    public static void DelImage(String Id ,HttpUtils.HttpCallback callback) {
+    public static void DelImage(String Id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id",Id );
+        map.put("Id", Id);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + DelImage, json, callback);
     }
 
     /**
      * 报备订单列表
+     *
      * @param PageIndex
      * @param callback
      */
-    public static void RunningsList(String PageIndex ,HttpUtils.HttpCallback callback) {
+    public static void RunningsList(String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("PageIndex",PageIndex);
-        map.put("PageSize","10");
-        map.put("KeyWord","" );
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "10");
+        map.put("KeyWord", "");
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + RunningsList, json, callback);
     }
 
     /**
      * 获取装修列表
+     *
      * @param PageIndex
      * @param callback
      */
-    public static void getRenovationList(String PageIndex ,HttpUtils.HttpCallback callback) {
+    public static void getRenovationList(String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("PageIndex",PageIndex);
-        map.put("PageSize","20");
-        map.put("KeyWord","");
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "20");
+        map.put("KeyWord", "");
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
+        Log.i("Json", json);
         new HttpUtils().postNewJson(URL + RENOVATIONLIST, json, callback);
+    }
+
+    /**
+     * 装修列表详情
+     *
+     * @param Id
+     * @param callback
+     */
+    public static void getRenovationListDetail(String Id, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id", Id);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + RENOVATIONLISTDETAIL, json, callback);
+    }
+
+    /**
+     * 报备信息接口
+     *
+     * @param DecorationCompanyID
+     * @param CustomerID
+     * @param CustomerPhoneID
+     * @param CustomerAddress
+     * @param Area
+     * @param Remark
+     * @param callback
+     */
+    public static void getDecorationPreparation(String DecorationCompanyID, String CustomerID, String CustomerPhoneID, String CustomerAddress, String Area, String Remark, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("DecorationCompanyID", DecorationCompanyID);
+        map.put("CustomerID", CustomerID);
+        map.put("CustomerPhoneID", CustomerPhoneID);
+        map.put("CustomerAddress", CustomerAddress);
+        map.put("Area", Area);
+        map.put("Remark", Remark);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + DecorationPreparation, json, callback);
+    }
+
+    /**
+     * 获取装修报备列表
+     *
+     * @param PageIndex
+     * @param KeyWord
+     * @param callback
+     */
+    public static void getDecorationPreparationOrder(String PageIndex, String KeyWord, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "10");
+        map.put("KeyWord", KeyWord);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + DecorationPreparationOrder, json, callback);
+    }
+
+    /**
+     * 获取装修条件筛选列表
+     *
+     *
+     *
+     * @param callback
+     */
+    public static void getRenSelectList(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + REN_SELECTLIST, json, callback);
+    }
+
+    /**
+     * 获取装修列表
+     *
+     * @param DecorationCompanyId
+     * @param PageIndex
+     * @param Style
+     * @param HouseType
+     * @param AreaTag
+     * @param callback
+     */
+    public static void getRenList(String DecorationCompanyId, String PageIndex, String Style, String HouseType, String AreaTag, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("DecorationCompanyId", DecorationCompanyId);
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "10");
+        map.put("Style", Style);
+        map.put("HouseType", HouseType);
+        map.put("AreaTag", AreaTag);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + REN_LIST, json, callback);
     }
 
     /**
@@ -323,11 +441,11 @@ public class NetHelperNew {
      * @param Id
      * @param callback
      */
-    public static void getRenovationListDetail(String Id ,HttpUtils.HttpCallback callback) {
+    public static void getRenListDetail(String Id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id",Id);
+        map.put("Id", Id);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json",json);
-        new HttpUtils().postNewJson(URL + RENOVATIONLISTDETAIL, json, callback);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + REN_LISTDETAIL, json, callback);
     }
 }

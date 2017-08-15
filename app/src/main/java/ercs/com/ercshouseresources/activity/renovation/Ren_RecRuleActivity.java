@@ -14,6 +14,7 @@ import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.service.RecRuleActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.newbean.LoginBean;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
@@ -51,6 +52,10 @@ public class Ren_RecRuleActivity extends BaseActivity {
         ButterKnife.bind(this);
         createdata();
         initTitle();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
     /**
      * 设置标题栏

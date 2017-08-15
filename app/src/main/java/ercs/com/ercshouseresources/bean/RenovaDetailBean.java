@@ -25,6 +25,24 @@ public class RenovaDetailBean extends BaseBean {
         private List<StoreListBean> StoreList;
         private String StaffName;
         private String StaffPhone;
+        private List<DecorationCasePartListBean> DecorationCasePartList;
+        private String CaseCount;
+
+        public String getCaseCount() {
+            return CaseCount;
+        }
+
+        public void setCaseCount(String caseCount) {
+            CaseCount = caseCount;
+        }
+
+        public List<DecorationCasePartListBean> getDecorationCasePartList() {
+            return DecorationCasePartList;
+        }
+
+        public void setDecorationCasePartList(List<DecorationCasePartListBean> decorationCasePartList) {
+            DecorationCasePartList = decorationCasePartList;
+        }
 
         public String getStaffName() {
             return StaffName;
@@ -97,6 +115,15 @@ public class RenovaDetailBean extends BaseBean {
             private String IsLocked;
             private String IsDeleted;
             private String CreatedTime;
+            private String Id;
+
+            public String getId() {
+                return Id;
+            }
+
+            public void setId(String id) {
+                Id = id;
+            }
 
             public String getName() {
                 return Name;
@@ -444,6 +471,35 @@ public class RenovaDetailBean extends BaseBean {
             }
         }
 
+        public class DecorationCasePartListBean {
+            private String CaseImagePath;
+            private String Name;
+            private String Content;
+
+            public String getCaseImagePath() {
+                return CaseImagePath;
+            }
+
+            public void setCaseImagePath(String caseImagePath) {
+                CaseImagePath = caseImagePath;
+            }
+
+            public String getName() {
+                return Name;
+            }
+
+            public void setName(String name) {
+                Name = name;
+            }
+
+            public String getContent() {
+                return Content;
+            }
+
+            public void setContent(String content) {
+                Content = content;
+            }
+        }
 
     }
 }

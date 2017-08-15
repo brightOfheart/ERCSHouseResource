@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/d_10">
 <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,15 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/black"
+        android:alpha="0.7"
+        android:paddingTop="@dimen/d_10"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingLeft="@dimen/d_10">
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:id="@+id/tv_1"/>
+          android:id="@+id/tv_1"
+          android:textColor="@color/white"
+          android:textSize="@dimen/d_17"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_2"/>
+            android:id="@+id/tv_2"
+            android:textColor="#C6C6C6"
+            android:layout_marginTop="@dimen/d_5"
+            />
     </LinearLayout>
 </FrameLayout>
 </LinearLayout>
