@@ -1,37 +1,23 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.stx.xhb.xbanner.XBanner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.service.ClosingBonusActivity;
-import ercs.com.ercshouseresources.activity.service.CommissionExplainActivity;
-import ercs.com.ercshouseresources.activity.service.ContentListActivity;
-import ercs.com.ercshouseresources.activity.service.DynamicActivity;
 import ercs.com.ercshouseresources.activity.service.MapActivity;
-import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
-import ercs.com.ercshouseresources.activity.service.ProConActivity;
-import ercs.com.ercshouseresources.activity.service.PropertyDetailActivity;
-import ercs.com.ercshouseresources.activity.service.RecRuleActivity;
-import ercs.com.ercshouseresources.activity.service.ReportingClientsActivity;
 import ercs.com.ercshouseresources.activity.service.SettlementCycleActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CheapRoomDetailBean;
-import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
@@ -40,10 +26,11 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
-import ercs.com.ercshouseresources.view.item.NewHouseItem;
+
 
 /**
  * Created by Administrator on 2017/8/8.
+ * 低价房详情
  */
 
 public class CheapRoomDetailActivity  extends BaseActivity implements ObservableScrollView.ScrollViewListener {
@@ -157,11 +144,11 @@ public class CheapRoomDetailActivity  extends BaseActivity implements Observable
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale,R.id.ly_dt,R.id.fr_address,R.id.fr_zyfw,R.id.fr_locanrule})
+    @OnClick({R.id.iv_left, R.id.iv_right, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale,R.id.ly_dt,R.id.fr_address,R.id.fr_zyfw,R.id.fr_locanrule,R.id.tv_lookmore})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_left://返回点击事件
-
+            case R.id.tv_lookmore://查看更多房源信息
+                CheapRoomMore.start(CheapRoomDetailActivity.this,newHouseDetailBean.getData().getModel().getHouseTypeRemark());
                 break;
             case R.id.iv_right://标题栏顶部右侧点击事件
 

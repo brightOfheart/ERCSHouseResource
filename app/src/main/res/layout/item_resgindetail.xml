@@ -7,36 +7,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingTop="@dimen/d_10">
 
         <TextView
             android:layout_width="@dimen/d_5"
-            android:layout_height="@dimen/d_10"
+            android:layout_height="@dimen/d_16"
             android:background="@color/system_color" />
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10"
+            android:textSize="@dimen/d_17"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_16"
         android:background="@color/white2" />
 
     <ImageView
         android:id="@+id/iv_pic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/d_16" />
 
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_16" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_10"
-        android:background="@color/black" />
+        android:background="#F7F3F7" />
 </LinearLayout>

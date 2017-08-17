@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.field;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -19,7 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.attendance.AtendanceActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.FieldBean;
 import ercs.com.ercshouseresources.bean.FieldCustomBean;

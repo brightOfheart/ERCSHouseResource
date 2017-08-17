@@ -10,6 +10,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 /**
  * Created by Administrator on 2017/8/11.
@@ -23,7 +25,8 @@ public class Ren_ResginDetailItem extends RelativeLayout {
     ImageView iv_pic;
     @BindView(R.id.tv_content)
     TextView tv_content;
-    public Ren_ResginDetailItem(Context context) {
+
+    public Ren_ResginDetailItem(Context context, String title, String pic, String content) {
         super(context);
         LayoutInflater mInflater = LayoutInflater.from(context);
         linearLayout = (LinearLayout) mInflater.inflate(
@@ -33,6 +36,8 @@ public class Ren_ResginDetailItem extends RelativeLayout {
         params.setMargins(0, 0, 0, 0);
         this.addView(linearLayout, params);
         ButterKnife.bind(this);
-
+        tv_title.setText(title);
+        tv_content.setText(content);
+        GlideUtil.loadImage(context, NetHelperNew.URL + pic, iv_pic, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
     }
 }

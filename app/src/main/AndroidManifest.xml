@@ -300,6 +300,10 @@
         <activity
             android:name=".activity.cheaproom.CheapRoomRuleActivity"
             android:theme="@style/AppTheme" />
+        <!-- 低价房更多房源信息 -->
+        <activity
+            android:name=".activity.cheaproom.CheapRoomMore"
+            android:theme="@style/AppTheme" />
         <!-- 贷款规则 -->
         <activity
             android:name=".activity.cheaproom.LoanRuleActivity"

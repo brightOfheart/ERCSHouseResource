@@ -1,10 +1,8 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,25 +11,20 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.service.AddClientActivity;
-import ercs.com.ercshouseresources.activity.service.ReportingClientsActivity;
 import ercs.com.ercshouseresources.adapter.CheapReportingClientsAdapter;
-import ercs.com.ercshouseresources.adapter.ReportingClientsAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
 import ercs.com.ercshouseresources.bean.CustomersListBean;

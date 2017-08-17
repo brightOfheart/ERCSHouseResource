@@ -19,7 +19,7 @@ public class Ren_resignDetailBean extends BaseBean {
 
     public class DataBean {
         private String Style;
-        private ModelBean Mode;
+        private ModelBean Model;
         private List<ItemBean> Item;
 
         public String getStyle() {
@@ -30,12 +30,12 @@ public class Ren_resignDetailBean extends BaseBean {
             Style = style;
         }
 
-        public ModelBean getMode() {
-            return Mode;
+        public ModelBean getModel() {
+            return Model;
         }
 
-        public void setMode(ModelBean mode) {
-            Mode = mode;
+        public void setModel(ModelBean model) {
+            Model = model;
         }
 
         public List<ItemBean> getItem() {
@@ -148,7 +148,7 @@ public class Ren_resignDetailBean extends BaseBean {
             }
         }
 
-        private class ItemBean {
+        public class ItemBean {
             private String title;
             private String img;
             private String comtent;

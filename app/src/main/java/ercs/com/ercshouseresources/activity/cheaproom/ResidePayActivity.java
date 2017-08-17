@@ -1,15 +1,12 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.service.ContentListActivity;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.view.item.ContentListItem;
 

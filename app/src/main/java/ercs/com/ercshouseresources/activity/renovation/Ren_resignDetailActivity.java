@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
@@ -82,7 +84,7 @@ public class Ren_resignDetailActivity extends BaseActivity {
                 dialog.dismiss();
                 final Ren_resignDetailBean ren_resignDetailBean = MyGson.getInstance().fromJson(data, Ren_resignDetailBean.class);
                 if (ren_resignDetailBean.getType().equals("1")) {
-
+                    createview(ren_resignDetailBean);
                 } else {
                     ToastUtil.showToast(Ren_resignDetailActivity.this, ren_resignDetailBean.getContent());
                 }
@@ -108,9 +110,21 @@ public class Ren_resignDetailActivity extends BaseActivity {
         dialog = new LoadingDialog(Ren_resignDetailActivity.this, 0);
     }
 
-    private void createview() {
-        Ren_ResginDetailItem ren_resginDetailItem = new Ren_ResginDetailItem(this);
-        ly_all.addView(ren_resginDetailItem);
+    private void createview(Ren_resignDetailBean ren_resignDetailBean) {
+        tv_content.setText(ren_resignDetailBean.getData().getModel().getName());
+        tv_price.setText(ren_resignDetailBean.getData().getModel().getShowPrice());
+        tv_housetype.setText(ren_resignDetailBean.getData().getModel().getHouseType());
+        tv_area.setText(ren_resignDetailBean.getData().getModel().getArea());
+        tv_date.setText(ren_resignDetailBean.getData().getModel().getTimeLimit());
+        tv_teacher.setText(ren_resignDetailBean.getData().getModel().getDesigner());
+        tv_desginstyle.setText(ren_resignDetailBean.getData().getStyle());
+        tv_worktype.setText(ren_resignDetailBean.getData().getModel().getOpusType());
+        List<Ren_resignDetailBean.DataBean.ItemBean> list = ren_resignDetailBean.getData().getItem();
+        for (int i = 0; i < list.size(); i++) {
+            Ren_ResginDetailItem ren_resginDetailItem = new Ren_ResginDetailItem(this, list.get(i).getTitle(), list.get(i).getImg(), list.get(i).getComtent());
+            ly_all.addView(ren_resginDetailItem);
+        }
+
     }
 
     private String getStr() {

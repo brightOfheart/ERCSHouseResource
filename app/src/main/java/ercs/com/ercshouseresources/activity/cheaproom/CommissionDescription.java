@@ -3,17 +3,11 @@ package ercs.com.ercshouseresources.activity.cheaproom;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
-
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.service.CommissionExplainActivity;
-import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**

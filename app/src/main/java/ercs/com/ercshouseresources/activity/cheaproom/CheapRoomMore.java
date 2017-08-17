@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,28 +10,26 @@ import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
- * Created by Administrator on 2017/8/8.
- * 低价房规则
+ * Created by Administrator on 2017/8/15.
  */
 
-public class CheapRoomRuleActivity extends BaseActivity {
+public class CheapRoomMore extends BaseActivity {
     @BindView(R.id.tv_content)
     TextView tv_content;
 
     /**
      * 页面跳转
      */
-    public static void start(Activity mactivity, String content)
-    {
-
-        Intent intent = new Intent(mactivity, CheapRoomRuleActivity.class);
-        intent.putExtra("content",content);
+    public static void start(Activity mactivity, String content) {
+        Intent intent = new Intent(mactivity, CheapRoomMore.class);
+        intent.putExtra("content", content);
         mactivity.startActivity(intent);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cdes);
+        setContentView(R.layout.acvitity_cheaproommore);
         ButterKnife.bind(this);
         initTitle();
     }
@@ -42,16 +39,16 @@ public class CheapRoomRuleActivity extends BaseActivity {
      */
     private void initTitle() {
         TitleControl t = new TitleControl(this);
-        t.setTitle("低价房规则");
+        t.setTitle("更多房源信息");
         tv_content.setText(getContent());
     }
 
     /**
      * 获取json数据
+     *
      * @return
      */
-    private String getContent()
-    {
+    private String getContent() {
 
         return getIntent().getStringExtra("content");
     }

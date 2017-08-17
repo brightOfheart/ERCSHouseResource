@@ -117,7 +117,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/d_16">
 
                 <LinearLayout
                     android:layout_width="@dimen/d_0"
@@ -128,13 +129,15 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="面积" />
+                        android:text="面积(㎡)"
+                        android:textColor="#ADAAAD" />
 
                     <TextView
                         android:id="@+id/tv_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/d_10" />
+                        android:layout_marginTop="@dimen/d_10"
+                        android:textColor="#FF7131" />
                 </LinearLayout>
 
                 <View
@@ -146,18 +149,21 @@
                     android:layout_width="@dimen/d_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/d_16">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="均价" />
+                        android:text="均价(元/㎡)"
+                        android:textColor="#ADAAAD" />
 
                     <TextView
                         android:id="@+id/tv_shareprice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/d_10" />
+                        android:layout_marginTop="@dimen/d_10"
+                        android:textColor="#FF7131" />
                 </LinearLayout>
 
                 <View
@@ -169,25 +175,27 @@
                     android:layout_width="@dimen/d_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/d_16">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="贷款" />
+                        android:text="贷款"
+                        android:textColor="#ADAAAD" />
 
                     <TextView
                         android:id="@+id/tv_loan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/d_10" />
+                        android:layout_marginTop="@dimen/d_10"
+                        android:textColor="#FF7131" />
                 </LinearLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_13"
-                android:layout_marginTop="@dimen/d_16"
                 android:background="#F7F3F7" />
 
             <LinearLayout
@@ -474,7 +482,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_16">
 
                 <LinearLayout
                     android:layout_width="@dimen/d_0"
@@ -485,13 +495,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="住宅类别:" />
+                        android:text="住宅类别:"
+                        android:textColor="#BDBEBD" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/tv_1"
-                        android:text="普通住宅" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="普通住宅"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -503,62 +515,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="楼号单元:" />
+                        android:text="楼号单元:"
+                        android:textColor="#BDBEBD" />
 
                     <TextView
+                        android:id="@+id/tv_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7#2-16-2"
-                        android:id="@+id/tv_2"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="@dimen/d_0"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="装修程度:" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="清水"
-                        android:id="@+id/tv_3"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/d_0"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="房屋类型:" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7#2-16-2"
-                        android:id="@+id/tv_4"/>
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_16">
 
                 <LinearLayout
                     android:layout_width="@dimen/d_0"
@@ -569,13 +542,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="楼层:" />
+                        android:text="装修程度:"
+                        android:textColor="#BDBEBD" />
 
                     <TextView
+                        android:id="@+id/tv_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="26"
-                        android:id="@+id/tv_5"/>
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -587,20 +561,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="建造年代:" />
+                        android:text="房屋类型:"
+                        android:textColor="#BDBEBD" />
 
                     <TextView
+                        android:id="@+id/tv_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2016"
-                        android:id="@+id/tv_6"/>
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_16">
 
                 <LinearLayout
                     android:layout_width="@dimen/d_0"
@@ -611,13 +588,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="产权:" />
+                        android:text="楼        层:"
+                        android:textColor="#BDBEBD" />
 
                     <TextView
+                        android:id="@+id/tv_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="70年"
-                        android:id="@+id/tv_7"/>
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -629,24 +607,76 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="朝向:" />
+                        android:text="建造年代:"
+                        android:textColor="#BDBEBD" />
+
+                    <TextView
+                        android:id="@+id/tv_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_16">
+
+                <LinearLayout
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="南北"
-                        android:id="@+id/tv_8"/>
+                        android:text="产        权:"
+                        android:textColor="#BDBEBD" />
+
+                    <TextView
+                        android:id="@+id/tv_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="朝        向:"
+                        android:textColor="#BDBEBD" />
+
+                    <TextView
+                        android:id="@+id/tv_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_lookmore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="@dimen/d_10"
                 android:paddingTop="@dimen/d_10"
                 android:text="查看更多房源信息"
-                android:id="@+id/tv_lookmore"/>
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_16"
+                android:textColor="#00599C"
+                android:background="#F7F3F7"/>
 
             <View
                 android:layout_width="match_parent"
@@ -655,9 +685,9 @@
                 android:background="#F7F3F7" />
 
             <FrameLayout
+                android:id="@+id/fr_locanrule"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/fr_locanrule">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -679,12 +709,12 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_loanrule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
                     android:layout_marginRight="@dimen/d_16"
-                    android:text="不可贷款"
-                    android:id="@+id/tv_loanrule"/>
+                    android:text="不可贷款" />
             </FrameLayout>
 
             <View
