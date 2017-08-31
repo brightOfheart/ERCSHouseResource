@@ -7,8 +7,8 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/d_16"
     android:paddingRight="@dimen/d_16"
-    android:paddingTop="@dimen/d_32"
-    android:paddingBottom="@dimen/d_32">
+    android:paddingTop="@dimen/d_16"
+    android:paddingBottom="@dimen/d_16">
 
     <ImageView
         android:id="@+id/iv_pic"

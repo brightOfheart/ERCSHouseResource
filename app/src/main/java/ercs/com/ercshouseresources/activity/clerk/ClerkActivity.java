@@ -14,6 +14,8 @@ import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
@@ -40,6 +42,9 @@ public class ClerkActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         createDialog();
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
         if (NetWorkUtil.check(getApplicationContext()))
             loadData();
     }
@@ -84,7 +89,7 @@ public class ClerkActivity extends BaseActivity {
      */
     private void loadData() {
         dialog.show();
-        NetHelper.clerk(getId(), new HttpUtils.HttpCallback() {
+        NetHelperNew.clerk(getId(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final ClerkBean clerkBean = MyGson.getInstance().fromJson(data, ClerkBean.class);

@@ -46,5 +46,5 @@
     <color name="clor_orange">#FC7033</color>
     <color name="clor_backgray">#F4F4F4</color>
     <color name="clor_fontgray">#989898</color>
-
+    <color name="clor_maingray">#666666</color>
 </resources>

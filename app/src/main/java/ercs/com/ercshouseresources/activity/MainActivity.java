@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.esaysidebar.EasySideBarBuilder;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,19 +33,15 @@ import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 public class MainActivity extends BaseActivity {
     @BindView(R.id.viewpager)
     ViewPager viewpager;
-    @BindView(R.id.iv_msg)
-    ImageView iv_msg;
     @BindView(R.id.iv_mine)
     ImageView iv_mine;
     @BindView(R.id.iv_service)
     ImageView iv_service;
-    @BindView(R.id.tv_msg)
-    TextView tv_msg;
     @BindView(R.id.tv_mine)
     TextView tv_mine;
     @BindView(R.id.tv_service)
     TextView tv_service;
-    private static final int NUM = 3;//设置Viewpager 里面的 fragment的数量
+    private static final int NUM = 2;//设置Viewpager 里面的 fragment的数量
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,20 +70,20 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.ly_house, R.id.ly_service, R.id.ly_mine})
+    @OnClick({R.id.ly_service, R.id.ly_mine})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ly_house://房源
+//            case R.id.ly_house://房源
+//                setBottomLabState(0);
+//                viewpager.setCurrentItem(0, false);
+//                break;
+            case R.id.ly_service://服务
                 setBottomLabState(0);
                 viewpager.setCurrentItem(0, false);
                 break;
-            case R.id.ly_service://服务
+            case R.id.ly_mine://我的
                 setBottomLabState(1);
                 viewpager.setCurrentItem(1, false);
-                break;
-            case R.id.ly_mine://我的
-                setBottomLabState(2);
-                viewpager.setCurrentItem(2, false);
                 break;
 
         }
@@ -103,17 +97,14 @@ public class MainActivity extends BaseActivity {
     private void setBottomLabState(int position) {
         switch (position) {
             case 0:
-                setTextAndImg(tv_msg, iv_msg, R.mipmap.message_over, true);
+                setTextAndImg(tv_service, iv_service, R.mipmap.service_select, true);
                 setTextAndImg(tv_mine, iv_mine, R.mipmap.mine_pre, false);
                 break;
             case 1:
-                setTextAndImg(tv_msg, iv_msg, R.mipmap.message_pre, false);
+                setTextAndImg(tv_service, iv_service, R.mipmap.service, false);
                 setTextAndImg(tv_mine, iv_mine, R.mipmap.mine_over, true);
                 break;
-            case 2:
-                setTextAndImg(tv_msg, iv_msg, R.mipmap.message_pre, false);
-                setTextAndImg(tv_mine, iv_mine, R.mipmap.mine_over, true);
-                break;
+
         }
     }
 
@@ -128,9 +119,9 @@ public class MainActivity extends BaseActivity {
     private void setTextAndImg(TextView tv, ImageView iv, int res, boolean isBlue) {
         iv.setImageResource(res);
         if (isBlue) {
-            tv.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+            tv.setTextColor(ContextCompat.getColor(this, R.color.system_color));
         } else {
-            tv.setTextColor(ContextCompat.getColor(this, R.color.white));
+            tv.setTextColor(ContextCompat.getColor(this, R.color.clor_maingray));
         }
     }
 
@@ -142,11 +133,16 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(ViewGroup container, int position) {
+//            if (position == 0) {
+//                return new HouseFragment();
+//            } else if (position == 1) {
+//                return new ServiceFragment();
+//            } else if (position == 2) {
+//                return new NewMineFragment();
+//            }
             if (position == 0) {
-                return new HouseFragment();
-            } else if (position == 1) {
                 return new ServiceFragment();
-            } else if (position == 2) {
+            } else if (position == 1) {
                 return new NewMineFragment();
             }
             return null;
@@ -159,24 +155,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case EasySideBarBuilder.CODE_SIDEREQUEST:
-                if (data != null) {
-
-                    String city = data.getStringExtra("selected");
-                    ServiceFragment.citys = city;
-
-                }
-
-                break;
-
-            default:
-                break;
-        }
-    }
 
     interface getCityListener {
         public String getCity();

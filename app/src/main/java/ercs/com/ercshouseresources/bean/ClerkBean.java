@@ -42,6 +42,24 @@ public class ClerkBean {
         private String Phone;
         private String PhotoPath;
         private String Id;
+        private String Sex;
+        private String IsShopkeeper;
+
+        public String getSex() {
+            return Sex;
+        }
+
+        public void setSex(String sex) {
+            Sex = sex;
+        }
+
+        public String getIsShopkeeper() {
+            return IsShopkeeper;
+        }
+
+        public void setIsShopkeeper(String isShopkeeper) {
+            IsShopkeeper = isShopkeeper;
+        }
 
         public String getName() {
             return Name;

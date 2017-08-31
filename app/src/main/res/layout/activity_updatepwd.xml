@@ -1,97 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include
         android:id="@+id/title"
-        layout="@layout/include_title"/>
+        layout="@layout/include_title" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
-    <FrameLayout
-        android:layout_margin="@dimen/d_10"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="@dimen/sp_14"
+        <FrameLayout
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:text="@string/str_phone_number"
+            android:layout_margin="@dimen/d_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_phone_number"
+                android:textColor="@color/black"
 
 
-            android:textColor="@color/black"
-         />
-        <TextView
-            android:id="@+id/tv_phone"
-            android:textSize="@dimen/sp_14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_gravity="right|center"
-            android:layout_marginRight="@dimen/d_10"/>
-    </FrameLayout>
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="@dimen/d_10"
+                android:text=""
+                android:textSize="@dimen/sp_14" />
+        </FrameLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_1"
-            android:background="@color/white2"/>
-    <LinearLayout
-        android:layout_margin="@dimen/d_10"
+            android:background="@color/white2" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textSize="@dimen/sp_14"
-            android:layout_width="@dimen/d_70"
-            android:textColor="@color/black"
+        <LinearLayout
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:text="@string/str_vcode"/>
-        <EditText
-            android:textSize="@dimen/sp_14"
-            android:layout_width="@dimen/d_0"
-            android:layout_weight="1"
-            android:background="@null"
-            android:inputType="number"
-            android:maxLength="6"
-            android:layout_height="wrap_content"
-            android:hint="@string/str_input_vcode"/>
-        <TextView
-            android:id="@+id/tv_verificationcode"
-            android:textSize="@dimen/sp_14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/str_get_vcode"/>
-    </LinearLayout>
+            android:layout_margin="@dimen/d_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/d_70"
+                android:layout_height="wrap_content"
+                android:text="@string/str_vcode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/edit_pwd"
+                android:layout_width="@dimen/d_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/str_input_vcode"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_verificationcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_get_vcode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_1"
-            android:background="@color/white2"/>
-    <LinearLayout
-        android:layout_margin="@dimen/d_10"
+            android:background="@color/white2" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textSize="@dimen/sp_14"
-            android:layout_width="@dimen/d_70"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/str_resetpassword"/>
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textSize="@dimen/sp_14"
+
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="@string/str_resetpasswordhit"/>
-    </LinearLayout>
+            android:layout_margin="@dimen/d_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/d_70"
+                android:layout_height="wrap_content"
+                android:text="@string/str_resetpassword"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/edit_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/str_resetpasswordhit"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_1"
-            android:background="@color/white2"/>
+            android:background="@color/white2" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_0"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_50"
+        android:layout_marginLeft="@dimen/d_10"
+        android:layout_marginRight="@dimen/d_10"
+        android:layout_marginTop="@dimen/d_18"
+        android:background="@drawable/button_corners_bg"
+        android:layout_marginBottom="@dimen/d_16"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/d_16" />
 </LinearLayout>

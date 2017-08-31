@@ -8,9 +8,9 @@ import java.util.Map;
  * 网络接口访问辅助类
  */
 public class NetHelper {
-    public static final String URL = "http://192.168.1.55:1111";//IP地址
+    public static final String URL = "http://192.168.1.55:8899";//IP地址
     private static final String LOGIN = "/API/Account/LOGIN";//用户登录
-    private static final String CLERK = "/API/User/UserList";//职员列表
+    private static final String CLERK = "/API/Organization/ttGetUserList";//职员列表
     private static final String PROCESS = "/API/Leave/LeaveApprovaList";//流程审批
     private static final String PROCESSCONTENT = "/API/Leave/LeaveInfo";//流程审批详细接口
     private static final String PROCESSREVIEW = "/API/Leave/ApprovalLeave";//流程审批接口
@@ -52,9 +52,8 @@ public class NetHelper {
      */
     public static void clerk(String id, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("Id", id);
         String json = MyGson.getInstance().toJson(map);
-        new HttpUtils().postJson(URL + CLERK, json, callback);
+        new HttpUtils().postNewJson(URL + CLERK, json, callback);
     }
 
     /**

@@ -5,9 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
+
 import java.util.List;
+
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.network.NetHelper;
@@ -38,29 +41,25 @@ public class ClerkAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas> {
     @Override
     public void bindViewDatas(final ViewHolder holder, final ClerkBean.Datas datas, final int position) {
         holder.setText(R.id.tv_name, datas.getName());
-        GlideUtil.loadCircleImage(NetHelper.URL + datas.getPhotoPath(), (ImageView) holder.getView(R.id.iv_photo));
+        if (datas.getIsShopkeeper().equals("false")) {
+
+        } else {
+            holder.setText(R.id.tv_state, "店");
+        }
+
+        if (datas.getSex().equals("1")) {
+            //男
+            holder.getView(R.id.tv_title).setBackgroundResource(R.drawable.circle_blue_bg);
+
+        } else {
+            //女
+            holder.getView(R.id.tv_title).setBackgroundResource(R.drawable.circle_powder_bg);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OtherUitl.callPage(context, datas.getPhone());
-//                BottomDialog bottomDialog = new BottomDialog(activity, new BottomDialog.OnSelectListener() {
-//
-//                    @Override
-//                    public void callphone() {//拨打电话
-//                        OtherUitl.callPage(context, datas.getPhone());
-//                    }
-//
-//                    @Override
-//                    public void selectattendance() {//查看考勤
-//
-//                    }
-//
-//                    @Override
-//                    public void selectfield() {//查看外勤
-//
-//                    }
-//                }, datas.getName());
-//                bottomDialog.show();
+
             }
         });
     }

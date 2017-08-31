@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class NetHelperNew {
     public static final String URL = "http://192.168.1.55:8899";//IP地址
+    private static final String CLERK = "/API/Organization/ttGetUserList";//职员列表
     private static final String LOGIN = "/API/Account/Login";//用户登录
     private static final String BuildingsList = "/API/NewHouse/ttGetBuildingsList";//新房列表
     private static final String CHEAPROOMLIST = "/API/LowPriceHouses/ttGetBuildingsList";//低价房列表
@@ -44,6 +45,10 @@ public class NetHelperNew {
     private static final String FINANCIALORDERDETAIL = "/API/Finance/RunningModel";//金融订单详情
     private static final String CITYLIST = "/api/Account/CityList";//城市列表
     private static final String CHOSECITYLIST = "/api/Account/ModifyCity";//选择城市列表
+    private static final String UPDATECODE = "/API/Common/RePassSMSCode";//获取修改密码的验证码
+    private static final String UPDATEPWD = "/API/Common/RePass";//修改密码
+    private static final String FINDPWDCODE = "/API/Common/NewPassSMSCode";//忘记密码验证码
+    private static final String FINDPWD = "/API/Common/NewPass";//密码重置
 
     /**
      * 登录接口
@@ -585,5 +590,78 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + CHOSECITYLIST, json, callback);
+    }
+
+    /**
+     * 获取验证码
+     *
+     * @param callback
+     */
+    public static void getCode(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + UPDATECODE, json, callback);
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param SMSCode
+     * @param PassWord
+     * @param callback
+     */
+    public static void updatePwd(String SMSCode, String PassWord, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("SMSCode", SMSCode);
+        map.put("PassWord", PassWord);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + UPDATEPWD, json, callback);
+    }
+
+    /**
+     * 职员列表
+     *
+     * @param id
+     * @param callback
+     */
+    public static void clerk(String id, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postNewJson(URL + CLERK, json, callback);
+    }
+
+    /**
+     * 密码找回
+     *
+     * @param SMSCode
+     * @param PassWord
+     * @param callback
+     */
+    public static void findpwdcode(String LoginName, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("LoginName", LoginName);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINDPWDCODE, json, callback);
+    }
+
+    /**
+     * 密码重置
+     *
+     * @param LoginName
+     * @param SMSCode
+     * @param PassWord
+     * @param callback
+     */
+    public static void findpwd(String LoginName, String SMSCode, String PassWord, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("LoginName", LoginName);
+        map.put("SMSCode", SMSCode);
+        map.put("PassWord", PassWord);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINDPWD, json, callback);
     }
 }

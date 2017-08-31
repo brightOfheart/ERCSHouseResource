@@ -11,7 +11,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
@@ -23,6 +25,7 @@ public class SetActivity extends BaseActivity {
 
     @BindView(R.id.fl_updatepwd)
     FrameLayout fl_updatepwd;
+    private SPUtil spUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class SetActivity extends BaseActivity {
 
         TitleControl titleControl = new TitleControl(this);
         titleControl.setTitle(getString(R.string.str_set));
+        if (spUtil == null)
+            spUtil = new SPUtil(this, "fileName");
     }
 
     /**
@@ -58,6 +63,7 @@ public class SetActivity extends BaseActivity {
                 break;
             case R.id.btn_exit:
                 //退出
+                spUtil.putInt(BaseApplication.ISLOGIN, 0);
                 CloseActivityClass.exitClient();
                 break;
         }
