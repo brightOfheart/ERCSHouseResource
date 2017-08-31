@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.clockin.ClockinActivity;
 import ercs.com.ercshouseresources.util.DisplayUtil;

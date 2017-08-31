@@ -17,6 +17,7 @@ import ercs.com.ercshouseresources.bean.DynamicBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -51,7 +52,10 @@ public class CheapDynamicActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         getData();
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**

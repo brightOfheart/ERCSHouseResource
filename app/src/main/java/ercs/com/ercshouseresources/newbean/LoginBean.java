@@ -25,6 +25,70 @@ public class LoginBean extends BaseBean {
         private String Name;
         private String CityID;
         private String CityName;
+        private String Portrait;
+        private String IntermediaryName;
+        private String UserRole;
+        private String VersionStr;
+        private String VersionCode;
+        private String UpdateUrl;
+        public  List<String> Tabs;
+
+        public List<String> getTabs() {
+            return Tabs;
+        }
+
+        public void setTabs(List<String> tabs) {
+            Tabs = tabs;
+        }
+
+        public String getVersionStr() {
+            return VersionStr;
+        }
+
+        public void setVersionStr(String versionStr) {
+            VersionStr = versionStr;
+        }
+
+        public String getVersionCode() {
+            return VersionCode;
+        }
+
+        public void setVersionCode(String versionCode) {
+            VersionCode = versionCode;
+        }
+
+        public String getUpdateUrl() {
+            return UpdateUrl;
+        }
+
+        public void setUpdateUrl(String updateUrl) {
+            UpdateUrl = updateUrl;
+        }
+
+        public String getIntermediaryName() {
+            return IntermediaryName;
+        }
+
+        public void setIntermediaryName(String intermediaryName) {
+            IntermediaryName = intermediaryName;
+        }
+
+        public String getUserRole() {
+            return UserRole;
+        }
+
+        public void setUserRole(String userRole) {
+            UserRole = userRole;
+        }
+
+        public String getPortrait() {
+            return Portrait;
+        }
+
+        public void setPortrait(String portrait) {
+            Portrait = portrait;
+        }
+
         private List<StaffListBean> StaffList;
 
         public List<StaffListBean> getStaffList() {

@@ -1,20 +1,34 @@
 package ercs.com.ercshouseresources.util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.bean.AreaBean;
 
 /**
  * Created by Administrator on 2017/6/30.
@@ -22,6 +36,26 @@ import java.io.InputStream;
  */
 
 public class OtherUitl {
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+    /**
+     * 安卓6.0以上系统开启sd卡写入的权限
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE);
+        }
+    }
 
     /**
      * 调用拨号界面
@@ -50,6 +84,7 @@ public class OtherUitl {
             in.read(data);
             in.close();
         } catch (IOException e) {
+            ToastUtil.showToast(BaseApplication.context,"发生异常");
             e.printStackTrace();
         }
         // 对字节数组Base64编码
@@ -108,7 +143,7 @@ public class OtherUitl {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > 800) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
             baos.reset();//重置baos即清空baos
             //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
             image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
@@ -176,4 +211,123 @@ public class OtherUitl {
         }
         return returnBm;
     }
+
+
+    /**
+     * 获取版本号
+     * @return 当前应用的版本号
+     */
+    public static String getVersion(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            String version = info.versionName;
+            return  version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "没有找到当前的版本号";
+        }
+    }
+
+    public static String saveBitmap(Activity activity, Bitmap mybitmap){
+        boolean result = false;
+        //创建位图保存目录
+        String path = Environment.getExternalStorageDirectory().getPath()
+                + "/AppNames/camera/"+System.currentTimeMillis() + ".png";
+        File sd = new File(path);
+        if (!sd.exists()){
+            sd.mkdir();
+        }
+        File file = new File(path);
+        FileOutputStream fileOutputStream = null;
+        if (!file.exists()){
+            try {
+                // 判断SD卡是否存在，并且是否具有读写权限
+                if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                    fileOutputStream = new FileOutputStream(file);
+                    mybitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                    //update gallery
+                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    Uri uri = Uri.fromFile(file);
+                    intent.setData(uri);
+                    activity.sendBroadcast(intent);
+                    result = true;
+                }
+                else{
+
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return path;
+    }
+
+    public static Bitmap getBitmapFromUrl(String url, double width, double height) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true; // 设置了此属性一定要记得将值设置为false
+        Bitmap bitmap = BitmapFactory.decodeFile(url);
+        // 防止OOM发生
+        options.inJustDecodeBounds = false;
+        int mWidth = bitmap.getWidth();
+        int mHeight = bitmap.getHeight();
+        float m=1;
+        Matrix matrix = new Matrix();
+        float scaleWidth = 1;
+        float scaleHeight = 1;
+        double w,h;
+        if(width>height)
+        {
+            w=height;
+            h=width;
+            // 按照固定宽高进行缩放
+            if(mWidth <= mHeight) {
+                scaleWidth = (float) (w/mWidth);
+                scaleHeight = (float) (h/mHeight);
+            } else {
+                scaleWidth = (float) (h/mWidth);
+                scaleHeight = (float) (w/mHeight);
+            }
+        }
+        else
+        {
+            // 按照固定宽高进行缩放
+            if(mWidth <= mHeight) {
+                scaleWidth = (float) (width/mWidth);
+                scaleHeight = (float) (height/mHeight);
+            } else {
+                scaleWidth = (float) (height/mWidth);
+                scaleHeight = (float) (width/mHeight);
+            }
+        }
+
+
+        // 按照固定大小对图片进行缩放
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, mWidth, mHeight, matrix, true);
+        // 用完了记得回收
+        bitmap.recycle();
+        return newBitmap;
+    }
+    public static String BitmapToString(Bitmap bitmap) {
+        String des = null;
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+            byte[] buffer = out.toByteArray();
+            byte[] encode = Base64.encode(buffer, Base64.DEFAULT);
+            des = new String(encode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return des;
+    }
+
 }

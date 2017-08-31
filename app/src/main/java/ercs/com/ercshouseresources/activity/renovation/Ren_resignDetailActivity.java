@@ -1,19 +1,14 @@
 package ercs.com.ercshouseresources.activity.renovation;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.bean.CustomersListBean;
-import ercs.com.ercshouseresources.bean.RenSelectListBean;
 import ercs.com.ercshouseresources.bean.Ren_resignDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;

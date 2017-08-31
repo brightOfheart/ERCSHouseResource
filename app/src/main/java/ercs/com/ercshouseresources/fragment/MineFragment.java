@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,6 +31,7 @@ import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.NoScrollListView;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
+
 import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
 /**

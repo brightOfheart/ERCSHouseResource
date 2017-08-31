@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,6 +21,9 @@ import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.HouseBigPicAdapter;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
 import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 /**
  * Created by Administrator on 2017/7/28.
@@ -44,6 +49,7 @@ public class HouseBigPicActivity extends BaseActivity {
     private String count;
     private List<String> list;
     private HouseBigPicAdapter adapter;
+
     /**
      * 页面跳转
      *
@@ -62,6 +68,9 @@ public class HouseBigPicActivity extends BaseActivity {
         setContentView(R.layout.activity_housebigpic);
         ButterKnife.bind(this);
         getData();
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -85,28 +94,28 @@ public class HouseBigPicActivity extends BaseActivity {
     private String getCount() {
         return getIntent().getStringExtra("counts");
     }
-    private void setData(String str1,String str2,String str3,String str4)
-    {
+
+    private void setData(String str1, String str2, String str3, String str4) {
         tv_title.setText(str1);
         tv_price.setText(str2);
         tv_oration.setText(str3);
         tv_type.setText(str4);
 
     }
+
     private void getData() {
         newHouseDetailBean = MyGson.getInstance().fromJson(getJson(), NewHouseDetailBean.class);
         viewpager.setAdapter(new MyAdapter());
-        if(Integer.valueOf(getCount())>0)
-        viewpager.setCurrentItem(Integer.valueOf(getCount())-1);
-        tv_num.setText(getCount() + "/" + newHouseDetailBean.getData().getHouseTypeList().size());
+        viewpager.setCurrentItem((Integer.valueOf(getCount())));
+        tv_num.setText((Integer.valueOf(getCount())) + 1 + "/" + newHouseDetailBean.getData().getHouseTypeList().size());
         if (newHouseDetailBean.getData().getHouseTypeList().size() > 0) {
             setData(newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getName(),
                     newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getPrice(),
                     newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getOrientations(),
                     newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getDecorationCondition()
-                    );
-            list=newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getHouseTypeTagList();
-            adapter= new HouseBigPicAdapter(this, list);
+            );
+            list = newHouseDetailBean.getData().getHouseTypeList().get(Integer.valueOf(getCount())).getHouseTypeTagList();
+            adapter = new HouseBigPicAdapter(this, list);
             gridview.setAdapter(adapter);
         }
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -117,9 +126,11 @@ public class HouseBigPicActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tv_num.setText(position+1 + "/" + newHouseDetailBean.getData().getHouseTypeList().size());
+                tv_num.setText(position + 1 + "/" + newHouseDetailBean.getData().getHouseTypeList().size());
                 list = newHouseDetailBean.getData().getHouseTypeList().get(position).getHouseTypeTagList();
-                gridview.setAdapter(new HouseBigPicAdapter(HouseBigPicActivity.this, list));
+                adapter.setListData(list);
+                adapter.notifyDataSetChanged();
+//                gridview.setAdapter(new HouseBigPicAdapter(HouseBigPicActivity.this, list));
                 setData(newHouseDetailBean.getData().getHouseTypeList().get(position).getName(),
                         newHouseDetailBean.getData().getHouseTypeList().get(position).getPrice(),
                         newHouseDetailBean.getData().getHouseTypeList().get(position).getOrientations(),
@@ -150,7 +161,7 @@ public class HouseBigPicActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             // 准备显示的数据，一个简单的
             ImageView tv = new ImageView(HouseBigPicActivity.this);
-            tv.setImageResource(R.mipmap.ic_launcher);
+            GlideUtil.loadImage(HouseBigPicActivity.this, NetHelperNew.URL + newHouseDetailBean.getData().getHouseTypeList().get(position).getImagePath(), tv, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
             // 添加到ViewPager容器
             container.addView(tv);
             // 返回填充的View对象

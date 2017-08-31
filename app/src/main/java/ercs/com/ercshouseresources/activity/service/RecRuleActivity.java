@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,6 +16,8 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.newbean.LoginBean;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 
@@ -44,6 +48,8 @@ public class RecRuleActivity extends BaseActivity {
     TextView tv_name;
     @BindView(R.id.tv_phone)
     TextView tv_phone;
+    @BindView(R.id.ly_callphone)
+    LinearLayout ly_callphone;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,12 @@ public class RecRuleActivity extends BaseActivity {
         ButterKnife.bind(this);
         createdata();
         initTitle();
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
+
     }
+
     /**
      * 设置标题栏
      */
@@ -61,6 +72,7 @@ public class RecRuleActivity extends BaseActivity {
         t.setTitle("推荐规则");
 
     }
+
     /**
      * 初始化数据
      */
@@ -76,6 +88,12 @@ public class RecRuleActivity extends BaseActivity {
                 break;
             }
         }
+        ly_callphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OtherUitl.callPage(RecRuleActivity.this, BaseApplication.loginBean.getData().getStaffList().get(0).getPhone());
+            }
+        });
     }
 
 

@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:gravity="center">
-   <GridView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/gridview"
-       android:numColumns="3"/>
-   <Button
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="重试"
-       android:id="@+id/btn_login"
-       android:visibility="gone"/>
+    android:background="#F3F3F3"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@color/system_color"
+            android:gravity="center"
+            android:text="服务"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_17" />
+
+        <LinearLayout
+            android:id="@+id/ly_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="@dimen/d_16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_5"
+                android:src="@mipmap/dizhitubiao" />
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="@dimen/d_16"
+        android:numColumns="3"
+        android:padding="@dimen/d_16"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/d_16" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重试"
+        android:visibility="gone" />
 </LinearLayout>

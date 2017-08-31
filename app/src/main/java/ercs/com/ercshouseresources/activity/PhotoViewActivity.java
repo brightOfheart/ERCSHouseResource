@@ -3,6 +3,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import uk.co.senab.photoview.PhotoView;
 
@@ -18,7 +19,8 @@ public class PhotoViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photoview);
         iv_photo = (PhotoView) findViewById(R.id.iv_photo);
-        GlideUtil.loadCircleImage(getUrl(), iv_photo);
+        GlideUtil.loadImage(PhotoViewActivity.this, getUrl(), iv_photo,R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+
 
     }
 

@@ -1,16 +1,9 @@
 package ercs.com.ercshouseresources.activity.service;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ListView;
-
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
-import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +11,7 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.ProConAdapter;
 import ercs.com.ercshouseresources.bean.NewHouseDetailBean;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 
@@ -47,6 +41,10 @@ public class ProConActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         initview();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**

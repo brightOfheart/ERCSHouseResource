@@ -12,11 +12,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.CommissionDeservedAdapter;
 import ercs.com.ercshouseresources.adapter.CommissionExplainAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
 import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.view.NoScrollListView;
@@ -24,7 +26,7 @@ import ercs.com.ercshouseresources.view.NoScrollListView;
 /**
  * 佣金说明
  */
-public class CommissionExplainActivity extends AppCompatActivity {
+public class CommissionExplainActivity extends BaseActivity {
 
     @BindView(R.id.listview)
     NoScrollListView listView;//佣金更改记录
@@ -44,7 +46,7 @@ public class CommissionExplainActivity extends AppCompatActivity {
 
     private CommissionExplainBean commissionExplainBean;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commission_explain);
         ButterKnife.bind(this);
@@ -52,7 +54,10 @@ public class CommissionExplainActivity extends AppCompatActivity {
         commissionExplainBean = MyGson.getInstance().fromJson(getjsonString(), CommissionExplainBean.class);
         initListview();
         initdeserved();
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         initData();
     }
 

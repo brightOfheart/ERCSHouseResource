@@ -15,7 +15,9 @@ import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.DynamicDetailAdapter;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
+import ercs.com.ercshouseresources.view.NoScrollListView;
 
 
 /**
@@ -25,7 +27,7 @@ import ercs.com.ercshouseresources.util.TitleControl;
 
 public class DynamicDetailActivity extends BaseActivity{
     @BindView(R.id.listview)
-    ListView listview;
+    NoScrollListView listview;
     @BindView(R.id.tv_title)
     TextView tv_title;
     @BindView(R.id.tv_subtitle)
@@ -48,6 +50,10 @@ public class DynamicDetailActivity extends BaseActivity{
         ButterKnife.bind(this);
         initTitle();
         createData();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
     /**
      * 设置标题栏

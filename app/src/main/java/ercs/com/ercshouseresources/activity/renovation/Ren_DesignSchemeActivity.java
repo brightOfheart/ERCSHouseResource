@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +57,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
     private int PageIndex = 1;
     private RenListBean renListBean;
     private DesignSchemeAdapter designSchemeAdapter;
+    private List<RenListBean.DataBean> list;
 
     /**
      * 页面跳转
@@ -111,6 +117,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
             public void onSuccess(String data) {
                 dialog.dismiss();
                 renListBean = MyGson.getInstance().fromJson(data, RenListBean.class);
+                list.addAll(renListBean.getData()) ;
                 if (renListBean.getType().equals("1")) {
                     createview();
                 } else {
@@ -134,6 +141,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle("设计方案");
         dialog = new LoadingDialog(Ren_DesignSchemeActivity.this, 0);
+        list=new ArrayList<>();
     }
 
     private void setData() {
@@ -189,10 +197,16 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
      * 初始化
      */
     private void createview() {
-        designSchemeAdapter = new DesignSchemeAdapter(this, renListBean.getData());
+        designSchemeAdapter = new DesignSchemeAdapter(this, list);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(designSchemeAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader); //设置下拉刷新Progress的样式
+        // mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);  //设置下拉刷新箭头
+        //设置头部加载颜色
+        mRecyclerView.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
+//设置底部加载颜色
+        mRecyclerView.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -203,9 +217,43 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
                         renListBean = MyGson.getInstance().fromJson(data, RenListBean.class);
                         mRecyclerView.refreshComplete(10);
                         if (renListBean.getType().equals("1")) {
-                            designSchemeAdapter.setListData(null);
-                            designSchemeAdapter.setListData(renListBean.getData());
+                            list.clear();
+                            list.addAll(renListBean.getData());
+                            designSchemeAdapter.setListData(list);
                             mLRecyclerViewAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        mRecyclerView.refreshComplete(10);
+                        ToastUtil.showToast(getApplicationContext(), msg);
+                    }
+                });
+            }
+        });
+        mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
+            @Override
+            public void onLoadMore() {
+                PageIndex++;
+                NetHelperNew.getRenList(getStr(), PageIndex + "", Style, HouseType, AreaTag, new HttpUtils.HttpCallback() {
+                    @Override
+                    public void onSuccess(String data) {
+                        renListBean = MyGson.getInstance().fromJson(data, RenListBean.class);
+                        mRecyclerView.refreshComplete(10);
+                        if (renListBean.getType().equals("1")) {
+                            if(renListBean.getData().size()>0)
+                            {
+                                list.addAll(renListBean.getData());
+                                mLRecyclerViewAdapter.notifyDataSetChanged();
+                            }
+                            else
+                            {
+                               ToastUtil.showToast(Ren_DesignSchemeActivity.this,"没有更多数据了");
+                            }
+
                         }
 
                     }
@@ -228,6 +276,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
 
     private void reshData() {
         dialog.show();
+        PageIndex = 1;
         NetHelperNew.getRenList(getStr(), PageIndex + "", Style, HouseType, AreaTag, new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {

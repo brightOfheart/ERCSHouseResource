@@ -8,6 +8,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
@@ -32,9 +33,15 @@ public class CheapRoomRuleActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cdes);
+//        setContentView(R.layout.activity_cdes);
+        setContentView(R.layout.activity_cheaproomrule);
+
         ButterKnife.bind(this);
         initTitle();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**

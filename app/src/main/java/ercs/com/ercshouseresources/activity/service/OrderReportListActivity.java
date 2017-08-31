@@ -17,11 +17,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.OrderReportListAdapter;
 import ercs.com.ercshouseresources.bean.OrderReportListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -29,7 +31,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 /**
  * 报备订单列表
  */
-public class OrderReportListActivity extends AppCompatActivity {
+public class OrderReportListActivity extends BaseActivity {
 
     @BindView(R.id.recyleview)
     LRecyclerView recyleview;
@@ -41,14 +43,17 @@ public class OrderReportListActivity extends AppCompatActivity {
     private LRecyclerViewAdapter lRecyclerViewAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_report_list);
         ButterKnife.bind(this);
         initTitle();
         initRecycleView();
         downLoad(pageNum,true);
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -75,7 +80,11 @@ public class OrderReportListActivity extends AppCompatActivity {
                             orderReportListAdapter.notifyDataSetChanged();
                             pageNum++;
                         }
-                        ToastUtil.showToast(OrderReportListActivity.this,orderReportListBean.getContent());
+                        else
+                        {
+                            ToastUtil.showToast(OrderReportListActivity.this,orderReportListBean.getContent());
+                        }
+
                     }
                 });
             }

@@ -160,7 +160,14 @@ public class RenovationDetailActivity extends BaseActivity {
                 Ren_companyIntroActivity.start(RenovationDetailActivity.this, renovaDetailBean.getData().getBaseInfo().getDecorationCompanyInfo(), renovaDetailBean.getData().getImagePath());
                 break;
             case R.id.frame_address://地址
-                MapActivity.start(this, Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getY()), Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getX()));
+                if (renovaDetailBean.getData().getStoreList().size() > 0) {
+                    MapActivity.start(this, Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getY()), Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getX()),renovaDetailBean.getData().getStoreList().get(0).getAddress());
+                }
+                else
+                {
+                    ToastUtil.showToast(this,"没有地址信息");
+                }
+
                 break;
             case R.id.btn_reportingclients://报备客户
                 if (!"".equals(JsonData))

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include
@@ -11,45 +12,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/d_16">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="客户姓名" />
+            android:text="客户姓名"
+            android:textColor="#CECFCE" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_16"
+            android:textColor="#CECFCE" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_16"
         android:background="@color/white2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/d_16">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="客户电话" />
+            android:text="客户电话"
+            android:textColor="#CECFCE" />
 
         <TextView
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_16"
+            android:textColor="#CECFCE" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_10"
-        android:layout_marginTop="@dimen/d_10"
-        android:background="@color/black" />
+        android:background="#F7F3F7" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -58,78 +68,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/d_16">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="装修面积" />
+                android:text="装修面积"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/tv_areao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:layout_marginLeft="@dimen/d_10"
+                android:background="@color/transparent"
+                android:hint="只输入数字"
+                android:inputType="number"
+                android:textSize="@dimen/d_13" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
-            android:text="平" />
+            android:layout_marginRight="@dimen/d_16"
+            android:text="m²"
+            android:textColor="@color/black" />
     </FrameLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_16"
         android:background="@color/white2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/d_16">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="装修地址" />
+            android:text="装修地址"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/tv_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10"
+            android:background="@color/transparent"
+            android:hint="输入房屋地址"
+            android:textSize="@dimen/d_13" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_16"
         android:background="@color/white2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/d_16">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="备注说明" />
+            android:text="备注说明"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/tv_remarks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10"
+            android:background="@color/transparent"
+            android:hint="请输入备注信息"
+            android:textSize="@dimen/d_13" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_10"
-        android:layout_marginTop="@dimen/d_10"
-        android:background="@color/black" />
+        android:background="#F7F3F7" />
 
     <Button
         android:id="@+id/btn_sure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="确定" />
+        android:layout_margin="@dimen/d_10"
+        android:background="@drawable/button_corners_bg"
+        android:text="报备客户"
+        android:textColor="@color/white" />
+
 </LinearLayout>

@@ -24,6 +24,15 @@ public class NewHouseDetailBean extends BaseBean {
         private String AreaName;
         private List<HouseTypeListBean> HouseTypeList;
         private List<PropertyConsultantList> PropertyConsultantList;
+        private List<String> ImageList ;
+
+        public List<String> getImageList() {
+            return ImageList;
+        }
+
+        public void setImageList(List<String> imageList) {
+            ImageList = imageList;
+        }
 
         public List<DataBean.PropertyConsultantList> getPropertyConsultantList() {
             return PropertyConsultantList;

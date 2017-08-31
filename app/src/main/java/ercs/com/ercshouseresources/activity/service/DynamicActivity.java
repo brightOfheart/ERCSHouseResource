@@ -4,10 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
@@ -17,6 +23,7 @@ import ercs.com.ercshouseresources.bean.DynamicBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -34,6 +41,8 @@ public class DynamicActivity extends BaseActivity {
     private int PageSize = 10;
     private LoadingDialog dialog;
     private DynamicBean dynamicBean;
+    private List<DynamicBean.DataBean> list;
+    private DynamicAdapter adapter;
 
     /**
      * 页面跳转
@@ -51,7 +60,9 @@ public class DynamicActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         getData();
-
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -61,6 +72,7 @@ public class DynamicActivity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_dynamic));
         dialog = new LoadingDialog(DynamicActivity.this, 0);
+        list = new ArrayList<>();
     }
 
 
@@ -68,11 +80,16 @@ public class DynamicActivity extends BaseActivity {
      * 初始化
      */
     private void initview() {
-        mLRecyclerViewAdapter = new LRecyclerViewAdapter(new DynamicAdapter(DynamicActivity.this, this, dynamicBean.getData()));
+        adapter = new DynamicAdapter(DynamicActivity.this, this, list);
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
         recyleview.setLayoutManager(new LinearLayoutManager(this));
         recyleview.setAdapter(mLRecyclerViewAdapter);
-        recyleview.setPullRefreshEnabled(true);
-        recyleview.setPullRefreshEnabled(true);
+        recyleview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader); //设置下拉刷新Progress的样式
+        // mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);  //设置下拉刷新箭头
+        //设置头部加载颜色
+        recyleview.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
+//设置底部加载颜色
+        recyleview.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
         recyleview.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -80,24 +97,23 @@ public class DynamicActivity extends BaseActivity {
                 NetHelperNew.getDynamic(PageIndex + "", PageSize + "", "1", new HttpUtils.HttpCallback() {
                     @Override
                     public void onSuccess(String data) {
-                        dialog.dismiss();
+                        recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
                         dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
+                        if (dynamicBean.getType().equals("1")) {
+                            list.clear();
+                            list.addAll(dynamicBean.getData());
+                            adapter.setListData(list);
+                            mLRecyclerViewAdapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
+                        }
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
-                                mLRecyclerViewAdapter.notifyDataSetChanged();
-                                ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
-
-                            }
-                        });
                     }
 
                     @Override
                     public void onError(String msg) {
                         super.onError(msg);
-                        dialog.dismiss();
+                        recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
                         ToastUtil.showToast(getApplicationContext(), msg);
                     }
                 });
@@ -110,17 +126,20 @@ public class DynamicActivity extends BaseActivity {
                 NetHelperNew.getDynamic(PageIndex + "", PageSize + "", "1", new HttpUtils.HttpCallback() {
                     @Override
                     public void onSuccess(String data) {
-                        dialog.dismiss();
+                        recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
                         dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                recyleview.refreshComplete(PageSize);// REQUEST_COUNT为每页加载数量
+                        if (dynamicBean.getType().equals("1")) {
+                            if (dynamicBean.getData().size() > 0) {
+                                list.addAll(dynamicBean.getData());
                                 mLRecyclerViewAdapter.notifyDataSetChanged();
-                                ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
 
+                            } else {
+                                ToastUtil.showToast(getApplicationContext(), "没有更多数据了");
                             }
-                        });
+                        } else {
+                            ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
+                        }
+
                     }
 
                     @Override
@@ -145,16 +164,13 @@ public class DynamicActivity extends BaseActivity {
                 dialog.dismiss();
                 dynamicBean = MyGson.getInstance().fromJson(data, DynamicBean.class);
                 if (dynamicBean.getType().equals("1")) {
+                    list.addAll(dynamicBean.getData());
                     initview();
+                    mLRecyclerViewAdapter.notifyDataSetChanged();
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mLRecyclerViewAdapter.notifyDataSetChanged();
-                        ToastUtil.showToast(getApplicationContext(), dynamicBean.getContent());
 
-                    }
-                });
             }
 
             @Override

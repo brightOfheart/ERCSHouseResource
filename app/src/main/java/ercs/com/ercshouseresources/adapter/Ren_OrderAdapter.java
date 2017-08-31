@@ -2,6 +2,7 @@ package ercs.com.ercshouseresources.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ import com.king.base.adapter.holder.ViewHolder;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.renovation.Ren_OrderReportDetailActivity;
+import ercs.com.ercshouseresources.activity.service.OrderReportDetailActivity;
 import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.bean.Ren_OrderBean;
 import ercs.com.ercshouseresources.network.NetHelper;
@@ -48,5 +51,14 @@ public class Ren_OrderAdapter extends ViewHolderRecyclerAdapter<Ren_OrderBean.Da
         holder.setText(R.id.tv_company, datas.getDecorationCompanyName());
         holder.setText(R.id.tv_economicman, "经济人:" + datas.getUserName());
         holder.setText(R.id.tv_state, datas.getOperTime() + "  " + datas.getState());
+        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Ren_OrderReportDetailActivity.class);
+                intent.putExtra("Id",datas.getId()+"");
+                intent.putExtra("title",datas.getDecorationCompanyName());
+                context.startActivity(intent);
+            }
+        });
     }
 }

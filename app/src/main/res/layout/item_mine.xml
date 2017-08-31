@@ -5,8 +5,8 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/d_8"
-    android:paddingTop="@dimen/d_8">
+    android:paddingBottom="@dimen/d_16"
+    android:paddingTop="@dimen/d_16">
 
     <ImageView
         android:id="@+id/iv_icon"
@@ -18,7 +18,7 @@
         android:id="@+id/tv_title"
         android:layout_width="@dimen/d_0"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/d_5"
+        android:layout_marginLeft="@dimen/d_10"
         android:layout_weight="1"
         android:gravity="center|left"
         android:text="@string/str_clerk"

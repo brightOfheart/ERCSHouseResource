@@ -1,19 +1,28 @@
 package ercs.com.ercshouseresources.activity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.esaysidebar.EasySideBarBuilder;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.fragment.HouseFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
+import ercs.com.ercshouseresources.fragment.NewMineFragment;
 import ercs.com.ercshouseresources.fragment.ServiceFragment;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
@@ -46,14 +55,16 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initview();
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
      * 初始化
      */
     private void initview() {
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
         setBottomLabState(0);
@@ -136,7 +147,7 @@ public class MainActivity extends BaseActivity {
             } else if (position == 1) {
                 return new ServiceFragment();
             } else if (position == 2) {
-                return new MineFragment();
+                return new NewMineFragment();
             }
             return null;
         }
@@ -145,6 +156,65 @@ public class MainActivity extends BaseActivity {
         public int getCount() {
             return NUM;
         }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case EasySideBarBuilder.CODE_SIDEREQUEST:
+                if (data != null) {
+
+                    String city = data.getStringExtra("selected");
+                    ServiceFragment.citys = city;
+
+                }
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    interface getCityListener {
+        public String getCity();
+    }
+
+    /**
+     * 返回键隐藏到后台
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            dialog();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /*退出对话框*/
+    public void dialog() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("提示")
+                .setMessage("确定要退出吗？")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        AlertDialog dialog_dialog = dialog.create();
+        dialog_dialog.show();
 
     }
 }

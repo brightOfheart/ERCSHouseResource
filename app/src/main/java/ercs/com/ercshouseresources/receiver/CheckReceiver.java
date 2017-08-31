@@ -1,20 +1,12 @@
 package ercs.com.ercshouseresources.receiver;
-
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.WindowManager;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.view.dialog.CheckDialog;
-
-import static ercs.com.ercshouseresources.R.style.dialog;
-
 /**
  * Created by Administrator on 2017/8/4.
  * 监听是否重复登录的广播

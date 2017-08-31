@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -20,7 +21,16 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BaiduMapOptions;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.navisdk.adapter.BNCommonSettingParam;
 import com.baidu.navisdk.adapter.BNOuterLogUtil;
@@ -45,8 +55,10 @@ import ercs.com.ercshouseresources.activity.nativ.BNDemoMainActivity;
 import ercs.com.ercshouseresources.activity.nativ.BNEventHandler;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.service.LocationService;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.ToastUtil;
+import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 
 /**
  * Created by Administrator on 2017/7/28.
@@ -57,6 +69,8 @@ public class MapActivity extends BaseActivity {
     MapView mMapView;//百度地图
     @BindView(R.id.iv_native)
     ImageView iv_native;//百度地图
+    @BindView(R.id.tv_address)
+    TextView tv_address;//百度地图
     private BaiduMap mBaidumap;
     public static List<Activity> activityList = new LinkedList<Activity>();
     private static final String APP_FOLDER_NAME = "BNSDKSimpleDemo";
@@ -88,17 +102,19 @@ public class MapActivity extends BaseActivity {
     private double nowlatitude = 0;
 
     private LocationService locationService;
-
+    private LoadingDialog dialog;
 
     /**
      * 页面跳转
      */
-    public static void start(Activity mactivity, double longitude,double latitude) {
+    public static void start(Activity mactivity, double longitude, double latitude, String address) {
         Intent intent = new Intent(mactivity, MapActivity.class);
-        intent.putExtra("longitude",longitude);
+        intent.putExtra("longitude", longitude);
         intent.putExtra("latitude", latitude);
+        intent.putExtra("address", address);
         mactivity.startActivity(intent);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +122,9 @@ public class MapActivity extends BaseActivity {
         setContentView(R.layout.activity_map);
         ButterKnife.bind(this);
         initTitle();
-        mBaidumap = mMapView.getMap();
-
+        if (!CloseActivityClass.activityList.contains(this)) {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -116,7 +133,10 @@ public class MapActivity extends BaseActivity {
     private void initTitle() {
         TitleControl t = new TitleControl(this);
         t.setTitle("地址信息");
-
+        tv_address.setText(getIntent().getStringExtra("address"));
+        mBaidumap = mMapView.getMap();
+        dialog = new LoadingDialog(MapActivity.this, 0);
+        Log.d("===============", getLat() + "/" + getLong());
     }
 
     /**
@@ -128,24 +148,25 @@ public class MapActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_native://导航
-                longitude=getLong();
-                latitude=getLat();
-                if(longitude!=0&&latitude!=0)
-                loadNative();
+                longitude =getLat();
+                latitude = getLong();
+                if (longitude != 0 && latitude != 0)
+                    loadNative();
                 else
-                    ToastUtil.showToast(this,"位置信息错误");
+                    ToastUtil.showToast(this, "位置信息错误");
                 break;
 
         }
     }
-    private Double getLong()
-    {
-        return getIntent().getDoubleExtra("longitude",0);
+
+    private Double getLong() {
+        return getIntent().getDoubleExtra("longitude", 0);
     }
-    private Double getLat()
-    {
-        return getIntent().getDoubleExtra("latitude",0);
+
+    private Double getLat() {
+        return getIntent().getDoubleExtra("latitude", 0);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -653,6 +674,7 @@ public class MapActivity extends BaseActivity {
         public void onConnectHotSpotMessage(String s, int i) {
         }
     };
+    public static final float ZOOM_NUMBER = 15.0f;
 
     public void logMsg() {
 
@@ -661,10 +683,46 @@ public class MapActivity extends BaseActivity {
             public void run() {
                 if (nowlatitude != 0 && nowlongitude != 0) {
                     iv_native.setVisibility(View.VISIBLE);
+
                 }
+                LatLng latlng = new LatLng(nowlatitude, nowlongitude);
+                setUserMapCenter(latlng);
+                setMarker(latlng);
             }
         });
 
         locationService.stop();// 定位SDK
     }
+
+    /**
+     * 设置中心点
+     */
+    private void setUserMapCenter(LatLng cenpt) {
+        //定义地图状态
+        MapStatus mMapStatus = new MapStatus.Builder()
+                .target(cenpt)
+                .zoom(19)
+                .build();
+        //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
+        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+        //改变地图状态
+        mBaidumap.setMapStatus(mMapStatusUpdate);
+
+    }
+
+    /**
+     * 添加marker
+     */
+    private void setMarker(LatLng point) {
+        //构建Marker图标
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.mipmap.icon_gcoding);
+        //构建MarkerOption，用于在地图上添加Marker
+        OverlayOptions option = new MarkerOptions()
+                .position(point)
+                .icon(bitmap);
+        //在地图上添加Marker，并显示
+        mBaidumap.addOverlay(option);
+    }
+
 }

@@ -28,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.ReportingClientsAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
@@ -36,6 +37,7 @@ import ercs.com.ercshouseresources.bean.NewHouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -43,7 +45,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 /**
  * 报备客户
  */
-public class ReportingClientsActivity extends AppCompatActivity {
+public class ReportingClientsActivity extends BaseActivity {
 
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
@@ -80,12 +82,15 @@ public class ReportingClientsActivity extends AppCompatActivity {
         return commissionExplainBean.getData().getBaseInfo().getId()+"";
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporting_clients);
         ButterKnife.bind(this);
         initview();
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     @Override

@@ -69,6 +69,45 @@ public class ReportOrderDetailBean {
         private String AchieveAmount;
         private String UnAchieveAmount;
         private int BrokerageState;
+        private List<MessageBoardsShowModel> MessageBoardsShowList;
+
+        public List<MessageBoardsShowModel> getMessageBoardsShowList() {
+            return MessageBoardsShowList;
+        }
+
+        public void setMessageBoardsShowList(List<MessageBoardsShowModel> messageBoardsShowList) {
+            MessageBoardsShowList = messageBoardsShowList;
+        }
+
+        public static class MessageBoardsShowModel {
+            public String StaffName;
+            public String Content;
+            public String CreatedTime;
+
+            public String getStaffName() {
+                return StaffName;
+            }
+
+            public void setStaffName(String staffName) {
+                StaffName = staffName;
+            }
+
+            public String getContent() {
+                return Content;
+            }
+
+            public void setContent(String content) {
+                Content = content;
+            }
+
+            public String getCreatedTime() {
+                return CreatedTime;
+            }
+
+            public void setCreatedTime(String createdTime) {
+                CreatedTime = createdTime;
+            }
+        }
 
         public String getTotalAmount() {
             return TotalAmount;
@@ -137,7 +176,6 @@ public class ReportOrderDetailBean {
         }
 
 
-
         public String getTaxAmount() {
             return TaxAmount;
         }
@@ -145,7 +183,6 @@ public class ReportOrderDetailBean {
         public void setTaxAmount(String TaxAmount) {
             this.TaxAmount = TaxAmount;
         }
-
 
 
         public int getBrokerageState() {
@@ -198,7 +235,17 @@ public class ReportOrderDetailBean {
             private int ImageType;
             private String ImageRemark;
             private int IsViewButton;
+            private String GroupID;
             private int SortID;
+
+            public String getGroupID() {
+                return GroupID;
+            }
+
+            public void setGroupID(String groupID) {
+                GroupID = groupID;
+            }
+
             private List<ImageListBean> ImageList;
 
             public int getStyleID() {

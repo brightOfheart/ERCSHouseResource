@@ -1,8 +1,5 @@
 package ercs.com.ercshouseresources.activity.service;
-
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -12,42 +9,37 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.NewBuildingAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.bean.HouseListBean;
 import ercs.com.ercshouseresources.bean.NewHouseAreaBean;
 import ercs.com.ercshouseresources.bean.NewHouseListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
-import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.popupwindow.BuildingTypeSelectPop;
-import ercs.com.ercshouseresources.view.popupwindow.HouseLayoutSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.NewHouseAreaSelectPop;
 
 /**
  * 新房
  */
-public class NewHouseActivity extends AppCompatActivity {
+public class NewHouseActivity extends BaseActivity {
 
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
@@ -73,12 +65,15 @@ public class NewHouseActivity extends AppCompatActivity {
     private NewHouseAreaSelectPop newHouseAreaSelectPop;//区域类型
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_house);
         ButterKnife.bind(this);
         initview();
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         getData(pagenum,true);
         initHouseLayoutSelectPop();
         downLoadArea();
@@ -90,7 +85,6 @@ public class NewHouseActivity extends AppCompatActivity {
      */
     private void downLoadArea() {
         NetHelperNew.AreaList(BaseApplication.loginBean.getData().getCityID(),new HttpUtils.HttpCallback() {
-
             @Override
             public void onSuccess(String data) {
                 Log.i("-->","新房区域:"+data);
@@ -235,8 +229,7 @@ public class NewHouseActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.title_left:
                 //返回键
-//                finish();
-                startActivity(new Intent(NewHouseActivity.this,OrderReportListActivity.class));
+                finish();
                 break;
 
             case R.id.ly_housingtype:
@@ -273,11 +266,9 @@ public class NewHouseActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             ToastUtil.showToast(NewHouseActivity.this, newHouseListBean.getContent());
-
                             mRecyclerView.refreshComplete(10);
                             //更新数据
                             houseListBeans.addAll(newHouseListBean.getData());
-
                             houseAdapter.notifyDataSetChanged();
                             pagenum++;
                         }

@@ -23,7 +23,8 @@ public class NetHelperNew {
     private static final String InsertNewCustomer = "/API/Organization/ttInsertNewCustomer";//添加客户
     private static final String InsertRunningsModel = "/API/NewHouse/ttInsertRunningsModel";//确认报备信息
     private static final String CheapInsertRunningsModel = "/API/LowPriceHouses/ttInsertRunningsModel";//低价房确认报备信息
-    private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//报备订单详情
+    private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//新房报备订单详情
+    private static final String CHEAPREPORTINGORDERDETSIL = "/API/LowPriceHouses/ttGetRunningModel";//低价房报备订单详情
     private static final String UploadImage = "/API/Common/ttUploadImageModel";//上传图片
     private static final String DelImage = "/API/Common/ttDelImageModel";//上传图片
     private static final String RunningsList = "/API/NewHouse/ttGetRunningsList";//获取报备列表
@@ -36,6 +37,13 @@ public class NetHelperNew {
     private static final String REN_SELECTLIST = "/API/Decoration/ttGetCaseCondition";//装修案例列表条件查询
     private static final String REN_LIST = "/API/Decoration/ttGetDecorationCaseList";//装修列表查询
     private static final String REN_LISTDETAIL = "/API/Decoration/ttGetDecorationCaseInfo";//装修列表详情查询
+    private static final String FINANCIAL = "/API/Finance/ItemList";//金融查询
+    private static final String FINANCIALREPORTINGORDERDETSIL = "/API/Finance/AddRunning";//金融报备订单详情
+    private static final String FINANCIALRunningsList = "/API/Finance/RunningList";//获取金融订单列表
+    private static final String RENORDERDETAIL = "/API/Decoration/ttGetRunningModel";//装修订单详情
+    private static final String FINANCIALORDERDETAIL = "/API/Finance/RunningModel";//金融订单详情
+    private static final String CITYLIST = "/api/Account/CityList";//城市列表
+    private static final String CHOSECITYLIST = "/api/Account/ModifyCity";//选择城市列表
 
     /**
      * 登录接口
@@ -158,13 +166,13 @@ public class NetHelperNew {
     /**
      * 低价房报备列表
      *
-     * @param KeyWord
+     * @param
      * @param PageIndex
      * @param callback
      */
-    public static void getCheapCustomersList(String KeyWord, String PageIndex, HttpUtils.HttpCallback callback) {
+    public static void getCheapCustomersList(String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("KeyWord", KeyWord);
+        map.put("KeyWord", "");
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
         String json = MyGson.getInstance().toJson(map);
@@ -242,6 +250,49 @@ public class NetHelperNew {
         new HttpUtils().postNewJson(URL + REPORTINGORDERDETSIL, json, callback);
     }
 
+
+    /**
+     * 查看低价房订单详情
+     *
+     * @param Id
+     * @param callback
+     */
+    public static void getCheapReportingOrderDetail(String Id, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id", Id);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + CHEAPREPORTINGORDERDETSIL, json, callback);
+    }
+
+    /**
+     * 查看装修订单详情
+     *
+     * @param Id
+     * @param callback
+     */
+    public static void getRenOrderDetail(String Id, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id", Id);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + RENORDERDETAIL, json, callback);
+    }
+
+    /**
+     * 查看金融订单详情
+     *
+     * @param Id
+     * @param callback
+     */
+    public static void getFinancialOrderDetail(String Id, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Id", Id);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINANCIALORDERDETAIL, json, callback);
+    }
+
     /**
      * 动态管理接口
      *
@@ -292,8 +343,7 @@ public class NetHelperNew {
         map.put("ImageType", ImageType);
         map.put("Imagedata", Imagedata);
         String json = MyGson.getInstance().toJson(map);
-        Log.i("Json", json);
-        Log.i("-->", "ImageType:" + ImageType);
+        Log.i("Json", GroupID + "/" + InterfixID + "/" + ImageType);
         new HttpUtils().postNewJson(URL + UploadImage, json, callback);
     }
 
@@ -319,6 +369,22 @@ public class NetHelperNew {
      * @param callback
      */
     public static void RunningsList(String PageIndex, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "10");
+        map.put("KeyWord", "");
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + RunningsList, json, callback);
+    }
+
+    /**
+     * 低价房报备订单列表
+     *
+     * @param PageIndex
+     * @param callback
+     */
+    public static void Cheap_RunningsList(String PageIndex, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
@@ -402,8 +468,6 @@ public class NetHelperNew {
     /**
      * 获取装修条件筛选列表
      *
-     *
-     *
      * @param callback
      */
     public static void getRenSelectList(HttpUtils.HttpCallback callback) {
@@ -438,6 +502,7 @@ public class NetHelperNew {
 
     /**
      * 装修列表详情
+     *
      * @param Id
      * @param callback
      */
@@ -447,5 +512,78 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + REN_LISTDETAIL, json, callback);
+    }
+
+    /**
+     * 获取金融
+     *
+     * @param
+     * @param ParentId
+     * @param callback
+     */
+    public static void getFinancial(String ParentId, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("ParentId", ParentId);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINANCIAL, json, callback);
+    }
+
+    /**
+     * 金融报备
+     *
+     * @param RunningId
+     * @param PhoneId
+     * @param callback
+     */
+    public static void getFinacialReportingOrderDetail(String RunningId, String PhoneId, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("RunningId", RunningId);
+        map.put("PhoneId", PhoneId);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINANCIALREPORTINGORDERDETSIL, json, callback);
+    }
+
+    /**
+     * 金融订单列表
+     *
+     * @param PageIndex
+     * @param
+     * @param callback
+     */
+    public static void getFinacialRunningList(String PageIndex, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("PageIndex", PageIndex);
+        map.put("PageSize", "10");
+        map.put("KeyWord", "");
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + FINANCIALRunningsList, json, callback);
+    }
+
+    /**
+     * 获取城市列表
+     *
+     * @param callback
+     */
+    public static void getCityList(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + CITYLIST, json, callback);
+    }
+
+    /**
+     * 选择城市列表
+     *
+     * @param callback
+     */
+    public static void getChoseCityList(String CityID, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("CityID", CityID);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + CHOSECITYLIST, json, callback);
     }
 }

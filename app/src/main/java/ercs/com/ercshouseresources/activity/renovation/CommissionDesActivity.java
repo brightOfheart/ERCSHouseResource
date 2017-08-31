@@ -3,7 +3,9 @@ package ercs.com.ercshouseresources.activity.renovation;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
@@ -35,6 +38,8 @@ public class CommissionDesActivity extends BaseActivity {
     TextView tv_name;
     @BindView(R.id.tv_phone)
     TextView tv_phone;
+    @BindView(R.id.ly_callphone)
+    LinearLayout ly_callphone;
 
     public static void start(Activity mactivity, String CommissionAccount, String path) {
         Intent intent = new Intent(mactivity, CommissionDesActivity.class);
@@ -50,8 +55,7 @@ public class CommissionDesActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         createView();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -76,6 +80,12 @@ public class CommissionDesActivity extends BaseActivity {
                 break;
             }
         }
+        ly_callphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OtherUitl.callPage(CommissionDesActivity.this, BaseApplication.loginBean.getData().getStaffList().get(0).getPhone());
+            }
+        });
     }
 
     private String getCA() {

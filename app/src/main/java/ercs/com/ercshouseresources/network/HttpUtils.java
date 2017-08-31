@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.receiver.CheckReceiver;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import okhttp3.Call;
 import okhttp3.Callback;

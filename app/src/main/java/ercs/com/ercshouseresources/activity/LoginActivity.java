@@ -1,10 +1,14 @@
 package ercs.com.ercshouseresources.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -44,8 +48,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initialize();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -86,7 +89,7 @@ public class LoginActivity extends BaseActivity {
             String json = spUtil.getString(BaseApplication.LOGINJSON, "");
             BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-           // finish();
+            // finish();
         }
         dialog = new LoadingDialog(LoginActivity.this, 0);
 
@@ -95,10 +98,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(spUtil.getString(BaseApplication.ID,"").length()>0)
-        {
-            showId();
-        }
+        showId();
         if (spUtil.getInt(BaseApplication.ISSHOWPWD, 0) == 1)//判断是否显示密码
             showContent(1);
         else
@@ -149,30 +149,38 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * 保存账号和密码
+     * 存储城市信息
      *
-     * @param id
-     * @param pwd
+     * @param city
+     * @param cityid
+     * @param tabs
      */
-    private void saveIdPwd(String id, String phone, String pwd, String photopath, String name, String depname, String Authority, String SuperiorPhone) {
-        spUtil.putString(BaseApplication.ID, id);
-        spUtil.putString(BaseApplication.PHONE, phone);
-        spUtil.putString(BaseApplication.PWD, pwd);
-        spUtil.putString(BaseApplication.PHOTOPATH, photopath);
-        spUtil.putString(BaseApplication.NAME, name);
-        spUtil.putString(BaseApplication.DEPNAME, depname);
-        spUtil.putString(BaseApplication.AUTHORITY, Authority);
-        spUtil.putString(BaseApplication.SUPERIORPHONE, SuperiorPhone);
+    private void saveCitys(String city, String cityid, String tabs) {
+        spUtil.putString(BaseApplication.CITY, city);
+        spUtil.putString(BaseApplication.CITYID, cityid);
+        spUtil.putString(BaseApplication.TABS, tabs);
     }
 
     /**
      * 保存账号和密码
      */
-    private void saveIdpwd(String id,String pwd)
-    {
+    private void saveIdPwd(String photopath, String name, String depname, String company, String code, String url) {
+        spUtil.putString(BaseApplication.PHOTOPATH, photopath);
+        spUtil.putString(BaseApplication.NAME, name);
+        spUtil.putString(BaseApplication.DEPNAME, depname);
+        spUtil.putString(BaseApplication.COMPANY, company);
+        spUtil.putString(BaseApplication.VERSIONCODE, code);
+        spUtil.putString(BaseApplication.UPDATEURL, url);
+    }
+
+    /**
+     * 保存账号和密码
+     */
+    private void saveIdpwd(String id, String pwd) {
         spUtil.putString(BaseApplication.PHONE, id);
         spUtil.putString(BaseApplication.PWD, pwd);
     }
+
     /**
      * 保存存储后的json
      *
@@ -206,22 +214,23 @@ public class LoginActivity extends BaseActivity {
                 dialog.dismiss();
                 final LoginBean loginBean = MyGson.getInstance().fromJson(data, LoginBean.class);
                 if (loginBean.getType().equals("1")) {
-                    // saveIdPwd(loginBean.getData().getId() + "", getId(), getPwd(), loginBean.getData().getPhotoPath(), loginBean.getData().getName(), loginBean.getData().getDepName(), loginBean.getData().getAuthority() + "", loginBean.getData().getSuperiorUser().getPhone());
+                    saveIdPwd(loginBean.getData().getPortrait(), loginBean.getData().getName(), loginBean.getData().getUserRole(), loginBean.getData().getIntermediaryName(), loginBean.getData().getVersionCode(), loginBean.getData().getUpdateUrl());
                     saveLogin(1);
+                    List<String> list = loginBean.getData().getTabs();
+                    String str = "";
+                    for (int i = 0; i < list.size(); i++) {
+                        str = str + list.get(i) + ",";
+                    }
+                    saveCitys(loginBean.getData().getCityName(), loginBean.getData().getCityID(), str);
                     saveJson(data);
                     saveToken();
-                    saveIdpwd(getId(),getPwd());
+                    saveIdpwd(getId(), getPwd());
                     BaseApplication.loginBean = loginBean;
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                   // finish();
+                    // finish();
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), loginBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), loginBean.getContent());
-
-                    }
-                });
 
             }
 

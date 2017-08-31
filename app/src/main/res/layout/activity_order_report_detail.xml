@@ -23,14 +23,14 @@
 
             <!--过期 再报备-->
             <RelativeLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:paddingBottom="@dimen/d_10"
                 android:paddingLeft="@dimen/d_16"
                 android:paddingRight="@dimen/d_16"
-                android:paddingTop="@dimen/d_10">
+                android:paddingTop="@dimen/d_10"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -49,17 +49,17 @@
             </RelativeLayout>
 
             <View
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_1"
-                android:background="@color/white2"></View>
+                android:background="@color/white2"
+                android:visibility="gone"></View>
 
             <View
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_1"
                 android:layout_marginTop="@dimen/d_10"
-                android:background="@color/white2"></View>
+                android:background="@color/white2"
+                android:visibility="gone"></View>
             <!--联系方式-->
             <RelativeLayout
                 android:id="@+id/ll_customerphone"
@@ -99,23 +99,18 @@
                 android:layout_height="@dimen/d_1"
                 android:background="@color/white2"></View>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/d_1"
-                android:layout_marginTop="@dimen/d_10"
-                android:background="@color/white2"></View>
             <!--报备订单-->
-
 
 
             <ercs.com.ercshouseresources.view.NoScrollListView
                 android:id="@+id/listview"
-                android:padding="@dimen/d_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:divider="@color/white"
                 android:dividerHeight="@dimen/d_0"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ercs.com.ercshouseresources.view.NoScrollListView>
+                android:padding="@dimen/d_16"></ercs.com.ercshouseresources.view.NoScrollListView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_1"
@@ -135,6 +130,30 @@
                 android:paddingLeft="@dimen/d_16"
                 android:paddingRight="@dimen/d_16">
 
+                <FrameLayout
+                    android:id="@+id/frame_follow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/d_10"
+                    android:paddingTop="@dimen/d_10">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="查看人员跟进信息"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:src="@mipmap/gonext" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_1"
+                    android:background="@color/white2"></View>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -196,6 +215,7 @@
                         android:textColor="@color/orange"
                         android:textSize="@dimen/sp_14" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_1"

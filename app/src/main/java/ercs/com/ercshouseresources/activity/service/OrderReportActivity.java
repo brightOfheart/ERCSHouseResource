@@ -37,6 +37,7 @@ import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.TimeUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
@@ -178,6 +179,10 @@ public class OrderReportActivity extends AppCompatActivity {
         initDepositView();
         initrecordView();
         downLoad();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**

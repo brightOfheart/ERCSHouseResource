@@ -247,130 +247,231 @@
         <!-- 新房 -->
         <activity
             android:name=".activity.service.NewHouseActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 报备客户 -->
         <activity
             android:name=".activity.service.ReportingClientsActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
         <!-- 添加客户 -->
         <activity
             android:name=".activity.service.AddClientActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <!--佣金说明-->
         <activity
             android:name=".activity.service.CommissionExplainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 报备订单详情 -->
         <activity
             android:name=".activity.service.OrderReportActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 楼盘详情 -->
         <activity
             android:name=".activity.service.PropertyDetailActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 报备订单列表 -->
         <activity
             android:name=".activity.service.OrderReportListActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.service.OrderReportDetailActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize"></activity>
         <!-- 动态详情页面 -->
         <activity
             android:name=".activity.service.DynamicDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 地图页面 -->
         <activity
             android:name=".activity.service.MapActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房 -->
         <activity
             android:name=".activity.cheaproom.CheapRoomListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房详情页 -->
         <activity
             android:name=".activity.cheaproom.CheapRoomDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 佣金说明 -->
         <activity
             android:name=".activity.cheaproom.CommissionDescription"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房规则 -->
         <activity
             android:name=".activity.cheaproom.CheapRoomRuleActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房更多房源信息 -->
         <activity
             android:name=".activity.cheaproom.CheapRoomMore"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 贷款规则 -->
         <activity
             android:name=".activity.cheaproom.LoanRuleActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 小区详情 -->
         <activity
             android:name=".activity.cheaproom.ResidentialDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 小区卖点 -->
         <activity
             android:name=".activity.cheaproom.ResidePayActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房动态 -->
         <activity
             android:name=".activity.cheaproom.CheapDynamicActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 低价房报备客户 -->
         <activity
             android:name=".activity.cheaproom.CheapReportingClientsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修列表 -->
         <activity
             android:name=".activity.renovation.RenovationListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修列表详情 -->
         <activity
             android:name=".activity.renovation.RenovationDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修佣金说明 -->
         <activity
             android:name=".activity.renovation.CommissionDesActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修推荐规则 -->
         <activity
             android:name=".activity.renovation.Ren_RecRuleActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修成交奖励 -->
         <activity
             android:name=".activity.renovation.Ren_ClosingBonusActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修的结算周期 -->
         <activity
             android:name=".activity.renovation.Ren_SettlementCycleActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修的公司简介 -->
         <activity
             android:name=".activity.renovation.Ren_companyIntroActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修的报备客户 -->
         <activity
             android:name=".activity.renovation.Ren_ReportingClientsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修订单 -->
         <activity
             android:name=".activity.renovation.Ren_OrderActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修设计方案列表 -->
         <activity
             android:name=".activity.renovation.Ren_DesignSchemeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 装修报备信息 -->
         <activity
             android:name=".activity.renovation.Ren_PrepareInformationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- 设计方案详情 -->
         <activity
             android:name=".activity.renovation.Ren_resignDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 装修订单详情 -->
+        <activity
+            android:name=".activity.renovation.Ren_OrderReportDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 金融 -->
+        <activity
+            android:name=".activity.financial.FinancialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 贷款列表 -->
+        <activity
+            android:name=".activity.financial.FinancialListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 金融详情 -->
+        <activity
+            android:name=".activity.financial.FinanicalDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 金融报备列表 -->
+        <activity
+            android:name=".activity.financial.FinancialReportingClientsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 金融订单列表 -->
+        <activity
+            android:name=".activity.financial.FinancialOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 我的订单列表 -->
+        <activity
+            android:name=".activity.mine.MyOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房订单列表 -->
+        <activity
+            android:name=".activity.cheaproom.Cheap_OrderReportListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 低价房订单详情 -->
+        <activity
+            android:name=".activity.cheaproom.Cheap_OrderReportDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 金融订单详情 -->
+        <activity
+            android:name=".activity.financial.FinancialOrderReportDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 查看跟进信息 -->
+        <activity
+            android:name=".activity.FollowMsgActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <!-- 查看城市列表 -->
+        <activity
+            android:name=".activity.CityAcvitity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
 

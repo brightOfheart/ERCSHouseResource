@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_0"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/d_16"
+        android:layout_marginRight="@dimen/d_16"
+        android:layout_marginBottom="@dimen/d_10"
+        android:background="@drawable/dialog_cornerbg">
+
+        <TextView
+            android:id="@+id/tv_xj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="相机"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/d_13"
+            android:paddingTop="@dimen/d_13"
+            android:gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2"/>
+        <TextView
+            android:id="@+id/tv_xc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="相册"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/d_13"
+            android:paddingTop="@dimen/d_13"
+            android:gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2"/>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_cancel"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/d_13"
+            android:paddingTop="@dimen/d_13"
+            android:gravity="center"/>
+    </LinearLayout>
+</LinearLayout>

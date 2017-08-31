@@ -1,5 +1,7 @@
 package ercs.com.ercshouseresources.bean;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/8/8.
  * 低价房房源详情
@@ -20,6 +22,33 @@ public class CheapRoomDetailBean extends BaseBean {
         private String AreaName;
         private BaseInfoBean BaseInfo;
         private String BuildingsType;
+        private String ResidenceType;
+        private String Orientations;
+        private List<String> ImageList ;
+
+        public List<String> getImageList() {
+            return ImageList;
+        }
+
+        public void setImageList(List<String> imageList) {
+            ImageList = imageList;
+        }
+
+        public String getOrientations() {
+            return Orientations;
+        }
+
+        public void setOrientations(String orientations) {
+            Orientations = orientations;
+        }
+
+        public String getResidenceType() {
+            return ResidenceType;
+        }
+
+        public void setResidenceType(String residenceType) {
+            ResidenceType = residenceType;
+        }
 
         public BaseInfoBean getBaseInfo() {
             return BaseInfo;

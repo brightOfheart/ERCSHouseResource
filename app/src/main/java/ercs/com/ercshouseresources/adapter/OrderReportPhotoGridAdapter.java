@@ -13,9 +13,11 @@ import com.king.base.adapter.holder.ViewHolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PipedReader;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.PhotoViewActivity;
 import ercs.com.ercshouseresources.activity.field.FieldClockInActivity;
 import ercs.com.ercshouseresources.bean.NewHousePicBean;
 import ercs.com.ercshouseresources.bean.ReportOrderDetailBean;
@@ -36,7 +38,7 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<ReportOrderDe
 
     private boolean isCance=false;//是否显示删除图标
 
-
+    private Activity activity;
 
 
 
@@ -44,8 +46,9 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<ReportOrderDe
         isCance = cance;
     }
 
-    public OrderReportPhotoGridAdapter(Context context, List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean> listData, OnCancelPhotoListener onCancelPhotoListener) {
+    public OrderReportPhotoGridAdapter(Activity context, List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean> listData, OnCancelPhotoListener onCancelPhotoListener) {
         super(context, listData);
+        activity=context;
         this.onCancelPhotoListener = onCancelPhotoListener;
     }
 
@@ -73,6 +76,12 @@ public class OrderReportPhotoGridAdapter extends ViewHolderAdapter<ReportOrderDe
             @Override
             public void onClick(View view) {
                 onCancelPhotoListener.cancelPhoto(picBean.getId(),position);
+            }
+        });
+        iv_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhotoViewActivity.start(activity,NetHelperNew.URL+picBean.getImagePath()+picBean.getFileName());
             }
         });
     }

@@ -1,18 +1,18 @@
 package ercs.com.ercshouseresources.view;
-
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
-
 import java.util.List;
 
+import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.DisplayUtil;
+import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 /**
  * Created by Administrator on 2017/7/18.
@@ -46,7 +46,8 @@ public class CustomBanner {
         xBanner.setmAdapter(new XBanner.XBannerAdapter() {//设置显示的图片内容
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-                Glide.with(context).load(imgesUrl.get(position)).into((ImageView) view);
+//                Glide.with(context).load(imgesUrl.get(position)).into((ImageView) view);
+                GlideUtil.loadImage(context,imgesUrl.get(position),(ImageView) view, R.mipmap.ic_launcher,R.mipmap.ic_launcher);
             }
         });
         xBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
@@ -55,7 +56,7 @@ public class CustomBanner {
 
             public void onItemClick(XBanner banner, int position) {
 
-                Toast.makeText(context, "点击了第" + position + "图片", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "点击了第" + position + "图片", Toast.LENGTH_SHORT).show();
 
             }
 

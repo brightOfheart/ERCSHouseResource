@@ -1,6 +1,5 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -22,7 +21,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.service.OrderReportListActivity;
 import ercs.com.ercshouseresources.adapter.CheapRoomAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CheapRoomListBean;
@@ -70,6 +68,10 @@ public class CheapRoomListActivity extends BaseActivity {
         getData(pagenum, true);
         initHouseLayoutSelectPop();
         downLoadArea();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     /**
@@ -221,8 +223,8 @@ public class CheapRoomListActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.title_left:
                 //返回键
-//                finish();
-                startActivity(new Intent(CheapRoomListActivity.this, OrderReportListActivity.class));
+              finish();
+
                 break;
 
             case R.id.ly_housingtype:

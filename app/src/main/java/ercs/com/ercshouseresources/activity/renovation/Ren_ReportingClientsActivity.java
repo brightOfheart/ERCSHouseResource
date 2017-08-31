@@ -24,8 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.service.AddClientActivity;
 import ercs.com.ercshouseresources.activity.service.ReportingClientsActivity;
+import ercs.com.ercshouseresources.adapter.Ren_ReportingClientsAdapter;
 import ercs.com.ercshouseresources.adapter.ReportingClientsAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
@@ -43,7 +45,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
  * 装修报备客户
  */
 
-public class Ren_ReportingClientsActivity extends AppCompatActivity {
+public class Ren_ReportingClientsActivity extends BaseActivity {
 
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
@@ -52,7 +54,7 @@ public class Ren_ReportingClientsActivity extends AppCompatActivity {
 
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private List<CustomersListBean.DataBean> clientListBeans;
-    private ReportingClientsAdapter reportingClientsAdapter;//客户列表
+    private Ren_ReportingClientsAdapter reportingClientsAdapter;//客户列表
     private LoadingDialog loadingDialog;
     private  String key="";// 关键字 “”
     private int pagenum=1;//页数
@@ -62,7 +64,7 @@ public class Ren_ReportingClientsActivity extends AppCompatActivity {
      */
     public static void start(Activity mactivity, String jsonString) {
         Log.i("-->", "报备客户：" + jsonString);
-        Intent intent = new Intent(mactivity, ReportingClientsActivity.class);
+        Intent intent = new Intent(mactivity, Ren_ReportingClientsActivity.class);
         intent.putExtra("jsonString", jsonString);
         mactivity.startActivity(intent);
     }
@@ -82,7 +84,7 @@ public class Ren_ReportingClientsActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporting_clients);
         ButterKnife.bind(this);
@@ -166,7 +168,7 @@ public class Ren_ReportingClientsActivity extends AppCompatActivity {
     private void initview() {
         loadingDialog=new LoadingDialog(this,0);
         clientListBeans=new ArrayList<>();
-        reportingClientsAdapter = new ReportingClientsAdapter(this, clientListBeans,getBuildingID());
+        reportingClientsAdapter = new Ren_ReportingClientsAdapter(this, clientListBeans,getBuildingID());
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(reportingClientsAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

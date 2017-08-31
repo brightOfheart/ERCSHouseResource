@@ -4,16 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.CustomersListBean;
-import ercs.com.ercshouseresources.view.dialog.CheapConfirmationClientsDialog;
 import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
 import ercs.com.ercshouseresources.view.dialog.Ren_ConfirmationClientsDialog;
 
@@ -59,7 +54,7 @@ public class ReportingClientsAdapter extends ViewHolderRecyclerAdapter<Customers
                 @Override
                 public void onClick(View view) {
 
-                    Ren_ConfirmationClientsDialog confirmationClientsDialog = new Ren_ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
+                    ConfirmationClientsDialog confirmationClientsDialog = new ConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
                     confirmationClientsDialog.show();
                 }
             });

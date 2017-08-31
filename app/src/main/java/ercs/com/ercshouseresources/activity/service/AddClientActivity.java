@@ -21,11 +21,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.AddClientAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ClientTelBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
@@ -36,7 +38,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 /**
  * 添加客户
  */
-public class AddClientActivity extends AppCompatActivity {
+public class AddClientActivity extends BaseActivity {
 
     @BindView(R.id.listview)
     ListView listView;
@@ -53,12 +55,16 @@ public class AddClientActivity extends AppCompatActivity {
     private LoadingDialog loadingDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
         ButterKnife.bind(this);
         initTitle();
         initView();
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
     }
 
     private void initView() {

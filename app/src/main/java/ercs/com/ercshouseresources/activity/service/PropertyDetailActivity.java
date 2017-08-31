@@ -12,8 +12,10 @@ import java.text.ParseException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.bean.CommissionExplainBean;
 import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.TimeUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
@@ -21,7 +23,7 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 /**
  * 楼盘详情
  */
-public class PropertyDetailActivity extends AppCompatActivity {
+public class PropertyDetailActivity extends BaseActivity {
 
     @BindView(R.id.tv_developers)
     TextView tv_developers;//开发商
@@ -52,11 +54,14 @@ public class PropertyDetailActivity extends AppCompatActivity {
     TextView  tv_propertyfee ;//物业费
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_detail);
         ButterKnife.bind(this);
-
+        if(!CloseActivityClass.activityList.contains(this))
+        {
+            CloseActivityClass.activityList.add(this);
+        }
         setData();
     }
 

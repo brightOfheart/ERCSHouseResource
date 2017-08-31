@@ -51,4 +51,5 @@ dependencies {
         exclude group: 'com.android.support'
     }
     compile files('libs/BaiduNaviSDK_3.3.1.jar')
+
 }

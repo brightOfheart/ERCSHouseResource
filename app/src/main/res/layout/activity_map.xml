@@ -18,31 +18,37 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|center"
             android:layout_marginRight="@dimen/d_16"
-            android:src="@mipmap/ic_launcher"
-            android:visibility="invisible"/>
+            android:src="@mipmap/feiji"
+            android:visibility="invisible" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/d_10"
+        android:paddingLeft="@dimen/d_16"
+        android:paddingTop="@dimen/d_10">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/dizhitubiaos" />
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_10"
-        android:background="@color/black" />
+        android:background="#F0F0F0" />
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/bmapView"

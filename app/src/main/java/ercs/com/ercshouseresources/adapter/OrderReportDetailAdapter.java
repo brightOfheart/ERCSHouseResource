@@ -1,10 +1,12 @@
 package ercs.com.ercshouseresources.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -23,11 +25,11 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 
 public class OrderReportDetailAdapter extends BaseAdapter {
     private List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean> list;
-    private Context context;
+    private Activity context;
     private OnCamreaListener onCamreaListener;
 
 
-    public OrderReportDetailAdapter(List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean> list, Context context, OnCamreaListener onCamreaListener) {
+    public OrderReportDetailAdapter(List<ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean> list, Activity context, OnCamreaListener onCamreaListener) {
         this.list = list;
         this.context = context;
         this.onCamreaListener = onCamreaListener;
@@ -100,7 +102,7 @@ public class OrderReportDetailAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     if (!(newHouseRunningsInfoShowListBean.getImageList().size()>6))
                     {
-                        onCamreaListener.getImageType(i,newHouseRunningsInfoShowListBean.getImageType());
+                        onCamreaListener.getImageType(i,newHouseRunningsInfoShowListBean.getImageType(),newHouseRunningsInfoShowListBean.getGroupID());
                     }else
                     {
                         ToastUtil.showToast(context,"最多传六张图片");
@@ -171,7 +173,7 @@ public class OrderReportDetailAdapter extends BaseAdapter {
          * @param pos 索引
          * @param ImageType 图片类型
          */
-        public void getImageType(int pos,int ImageType);
+        public void getImageType(int pos,int ImageType,String groupid);
 
         /**
          *删除图片
