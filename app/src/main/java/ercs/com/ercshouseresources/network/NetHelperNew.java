@@ -49,6 +49,8 @@ public class NetHelperNew {
     private static final String UPDATEPWD = "/API/Common/RePass";//修改密码
     private static final String FINDPWDCODE = "/API/Common/NewPassSMSCode";//忘记密码验证码
     private static final String FINDPWD = "/API/Common/NewPass";//密码重置
+    private static final String UPLOADPHOTOPIC = "/API/Organization/ttUpdateUser";//修改经济人的信息
+    private static final String CHECKUPDATE = "/API/Common/ttGetVersionInfo";//检查当前版本是否最新
 
     /**
      * 登录接口
@@ -635,8 +637,8 @@ public class NetHelperNew {
     /**
      * 密码找回
      *
-     * @param SMSCode
-     * @param PassWord
+     * @param
+     * @param
      * @param callback
      */
     public static void findpwdcode(String LoginName, HttpUtils.HttpCallback callback) {
@@ -663,5 +665,36 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + FINDPWD, json, callback);
+    }
+
+    /**
+     * 修改经济人的信息
+     *
+     * @param Name
+     * @param Portrait
+     * @param Sex
+     * @param callback
+     */
+    public static void updatePerMes(String Name, String Portrait, String Sex, HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("Declaration", "");
+        map.put("Name", Name);
+        map.put("OperationPeriod", "");
+        map.put("Portrait", Portrait);
+        map.put("Sex", Sex);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + UPLOADPHOTOPIC, json, callback);
+    }
+
+    /**
+     * 检查版本更新
+     *
+     * @param callback
+     */
+    public static void updateVersion(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postNewJson(URL + CHECKUPDATE, json, callback);
     }
 }

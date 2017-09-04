@@ -157,7 +157,19 @@ public class MineFragment extends Fragment implements LazyFragmentPagerAdapter.L
      */
     private void setShowData() {
         tv_name.setText(getStr(R.string.str_welcome) + spUtil.getString(BaseApplication.NAME, ""));
-        tv_dep.setText(getStr(R.string.str_leftbracket) + spUtil.getString(BaseApplication.DEPNAME, "") + getStr(R.string.str_rightbracket));
-        GlideUtil.loadCircleImage(NetHelper.URL + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        if (spUtil.getString(BaseApplication.DEPNAME, "").equals("")) {
+            tv_dep.setText(spUtil.getString(BaseApplication.DEPNAME, ""));
+        } else {
+            tv_dep.setText(getStr(R.string.str_leftbracket) + spUtil.getString(BaseApplication.DEPNAME, "") + getStr(R.string.str_rightbracket));
+        }
+        if (spUtil.getString(BaseApplication.PHOTOPATH, "").equals("")) {
+            GlideUtil.loadCircleImage(R.mipmap.default_photo, iv_photo);
+        } else {
+            GlideUtil.loadCircleImage(R.mipmap.default_photo, iv_photo);
+
+            //GlideUtil.loadCircleImage(R.mipmap.default_photo + spUtil.getString(BaseApplication.PHOTOPATH, ""), iv_photo);
+        }
+        iv_photo.setImageResource(R.mipmap.default_photo);
+
     }
 }

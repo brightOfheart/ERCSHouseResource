@@ -1,17 +1,23 @@
 package ercs.com.ercshouseresources.activity.mine;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.MyOrderAdapter;
+import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ServiceBean;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.TitleControl;
 
 /**
@@ -22,6 +28,7 @@ public class MyOrderActivity extends BaseActivity {
     @BindView(R.id.recyleview)
     LRecyclerView recyleview;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
+    private SPUtil spUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,8 +37,7 @@ public class MyOrderActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         initView();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -49,10 +55,14 @@ public class MyOrderActivity extends BaseActivity {
      * 初始化
      */
     private void initView() {
+        if (spUtil == null)
+            spUtil = new SPUtil(MyOrderActivity.this, "fileName");
+        String tabs = spUtil.getString(BaseApplication.TABS, "");
+        String str[] = tabs.split(",");
         List<ServiceBean> list = new ArrayList<>();
-        for (int i = 1; i < 12; i++) {
+        for (int i = 0; i < str.length; i++) {
             ServiceBean serviceBean = new ServiceBean();
-            switch (i) {
+            switch (Integer.valueOf(str[i])) {
                 case 1:
                     serviceBean.setTitle("新房订单");
                     serviceBean.setPic(R.mipmap.xf);
@@ -99,21 +109,12 @@ public class MyOrderActivity extends BaseActivity {
                     serviceBean.setPic(R.mipmap.ly);
                     list.add(serviceBean);
                     break;
-//                case 10:
-//                    serviceBean.setTitle("房贷计算器");
-//                    serviceBean.setPic(R.mipmap.ly);
-//                    list.add(serviceBean);
-//                    break;
-//                case 11:
-//                    serviceBean.setTitle("旅游门票");
-//                    serviceBean.setPic(R.mipmap.ly);
-//                    list.add(serviceBean);
-//                    break;
+
                 default:
                     break;
 
             }
-            mLRecyclerViewAdapter = new LRecyclerViewAdapter(new MyOrderAdapter(MyOrderActivity.this, this, list));
+            mLRecyclerViewAdapter = new LRecyclerViewAdapter(new MyOrderAdapter(MyOrderActivity.this, this, list,str));
             recyleview.setLayoutManager(new LinearLayoutManager(this));
             recyleview.setAdapter(mLRecyclerViewAdapter);
             recyleview.setPullRefreshEnabled(false);

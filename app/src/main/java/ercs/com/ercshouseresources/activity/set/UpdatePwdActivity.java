@@ -30,8 +30,6 @@ import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
  */
 
 public class UpdatePwdActivity extends BaseActivity {
-    private LoadingDialog loadingDialog;
-
     @BindView(R.id.tv_verificationcode)
     TextView tv_verificationcode;
     @BindView(R.id.tv_phone)
@@ -47,7 +45,6 @@ public class UpdatePwdActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updatepwd);
-
         ButterKnife.bind(this);
         initTitle();
         createData();
@@ -70,8 +67,6 @@ public class UpdatePwdActivity extends BaseActivity {
     private void initTitle() {
         TitleControl t = new TitleControl(this);
         t.setTitle(getString(R.string.str_updatepwd));
-        loadingDialog = new LoadingDialog(this, 0);
-
     }
 
     /**

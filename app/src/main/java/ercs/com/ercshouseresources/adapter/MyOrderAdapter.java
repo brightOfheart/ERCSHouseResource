@@ -15,8 +15,10 @@ import java.util.List;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.cheaproom.CheapRoomListActivity;
 import ercs.com.ercshouseresources.activity.cheaproom.Cheap_OrderReportListActivity;
+import ercs.com.ercshouseresources.activity.financial.FinancialActivity;
 import ercs.com.ercshouseresources.activity.financial.FinancialOrderActivity;
 import ercs.com.ercshouseresources.activity.renovation.Ren_OrderActivity;
+import ercs.com.ercshouseresources.activity.renovation.RenovationListActivity;
 import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.activity.service.OrderReportListActivity;
 import ercs.com.ercshouseresources.bean.ClerkBean;
@@ -32,11 +34,13 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 public class MyOrderAdapter extends ViewHolderRecyclerAdapter<ServiceBean> {
     private Context context;
     private Activity activity;
+    private String str[];
 
-    public MyOrderAdapter(Activity activity, Context context, List<ServiceBean> listData) {
+    public MyOrderAdapter(Activity activity, Context context, List<ServiceBean> listData, String[] strs) {
         super(context, listData);
         this.context = context;
         this.activity = activity;
+        str = strs;
     }
 
     @Override
@@ -51,33 +55,17 @@ public class MyOrderAdapter extends ViewHolderRecyclerAdapter<ServiceBean> {
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (position) {
-                    case 0://新房订单
-                        activity.startActivity(new Intent(activity, OrderReportListActivity.class));
-                        break;
-                    case 1://低价房订单
-                        activity.startActivity(new Intent(activity, Cheap_OrderReportListActivity.class));
-                        break;
-                    case 2://二手房订单
-                        break;
-                    case 3://租房订单
-                        break;
-                    case 4://金融订单
-                        activity.startActivity(new Intent(activity, FinancialOrderActivity.class));
-                        break;
-                    case 5://装修订单
-                        activity.startActivity(new Intent(activity, Ren_OrderActivity.class));
-                        break;
-                    case 6://家政订单
-                        break;
-                    case 7://活动订单
-                        break;
-                    case 8://旅游订单
-                        break;
-                    default:
-                        break;
-                }
+                if (str[position].equals("1")) {//新房
+                    activity.startActivity(new Intent(activity, OrderReportListActivity.class));
+                } else if (str[position].equals("4"))//低价房
+                    activity.startActivity(new Intent(activity, Cheap_OrderReportListActivity.class));
+                else if (str[position].equals("5"))//装修
+                    activity.startActivity(new Intent(activity, Ren_OrderActivity.class));
+                else if (str[position].equals("7"))//金融
+                    activity.startActivity(new Intent(activity, FinancialOrderActivity.class));
             }
+
+
         });
     }
 }

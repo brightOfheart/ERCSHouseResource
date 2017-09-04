@@ -1,22 +1,15 @@
 package ercs.com.ercshouseresources.adapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.bean.ClerkBean;
-import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.util.OtherUitl;
-import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
-import ercs.com.ercshouseresources.view.dialog.BottomDialog;
+
 
 /**
  * Created by Administrator on 2017/6/22.
@@ -41,6 +34,8 @@ public class ClerkAdapter extends ViewHolderRecyclerAdapter<ClerkBean.Datas> {
     @Override
     public void bindViewDatas(final ViewHolder holder, final ClerkBean.Datas datas, final int position) {
         holder.setText(R.id.tv_name, datas.getName());
+        if (datas.getName().length() > 0)
+            holder.setText(R.id.tv_title, datas.getName().substring(0, 1));
         if (datas.getIsShopkeeper().equals("false")) {
 
         } else {

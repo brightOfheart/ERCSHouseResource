@@ -1,96 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_50"
-        android:background="@color/system_color">
+    android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/d_18"
-            android:text="@string/str_find_pwd"/>
-        <ImageView
-            android:id="@+id/iv_goback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|center"
-            android:layout_marginLeft="@dimen/d_10"
-            android:src="@mipmap/goback"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center"
-            android:layout_marginRight="@dimen/d_10"
-            android:textColor="@color/white"
-            android:textSize="@dimen/d_16"
-            android:text="@string/str_login"
-            />
-    </FrameLayout>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/d_50"
-          android:orientation="horizontal"
-          android:gravity="center">
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/str_phone_number"
-              android:textSize="@dimen/d_16"
-              android:textColor="@color/black1"
-              android:layout_marginLeft="@dimen/d_10"/>
-          <EditText
-              android:layout_width="@dimen/d_0"
-              android:layout_height="wrap_content"
-              android:hint="@string/error_tel_number"
-              android:layout_weight="1"
-              android:background="@color/white"
-              android:layout_marginLeft="@dimen/d_10"
-              android:textSize="@dimen/d_16"/>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/str_get_vcode"
-              android:padding="@dimen/d_10"
-              android:gravity="center"
-              android:textColor="@color/white"
-              android:layout_marginRight="@dimen/d_10"
-              android:background="@drawable/btn_vcode_bg"/>
-      </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/black1"/>
+    <include
+        android:id="@+id/title"
+        layout="@layout/include_title" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_50"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_vcode"
-            android:textSize="@dimen/d_16"
-            android:textColor="@color/black1"
-            android:layout_marginLeft="@dimen/d_10"/>
-        <EditText
-            android:layout_width="@dimen/d_0"
-            android:layout_height="match_parent"
-            android:hint="@string/str_input_vcode"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:layout_marginLeft="@dimen/d_25"
-            android:textSize="@dimen/d_16"/>
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/d_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_phone_number"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_16"
+                android:background="@null"
+                android:hint="请填写手机号码"
+                android:inputType="number"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/d_70"
+                android:layout_height="wrap_content"
+                android:text="@string/str_vcode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/edit_pwd"
+                android:layout_width="@dimen/d_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/str_input_vcode"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_verificationcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_get_vcode"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/d_70"
+                android:layout_height="wrap_content"
+                android:text="@string/str_resetpassword"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/edit_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/str_resetpasswordhit"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_1"
+            android:background="@color/white2" />
     </LinearLayout>
-    <View
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1"
-        android:background="@color/black1"/>
+        android:layout_height="@dimen/d_0"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_50"
+        android:layout_marginBottom="@dimen/d_16"
+        android:layout_marginLeft="@dimen/d_10"
+        android:layout_marginRight="@dimen/d_10"
+        android:layout_marginTop="@dimen/d_18"
+        android:background="@drawable/button_corners_bg"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/d_16" />
 </LinearLayout>

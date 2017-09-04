@@ -43,6 +43,7 @@ public class OtherUitl {
 
     /**
      * 安卓6.0以上系统开启sd卡写入的权限
+     *
      * @param activity
      */
     public static void verifyStoragePermissions(Activity activity) {
@@ -69,11 +70,11 @@ public class OtherUitl {
     }
 
     /**
+     * @param path 图片路径
+     * @return
      * @Descriptionmap 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
      * @author temdy
      * @Date 2015-01-26
-     * @param path 图片路径
-     * @return
      */
     public static String imageToBase64(String path) {// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
         byte[] data = null;
@@ -84,7 +85,7 @@ public class OtherUitl {
             in.read(data);
             in.close();
         } catch (IOException e) {
-            ToastUtil.showToast(BaseApplication.context,"发生异常");
+            ToastUtil.showToast(BaseApplication.context, "发生异常");
             e.printStackTrace();
         }
         // 对字节数组Base64编码
@@ -132,6 +133,7 @@ public class OtherUitl {
 
         return compressImage(bitmap);//再进行质量压缩
     }
+
     /**
      * 质量压缩方法
      *
@@ -215,6 +217,7 @@ public class OtherUitl {
 
     /**
      * 获取版本号
+     *
      * @return 当前应用的版本号
      */
     public static String getVersion(Context context) {
@@ -222,30 +225,40 @@ public class OtherUitl {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             String version = info.versionName;
-            return  version;
+            return version;
         } catch (Exception e) {
             e.printStackTrace();
             return "没有找到当前的版本号";
         }
     }
-
-    public static String saveBitmap(Activity activity, Bitmap mybitmap){
+    public static int getVersionCode(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            int version = info.versionCode;
+            return version;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    public static String saveBitmap(Activity activity, Bitmap mybitmap) {
         boolean result = false;
         //创建位图保存目录
         String path = Environment.getExternalStorageDirectory().getPath()
-                + "/AppNames/camera/"+System.currentTimeMillis() + ".png";
+                + "/AppNames/camera/" + System.currentTimeMillis() + ".png";
         File sd = new File(path);
-        if (!sd.exists()){
+        if (!sd.exists()) {
             sd.mkdir();
         }
         File file = new File(path);
         FileOutputStream fileOutputStream = null;
-        if (!file.exists()){
+        if (!file.exists()) {
             try {
                 // 判断SD卡是否存在，并且是否具有读写权限
-                if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     fileOutputStream = new FileOutputStream(file);
-                    mybitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+                    mybitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     //update gallery
@@ -254,8 +267,7 @@ public class OtherUitl {
                     intent.setData(uri);
                     activity.sendBroadcast(intent);
                     result = true;
-                }
-                else{
+                } else {
 
                 }
 
@@ -276,33 +288,30 @@ public class OtherUitl {
         options.inJustDecodeBounds = false;
         int mWidth = bitmap.getWidth();
         int mHeight = bitmap.getHeight();
-        float m=1;
+        float m = 1;
         Matrix matrix = new Matrix();
         float scaleWidth = 1;
         float scaleHeight = 1;
-        double w,h;
-        if(width>height)
-        {
-            w=height;
-            h=width;
+        double w, h;
+        if (width > height) {
+            w = height;
+            h = width;
             // 按照固定宽高进行缩放
-            if(mWidth <= mHeight) {
-                scaleWidth = (float) (w/mWidth);
-                scaleHeight = (float) (h/mHeight);
+            if (mWidth <= mHeight) {
+                scaleWidth = (float) (w / mWidth);
+                scaleHeight = (float) (h / mHeight);
             } else {
-                scaleWidth = (float) (h/mWidth);
-                scaleHeight = (float) (w/mHeight);
+                scaleWidth = (float) (h / mWidth);
+                scaleHeight = (float) (w / mHeight);
             }
-        }
-        else
-        {
+        } else {
             // 按照固定宽高进行缩放
-            if(mWidth <= mHeight) {
-                scaleWidth = (float) (width/mWidth);
-                scaleHeight = (float) (height/mHeight);
+            if (mWidth <= mHeight) {
+                scaleWidth = (float) (width / mWidth);
+                scaleHeight = (float) (height / mHeight);
             } else {
-                scaleWidth = (float) (height/mWidth);
-                scaleHeight = (float) (width/mHeight);
+                scaleWidth = (float) (height / mWidth);
+                scaleHeight = (float) (width / mHeight);
             }
         }
 
@@ -314,6 +323,7 @@ public class OtherUitl {
         bitmap.recycle();
         return newBitmap;
     }
+
     public static String BitmapToString(Bitmap bitmap) {
         String des = null;
         try {
@@ -330,4 +340,37 @@ public class OtherUitl {
         return des;
     }
 
+    /**
+     * Base64 转图片
+     *
+     * @param string
+     * @return
+     */
+    public static Bitmap stringtoBitmap(String string) {
+        //将字符串转换成Bitmap类型
+        Bitmap bitmap = null;
+        try {
+            byte[] bitmapArray;
+            bitmapArray = Base64.decode(string, Base64.DEFAULT);
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
+    }
+
+    public static byte[] stringtoBitmapbyte(String string) {
+        //将字符串转换成Bitmap类型
+        byte[] bitmapArray = null;
+        try {
+
+            bitmapArray = Base64.decode(string, Base64.DEFAULT);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bitmapArray;
+    }
 }

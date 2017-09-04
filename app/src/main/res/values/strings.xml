@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">云新房系统</string>
+    <string name="app_name">云房源</string>
     <string name="str_login">登录</string>
     <string name="str_phone_id">手机账号</string>
     <string name="str_pwd">密码</string>
@@ -124,7 +124,7 @@
     <string name="error_retroactivetype">请选择补签班次！</string>
     <string name="error_inputname">请输入姓名</string>
     <!--其它字符串-->
-    <string name="str_welcome">欢迎您</string>
+    <string name="str_welcome">欢迎您:</string>
     <string name="str_leftbracket">[</string>
     <string name="str_rightbracket">]</string>
     <string name="str_chosepic">请选择图片</string>

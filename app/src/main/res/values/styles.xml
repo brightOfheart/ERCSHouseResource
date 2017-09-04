@@ -1,5 +1,12 @@
 <resources>
+    <style name="WelcomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/system_color</item>
+        <item name="colorPrimaryDark">@color/system_color</item>
+        <item name="colorAccent">@color/system_color</item>
+        <item name="android:windowBackground">@mipmap/welcome</item>
 
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->

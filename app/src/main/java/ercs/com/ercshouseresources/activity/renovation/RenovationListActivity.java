@@ -91,6 +91,10 @@ public class RenovationListActivity extends BaseActivity {
         renovationListAdapter=new RenovationListAdapter(RenovationListActivity.this, this, list);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(renovationListAdapter);
         recyleview.setLayoutManager(new LinearLayoutManager(this));
+        //设置头部加载颜色
+        recyleview.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
+//设置底部加载颜色
+        recyleview.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
         recyleview.setAdapter(mLRecyclerViewAdapter);
         recyleview.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override

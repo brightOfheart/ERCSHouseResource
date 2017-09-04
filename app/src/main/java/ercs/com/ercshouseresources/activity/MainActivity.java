@@ -18,11 +18,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.bean.UpdateBean;
 import ercs.com.ercshouseresources.fragment.HouseFragment;
 import ercs.com.ercshouseresources.fragment.MineFragment;
 import ercs.com.ercshouseresources.fragment.NewMineFragment;
 import ercs.com.ercshouseresources.fragment.ServiceFragment;
+import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
+import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
+import ercs.com.ercshouseresources.util.OtherUitl;
+import ercs.com.ercshouseresources.view.dialog.UpdateDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -52,6 +58,24 @@ public class MainActivity extends BaseActivity {
         if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
+        getUpdate();
+    }
+
+    private void getUpdate() {
+        NetHelperNew.updateVersion(new HttpUtils.HttpCallback() {
+            @Override
+            public void onSuccess(String data) {
+                final UpdateBean updateBean = MyGson.getInstance().fromJson(data, UpdateBean.class);
+                if (updateBean.getType().equals("1")) {
+                    if (updateBean.getData().getVersionCode().length() > 0)
+                        if (Integer.valueOf(updateBean.getData().getVersionCode()) > Integer.valueOf(OtherUitl.getVersionCode(MainActivity.this))) {
+                            UpdateDialog updateDialog = new UpdateDialog(MainActivity.this, R.style.dialog, updateBean.getData().getUpdateInfo(), updateBean.getData().getUpdateUrl());
+                            updateDialog.show();
+                        }
+
+                }
+            }
+        });
     }
 
     /**

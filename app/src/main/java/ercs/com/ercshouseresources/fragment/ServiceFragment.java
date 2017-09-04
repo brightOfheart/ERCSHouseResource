@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +57,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     private SPUtil spUtil;
     private List<ServiceBean> list;
     private ServiceAdapter serviceAdapter;
+    private String str[];
 
     @Nullable
     @Override
@@ -83,7 +83,8 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         String city = spUtil.getString(BaseApplication.CITY, "");
         tv_city.setText(city);
         String tabs = spUtil.getString(BaseApplication.TABS, "");
-        String str[] = tabs.split(",");
+        Log.d("tabs", tabs);
+        str = tabs.split(",");
         list.clear();
         addDate(str);
         serviceAdapter.setListData(list);
@@ -100,8 +101,8 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         String city = spUtil.getString(BaseApplication.CITY, "");
         tv_city.setText(city);
         String tabs = spUtil.getString(BaseApplication.TABS, "");
-        String str[] = tabs.split(",");
-        addDate(str);
+        String strs[] = tabs.split(",");
+        addDate(strs);
         ly_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,16 +115,13 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {//新房
+                if (str[i].equals("1")) {//新房
                     startActivity(new Intent(getActivity(), NewHouseActivity.class));
-                } else if (i == 1) {
-                }
-//                    startActivity(new Intent(getActivity(), NewHouseActivity.class));
-                else if (i == 3)//低价房
+                } else if (str[i].equals("4"))//低价房
                     startActivity(new Intent(getActivity(), CheapRoomListActivity.class));
-                else if (i == 4)//装修
+                else if (str[i].equals("5"))//装修
                     startActivity(new Intent(getActivity(), RenovationListActivity.class));
-                else if (i == 6)//金融
+                else if (str[i].equals("7"))//金融
                     startActivity(new Intent(getActivity(), FinancialActivity.class));
             }
         });
@@ -132,7 +130,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     }
 
     private void addDate(String str[]) {
-        for (int i = 1; i < str.length; i++) {
+        for (int i = 0; i < str.length; i++) {
             ServiceBean serviceBean = new ServiceBean();
             switch (Integer.valueOf(str[i])) {
                 case 1:
