@@ -39,14 +39,15 @@ public class CheapConfirmationClientsDialog extends BaseDialog {
     private String BuildingID;
     private String CustomerID;
     private LoadingDialog loadingDialog;
-    public CheapConfirmationClientsDialog(Activity mActivity, String name, List<CustomersListBean.DataBean.PhoneListBean> tels,String BuildingID,String CustomerID) {
+
+    public CheapConfirmationClientsDialog(Activity mActivity, String name, List<CustomersListBean.DataBean.PhoneListBean> tels, String BuildingID, String CustomerID) {
         super(mActivity);
         this.name = name;
         this.tels = tels;
-        context=mActivity;
-        this.BuildingID=BuildingID;
-        this.CustomerID=CustomerID;
-        loadingDialog=new LoadingDialog(context,0);
+        context = mActivity;
+        this.BuildingID = BuildingID;
+        this.CustomerID = CustomerID;
+        loadingDialog = new LoadingDialog(context, 0);
     }
 
     @Override
@@ -61,13 +62,13 @@ public class CheapConfirmationClientsDialog extends BaseDialog {
 
     @Override
     public void initView() {
-        tv_name=findViewById(R.id.tv_name);
-        tv_quit=findViewById(R.id.tv_quit);
-        tv_sure=findViewById(R.id.tv_sure);
-        listView=findViewById(R.id.listview);
+        tv_name = findViewById(R.id.tv_name);
+        tv_quit = findViewById(R.id.tv_quit);
+        tv_sure = findViewById(R.id.tv_sure);
+        listView = findViewById(R.id.listview);
 
         tv_name.setText(name);
-        confirmationClientsAdapter = new ConfirmationClientsAdapter(context,tels);
+        confirmationClientsAdapter = new ConfirmationClientsAdapter(context, tels);
         listView.setAdapter(confirmationClientsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,28 +98,33 @@ public class CheapConfirmationClientsDialog extends BaseDialog {
     /**
      * 确认报备信息
      */
-    private void submit()
-    {
+    private void submit() {
         loadingDialog.show();
         NetHelperNew.getInsertCheapRunningsModel(BuildingID, CustomerID, tels.get(confirmationClientsAdapter.getPos()).getCustomerPhoneID() + "", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
-                Log.d("===sdatas===",data);
+                Log.d("===sdatas===", data);
                 loadingDialog.dismiss();
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(context,baseBean.getContent());
+                        if (!baseBean.getType().equals("1")) {
+                            ToastUtil.showToast(context, baseBean.getContent());
+                        } else {
+                            context.finish();
+                        }
                         dismiss();
                     }
                 });
 
             }
+
             @Override
             public void onError(String msg) {
                 super.onError(msg);
                 loadingDialog.dismiss();
+
             }
         });
     }

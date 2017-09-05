@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.service;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -110,7 +113,7 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
         tv_houserecom.setText("户型推荐(" + newHouseDetailBean.getData().getHouseTypeList().size() + "个)");
         tv_subaddress.setText(newHouseDetailBean.getData().getBaseInfo().getAddress());
         for (int i = 0; i < newHouseDetailBean.getData().getHouseTypeList().size(); i++) {
-            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i), JsonData, i+ ""));
+            ly_newhouse.addView(new NewHouseItem(this, newHouseDetailBean.getData().getHouseTypeList().get(i), JsonData, i + ""));
         }
     }
 
@@ -256,13 +259,10 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
                     JsonData = data;
                     showData(newHouseDetailBean);
                     setbanner();
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), newHouseDetailBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), newHouseDetailBean.getContent());
-                    }
-                });
+
             }
 
             @Override

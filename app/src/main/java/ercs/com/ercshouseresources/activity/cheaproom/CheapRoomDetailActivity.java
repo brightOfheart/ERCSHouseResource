@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,14 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.stx.xhb.xbanner.XBanner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,7 +18,6 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.activity.service.ClosingBonusActivity;
 import ercs.com.ercshouseresources.activity.service.MapActivity;
-import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
 import ercs.com.ercshouseresources.activity.service.SettlementCycleActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.CheapRoomDetailBean;
@@ -36,7 +29,6 @@ import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.DisplayUtil;
 import ercs.com.ercshouseresources.util.OtherUitl;
 import ercs.com.ercshouseresources.util.ToastUtil;
-import ercs.com.ercshouseresources.view.CustomBanner;
 import ercs.com.ercshouseresources.view.ObservableScrollView;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.item.PicItem;
@@ -122,8 +114,7 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
         ButterKnife.bind(this);
         initview();
         getData();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -163,7 +154,7 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
      *
      * @param view
      */
-    @OnClick({R.id.iv_left, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale, R.id.ly_dt, R.id.fr_address, R.id.fr_zyfw, R.id.fr_locanrule, R.id.tv_lookmore,R.id.ly_callphone})
+    @OnClick({R.id.iv_left, R.id.frame_commissionexplain, R.id.btn_reportingclients, R.id.ll_propertydetail, R.id.fr_recrule, R.id.fr_ad, R.id.fr_setcycle, R.id.ly_sale, R.id.ly_dt, R.id.fr_address, R.id.fr_zyfw, R.id.fr_locanrule, R.id.tv_lookmore, R.id.ly_callphone})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left:
@@ -203,7 +194,7 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
                 CheapDynamicActivity.start(CheapRoomDetailActivity.this, newHouseDetailBean.getData().getModel().getId());
                 break;
             case R.id.fr_address://地址点击事件
-                MapActivity.start(this, Double.valueOf(newHouseDetailBean.getData().getModel().getY()), Double.valueOf(newHouseDetailBean.getData().getModel().getX()),newHouseDetailBean.getData().getModel().getBuildingAddress());
+                MapActivity.start(this, Double.valueOf(newHouseDetailBean.getData().getModel().getY()), Double.valueOf(newHouseDetailBean.getData().getModel().getX()), newHouseDetailBean.getData().getModel().getBuildingAddress());
 
                 break;
             case R.id.fr_zyfw://地址点击事件
@@ -309,7 +300,8 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(getApplicationContext(), newHouseDetailBean.getContent());
+                        if (!newHouseDetailBean.getType().equals("1"))
+                            ToastUtil.showToast(getApplicationContext(), newHouseDetailBean.getContent());
                     }
                 });
             }

@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.service;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,14 +10,17 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +35,7 @@ import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
+import ercs.com.ercshouseresources.util.SPUtil;
 import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.popupwindow.BuildingTypeSelectPop;
@@ -70,27 +75,25 @@ public class NewHouseActivity extends BaseActivity {
         setContentView(R.layout.activity_new_house);
         ButterKnife.bind(this);
         initview();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
-        getData(pagenum,true);
+        getData(pagenum, true);
         initHouseLayoutSelectPop();
         downLoadArea();
     }
 
 
     /**
-     *下载区域数据
+     * 下载区域数据
      */
     private void downLoadArea() {
-        NetHelperNew.AreaList(BaseApplication.loginBean.getData().getCityID(),new HttpUtils.HttpCallback() {
+        NetHelperNew.AreaList(BaseApplication.loginBean.getData().getCityID(), new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
-                Log.i("-->","新房区域:"+data);
+                Log.i("-->", "新房区域:" + data);
                 final NewHouseAreaBean newHouseAreaBean = MyGson.getInstance().fromJson(data, NewHouseAreaBean.class);
-                if (1==newHouseAreaBean.getType())
-                {
+                if (1 == newHouseAreaBean.getType()) {
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -105,7 +108,7 @@ public class NewHouseActivity extends BaseActivity {
             @Override
             public void onError(String msg) {
                 super.onError(msg);
-                Log.i("-->","下载新房区域信息失败"+msg);
+                Log.i("-->", "下载新房区域信息失败" + msg);
 
             }
         });
@@ -116,13 +119,13 @@ public class NewHouseActivity extends BaseActivity {
      * 初始化
      */
     private void initview() {
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
         loadingDialog = new LoadingDialog(this, 0);
-        if(BaseApplication.loginBean.getData()!=null)
-        tv_city.setText(BaseApplication.loginBean.getData().getCityName());
+        SPUtil spUtil= new SPUtil(NewHouseActivity.this, "fileName");
+        String city = spUtil.getString(BaseApplication.CITY, "");
+        tv_city.setText(city);
         houseListBeans = new ArrayList<>();
         houseAdapter = new NewBuildingAdapter(this, houseListBeans);
 
@@ -149,14 +152,14 @@ public class NewHouseActivity extends BaseActivity {
                 pagenum = 1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum,false);
+                getData(pagenum, false);
             }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-                getData(pagenum,false);
+                getData(pagenum, false);
             }
         });
 
@@ -176,8 +179,8 @@ public class NewHouseActivity extends BaseActivity {
 
                     houseListBeans.clear();
                     houseAdapter.notifyDataSetChanged();
-                    pagenum=1;
-                    getData(pagenum,true);
+                    pagenum = 1;
+                    getData(pagenum, true);
                     return true;
                 }
                 return false;
@@ -195,13 +198,13 @@ public class NewHouseActivity extends BaseActivity {
             @Override
             public void selectHouseLayout(int i) {
 
-                Log.i("-->","选择房型："+i);
-                BuildingTypeID=i;
+                Log.i("-->", "选择房型：" + i);
+                BuildingTypeID = i;
 
-                pagenum=1;
+                pagenum = 1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum,true);
+                getData(pagenum, true);
             }
         });
     }
@@ -210,21 +213,22 @@ public class NewHouseActivity extends BaseActivity {
      * 房源区域选择pop
      */
     private void initAreaSelectPop(List<NewHouseAreaBean.DataBean> dataBeanList) {
-        newHouseAreaSelectPop = new NewHouseAreaSelectPop(this,dataBeanList, new NewHouseAreaSelectPop.OnSelectNewAreaListener() {
+        newHouseAreaSelectPop = new NewHouseAreaSelectPop(this, dataBeanList, new NewHouseAreaSelectPop.OnSelectNewAreaListener() {
             @Override
             public void selectArea(int i) {
 
-                Log.i("-->","选择区域："+i);
-                AreaID=i;
+                Log.i("-->", "选择区域：" + i);
+                AreaID = i;
 
-                pagenum=1;
+                pagenum = 1;
                 houseListBeans.clear();
                 houseAdapter.notifyDataSetChanged();
-                getData(pagenum,true);
+                getData(pagenum, true);
             }
         });
     }
-    @OnClick({R.id.title_left,R.id.ly_housingtype,R.id.ly_area})
+
+    @OnClick({R.id.title_left, R.id.ly_housingtype, R.id.ly_area})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_left:
@@ -234,13 +238,13 @@ public class NewHouseActivity extends BaseActivity {
 
             case R.id.ly_housingtype:
                 //房源类型
-                if (buildingTypeSelectPop!=null)
-                    buildingTypeSelectPop.showAsDropDown(view_line,0,0);
+                if (buildingTypeSelectPop != null)
+                    buildingTypeSelectPop.showAsDropDown(view_line, 0, 0);
                 break;
             case R.id.ly_area:
                 //选择区域
-                if (newHouseAreaSelectPop!=null)
-                    newHouseAreaSelectPop.showAsDropDown(view_line,0,0);
+                if (newHouseAreaSelectPop != null)
+                    newHouseAreaSelectPop.showAsDropDown(view_line, 0, 0);
                 break;
         }
     }
@@ -254,18 +258,20 @@ public class NewHouseActivity extends BaseActivity {
 
         if (NetWorkUtil.check(this)) {
             if (isLoading)
-            loadingDialog.show();
-            NetHelperNew.NewBuildingsList(pageIndex+"",AreaID==0?"":AreaID+"",BuildingTypeID+"",key, new HttpUtils.HttpCallback() {
+                loadingDialog.show();
+            NetHelperNew.NewBuildingsList(pageIndex + "", AreaID == 0 ? "" : AreaID + "", BuildingTypeID + "", key, new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
                     if (isLoading)
-                    loadingDialog.dismiss();
-                    Log.i("-->","新房源列表："+data);
+                        loadingDialog.dismiss();
+                    Log.i("-->", "新房源列表：" + data);
                     final NewHouseListBean newHouseListBean = MyGson.getInstance().fromJson(data, NewHouseListBean.class);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showToast(NewHouseActivity.this, newHouseListBean.getContent());
+                            if (newHouseListBean.getType() != 1) {
+                                ToastUtil.showToast(NewHouseActivity.this, newHouseListBean.getContent());
+                            }
                             mRecyclerView.refreshComplete(10);
                             //更新数据
                             houseListBeans.addAll(newHouseListBean.getData());
@@ -280,7 +286,7 @@ public class NewHouseActivity extends BaseActivity {
                 public void onError(String msg) {
                     super.onError(msg);
                     if (isLoading)
-                    loadingDialog.dismiss();
+                        loadingDialog.dismiss();
                     mRecyclerView.refreshComplete(10);
                     ToastUtil.showToast(getApplicationContext(), msg);
                 }

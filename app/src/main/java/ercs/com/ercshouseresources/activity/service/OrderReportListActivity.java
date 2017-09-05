@@ -79,6 +79,10 @@ public class OrderReportListActivity extends BaseActivity {
                             dataBeanList.addAll(orderReportListBean.getData());
                             orderReportListAdapter.notifyDataSetChanged();
                             pageNum++;
+                            if(orderReportListBean.getData().size()==0)
+                            {
+                                ToastUtil.showToast(OrderReportListActivity.this,"没有更多数据了");
+                            }
                         }
                         else
                         {

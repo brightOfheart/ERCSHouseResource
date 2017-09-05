@@ -42,16 +42,14 @@ public class FinancialItemAdapter extends ViewHolderAdapter<FinancialChildBean.D
     @Override
     public void bindViewDatas(ViewHolder holder, final FinancialChildBean.DataBean datas, final int position) {
         holder.setText(R.id.tv_title, datas.getText());
-        GlideUtil.loadImage(context, NetHelperNew.URL +"/"+datas.getIcon(), (ImageView) holder.getView(R.id.iv_pic), R.mipmap.ic_launcher, R.mipmap.ic_launcher);
-
-
+        GlideUtil.loadImages(context, NetHelperNew.URL + "/" + datas.getIcon(), (ImageView) holder.getView(R.id.iv_pics));
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (datas.getMode().equals("0"))//贷款
                     FinancialListActivity.start(context, datas.getId(), datas.getText());
                 if (datas.getMode().equals("1"))//二手房
-                    FinanicalDetailActivity.start(context, datas.getText(), datas.getAttr().get(num(datas.getAttr())).getName(), datas.getAttr().get(num(datas.getAttr())).getAttrValue(),datas.getId());
+                    FinanicalDetailActivity.start(context, datas.getText(), datas.getAttr().get(num(datas.getAttr())).getName(), datas.getAttr().get(num(datas.getAttr())).getAttrValue(), datas.getId());
             }
         });
 //

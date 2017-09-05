@@ -102,6 +102,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         tv_city.setText(city);
         String tabs = spUtil.getString(BaseApplication.TABS, "");
         String strs[] = tabs.split(",");
+        if (strs.length > 0)
         addDate(strs);
         ly_city.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +133,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     private void addDate(String str[]) {
         for (int i = 0; i < str.length; i++) {
             ServiceBean serviceBean = new ServiceBean();
+            if(!str[i].equals(""))
             switch (Integer.valueOf(str[i])) {
                 case 1:
                     serviceBean.setTitle("新房");

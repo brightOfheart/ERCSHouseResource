@@ -2,18 +2,22 @@ package ercs.com.ercshouseresources.activity.cheaproom;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+
 import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.service.OrderReportListActivity;
 import ercs.com.ercshouseresources.adapter.CheapOrderReportListAdapter;
 import ercs.com.ercshouseresources.bean.OrderReportListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
@@ -76,9 +80,10 @@ public class Cheap_OrderReportListActivity extends BaseActivity {
                             dataBeanList.addAll(orderReportListBean.getData());
                             orderReportListAdapter.notifyDataSetChanged();
                             pageNum++;
-                        }
-                        else
-                        {
+                            if (orderReportListBean.getData().size() == 0) {
+                                ToastUtil.showToast(Cheap_OrderReportListActivity.this, "没有更多数据了");
+                            }
+                        } else {
                             ToastUtil.showToast(Cheap_OrderReportListActivity.this, orderReportListBean.getContent());
                         }
 

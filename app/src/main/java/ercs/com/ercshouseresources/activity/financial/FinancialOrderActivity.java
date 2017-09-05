@@ -1,10 +1,15 @@
 package ercs.com.ercshouseresources.activity.financial;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
@@ -51,7 +56,7 @@ public class FinancialOrderActivity extends BaseActivity {
      */
     private void initTitle() {
         TitleControl t = new TitleControl(this);
-        t.setTitle("报备信息");
+        t.setTitle("金融订单");
         dialog = new LoadingDialog(FinancialOrderActivity.this, 0);
     }
 
@@ -59,6 +64,10 @@ public class FinancialOrderActivity extends BaseActivity {
         adapter = new FinancialOrderAdapter(FinancialOrderActivity.this, this, financialOrderBean.getData());
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
         recyleview.setLayoutManager(new LinearLayoutManager(this));
+        //设置头部加载颜色
+        recyleview.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.transparent);
+//设置底部加载颜色
+        recyleview.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.transparent);
         recyleview.setAdapter(mLRecyclerViewAdapter);
         recyleview.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -74,6 +83,37 @@ public class FinancialOrderActivity extends BaseActivity {
                             list = financialOrderBean.getData();
                             adapter.setListData(list);
                             mLRecyclerViewAdapter.notifyDataSetChanged();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        super.onError(msg);
+                        recyleview.refreshComplete(10);
+                        ToastUtil.showToast(getApplicationContext(), msg);
+                    }
+                });
+
+            }
+        });
+        recyleview.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                PageIndex++;
+                NetHelperNew.getFinacialRunningList(PageIndex + "", new HttpUtils.HttpCallback() {
+                    @Override
+                    public void onSuccess(String data) {
+                        final FinancialOrderBean financialOrderBean = MyGson.getInstance().fromJson(data, FinancialOrderBean.class);
+                        recyleview.refreshComplete(10);
+                        if (financialOrderBean.getType().equals("1")) {
+                            list.addAll(financialOrderBean.getData());
+                            adapter.setListData(list);
+                            mLRecyclerViewAdapter.notifyDataSetChanged();
+                            if (financialOrderBean.getData().size() == 0) {
+                                ToastUtil.showToast(getApplicationContext(), "没有更多数据了");
+                            }
                         }
 
                     }

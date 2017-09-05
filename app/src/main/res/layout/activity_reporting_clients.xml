@@ -16,8 +16,8 @@
         android:padding="@dimen/d_10">
         <ImageView
             android:id="@+id/title_left"
-            android:layout_width="@dimen/img_size1"
-            android:layout_height="@dimen/img_size1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:background="@mipmap/goback"
             android:layout_gravity="center_vertical"

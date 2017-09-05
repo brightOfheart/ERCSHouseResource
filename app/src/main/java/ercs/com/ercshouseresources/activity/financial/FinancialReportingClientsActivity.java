@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.financial;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +13,16 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -78,8 +82,7 @@ public class FinancialReportingClientsActivity extends BaseActivity {
         setContentView(R.layout.activity_reporting_clients);
         ButterKnife.bind(this);
         initview();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -114,7 +117,8 @@ public class FinancialReportingClientsActivity extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showToast(FinancialReportingClientsActivity.this, customersListBean.getContent());
+                            if (customersListBean.getType() != 1)
+                                ToastUtil.showToast(FinancialReportingClientsActivity.this, customersListBean.getContent());
 
                             mRecyclerView.refreshComplete(10);
                             //更新数据

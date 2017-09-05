@@ -39,7 +39,11 @@ public class GlideUtil {
                 .error(errorImg)
                 .into(imageView);
     }
-
+    public static void loadImages(Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .into(imageView);
+    }
     /**
      * 加载圆角图片
      *

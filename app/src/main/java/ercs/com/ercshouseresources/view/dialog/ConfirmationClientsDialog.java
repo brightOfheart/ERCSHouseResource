@@ -39,14 +39,15 @@ public class ConfirmationClientsDialog extends BaseDialog {
     private String BuildingID;
     private String CustomerID;
     private LoadingDialog loadingDialog;
-    public ConfirmationClientsDialog(Activity mActivity, String name, List<CustomersListBean.DataBean.PhoneListBean> tels,String BuildingID,String CustomerID) {
+
+    public ConfirmationClientsDialog(Activity mActivity, String name, List<CustomersListBean.DataBean.PhoneListBean> tels, String BuildingID, String CustomerID) {
         super(mActivity);
         this.name = name;
         this.tels = tels;
-        context=mActivity;
-        this.BuildingID=BuildingID;
-        this.CustomerID=CustomerID;
-        loadingDialog=new LoadingDialog(context,0);
+        context = mActivity;
+        this.BuildingID = BuildingID;
+        this.CustomerID = CustomerID;
+        loadingDialog = new LoadingDialog(context, 0);
     }
 
     @Override
@@ -61,13 +62,13 @@ public class ConfirmationClientsDialog extends BaseDialog {
 
     @Override
     public void initView() {
-        tv_name=findViewById(R.id.tv_name);
-        tv_quit=findViewById(R.id.tv_quit);
-        tv_sure=findViewById(R.id.tv_sure);
-        listView=findViewById(R.id.listview);
+        tv_name = findViewById(R.id.tv_name);
+        tv_quit = findViewById(R.id.tv_quit);
+        tv_sure = findViewById(R.id.tv_sure);
+        listView = findViewById(R.id.listview);
 
         tv_name.setText(name);
-        confirmationClientsAdapter = new ConfirmationClientsAdapter(context,tels);
+        confirmationClientsAdapter = new ConfirmationClientsAdapter(context, tels);
         listView.setAdapter(confirmationClientsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,7 +90,7 @@ public class ConfirmationClientsDialog extends BaseDialog {
             public void onClick(View view) {
                 //确定
                 if (NetWorkUtil.check(context))
-                submit();
+                    submit();
             }
         });
     }
@@ -97,21 +98,20 @@ public class ConfirmationClientsDialog extends BaseDialog {
     /**
      * 确认报备信息
      */
-    private void submit()
-    {
+    private void submit() {
         loadingDialog.show();
         NetHelperNew.getInsertRunningsModel(BuildingID, CustomerID, tels.get(confirmationClientsAdapter.getPos()).getCustomerPhoneID() + "", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
                 loadingDialog.dismiss();
-                context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(context,baseBean.getContent());
-                        dismiss();
-                    }
-                });
+                dismiss();
+                if (!baseBean.getType().equals("1")) {
+                    ToastUtil.showToast(context, baseBean.getContent());
+                } else {
+                    context.finish();
+                }
+
             }
 
             @Override

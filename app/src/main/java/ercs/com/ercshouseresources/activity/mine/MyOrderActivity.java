@@ -62,59 +62,60 @@ public class MyOrderActivity extends BaseActivity {
         List<ServiceBean> list = new ArrayList<>();
         for (int i = 0; i < str.length; i++) {
             ServiceBean serviceBean = new ServiceBean();
-            switch (Integer.valueOf(str[i])) {
-                case 1:
-                    serviceBean.setTitle("新房订单");
-                    serviceBean.setPic(R.mipmap.xf);
-                    list.add(serviceBean);
-                    break;
-                case 2:
-                    serviceBean.setTitle("低价房订单");
-                    serviceBean.setPic(R.mipmap.djf);
-                    list.add(serviceBean);
+            if (!str[i].equals(""))
+                switch (Integer.valueOf(str[i])) {
+                    case 1:
+                        serviceBean.setTitle("新房订单");
+                        serviceBean.setPic(R.mipmap.xf);
+                        list.add(serviceBean);
+                        break;
+                    case 2:
+                        serviceBean.setTitle("二手房订单");
+                        serviceBean.setPic(R.mipmap.djf);
+                        list.add(serviceBean);
 
-                    break;
-                case 3:
-                    serviceBean.setTitle("二手房订单");
-                    serviceBean.setPic(R.mipmap.esf);
-                    list.add(serviceBean);
-                    break;
-                case 4:
-                    serviceBean.setTitle("租房订单");
-                    serviceBean.setPic(R.mipmap.zf);
-                    list.add(serviceBean);
-                    break;
-                case 5:
-                    serviceBean.setTitle("金融订单");
-                    serviceBean.setPic(R.mipmap.jr);
-                    list.add(serviceBean);
-                    break;
-                case 6:
-                    serviceBean.setTitle("装修订单");
-                    serviceBean.setPic(R.mipmap.zx);
-                    list.add(serviceBean);
-                    break;
-                case 7:
-                    serviceBean.setTitle("家政订单");
-                    serviceBean.setPic(R.mipmap.jz);
-                    list.add(serviceBean);
-                    break;
-                case 8:
-                    serviceBean.setTitle("活动订单");
-                    serviceBean.setPic(R.mipmap.hd);
-                    list.add(serviceBean);
-                    break;
-                case 9:
-                    serviceBean.setTitle("旅游订单");
-                    serviceBean.setPic(R.mipmap.ly);
-                    list.add(serviceBean);
-                    break;
+                        break;
+                    case 3:
+                        serviceBean.setTitle("租房订单");
+                        serviceBean.setPic(R.mipmap.esf);
+                        list.add(serviceBean);
+                        break;
+                    case 4:
+                        serviceBean.setTitle("低价房订单");
+                        serviceBean.setPic(R.mipmap.zf);
+                        list.add(serviceBean);
+                        break;
+                    case 5:
+                        serviceBean.setTitle("装修订单");
+                        serviceBean.setPic(R.mipmap.jr);
+                        list.add(serviceBean);
+                        break;
+                    case 6:
+                        serviceBean.setTitle("活动订单");
+                        serviceBean.setPic(R.mipmap.zx);
+                        list.add(serviceBean);
+                        break;
+                    case 7:
+                        serviceBean.setTitle("金融订单");
+                        serviceBean.setPic(R.mipmap.jz);
+                        list.add(serviceBean);
+                        break;
+                    case 8:
+                        serviceBean.setTitle("家政订单");
+                        serviceBean.setPic(R.mipmap.hd);
+                        list.add(serviceBean);
+                        break;
+                    case 9:
+                        serviceBean.setTitle("旅游订单");
+                        serviceBean.setPic(R.mipmap.ly);
+                        list.add(serviceBean);
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
 
-            }
-            mLRecyclerViewAdapter = new LRecyclerViewAdapter(new MyOrderAdapter(MyOrderActivity.this, this, list,str));
+                }
+            mLRecyclerViewAdapter = new LRecyclerViewAdapter(new MyOrderAdapter(MyOrderActivity.this, this, list, str));
             recyleview.setLayoutManager(new LinearLayoutManager(this));
             recyleview.setAdapter(mLRecyclerViewAdapter);
             recyleview.setPullRefreshEnabled(false);

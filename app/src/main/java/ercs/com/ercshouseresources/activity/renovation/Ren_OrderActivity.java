@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.cheaproom.Cheap_OrderReportListActivity;
 import ercs.com.ercshouseresources.adapter.Ren_OrderAdapter;
 import ercs.com.ercshouseresources.bean.Ren_OrderBean;
 import ercs.com.ercshouseresources.bean.RenovationListBean;
@@ -41,14 +42,14 @@ public class Ren_OrderActivity extends BaseActivity {
     private Ren_OrderBean ren_orderBean;
     private List<Ren_OrderBean.DataBean> list;
     private Ren_OrderAdapter ren_orderAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avtivity_renorder);
         ButterKnife.bind(this);
         initTitle();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
         if (NetWorkUtil.check(getApplicationContext()))
@@ -65,15 +66,20 @@ public class Ren_OrderActivity extends BaseActivity {
     }
 
     private void createView() {
-        ren_orderAdapter=new Ren_OrderAdapter(Ren_OrderActivity.this, this, ren_orderBean.getData());
+        ren_orderAdapter = new Ren_OrderAdapter(Ren_OrderActivity.this, this, ren_orderBean.getData());
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(ren_orderAdapter);
         recyleview.setLayoutManager(new LinearLayoutManager(this));
+        //设置头部加载颜色
+        recyleview.setHeaderViewColor(R.color.system_color, R.color.system_color, android.R.color.transparent);
+//设置底部加载颜色
+        recyleview.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.transparent);
+
         recyleview.setAdapter(mLRecyclerViewAdapter);
         recyleview.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
                 PageIndex++;
-                NetHelperNew.getDecorationPreparationOrder(PageIndex + "", "",new HttpUtils.HttpCallback() {
+                NetHelperNew.getDecorationPreparationOrder(PageIndex + "", "", new HttpUtils.HttpCallback() {
                     @Override
                     public void onSuccess(String data) {
                         ren_orderBean = MyGson.getInstance().fromJson(data, Ren_OrderBean.class);
@@ -81,7 +87,9 @@ public class Ren_OrderActivity extends BaseActivity {
                             list.addAll(ren_orderBean.getData());
                             ren_orderAdapter.setListData(list);
                             mLRecyclerViewAdapter.notifyDataSetChanged();
-
+                            if (ren_orderBean.getData().size() == 0) {
+                                ToastUtil.showToast(getApplicationContext(), "没有更多数据了");
+                            }
                         }
                         recyleview.refreshComplete(10);
                     }
@@ -103,8 +111,7 @@ public class Ren_OrderActivity extends BaseActivity {
                     @Override
                     public void onSuccess(String data) {
                         ren_orderBean = MyGson.getInstance().fromJson(data, Ren_OrderBean.class);
-                        if(ren_orderBean.getType().equals("1"))
-                        {
+                        if (ren_orderBean.getType().equals("1")) {
                             list.clear();
                             list = ren_orderBean.getData();
                             ren_orderAdapter.setListData(list);
@@ -133,12 +140,11 @@ public class Ren_OrderActivity extends BaseActivity {
         NetHelperNew.getDecorationPreparationOrder(PageIndex + "", "", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
-                  ren_orderBean = MyGson.getInstance().fromJson(data, Ren_OrderBean.class);
-                  list=ren_orderBean.getData();
-                 if(ren_orderBean.getType().equals("1"))
-                 {
-                     createView();
-                 }
+                ren_orderBean = MyGson.getInstance().fromJson(data, Ren_OrderBean.class);
+                list = ren_orderBean.getData();
+                if (ren_orderBean.getType().equals("1")) {
+                    createView();
+                }
                 dialog.dismiss();
             }
 

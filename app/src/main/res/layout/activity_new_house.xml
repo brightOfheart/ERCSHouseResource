@@ -12,8 +12,8 @@
         android:padding="@dimen/d_10">
         <ImageView
             android:id="@+id/title_left"
-            android:layout_width="@dimen/img_size1"
-            android:layout_height="@dimen/img_size1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:background="@mipmap/goback"
             android:layout_gravity="center_vertical"
@@ -62,9 +62,9 @@
             android:textSize="@dimen/sp_14"
             android:layout_marginRight="@dimen/d_10"
             android:layout_marginLeft="@dimen/d_10"
-            android:drawablePadding="@dimen/d_5"
-            android:drawableLeft="@mipmap/dizhitubiao"
-           />
+            android:drawablePadding="@dimen/d_5" />
+            <!--android:drawableLeft="@mipmap/dizhitubiao"-->
+
     </LinearLayout>
 
     <LinearLayout
