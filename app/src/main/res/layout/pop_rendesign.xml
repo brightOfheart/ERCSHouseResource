@@ -11,4 +11,9 @@
     android:background="@color/white"
     android:padding="@dimen/d_10"
     android:id="@+id/gridview"></GridView>
+    <View
+        android:id="@+id/view_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></View>
 </LinearLayout>

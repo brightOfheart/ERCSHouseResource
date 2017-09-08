@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -76,16 +75,16 @@
                     android:id="@+id/tv_oration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="南北"
                     android:layout_marginLeft="@dimen/d_10"
+                    android:text="南北"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="清水"
                     android:layout_marginLeft="@dimen/d_10"
+                    android:text="清水"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -93,9 +92,10 @@
                 android:id="@+id/gridview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="5"
-                android:verticalSpacing="@dimen/d_5"
-                android:layout_marginTop="@dimen/d_5"/>
+                android:layout_marginTop="@dimen/d_5"
+                android:horizontalSpacing="@dimen/d_10"
+                android:numColumns="4"
+                android:verticalSpacing="@dimen/d_5" />
 
         </LinearLayout>
     </FrameLayout>

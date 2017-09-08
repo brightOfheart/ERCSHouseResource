@@ -481,7 +481,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="住宅类别:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_1"
@@ -501,7 +501,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="楼号单元:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_2"
@@ -528,7 +528,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="装修程度:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_3"
@@ -547,7 +547,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="房屋类型:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_4"
@@ -574,7 +574,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="楼        层:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_5"
@@ -593,7 +593,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="建造年代:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_6"
@@ -620,7 +620,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="产        权:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray" />
 
                         <TextView
                             android:id="@+id/tv_7"
@@ -639,7 +639,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="朝        向:"
-                            android:textColor="#BDBEBD" />
+                            android:textColor="@color/deep_gray"/>
 
                         <TextView
                             android:id="@+id/tv_8"

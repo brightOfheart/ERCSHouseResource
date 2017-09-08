@@ -1,20 +1,16 @@
 package ercs.com.ercshouseresources.activity.renovation;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -117,7 +113,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
             public void onSuccess(String data) {
                 dialog.dismiss();
                 renListBean = MyGson.getInstance().fromJson(data, RenListBean.class);
-                list.addAll(renListBean.getData()) ;
+                list.addAll(renListBean.getData());
                 if (renListBean.getType().equals("1")) {
                     createview();
                 } else {
@@ -141,7 +137,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle("设计方案");
         dialog = new LoadingDialog(Ren_DesignSchemeActivity.this, 0);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
     }
 
     private void setData() {
@@ -174,7 +170,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ly_style://风格
 
-                if (renDesignPop != null)
+                if (renDesignStylePop != null)
                     renDesignStylePop.showAsDropDown(v_line, 0, 0);
 
                 break;
@@ -186,7 +182,7 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
                 break;
             case R.id.ly_areo:
 
-                if (renDesignPop != null)
+                if (areaoPop != null)
                     areaoPop.showAsDropDown(v_line, 0, 0);
 
                 break;
@@ -244,14 +240,11 @@ public class Ren_DesignSchemeActivity extends BaseActivity {
                         renListBean = MyGson.getInstance().fromJson(data, RenListBean.class);
                         mRecyclerView.refreshComplete(10);
                         if (renListBean.getType().equals("1")) {
-                            if(renListBean.getData().size()>0)
-                            {
+                            if (renListBean.getData().size() > 0) {
                                 list.addAll(renListBean.getData());
                                 mLRecyclerViewAdapter.notifyDataSetChanged();
-                            }
-                            else
-                            {
-                               ToastUtil.showToast(Ren_DesignSchemeActivity.this,"没有更多数据了");
+                            } else {
+                                ToastUtil.showToast(Ren_DesignSchemeActivity.this, "没有更多数据了");
                             }
 
                         }

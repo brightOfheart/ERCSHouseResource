@@ -218,7 +218,7 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(Cheap_OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
+
                         if (reportOrderDetailBean.getType().equals("1")) {
                             id = reportOrderDetailBean.getData().getId();
 //                            titleControl.setTitle(reportOrderDetailBean.getData().getBuildingName());
@@ -227,6 +227,8 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
                             listBeen.addAll(reportOrderDetailBean.getData().getLowPriceHouseRunningsInfoShowList());
                             orderReportDetailAdapter.notifyDataSetChanged();
                             initCommission(reportOrderDetailBean);
+                        } else {
+                            ToastUtil.showToast(Cheap_OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                         }
 
                     }
@@ -281,7 +283,7 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
             case R.id.frame_follow:
                 //跟进信息
                 if (!Json.equals(""))
-                    FollowMsgActivity.start(Cheap_OrderReportDetailActivity.this, Json,"2");
+                    FollowMsgActivity.start(Cheap_OrderReportDetailActivity.this, Json, "2");
                 else
                     ToastUtil.showToast(Cheap_OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                 break;
@@ -351,8 +353,10 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
                         if (baseBean.getType().equals("1")) {
                             listBeen.get(pos).getImageList().remove(gridPos);
                             orderReportDetailAdapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtil.showToast(Cheap_OrderReportDetailActivity.this, baseBean.getContent());
                         }
-                        ToastUtil.showToast(Cheap_OrderReportDetailActivity.this, baseBean.getContent());
+
                     }
                 });
             }
@@ -385,13 +389,9 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
                     listBeen.get(pos).getImageList().add(new CheapReportOrderDetailBean.DataBean.LowPriceHouseRunningsInfoShowListBean.ImageListBean(upLoadPicBean.getData().getImagePath(), upLoadPicBean.getData().getFileName(), upLoadPicBean.getData().getId()));
                     orderReportDetailAdapter.notifyDataSetChanged();
 
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
-                    }
-                });
             }
 
             @Override

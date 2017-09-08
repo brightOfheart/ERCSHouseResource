@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.service;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,17 +9,14 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.github.jdsjlzx.ItemDecoration.DividerDecoration;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +41,6 @@ import ercs.com.ercshouseresources.view.popupwindow.NewHouseAreaSelectPop;
  * 新房
  */
 public class NewHouseActivity extends BaseActivity {
-
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
@@ -54,18 +49,14 @@ public class NewHouseActivity extends BaseActivity {
     View view_line;
     @BindView(R.id.tv_city)
     TextView tv_city;
-
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private List<NewHouseListBean.DataBean> houseListBeans;
     private NewBuildingAdapter houseAdapter;//房源列表
     private LoadingDialog loadingDialog;
     private String key = "";// 关键字 “”
     private int pagenum = 1;//页数
-
-
     private int BuildingTypeID = 0;//房源类型
     private int AreaID = 0;//区域类型
-
     private BuildingTypeSelectPop buildingTypeSelectPop;//房源类型
     private NewHouseAreaSelectPop newHouseAreaSelectPop;//区域类型
 
@@ -123,7 +114,7 @@ public class NewHouseActivity extends BaseActivity {
             CloseActivityClass.activityList.add(this);
         }
         loadingDialog = new LoadingDialog(this, 0);
-        SPUtil spUtil= new SPUtil(NewHouseActivity.this, "fileName");
+        SPUtil spUtil = new SPUtil(NewHouseActivity.this, "fileName");
         String city = spUtil.getString(BaseApplication.CITY, "");
         tv_city.setText(city);
         houseListBeans = new ArrayList<>();

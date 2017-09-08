@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -226,7 +229,15 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
             PicItem picItem = new PicItem(CheapRoomDetailActivity.this, newHouseDetailBean.getData().getImageList().get(i));
             list.add(picItem);
         }
-        tv_num.setText(1 + "/" + list.size());
+        if (newHouseDetailBean.getData().getImageList().size() > 0)
+            tv_num.setText(1 + "/" + list.size());
+        else {
+            tv_num.setText(0 + "/" + list.size());
+            PicItem picItems = new PicItem(CheapRoomDetailActivity.this, "");
+            list.add(picItems);
+
+        }
+
         viewpager.setAdapter(new MyViewPagerAdapter(list));
         viewpager.setCurrentItem(0);
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

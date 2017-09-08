@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="总        价"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_price"
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="房        型"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_housetype"
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="面        积"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_area"
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="工        期"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_date"
@@ -142,7 +142,6 @@
                     android:layout_marginLeft="@dimen/d_10"
                     android:textColor="@color/black" />
             </LinearLayout>
-
 
 
             <View
@@ -162,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="设  计  师"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_teacher"
@@ -191,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="设计风格"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_desginstyle"
@@ -220,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="作品类型"
-                    android:textColor="#CECFCE" />
+                    android:textColor="@color/deep_gray" />
 
                 <TextView
                     android:id="@+id/tv_worktype"

@@ -1,9 +1,13 @@
 package ercs.com.ercshouseresources.activity.clerk;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
@@ -64,7 +68,7 @@ public class ClerkActivity extends BaseActivity {
      */
     private void createDialog() {
         dialog = new LoadingDialog(ClerkActivity.this, 0);
-}
+    }
 
     /**
      * 初始化
@@ -78,12 +82,13 @@ public class ClerkActivity extends BaseActivity {
 
     /**
      * 获取id
+     *
      * @return
      */
-    private String getId()
-    {
-        return spUtil.getString(BaseApplication.ID,"");
+    private String getId() {
+        return spUtil.getString(BaseApplication.ID, "");
     }
+
     /**
      * 加载网络数据
      */
@@ -95,12 +100,14 @@ public class ClerkActivity extends BaseActivity {
                 final ClerkBean clerkBean = MyGson.getInstance().fromJson(data, ClerkBean.class);
                 if (clerkBean.getType().equals(SUCCESS)) {
                     initView(clerkBean.getData());
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), clerkBean.getContent());
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         dialog.dismiss();
-                        ToastUtil.showToast(getApplicationContext(), clerkBean.getContent());
+
                     }
                 });
             }

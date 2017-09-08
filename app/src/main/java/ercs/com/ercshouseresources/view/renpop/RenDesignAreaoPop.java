@@ -13,20 +13,19 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.RenDesignAreaoPopAdapter;
-import ercs.com.ercshouseresources.adapter.RenDesignStylePopAdapter;
 import ercs.com.ercshouseresources.bean.RenSelectListBean;
+
 
 /**
  * Created by Administrator on 2017/8/14.
  */
 
-public class RenDesignAreaoPop extends PopupWindow {
+public class RenDesignAreaoPop extends PopupWindow implements View.OnClickListener {
     private Context context;
     private View view;
     private GridView gridview;
     private OnSelectContentListener listener;
     private List<RenSelectListBean.DataBean.AreaTagBean> list;
-
     private int kind = 0;
 
     public RenDesignAreaoPop(Context context, OnSelectContentListener listener, List<RenSelectListBean.DataBean.AreaTagBean> list) {
@@ -41,29 +40,39 @@ public class RenDesignAreaoPop extends PopupWindow {
      * 初始化pop样式
      */
     private void initPop() {
-
         view = LayoutInflater.from(context).inflate(R.layout.pop_rendesign, null);
+        View v = view.findViewById(R.id.view_null);
+        v.setOnClickListener(this);
         gridview = (GridView) view.findViewById(R.id.gridview);
         gridview.setAdapter(new RenDesignAreaoPopAdapter(context, list));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listener.selectContent(list.get(i).getId()+"");
+                listener.selectContent(list.get(i).getId() + "");
                 dismiss();
             }
         });
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setContentView(view);
-
         ColorDrawable dw = new ColorDrawable(context.getResources().getColor(R.color.gray_bg));
         //设置SelectPicPopupWindow弹出窗体的背景
         setBackgroundDrawable(dw);
-
         //获取popwindow焦点
         setFocusable(true);
         //设置popwindow如果点击外面区域，便关闭。
         setOutsideTouchable(true);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.view_null:
+                //点击半透明
+                dismiss();
+                break;
+
+        }
     }
 
     /**
@@ -71,6 +80,5 @@ public class RenDesignAreaoPop extends PopupWindow {
      */
     public interface OnSelectContentListener {
         public void selectContent(String s);//
-
     }
 }

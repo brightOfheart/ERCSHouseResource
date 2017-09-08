@@ -193,7 +193,7 @@ public class OrderReportDetailActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
+
                         if (reportOrderDetailBean.getType() == 1) {
                             //titleControl.setTitle(reportOrderDetailBean.getData().getBuildingName());
                             Json = data;
@@ -201,6 +201,8 @@ public class OrderReportDetailActivity extends BaseActivity {
                             listBeen.addAll(reportOrderDetailBean.getData().getNewHouseRunningsInfoShowList());
                             orderReportDetailAdapter.notifyDataSetChanged();
                             initCommission(reportOrderDetailBean);
+                        } else {
+                            ToastUtil.showToast(OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                         }
 
                     }
@@ -255,7 +257,7 @@ public class OrderReportDetailActivity extends BaseActivity {
             case R.id.frame_follow:
                 //跟进信息
                 if (!Json.equals(""))
-                    FollowMsgActivity.start(OrderReportDetailActivity.this, Json,"1");
+                    FollowMsgActivity.start(OrderReportDetailActivity.this, Json, "1");
                 else
                     ToastUtil.showToast(OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                 break;
@@ -355,8 +357,10 @@ public class OrderReportDetailActivity extends BaseActivity {
                         if (baseBean.getType().equals("1")) {
                             listBeen.get(pos).getImageList().remove(gridPos);
                             orderReportDetailAdapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtil.showToast(OrderReportDetailActivity.this, baseBean.getContent());
                         }
-                        ToastUtil.showToast(OrderReportDetailActivity.this, baseBean.getContent());
+
                     }
                 });
             }
@@ -389,13 +393,9 @@ public class OrderReportDetailActivity extends BaseActivity {
                     listBeen.get(pos).getImageList().add(new ReportOrderDetailBean.DataBean.NewHouseRunningsInfoShowListBean.ImageListBean(upLoadPicBean.getData().getImagePath(), upLoadPicBean.getData().getFileName(), upLoadPicBean.getData().getId()));
                     orderReportDetailAdapter.notifyDataSetChanged();
 
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
-                    }
-                });
             }
 
             @Override

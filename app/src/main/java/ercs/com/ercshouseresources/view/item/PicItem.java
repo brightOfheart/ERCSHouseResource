@@ -33,7 +33,12 @@ public class PicItem extends RelativeLayout {
         params.setMargins(0, 0, 0, 0);
         this.addView(linearLayout, params);
         ButterKnife.bind(this);
-        GlideUtil.loadImage(context, NetHelperNew.URL+icon,iv_pic,R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        if (icon.equals("")) {
+            iv_pic.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            GlideUtil.loadImage(context, NetHelperNew.URL + icon, iv_pic, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
+        }
+
 
     }
 }

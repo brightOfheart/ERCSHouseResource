@@ -225,7 +225,7 @@ public class Ren_OrderReportDetailActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(Ren_OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
+
                         if (reportOrderDetailBean.getType() == 1) {
                             Json = data;
                             // titleControl.setTitle(reportOrderDetailBean.getData().getBuildingName());
@@ -236,6 +236,8 @@ public class Ren_OrderReportDetailActivity extends BaseActivity {
                             listBeen.addAll(reportOrderDetailBean.getData().getDecorationRunningsInfoShowList());
                             orderReportDetailAdapter.notifyDataSetChanged();
                             initCommission(reportOrderDetailBean);
+                        } else {
+                            ToastUtil.showToast(Ren_OrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                         }
 
                     }
@@ -359,8 +361,10 @@ public class Ren_OrderReportDetailActivity extends BaseActivity {
                         if (baseBean.getType().equals("1")) {
                             listBeen.get(pos).getImageList().remove(gridPos);
                             orderReportDetailAdapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtil.showToast(Ren_OrderReportDetailActivity.this, baseBean.getContent());
                         }
-                        ToastUtil.showToast(Ren_OrderReportDetailActivity.this, baseBean.getContent());
+
                     }
                 });
             }
@@ -393,13 +397,9 @@ public class Ren_OrderReportDetailActivity extends BaseActivity {
                     listBeen.get(pos).getImageList().add(new RenReportOrderDetailBean.DataBean.DecorationRunningsInfoShowList.ImageListBean(upLoadPicBean.getData().getImagePath(), upLoadPicBean.getData().getFileName(), upLoadPicBean.getData().getId()));
                     orderReportDetailAdapter.notifyDataSetChanged();
 
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
-                    }
-                });
             }
 
             @Override

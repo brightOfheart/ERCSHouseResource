@@ -62,7 +62,7 @@
             android:id="@+id/iv_addperson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/mine_pre"
+            android:src="@mipmap/mine_pres"
             android:layout_marginLeft="@dimen/d_10"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>

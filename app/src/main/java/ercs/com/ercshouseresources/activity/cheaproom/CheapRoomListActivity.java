@@ -119,7 +119,7 @@ public class CheapRoomListActivity extends BaseActivity {
             CloseActivityClass.activityList.add(this);
         }
         loadingDialog = new LoadingDialog(this, 0);
-        SPUtil spUtil= new SPUtil(CheapRoomListActivity.this, "fileName");
+        SPUtil spUtil = new SPUtil(CheapRoomListActivity.this, "fileName");
         String city = spUtil.getString(BaseApplication.CITY, "");
         tv_city.setText(city);
         houseListBeans = new ArrayList<>();
@@ -272,9 +272,11 @@ public class CheapRoomListActivity extends BaseActivity {
                             mRecyclerView.refreshComplete(10);
                             //更新数据
                             houseListBeans.addAll(cheapRoomListBean.getData());
-
                             houseAdapter.notifyDataSetChanged();
                             pagenum++;
+                            if (cheapRoomListBean.getData().size() == 0) {
+                                ToastUtil.showToast(CheapRoomListActivity.this, "没有更多数据了~");
+                            }
                         }
                     });
 

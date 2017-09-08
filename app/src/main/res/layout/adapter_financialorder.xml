@@ -116,7 +116,35 @@
             android:layout_marginLeft="@dimen/d_16"
             android:textColor="#919191" />
     </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/d_16"
+           android:orientation="horizontal">
 
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="经  纪  人"
+               android:textColor="@color/black"
+               android:textSize="@dimen/d_17" />
+
+           <TextView
+               android:id="@+id/tv_jname"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/d_16"
+               android:textColor="#919191"
+               android:textSize="@dimen/d_17" />
+
+           <TextView
+               android:id="@+id/tv_jphone"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/d_16"
+               android:textColor="#919191"
+               android:textSize="@dimen/d_17" />
+       </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

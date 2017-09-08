@@ -47,4 +47,6 @@
     <color name="clor_backgray">#F4F4F4</color>
     <color name="clor_fontgray">#989898</color>
     <color name="clor_maingray">#666666</color>
+    <color name="deep_gray">#656565</color>
+    <color name="qian_gray">#adadad</color>
 </resources>

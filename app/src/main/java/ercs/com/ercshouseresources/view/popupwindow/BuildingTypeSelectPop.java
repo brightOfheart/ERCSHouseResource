@@ -16,6 +16,8 @@ import java.util.List;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.HouseLayoutSelectListviewAdapter;
+import ercs.com.ercshouseresources.util.DisplayUtil;
+import ercs.com.ercshouseresources.util.OtherUitl;
 
 /**
  * 新房 房源类型
@@ -28,7 +30,6 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
     private View view;
 
 
-
     private OnSelectHouseLayoutListener onSelectHouseLayoutListener;
     private HouseLayoutSelectListviewAdapter houseLayoutSelectListviewAdapter;
 
@@ -36,7 +37,7 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
         super(context);
         this.context = (Activity) context;
 
-        this.onSelectHouseLayoutListener=onSelectHouseLayoutListener;
+        this.onSelectHouseLayoutListener = onSelectHouseLayoutListener;
         initPop();
 
         initView();
@@ -44,16 +45,16 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
     }
 
     private void initView() {
-        View v=view.findViewById(R.id.view_null);
+        View v = view.findViewById(R.id.view_null);
         v.setOnClickListener(this);
 
-        ListView lv_houselayout=view.findViewById(R.id.lv_houselayout);
-        List<String> list=new ArrayList<>();
+        ListView lv_houselayout = view.findViewById(R.id.lv_houselayout);
+        List<String> list = new ArrayList<>();
         list.add("全部");
         list.add("住宅");
         list.add("旅游地产");
         list.add("商铺");
-        houseLayoutSelectListviewAdapter = new HouseLayoutSelectListviewAdapter(context,list);
+        houseLayoutSelectListviewAdapter = new HouseLayoutSelectListviewAdapter(context, list);
         lv_houselayout.setAdapter(houseLayoutSelectListviewAdapter);
 
         lv_houselayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,11 +73,11 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
      */
     private void initPop() {
 
-        view= LayoutInflater.from(context).inflate(R.layout.pop_houseayoutselect,null);
+        view = LayoutInflater.from(context).inflate(R.layout.pop_houseayoutselect, null);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 
 
-        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        this.setHeight(DisplayUtil.getHeightPixels(context) / 2);
 
         this.setContentView(view);
 
@@ -91,8 +92,10 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
         setOutsideTouchable(true);
     }
 
-    /**\
+    /**
+     * \
      * 设置透明背景
+     *
      * @param bgAlpha
      */
     public void backgroundAlpha(float bgAlpha) {
@@ -103,8 +106,7 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
 
             case R.id.view_null:
                 //点击半透明
@@ -117,8 +119,7 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
     /**
      * 房型选择回调
      */
-    public  interface OnSelectHouseLayoutListener
-    {
+    public interface OnSelectHouseLayoutListener {
         public void selectHouseLayout(int i);//不限
 
     }

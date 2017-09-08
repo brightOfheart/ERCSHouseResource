@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.fragment;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +23,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,6 +49,7 @@ import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.dialog.ChosePicDialog;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
+
 import static android.app.Activity.RESULT_OK;
 import static ercs.com.ercshouseresources.util.StringUtil.getStr;
 
@@ -94,7 +98,6 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
     }
 
 
-
     /**
      * 点击事件的处理
      *
@@ -113,7 +116,7 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
                 DynamicActivity.start(getActivity(), "0");
                 break;
             case R.id.ly_memberOutAssess://版本更新
-             //   startActivity(new Intent(getContext(), UpdateActivity.class));
+                //   startActivity(new Intent(getContext(), UpdateActivity.class));
                 break;
             case R.id.ly_set://设置
                 startActivity(new Intent(getContext(), SetActivity.class));
@@ -322,8 +325,10 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
                     spUtil.putString(BaseApplication.PHOTOPATH, path);
                     byte[] bytes = OtherUitl.stringtoBitmapbyte(path);
                     GlideUtil.loadCircleImage(bytes, iv_photo, R.mipmap.default_photo);
+                } else {
+                    ToastUtil.showToast(getContext(), baseBean.getContent());
                 }
-                ToastUtil.showToast(getContext(), baseBean.getContent());
+
             }
 
             @Override

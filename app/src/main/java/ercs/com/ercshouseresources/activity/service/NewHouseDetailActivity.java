@@ -189,7 +189,13 @@ public class NewHouseDetailActivity extends BaseActivity implements ObservableSc
             PicItem picItem = new PicItem(NewHouseDetailActivity.this, newHouseDetailBean.getData().getImageList().get(i));
             list.add(picItem);
         }
-        tv_num.setText(1 + "/" + list.size());
+        if (newHouseDetailBean.getData().getImageList().size() > 0) {
+            tv_num.setText(1 + "/" + list.size());
+        } else {
+            tv_num.setText(0 + "/" + list.size());
+            PicItem picItem = new PicItem(NewHouseDetailActivity.this, "");
+            list.add(picItem);
+        }
         viewpager.setAdapter(new MyViewPagerAdapter(list));
         viewpager.setCurrentItem(0);
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -93,6 +93,7 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
     private String GroupID;
     private FinancialOrderDetailBean reportOrderDetailBean;
     private String Json = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,8 +102,7 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
         initTitle();
         initListview();
         downLoad();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -217,7 +217,7 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(FinancialOrderReportDetailActivity.this, reportOrderDetailBean.getContent());
+
                         if (reportOrderDetailBean.getType() == 1) {
                             titleControl.setTitle(reportOrderDetailBean.getData().getBuildingName());
                             Json = data;
@@ -225,6 +225,8 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
                             listBeen.addAll(reportOrderDetailBean.getData().getTimelineShowList());
                             orderReportDetailAdapter.notifyDataSetChanged();
                             initCommission(reportOrderDetailBean);
+                        } else {
+                            ToastUtil.showToast(FinancialOrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                         }
 
                     }
@@ -269,7 +271,7 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_customerphone,R.id.frame_follow})
+    @OnClick({R.id.ll_customerphone, R.id.frame_follow})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_customerphone:
@@ -279,7 +281,7 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
             case R.id.frame_follow:
                 //跟进信息
                 if (!Json.equals(""))
-                    FollowMsgActivity.start(FinancialOrderReportDetailActivity.this, Json,"3");
+                    FollowMsgActivity.start(FinancialOrderReportDetailActivity.this, Json, "3");
                 else
                     ToastUtil.showToast(FinancialOrderReportDetailActivity.this, reportOrderDetailBean.getContent());
                 break;
@@ -348,8 +350,12 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
                         if (baseBean.getType().equals("1")) {
                             listBeen.get(pos).getImageList().remove(gridPos);
                             orderReportDetailAdapter.notifyDataSetChanged();
+                        } else
+
+                        {
+                            ToastUtil.showToast(FinancialOrderReportDetailActivity.this, baseBean.getContent());
                         }
-                        ToastUtil.showToast(FinancialOrderReportDetailActivity.this, baseBean.getContent());
+
                     }
                 });
             }
@@ -382,13 +388,9 @@ public class FinancialOrderReportDetailActivity extends BaseActivity {
                     listBeen.get(pos).getImageList().add(new FinancialOrderDetailBean.DataBean.TimelineShowList.ImageListBean(upLoadPicBean.getData().getImagePath(), upLoadPicBean.getData().getFileName(), upLoadPicBean.getData().getId()));
                     orderReportDetailAdapter.notifyDataSetChanged();
 
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ToastUtil.showToast(getApplicationContext(), upLoadPicBean.getContent());
-                    }
-                });
             }
 
             @Override

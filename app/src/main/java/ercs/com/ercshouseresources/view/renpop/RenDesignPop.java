@@ -21,12 +21,11 @@ import ercs.com.ercshouseresources.adapter.RenDesignPopAdapter;
 import ercs.com.ercshouseresources.bean.RenSelectListBean;
 
 
-
 /**
  * Created by Administrator on 2017/8/11.
  */
 
-public class RenDesignPop extends PopupWindow {
+public class RenDesignPop extends PopupWindow implements View.OnClickListener {
     private Context context;
     private View view;
     private GridView gridview;
@@ -49,18 +48,21 @@ public class RenDesignPop extends PopupWindow {
     private void initPop() {
 
         view = LayoutInflater.from(context).inflate(R.layout.pop_rendesign, null);
+
+        View v = view.findViewById(R.id.view_null);
+        v.setOnClickListener(this);
         gridview = (GridView) view.findViewById(R.id.gridview);
-        renpop=new RenDesignPopAdapter(context, list);
+        renpop = new RenDesignPopAdapter(context, list);
         gridview.setAdapter(renpop);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listener.selectContent(list.get(i).getId()+"");
+                listener.selectContent(list.get(i).getId() + "");
                 dismiss();
             }
         });
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setContentView(view);
 
         ColorDrawable dw = new ColorDrawable(context.getResources().getColor(R.color.gray_bg));
@@ -71,6 +73,18 @@ public class RenDesignPop extends PopupWindow {
         setFocusable(true);
         //设置popwindow如果点击外面区域，便关闭。
         setOutsideTouchable(true);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.view_null:
+                //点击半透明
+                dismiss();
+                break;
+
+        }
     }
 
     /**

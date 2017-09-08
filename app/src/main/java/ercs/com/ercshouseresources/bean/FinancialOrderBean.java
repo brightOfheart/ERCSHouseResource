@@ -29,7 +29,25 @@ public class FinancialOrderBean extends BaseBean {
         private String UserName;
         private String UserPhone;
         private String FilingTime;
+        private String CustomerUserName;
 
+        public String getCustomerUserName() {
+            return CustomerUserName;
+        }
+
+        public void setCustomerUserName(String customerUserName) {
+            CustomerUserName = customerUserName;
+        }
+
+        public String getCustomerUserPhone() {
+            return CustomerUserPhone;
+        }
+
+        public void setCustomerUserPhone(String customerUserPhone) {
+            CustomerUserPhone = customerUserPhone;
+        }
+
+        private  String CustomerUserPhone;
         public String getStateName() {
             return StateName;
         }

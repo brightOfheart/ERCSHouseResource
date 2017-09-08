@@ -71,38 +71,40 @@ public class MyOrderActivity extends BaseActivity {
                         break;
                     case 2:
                         serviceBean.setTitle("二手房订单");
-                        serviceBean.setPic(R.mipmap.djf);
+                        serviceBean.setPic(R.mipmap.esf);
                         list.add(serviceBean);
 
                         break;
                     case 3:
                         serviceBean.setTitle("租房订单");
-                        serviceBean.setPic(R.mipmap.esf);
+                        serviceBean.setPic(R.mipmap.zf);
                         list.add(serviceBean);
                         break;
                     case 4:
                         serviceBean.setTitle("低价房订单");
-                        serviceBean.setPic(R.mipmap.zf);
+                        serviceBean.setPic(R.mipmap.djf);
                         list.add(serviceBean);
                         break;
                     case 5:
                         serviceBean.setTitle("装修订单");
-                        serviceBean.setPic(R.mipmap.jr);
+                        serviceBean.setPic(R.mipmap.zx);
                         list.add(serviceBean);
                         break;
                     case 6:
                         serviceBean.setTitle("活动订单");
-                        serviceBean.setPic(R.mipmap.zx);
+                        serviceBean.setPic(R.mipmap.hd);
                         list.add(serviceBean);
                         break;
                     case 7:
                         serviceBean.setTitle("金融订单");
-                        serviceBean.setPic(R.mipmap.jz);
+                        serviceBean.setPic(R.mipmap.jr);
+
                         list.add(serviceBean);
                         break;
                     case 8:
                         serviceBean.setTitle("家政订单");
-                        serviceBean.setPic(R.mipmap.hd);
+                        serviceBean.setPic(R.mipmap.jz);
+
                         list.add(serviceBean);
                         break;
                     case 9:
