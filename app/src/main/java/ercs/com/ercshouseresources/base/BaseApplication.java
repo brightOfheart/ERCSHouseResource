@@ -2,19 +2,24 @@ package ercs.com.ercshouseresources.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ercs.com.ercshouseresources.activity.MainActivity;
 import ercs.com.ercshouseresources.bean.AreaBean;
+import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.newbean.LoginBean;
 import ercs.com.ercshouseresources.receiver.CheckReceiver;
 import ercs.com.ercshouseresources.service.LocationService;
+import ercs.com.ercshouseresources.util.SPUtil;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -48,11 +53,13 @@ public class BaseApplication extends Application {
     public static final String FILENAME = "fileName";//保存的名称
     public static LoginBean loginBean;//定义一个静态的新房登录全局变量
     public static List<AreaBean.DataBean> areas;//区域信息
+    private SPUtil spUtil;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        spUtil = new SPUtil(getApplicationContext(), "fileName");
         locationService = new LocationService(getApplicationContext());
         /**
          * 初始化百度地图
@@ -71,6 +78,13 @@ public class BaseApplication extends Application {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }
+
+        Log.d("===create===", "重新创建了");
+        BaseApplication.NewToken = spUtil.getString(BaseApplication.TOKEN, "");
+        String json = spUtil.getString(BaseApplication.LOGINJSON, "");
+        BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
+        Log.d("===Tokens===", BaseApplication.NewToken + ".");
+
     }
 
 

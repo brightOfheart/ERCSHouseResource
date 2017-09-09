@@ -251,8 +251,8 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
      */
     private void initCommission(CheapReportOrderDetailBean reportOrderDetailBean) {
 
-        tv_name.setText(reportOrderDetailBean.getData().getUserName());
-        tv_tel.setText(reportOrderDetailBean.getData().getUserPhone());
+        tv_name.setText(reportOrderDetailBean.getData().getCustomerName());
+        tv_tel.setText(reportOrderDetailBean.getData().getCustomerPhone());
         tv_totalamount.setText(reportOrderDetailBean.getData().getTotalAmount());
         tv_achieveamount.setText(reportOrderDetailBean.getData().getAchieveAmount());
         tv_taxamount.setText(reportOrderDetailBean.getData().getTaxAmount());

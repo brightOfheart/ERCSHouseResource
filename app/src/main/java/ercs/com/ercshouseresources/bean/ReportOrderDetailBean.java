@@ -63,12 +63,31 @@ public class ReportOrderDetailBean {
         private String BuildingName;
         private String UserName;
         private String UserPhone;
+        private String CustomerName;
+        private String CustomerPhone;
         private int State;
         private String TotalAmount;
         private String TaxAmount;
         private String AchieveAmount;
         private String UnAchieveAmount;
         private int BrokerageState;
+
+        public String getCustomerPhone() {
+            return CustomerPhone;
+        }
+
+        public void setCustomerPhone(String customerPhone) {
+            CustomerPhone = customerPhone;
+        }
+
+        public String getCustomerName() {
+            return CustomerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            CustomerName = customerName;
+        }
+
         private List<MessageBoardsShowModel> MessageBoardsShowList;
 
         public List<MessageBoardsShowModel> getMessageBoardsShowList() {

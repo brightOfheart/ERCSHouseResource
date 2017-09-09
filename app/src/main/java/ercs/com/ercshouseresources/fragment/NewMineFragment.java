@@ -64,8 +64,6 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
     TextView tv_dep;
     @BindView(R.id.tv_company)
     TextView tv_company;
-    @BindView(R.id.tv_version)
-    TextView tv_version;
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
     @BindView(R.id.ly_manager)
@@ -103,7 +101,7 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
      *
      * @param view
      */
-    @OnClick({R.id.ly_clerk, R.id.ly_set, R.id.ly_process, R.id.ly_memberAssess, R.id.ly_memberOutAssess})
+    @OnClick({R.id.ly_clerk, R.id.ly_set, R.id.ly_process, R.id.ly_memberAssess})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_clerk://职员列表
@@ -115,9 +113,7 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
             case R.id.ly_memberAssess://最新动态
                 DynamicActivity.start(getActivity(), "0");
                 break;
-            case R.id.ly_memberOutAssess://版本更新
-                //   startActivity(new Intent(getContext(), UpdateActivity.class));
-                break;
+
             case R.id.ly_set://设置
                 startActivity(new Intent(getContext(), SetActivity.class));
                 break;
@@ -172,7 +168,7 @@ public class NewMineFragment extends Fragment implements LazyFragmentPagerAdapte
             byte[] bytes = OtherUitl.stringtoBitmapbyte(spUtil.getString(BaseApplication.PHOTOPATH, ""));
             GlideUtil.loadCircleImage(bytes, iv_photo, R.mipmap.default_photo);
         }
-        tv_version.setText(OtherUitl.getVersion(getContext()));
+
         iv_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity {
 //            showId();
         if (spUtil.getInt(BaseApplication.ISLOGIN, 0) == 1)//如果登录过
         {
-            BaseApplication.Token = spUtil.getString(BaseApplication.TOKEN, "");
+            BaseApplication.NewToken = spUtil.getString(BaseApplication.TOKEN, "");
             String json = spUtil.getString(BaseApplication.LOGINJSON, "");
             BaseApplication.loginBean = MyGson.getInstance().fromJson(json, LoginBean.class);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));

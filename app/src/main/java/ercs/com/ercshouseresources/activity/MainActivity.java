@@ -58,25 +58,25 @@ public class MainActivity extends BaseActivity {
         if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
-        getUpdate();
+//        getUpdate();
     }
 
-    private void getUpdate() {
-        NetHelperNew.updateVersion(new HttpUtils.HttpCallback() {
-            @Override
-            public void onSuccess(String data) {
-                final UpdateBean updateBean = MyGson.getInstance().fromJson(data, UpdateBean.class);
-                if (updateBean.getType().equals("1")) {
-                    if (updateBean.getData().getVersionCode().length() > 0)
-                        if (Integer.valueOf(updateBean.getData().getVersionCode()) > Integer.valueOf(OtherUitl.getVersionCode(MainActivity.this))) {
-                            UpdateDialog updateDialog = new UpdateDialog(MainActivity.this, R.style.dialog, updateBean.getData().getUpdateInfo(), updateBean.getData().getUpdateUrl());
-                            updateDialog.show();
-                        }
-
-                }
-            }
-        });
-    }
+//    private void getUpdate() {
+//        NetHelperNew.updateVersion(new HttpUtils.HttpCallback() {
+//            @Override
+//            public void onSuccess(String data) {
+//                final UpdateBean updateBean = MyGson.getInstance().fromJson(data, UpdateBean.class);
+//                if (updateBean.getType().equals("1")) {
+//                    if (updateBean.getData().getVersionCode().length() > 0)
+//                        if (Integer.valueOf(updateBean.getData().getVersionCode()) > Integer.valueOf(OtherUitl.getVersionCode(MainActivity.this))) {
+//                            UpdateDialog updateDialog = new UpdateDialog(MainActivity.this, R.style.dialog, updateBean.getData().getUpdateInfo(), updateBean.getData().getUpdateUrl());
+//                            updateDialog.show();
+//                        }
+//
+//                }
+//            }
+//        });
+//    }
 
     /**
      * 初始化

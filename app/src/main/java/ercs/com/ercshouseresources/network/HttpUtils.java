@@ -22,6 +22,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -173,6 +174,7 @@ public class HttpUtils {
      */
     public void postNewJson(String url, String json, final HttpCallback callback) {
         RequestBody body = RequestBody.create(JSON, json);
+        Log.d("===Token===", BaseApplication.NewToken + ".");
         Request request = new Request.Builder().url(url).post(body).addHeader("Token", BaseApplication.NewToken).build();
         onStart(callback);
         client.newCall(request).enqueue(new Callback() {

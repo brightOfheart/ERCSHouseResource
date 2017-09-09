@@ -29,6 +29,25 @@ public class CheapReportOrderDetailBean extends BaseBean {
         private String AchieveAmount;
         private String UnAchieveAmount;
         private String BrokerageState;
+        private String CustomerName;
+        private String CustomerPhone;
+
+        public String getCustomerName() {
+            return CustomerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            CustomerName = customerName;
+        }
+
+        public String getCustomerPhone() {
+            return CustomerPhone;
+        }
+
+        public void setCustomerPhone(String customerPhone) {
+            CustomerPhone = customerPhone;
+        }
+
         private List<LowPriceHouseRunningsInfoShowListBean> LowPriceHouseRunningsInfoShowList;
         private List<MessageBoardsShowModel> MessageBoardsShowList;
 

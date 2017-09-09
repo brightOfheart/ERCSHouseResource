@@ -1,63 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include
         android:id="@+id/title"
-        layout="@layout/include_title"/>
+        layout="@layout/include_title" />
+
     <FrameLayout
-        android:id="@+id/fl_updatepwd"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/d_10"
-        android:paddingTop="@dimen/d_10"
 
-        >
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/str_updatepwd"/>
-        <ImageView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/fl_updatepwd"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_clockin"/>
-    </LinearLayout>
-        <ImageView
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/d_8"
+            android:paddingTop="@dimen/d_8">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_16"
+                android:src="@mipmap/icon_clockin" />
+
+            <TextView
+                android:layout_width="@dimen/d_0"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d_5"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="修改密码"
+                android:textColor="@color/black1" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center"
-            android:src="@mipmap/gonext"/>
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_10"
+                android:src="@mipmap/gonext" />
+        </LinearLayout>
     </FrameLayout>
+
     <TextView
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/d_10"
-        android:layout_marginBottom="@dimen/d_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ly_memberOutAssess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/d_8"
+            android:paddingTop="@dimen/d_8">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_16"
+                android:src="@mipmap/ygwqjl" />
+
+            <TextView
+                android:layout_width="@dimen/d_0"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d_5"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="版本更新"
+                android:textColor="@color/black1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_10" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_10"
+                android:src="@mipmap/gonext" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_0"
-        android:layout_weight="1"/>
+        android:layout_marginBottom="@dimen/d_10"
+        android:layout_marginTop="@dimen/d_10"
+        android:layout_weight="1"
+        android:background="@color/white" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="10dp">
+
         <Button
             android:id="@+id/btn_exit"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_red_bg"
             android:text="@string/str_exit"
-            android:textColor="@color/white"
-            android:background="@drawable/button_red_bg"/>
+            android:textColor="@color/white" />
     </RelativeLayout>
 
 </LinearLayout>

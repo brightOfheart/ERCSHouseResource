@@ -51,7 +51,6 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     TextView tv_city;
     @BindView(R.id.ly_city)
     LinearLayout ly_city;
-    private LoadingDialog dialog;
     private final String[] mIndexItems = {"定位", "热门"};//头部额外的索引
     public static String citys = "";
     private SPUtil spUtil;
@@ -64,7 +63,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_service, container, false);
         ButterKnife.bind(this, view);
-        dialog = new LoadingDialog(getContext(), 0);
+
 //        if (BaseApplication.NewIsLogin == 0)//判断是否登录过
 //        {
 //            if (NetWorkUtil.check(getContext()))

@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -231,6 +232,7 @@ public class OtherUitl {
             return "没有找到当前的版本号";
         }
     }
+
     public static int getVersionCode(Context context) {
         try {
             PackageManager manager = context.getPackageManager();
@@ -242,6 +244,7 @@ public class OtherUitl {
             return 0;
         }
     }
+
     public static String saveBitmap(Activity activity, Bitmap mybitmap) {
         boolean result = false;
         //创建位图保存目录
@@ -280,7 +283,7 @@ public class OtherUitl {
         return path;
     }
 
-    public static Bitmap getBitmapFromUrl(String url, double width, double height) {
+    public static Bitmap getBitmapFromUrls(String url, double width, double height) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true; // 设置了此属性一定要记得将值设置为false
         Bitmap bitmap = BitmapFactory.decodeFile(url);
@@ -316,6 +319,52 @@ public class OtherUitl {
         }
 
 
+        // 按照固定大小对图片进行缩放
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, mWidth, mHeight, matrix, true);
+        // 用完了记得回收
+        bitmap.recycle();
+        return newBitmap;
+    }
+
+    public static Bitmap getBitmapFromUrl(String url, double width, double height) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true; // 设置了此属性一定要记得将值设置为false
+        Bitmap bitmap = BitmapFactory.decodeFile(url);
+        // 防止OOM发生
+        options.inJustDecodeBounds = false;
+        int mWidth = bitmap.getWidth();
+        int mHeight = bitmap.getHeight();
+        float m = 1;
+        Matrix matrix = new Matrix();
+        float scaleWidth = 1;
+        float scaleHeight = 1;
+        double w, h;
+        Log.d("====mWidth====", mWidth + "/" + mHeight);
+        if (mWidth > 1600 && mHeight < 1600) {
+            scaleWidth = (float) (1600.00 / mWidth);
+            scaleHeight = scaleWidth;
+            Log.d("====mWidthda====", scaleWidth + "");
+
+        } else if (mWidth < 1600 && mHeight > 1600) {
+            scaleHeight = (float) (1600.00 / mHeight);
+            scaleWidth = scaleHeight;
+            Log.d("====mscaleHeight====", scaleHeight + "");
+        }
+        else if(mWidth > 1600 && mHeight > 1600)
+        {
+            if(mWidth>mHeight)
+            {
+                scaleWidth = (float) (1600.00 / mWidth);
+                scaleHeight = scaleWidth;
+            }
+            else
+            {
+                scaleHeight = (float) (1600.00 / mHeight);
+                scaleWidth = scaleHeight;
+            }
+        }
+        Log.d("====scale====", scaleWidth + "/" + scaleHeight);
         // 按照固定大小对图片进行缩放
         matrix.postScale(scaleWidth, scaleHeight);
         Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, mWidth, mHeight, matrix, true);
