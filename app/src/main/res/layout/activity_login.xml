@@ -89,7 +89,8 @@
             android:layout_marginLeft="@dimen/d_10"
             android:layout_marginRight="@dimen/d_10"
             android:layout_marginTop="@dimen/d_18"
-            android:background="@drawable/edit_corners_bg">
+            android:background="@drawable/edit_corners_bg"
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/edit_code"

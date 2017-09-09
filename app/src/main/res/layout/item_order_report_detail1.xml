@@ -7,16 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
-    <!--竖线-->
-    <View
-        android:layout_width="@dimen/d_1"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/d_8"
-        android:background="@color/white2"></View>
+        <!--竖线-->
+        <View
+            android:layout_width="@dimen/d_1"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_8"
+            android:background="@color/white2"></View>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,18 +42,19 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/d_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d_10"
                 android:layout_marginLeft="@dimen/d_30"
                 android:layout_marginTop="@dimen/d_10"
                 android:background="@drawable/edit_corners_bg"
                 android:orientation="vertical"
                 android:padding="@dimen/d_10">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tv_title"
@@ -63,10 +66,10 @@
 
                     <TextView
                         android:id="@+id/tv_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/d_0"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_10"
-                        android:layout_toRightOf="@id/tv_title"
+                        android:layout_weight="1"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_14" />
@@ -76,11 +79,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/system_color"
-                        android:textSize="@dimen/sp_14"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
-                </RelativeLayout>
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
 
             </LinearLayout>
 
