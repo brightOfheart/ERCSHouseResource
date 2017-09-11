@@ -19,14 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="客户姓名"
-            android:textColor="#CECFCE" />
+            android:textColor="@color/deep_gray" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/d_16"
-            android:textColor="#CECFCE" />
+            android:textColor="@color/qian_gray" />
     </LinearLayout>
 
     <View
@@ -46,14 +46,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="客户电话"
-            android:textColor="#CECFCE" />
+            android:textColor="@color/deep_gray" />
 
         <TextView
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/d_16"
-            android:textColor="#CECFCE" />
+            android:textColor="@color/qian_gray" />
     </LinearLayout>
 
     <View

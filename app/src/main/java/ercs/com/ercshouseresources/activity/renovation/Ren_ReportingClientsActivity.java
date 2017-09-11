@@ -13,13 +13,16 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,14 +53,14 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
     @BindView(R.id.edit_content)
     EditText edit_content;//搜索框
     @BindView(R.id.recyleview)
-    LRecyclerView mRecyclerView ;
+    LRecyclerView mRecyclerView;
 
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private List<CustomersListBean.DataBean> clientListBeans;
     private Ren_ReportingClientsAdapter reportingClientsAdapter;//客户列表
     private LoadingDialog loadingDialog;
-    private  String key="";// 关键字 “”
-    private int pagenum=1;//页数
+    private String key = "";// 关键字 “”
+    private int pagenum = 1;//页数
 
     /**
      * 页面跳转
@@ -79,7 +82,7 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
         String jsonString = getIntent().getStringExtra("jsonString");
         CommissionExplainBean commissionExplainBean = MyGson.getInstance().fromJson(jsonString, CommissionExplainBean.class);
 
-        return commissionExplainBean.getData().getBaseInfo().getId()+"";
+        return commissionExplainBean.getData().getBaseInfo().getId() + "";
     }
 
 
@@ -89,8 +92,7 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
         setContentView(R.layout.activity_reporting_clients);
         ButterKnife.bind(this);
         initview();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -99,10 +101,10 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        pagenum=1;
+        pagenum = 1;
         clientListBeans.clear();
         reportingClientsAdapter.notifyDataSetChanged();
-        getData(pagenum,true);
+        getData(pagenum, true);
     }
 
     /**
@@ -115,17 +117,18 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
         if (NetWorkUtil.check(this)) {
             if (isLoading)
                 loadingDialog.show();
-            NetHelperNew.getCustomersList(BaseApplication.loginBean.getData().getId(),key,pageIndex+"", new HttpUtils.HttpCallback() {
+            NetHelperNew.getCustomersList(BaseApplication.loginBean.getData().getId(), key, pageIndex + "", new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
                     if (isLoading)
                         loadingDialog.dismiss();
-                    Log.i("-->","客户列表："+data);
+                    Log.i("-->", "客户列表：" + data);
                     final CustomersListBean customersListBean = MyGson.getInstance().fromJson(data, CustomersListBean.class);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtil.showToast(Ren_ReportingClientsActivity.this, customersListBean.getContent());
+                            if (customersListBean.getType() != 1)
+                                ToastUtil.showToast(Ren_ReportingClientsActivity.this, customersListBean.getContent());
 
                             mRecyclerView.refreshComplete(10);
                             //更新数据
@@ -151,24 +154,23 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_addperson,R.id.title_left})
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    @OnClick({R.id.iv_addperson, R.id.title_left})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.iv_addperson:
                 //添加客户
-                startActivity(new Intent(Ren_ReportingClientsActivity.this,AddClientActivity.class));
+                startActivity(new Intent(Ren_ReportingClientsActivity.this, AddClientActivity.class));
                 break;
             case R.id.title_left:
                 finish();
                 break;
         }
     }
+
     private void initview() {
-        loadingDialog=new LoadingDialog(this,0);
-        clientListBeans=new ArrayList<>();
-        reportingClientsAdapter = new Ren_ReportingClientsAdapter(this, clientListBeans,getBuildingID());
+        loadingDialog = new LoadingDialog(this, 0);
+        clientListBeans = new ArrayList<>();
+        reportingClientsAdapter = new Ren_ReportingClientsAdapter(this, clientListBeans, getBuildingID());
 
         lRecyclerViewAdapter = new LRecyclerViewAdapter(reportingClientsAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -181,50 +183,46 @@ public class Ren_ReportingClientsActivity extends BaseActivity {
         mRecyclerView.setFooterViewColor(R.color.system_color, R.color.system_color, android.R.color.white);
 
 
-
-
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
             public void onRefresh() {
-                pagenum=1;
+                pagenum = 1;
                 clientListBeans.clear();
                 reportingClientsAdapter.notifyDataSetChanged();
-                getData(pagenum,false);
+                getData(pagenum, false);
             }
         });
 
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {//加载更多
             @Override
             public void onLoadMore() {
-                getData(pagenum,false);
+                getData(pagenum, false);
             }
         });
-
 
 
         //搜索框监听
         edit_content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if(i == EditorInfo.IME_ACTION_SEARCH) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
 
             /*隐藏软键盘*/
                     InputMethodManager inputMethodManager = (InputMethodManager) Ren_ReportingClientsActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if(inputMethodManager.isActive()){
+                    if (inputMethodManager.isActive()) {
                         inputMethodManager.hideSoftInputFromWindow(Ren_ReportingClientsActivity.this.getCurrentFocus().getWindowToken(), 0);
                     }
-                    key=edit_content.getText().toString();
+                    key = edit_content.getText().toString();
 
                     clientListBeans.clear();
                     reportingClientsAdapter.notifyDataSetChanged();
-                    pagenum=1;
-                    getData(pagenum,true);
+                    pagenum = 1;
+                    getData(pagenum, true);
                     return true;
                 }
                 return false;
             }
         });
-
 
 
     }

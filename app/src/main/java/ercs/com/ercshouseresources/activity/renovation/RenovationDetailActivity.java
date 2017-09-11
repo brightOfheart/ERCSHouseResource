@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.activity.renovation;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,26 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
-import ercs.com.ercshouseresources.activity.service.ClosingBonusActivity;
-import ercs.com.ercshouseresources.activity.service.CommissionExplainActivity;
-import ercs.com.ercshouseresources.activity.service.ContentListActivity;
-import ercs.com.ercshouseresources.activity.service.DynamicActivity;
 import ercs.com.ercshouseresources.activity.service.MapActivity;
-import ercs.com.ercshouseresources.activity.service.NewHouseDetailActivity;
-import ercs.com.ercshouseresources.activity.service.ProConActivity;
-import ercs.com.ercshouseresources.activity.service.PropertyDetailActivity;
-import ercs.com.ercshouseresources.activity.service.RecRuleActivity;
-import ercs.com.ercshouseresources.activity.service.ReportingClientsActivity;
-import ercs.com.ercshouseresources.activity.service.SettlementCycleActivity;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.RenovaDetailBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
@@ -44,7 +31,6 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.item.RenovatinDetailItem;
-
 import static ercs.com.ercshouseresources.base.BaseApplication.context;
 
 /**
@@ -83,7 +69,7 @@ public class RenovationDetailActivity extends BaseActivity {
     private List<RenovatinDetailItem> viewList = new ArrayList<>();//view数组
     private RenovaDetailBean renovaDetailBean;
     private String JsonData = "";
-    private String DecorationCompanyId="";
+    private String DecorationCompanyId = "";
 
     /**
      * 页面跳转
@@ -139,7 +125,7 @@ public class RenovationDetailActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.frame_commissionexplain, R.id.fr_recrule, R.id.fr_ad, R.id.ly_companyIntro, R.id.frame_address, R.id.btn_reportingclients, R.id.fr_setcycle, R.id.fram_callp1, R.id.fram_callp2,R.id.frame_design})
+    @OnClick({R.id.frame_commissionexplain, R.id.fr_recrule, R.id.fr_ad, R.id.ly_companyIntro, R.id.frame_address, R.id.btn_reportingclients, R.id.fr_setcycle, R.id.fram_callp1, R.id.fram_callp2, R.id.frame_design})
     public void onClick(View view) {
         switch (view.getId()) {
 
@@ -161,11 +147,9 @@ public class RenovationDetailActivity extends BaseActivity {
                 break;
             case R.id.frame_address://地址
                 if (renovaDetailBean.getData().getStoreList().size() > 0) {
-                    MapActivity.start(this, Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getY()), Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getX()),renovaDetailBean.getData().getStoreList().get(0).getAddress());
-                }
-                else
-                {
-                    ToastUtil.showToast(this,"没有地址信息");
+                    MapActivity.start(this, Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getY()), Double.valueOf(renovaDetailBean.getData().getStoreList().get(0).getX()), renovaDetailBean.getData().getStoreList().get(0).getAddress());
+                } else {
+                    ToastUtil.showToast(this, "没有地址信息");
                 }
 
                 break;
@@ -186,8 +170,8 @@ public class RenovationDetailActivity extends BaseActivity {
                     ToastUtil.showToast(this, "没有发现该咨询业务员的电话!");
                 break;
             case R.id.frame_design://设计方案
-                if(DecorationCompanyId.length()>0)
-                Ren_DesignSchemeActivity.start(RenovationDetailActivity.this,DecorationCompanyId);
+                if (DecorationCompanyId.length() > 0)
+                    Ren_DesignSchemeActivity.start(RenovationDetailActivity.this, DecorationCompanyId);
                 else
                     ToastUtil.showToast(this, "没有发现装修公司的Id");
                 break;
@@ -211,7 +195,7 @@ public class RenovationDetailActivity extends BaseActivity {
 
     private void createview(RenovaDetailBean renovaDetailBean) {
         if (renovaDetailBean.getData().getStoreList().size() > 0) {
-            DecorationCompanyId=renovaDetailBean.getData().getStoreList().get(0).getDecorationCompanyID();
+            DecorationCompanyId = renovaDetailBean.getData().getStoreList().get(0).getDecorationCompanyID();
             tv_title.setText(renovaDetailBean.getData().getStoreList().get(0).getName());
             tv_address.setText(renovaDetailBean.getData().getStoreList().get(0).getAddress());
         }

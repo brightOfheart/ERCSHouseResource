@@ -63,8 +63,7 @@ public class Ren_PrepareInformationActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         createView();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
@@ -84,7 +83,12 @@ public class Ren_PrepareInformationActivity extends BaseActivity {
                             public void onSuccess(String data) {
                                 dialog.dismiss();
                                 final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
-                                ToastUtil.showToast(Ren_PrepareInformationActivity.this, baseBean.getContent());
+                                if (baseBean.getType().equals("1")) {
+                                    finish();
+                                } else {
+                                    ToastUtil.showToast(Ren_PrepareInformationActivity.this, baseBean.getContent());
+                                }
+
                             }
 
                             @Override
