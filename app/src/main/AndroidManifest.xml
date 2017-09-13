@@ -293,6 +293,11 @@
             android:name=".activity.service.DynamicDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!-- 广告动态详情页面 -->
+        <activity
+            android:name=".activity.GDynamicDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 地图页面 -->
         <activity
             android:name=".activity.service.MapActivity"

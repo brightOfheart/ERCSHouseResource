@@ -54,6 +54,10 @@ public class BaseApplication extends Application {
     public static LoginBean loginBean;//定义一个静态的新房登录全局变量
     public static List<AreaBean.DataBean> areas;//区域信息
     private SPUtil spUtil;
+    public static final String NEWHOUSEOPEN = "newhouseopen";//新房是否弹出广告 0弹 1不弹
+    public static final String RENOPEN = "renopen";//装修是否弹出广告 0弹 1不弹
+    public static final String CHEAPOPEN = "cheapopen";//低价房是否弹出广告 0弹 1不弹
+    public static final String FINANCIALOPEN = "financialopen";//金融是否弹出广告 0弹 1不弹
 
     @Override
     public void onCreate() {

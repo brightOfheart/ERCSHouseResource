@@ -65,7 +65,13 @@
             android:textSize="@dimen/sp_14" />
         <!--  android:drawableLeft="@mipmap/dizhitubiao"-->
     </LinearLayout>
-
+    <LinearLayout
+        android:id="@+id/ly_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/clor_backgray"
+        android:gravity="center"
+        android:orientation="vertical" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

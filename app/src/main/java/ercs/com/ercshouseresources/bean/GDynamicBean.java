@@ -3,27 +3,34 @@ package ercs.com.ercshouseresources.bean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/1.
- * 封装动态的Bean
+ * Created by Administrator on 2017/9/13.
  */
 
-public class DynamicBean extends BaseBean {
-    private List<DataBean> Data;
+public class GDynamicBean extends BaseBean {
+    private DataBean Data;
 
-    public List<DataBean> getData() {
+    public DataBean getData() {
         return Data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(DataBean data) {
         Data = data;
     }
 
     public class DataBean {
         private String Id;
         private String Title;
-        private String Subject;
-        private String ReleaseTime;
         private List<String> ImagePathList;
+        private String ReleaseTime;
+        private String Subject;
+
+        public String getSubject() {
+            return Subject;
+        }
+
+        public void setSubject(String subject) {
+            Subject = subject;
+        }
 
         public String getId() {
             return Id;
@@ -41,12 +48,12 @@ public class DynamicBean extends BaseBean {
             Title = title;
         }
 
-        public String getSubject() {
-            return Subject;
+        public List<String> getImagePathList() {
+            return ImagePathList;
         }
 
-        public void setSubject(String subject) {
-            Subject = subject;
+        public void setImagePathList(List<String> imagePathList) {
+            ImagePathList = imagePathList;
         }
 
         public String getReleaseTime() {
@@ -55,14 +62,6 @@ public class DynamicBean extends BaseBean {
 
         public void setReleaseTime(String releaseTime) {
             ReleaseTime = releaseTime;
-        }
-
-        public List<String> getImagePath() {
-            return ImagePathList;
-        }
-
-        public void setImagePath(List<String> ImagePathList) {
-            ImagePathList = ImagePathList;
         }
     }
 }

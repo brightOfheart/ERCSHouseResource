@@ -11,6 +11,8 @@
         android:layout_marginLeft="@dimen/d_10"
         android:layout_marginTop="@dimen/d_10"
         android:textColor="@color/black"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textSize="@dimen/d_18" />
 
     <TextView
@@ -19,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/d_10"
         android:layout_marginTop="@dimen/d_10"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textColor="#949294" />
 
     <LinearLayout

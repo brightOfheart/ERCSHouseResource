@@ -16,8 +16,16 @@
         app:speed="100"
         app:startPoint="end"
         app:textSize="15sp"
+        android:visibility="gone"
         app:marqueebackground="@color/clor_backgray"
         app:textcolor="@color/clor_fontgray" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/clor_backgray"
+        android:id="@+id/ly_top"/>
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/recyleview"
         android:layout_width="match_parent"
