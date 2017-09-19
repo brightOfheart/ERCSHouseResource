@@ -1,32 +1,18 @@
 package ercs.com.ercshouseresources.adapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.activity.cheaproom.CheapRoomListActivity;
 import ercs.com.ercshouseresources.activity.cheaproom.Cheap_OrderReportListActivity;
-import ercs.com.ercshouseresources.activity.financial.FinancialActivity;
 import ercs.com.ercshouseresources.activity.financial.FinancialOrderActivity;
 import ercs.com.ercshouseresources.activity.renovation.Ren_OrderActivity;
-import ercs.com.ercshouseresources.activity.renovation.RenovationListActivity;
-import ercs.com.ercshouseresources.activity.service.NewHouseActivity;
 import ercs.com.ercshouseresources.activity.service.OrderReportListActivity;
-import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.bean.ServiceBean;
-import ercs.com.ercshouseresources.network.NetHelper;
-import ercs.com.ercshouseresources.util.OtherUitl;
-import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
-
 /**
  * Created by Administrator on 2017/8/22.
  */

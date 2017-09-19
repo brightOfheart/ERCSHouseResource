@@ -110,10 +110,11 @@ public class CheapConfirmationClientsDialog extends BaseDialog {
                     @Override
                     public void run() {
                         if (!baseBean.getType().equals("1")) {
-                            ToastUtil.showToast(context, baseBean.getContent());
+
                         } else {
                             context.finish();
                         }
+                        ToastUtil.showToast(context, baseBean.getContent());
                         dismiss();
                     }
                 });

@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_10"
                     android:layout_toRightOf="@id/tv_name"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/deep_gray"
                     android:textSize="@dimen/sp_14" />
 
                 <ImageView
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/deep_gray"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/deep_gray"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
@@ -168,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_10"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/deep_gray"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
 

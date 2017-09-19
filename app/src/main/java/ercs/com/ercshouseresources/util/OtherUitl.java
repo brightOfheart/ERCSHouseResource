@@ -350,19 +350,18 @@ public class OtherUitl {
             scaleHeight = (float) (1600.00 / mHeight);
             scaleWidth = scaleHeight;
             Log.d("====mscaleHeight====", scaleHeight + "");
-        }
-        else if(mWidth > 1600 && mHeight > 1600)
-        {
-            if(mWidth>mHeight)
-            {
+        } else if (mWidth > 1600 && mHeight > 1600) {
+            if (mWidth > mHeight) {
                 scaleWidth = (float) (1600.00 / mWidth);
                 scaleHeight = scaleWidth;
-            }
-            else
-            {
+            } else {
                 scaleHeight = (float) (1600.00 / mHeight);
                 scaleWidth = scaleHeight;
             }
+        }
+        else
+        {
+            return bitmap;
         }
         Log.d("====scale====", scaleWidth + "/" + scaleHeight);
         // 按照固定大小对图片进行缩放

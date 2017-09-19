@@ -60,7 +60,7 @@ public class FinancialActivity extends BaseActivity {
     }
 
     private void getBanner() {
-        NetHelperNew.getBanner("7", new HttpUtils.HttpCallback() {
+        NetHelperNew.getBanner("5", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final BannerBean bannerBean = MyGson.getInstance().fromJson(data, BannerBean.class);
@@ -95,11 +95,11 @@ public class FinancialActivity extends BaseActivity {
     private void loadBanner(List<String> list, List<String> listid) {
         HorizontalScorllTv horizontalScorllTextView = new HorizontalScorllTv(FinancialActivity.this, list, listid);
         ly_top.addView(horizontalScorllTextView);
-        if (spUtil.getString(BaseApplication.FINANCIALOPEN, "").equals("")) {
+        if (BaseApplication.FINANCIALOPEN.equals("0")) {
             if (!Imagepath.equals("")) {
                 PicDialog picDialog = new PicDialog(FinancialActivity.this, R.style.mydialog, Imagepath, Imagepathid);
                 picDialog.show();
-                spUtil.putString(BaseApplication.FINANCIALOPEN, "1");
+                BaseApplication.FINANCIALOPEN = "1";
             }
 
         }

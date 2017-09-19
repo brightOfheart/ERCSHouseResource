@@ -323,8 +323,14 @@ public class Cheap_OrderReportDetailActivity extends BaseActivity {
             if (requestCode == CAMERA_REQUEST_CODE) {
                 if (!cameraPath.equals("")) {
                     Bitmap bitmap = OtherUitl.getBitmapFromUrl(cameraPath, DisplayUtil.getWidthPixels(this), DisplayUtil.getHeightPixels(this));
-                    String str = OtherUitl.BitmapToString(bitmap);
-                    upLoadPic(str);
+                    if (OtherUitl.getBitmapDegree(cameraPath) != 0) {
+                        Bitmap bitmaps = OtherUitl.rotateBitmapByDegree(bitmap, OtherUitl.getBitmapDegree(cameraPath));
+                        String str = OtherUitl.BitmapToString(bitmaps);
+                        upLoadPic(str);
+                    } else {
+                        String str = OtherUitl.BitmapToString(bitmap);
+                        upLoadPic(str);
+                    }
                 } else {
                     ToastUtil.showToast(this, getStr(R.string.str_chosepic));
                 }

@@ -1,7 +1,5 @@
 package ercs.com.ercshouseresources.network;
-
 import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +9,7 @@ import java.util.Map;
  */
 
 public class NetHelperNew {
-    public static final String URL = "http://soilcity.xicp.net";//IP地址
+    public static final String URL = "http://soilcity.vicp.net";//IP地址
     // public static final String URL = "http://192.168.1.55:8899";//IP地址
     private static final String CLERK = "/API/Organization/ttGetUserList";//职员列表
     private static final String LOGIN = "/API/Account/Login";//用户登录

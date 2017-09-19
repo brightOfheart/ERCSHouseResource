@@ -75,10 +75,7 @@ public class BuildingTypeSelectPop extends PopupWindow implements View.OnClickLi
 
         view = LayoutInflater.from(context).inflate(R.layout.pop_houseayoutselect, null);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-
-
-        this.setHeight(DisplayUtil.getHeightPixels(context) / 2);
-
+        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setContentView(view);
 
 

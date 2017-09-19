@@ -24,8 +24,11 @@ import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
 import ercs.com.ercshouseresources.adapter.AddClientAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
+import ercs.com.ercshouseresources.bean.BaseBean;
 import ercs.com.ercshouseresources.bean.ClientTelBean;
+import ercs.com.ercshouseresources.bean.CustomersListBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
+import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
@@ -61,20 +64,19 @@ public class AddClientActivity extends BaseActivity {
         ButterKnife.bind(this);
         initTitle();
         initView();
-        if(!CloseActivityClass.activityList.contains(this))
-        {
+        if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }
     }
 
     private void initView() {
-        list=new ArrayList<>();
+        list = new ArrayList<>();
         list.add(new ClientTelBean(""));
 
         addClientAdapter = new AddClientAdapter(this, list, new AddClientAdapter.OnDataChangeListener() {
             @Override
             public void getData(List<ClientTelBean> lists) {
-                list=lists;
+                list = lists;
                 addClientAdapter.notifyDataSetChanged();
             }
         });
@@ -100,7 +102,7 @@ public class AddClientActivity extends BaseActivity {
             }
         });
 
-        loadingDialog=new LoadingDialog(this,0);
+        loadingDialog = new LoadingDialog(this, 0);
     }
 
 
@@ -109,15 +111,14 @@ public class AddClientActivity extends BaseActivity {
     * */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case 0:
-                if(data==null)
-                {
+                if (data == null) {
                     return;
                 }
                 //处理返回的data,获取选择的联系人信息
-                Uri uri=data.getData();
-                String[] contacts=getPhoneContacts(uri);
+                Uri uri = data.getData();
+                String[] contacts = getPhoneContacts(uri);
                 edit_name.setText(contacts[0]);
                 list.clear();
                 list.add(new ClientTelBean(contacts[1]));
@@ -130,54 +131,48 @@ public class AddClientActivity extends BaseActivity {
 
     /**
      * 获取联系人姓名和手机号
+     *
      * @param uri
      * @return
      */
-    private String[] getPhoneContacts(Uri uri){
-        String[] contact=new String[2];
+    private String[] getPhoneContacts(Uri uri) {
+        String[] contact = new String[2];
         //得到ContentResolver对象
         ContentResolver cr = getContentResolver();
         //取得电话本中开始一项的光标
-        Cursor cursor=cr.query(uri,null,null,null,null);
-        if(cursor!=null)
-        {
+        Cursor cursor = cr.query(uri, null, null, null, null);
+        if (cursor != null) {
             cursor.moveToFirst();
             //取得联系人姓名
-            int nameFieldColumnIndex=cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-            contact[0]=cursor.getString(nameFieldColumnIndex);
+            int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+            contact[0] = cursor.getString(nameFieldColumnIndex);
             //取得电话号码
             String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
             Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                     ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
-            if(phone != null){
+            if (phone != null) {
 //                phone.moveToFirst();
-                while (phone.moveToNext())
-                {
+                while (phone.moveToNext()) {
                     contact[1] = phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 }
 
             }
             phone.close();
             cursor.close();
-        }
-        else
-        {
+        } else {
             return null;
         }
         return contact;
     }
+
     @OnClick({R.id.btn_save})
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_save:
                 //保存
-                if ("".equals(edit_name.getText().toString()))
-                {
-                    ToastUtil.showToast(AddClientActivity.this,getString(R.string.error_inputname));
-                }else if (NetWorkUtil.check(this))
-                {
+                if ("".equals(edit_name.getText().toString())) {
+                    ToastUtil.showToast(AddClientActivity.this, getString(R.string.error_inputname));
+                } else if (NetWorkUtil.check(this)) {
                     addClientNet();
                 }
 
@@ -190,35 +185,34 @@ public class AddClientActivity extends BaseActivity {
      */
     private void addClientNet() {
 
-       String tels="";
-        boolean isTelNull=true;//电话号是否为空
+        String tels = "";
+        boolean isTelNull = true;//电话号是否为空
         for (int i = 0; i < list.size(); i++) {
-            if (i==0)
-            {
-                tels=list.get(i).getTel();
-            }else
-            {
-                tels=tels+"|"+list.get(i).getTel();
+            if (i == 0) {
+                tels = list.get(i).getTel();
+            } else {
+                tels = tels + "|" + list.get(i).getTel();
             }
 
-            if (!"".equals(list.get(i).getTel()))
-            {
-                isTelNull=false;
+            if (!"".equals(list.get(i).getTel())) {
+                isTelNull = false;
             }
         }
-        int sex=radio_man.isChecked() ? 0 : 1;
+        int sex = radio_man.isChecked() ? 0 : 1;
 
-        if (isTelNull)
-        {
+        if (isTelNull) {
             //有电话号输入
-            ToastUtil.showToast(AddClientActivity.this,getString(R.string.error_tel_number));
-        }
-        else {
+            ToastUtil.showToast(AddClientActivity.this, getString(R.string.error_tel_number));
+        } else {
             loadingDialog.show();
-            NetHelperNew.getInsertNewCustomer(BaseApplication.loginBean.getData().getId(), edit_name.getText().toString(),tels , sex+ "", new HttpUtils.HttpCallback() {
+            NetHelperNew.getInsertNewCustomer(BaseApplication.loginBean.getData().getId(), edit_name.getText().toString(), tels, sex + "", new HttpUtils.HttpCallback() {
                 @Override
                 public void onSuccess(String data) {
-                    finish();
+                    final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
+                    if (baseBean.getType().equals("1")) {
+                        finish();
+                    }
+                    ToastUtil.showToast(AddClientActivity.this, baseBean.getContent());
                     loadingDialog.dismiss();
                 }
 

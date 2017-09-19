@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -549,7 +551,15 @@ public class MapActivity extends BaseActivity {
             }
             routeplanToNavi(mCoordinateType);
         }
-
+        else if (requestCode == BAIDU_READ_PHONE_STATE) {//Android6.0申请权限的回调方法
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
+                init();
+            } else {
+                // 没有获取到权限，做特殊处理
+                Toast.makeText(getApplicationContext(), "获取位置权限失败，请手动开启", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -565,6 +575,30 @@ public class MapActivity extends BaseActivity {
         // TODO Auto-generated method stub
         super.onStart();
         // -----------location config ------------
+        if (Build.VERSION.SDK_INT>=23){
+            showContacts();
+        }else{
+            init();//init为定位方法
+        }
+    }
+    private static final int BAIDU_READ_PHONE_STATE =100;
+
+    public void showContacts(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(),"没有权限,请手动开启定位权限",Toast.LENGTH_SHORT).show();
+            // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义）
+            ActivityCompat.requestPermissions(MapActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE}, BAIDU_READ_PHONE_STATE);
+        }else{
+            init();
+        }
+    }
+    private void init()
+    {
         locationService = ((BaseApplication) getApplication()).locationService;
         //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
         locationService.registerListener(mListener);
@@ -577,6 +611,7 @@ public class MapActivity extends BaseActivity {
         }
         locationService.start();// 定位SDK
     }
+
 
     /*****
      * 定位结果回调，重写onReceiveLocation方法，可以直接拷贝如下代码到自己工程中修改

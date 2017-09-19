@@ -15,8 +15,6 @@ import ercs.com.ercshouseresources.util.SPUtil;
  */
 
 public class BaseActivity extends AppCompatActivity {
-    private SPUtil spUtil;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

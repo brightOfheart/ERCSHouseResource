@@ -107,11 +107,11 @@ public class ConfirmationClientsDialog extends BaseDialog {
                 loadingDialog.dismiss();
                 dismiss();
                 if (!baseBean.getType().equals("1")) {
-                    ToastUtil.showToast(context, baseBean.getContent());
+
                 } else {
                     context.finish();
                 }
-
+                ToastUtil.showToast(context, baseBean.getContent());
             }
 
             @Override

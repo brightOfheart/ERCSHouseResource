@@ -69,7 +69,9 @@
     <LinearLayout
         android:id="@+id/ly_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/d_3"
+        android:paddingBottom="@dimen/d_3"
         android:background="@color/clor_backgray"
         android:gravity="center"
         android:orientation="vertical" />

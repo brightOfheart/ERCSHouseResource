@@ -85,9 +85,8 @@ public class Ren_PrepareInformationActivity extends BaseActivity {
                                 final BaseBean baseBean = MyGson.getInstance().fromJson(data, BaseBean.class);
                                 if (baseBean.getType().equals("1")) {
                                     finish();
-                                } else {
-                                    ToastUtil.showToast(Ren_PrepareInformationActivity.this, baseBean.getContent());
                                 }
+                                ToastUtil.showToast(Ren_PrepareInformationActivity.this, baseBean.getContent());
 
                             }
 

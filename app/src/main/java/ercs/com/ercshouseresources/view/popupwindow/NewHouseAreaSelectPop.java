@@ -3,7 +3,6 @@ package ercs.com.ercshouseresources.view.popupwindow;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.adapter.HouseLayoutSelectListviewAdapter;
-import ercs.com.ercshouseresources.base.BaseApplication;
-import ercs.com.ercshouseresources.bean.AreaBean;
 import ercs.com.ercshouseresources.bean.NewHouseAreaBean;
-import ercs.com.ercshouseresources.network.HttpUtils;
-import ercs.com.ercshouseresources.network.MyGson;
-import ercs.com.ercshouseresources.network.NetHelper;
+
 
 /**
  * 新房 区域选择
@@ -89,10 +82,7 @@ public class NewHouseAreaSelectPop extends PopupWindow implements View.OnClickLi
 
         view= LayoutInflater.from(context).inflate(R.layout.pop_newhouseareaselect,null);
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-
-
         this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-
         this.setContentView(view);
 
 

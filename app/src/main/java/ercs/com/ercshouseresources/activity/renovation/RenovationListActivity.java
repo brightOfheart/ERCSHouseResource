@@ -75,7 +75,7 @@ public class RenovationListActivity extends BaseActivity {
     }
 
     private void getBanner() {
-        NetHelperNew.getBanner("5", new HttpUtils.HttpCallback() {
+        NetHelperNew.getBanner("4", new HttpUtils.HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 final BannerBean bannerBean = MyGson.getInstance().fromJson(data, BannerBean.class);
@@ -110,11 +110,11 @@ public class RenovationListActivity extends BaseActivity {
     private void loadBanner(List<String> list, List<String> listid) {
         HorizontalScorllTv horizontalScorllTextView = new HorizontalScorllTv(RenovationListActivity.this, list, listid);
         ly_top.addView(horizontalScorllTextView);
-        if (spUtil.getString(BaseApplication.RENOPEN, "").equals("")) {
+        if (BaseApplication.RENOPEN.equals("0")) {
             if (!Imagepath.equals("")) {
                 PicDialog picDialog = new PicDialog(RenovationListActivity.this, R.style.mydialog, Imagepath, Imagepathid);
                 picDialog.show();
-                spUtil.putString(BaseApplication.RENOPEN, "1");
+                BaseApplication.RENOPEN = "1";
             }
 
         }

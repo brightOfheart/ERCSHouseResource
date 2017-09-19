@@ -108,9 +108,12 @@ public class Financial_ConfirmationClientsDialog extends BaseDialog {
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!baseBean.getType().equals("1"))
-                            ToastUtil.showToast(context, baseBean.getContent());
+                        if (baseBean.getType().equals("1")) {
+                            context.finish();
+                        }
                         dismiss();
+                        ToastUtil.showToast(context, baseBean.getContent());
+
                     }
                 });
             }

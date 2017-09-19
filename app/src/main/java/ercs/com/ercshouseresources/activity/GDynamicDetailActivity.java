@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
-import ercs.com.ercshouseresources.activity.service.DynamicDetailActivity;
 import ercs.com.ercshouseresources.adapter.DynamicDetailAdapter;
 import ercs.com.ercshouseresources.bean.GDynamicBean;
-import ercs.com.ercshouseresources.bean.NewHouseAreaBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
 import ercs.com.ercshouseresources.network.NetHelperNew;
@@ -102,7 +98,6 @@ public class GDynamicDetailActivity extends BaseActivity {
     private String getId() {
         return getIntent().getStringExtra("Id");
     }
-
     private String getSubTitles() {
         return getIntent().getStringExtra("subtitle");
     }

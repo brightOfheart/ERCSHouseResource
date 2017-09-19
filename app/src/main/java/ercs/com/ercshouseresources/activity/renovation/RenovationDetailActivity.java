@@ -185,12 +185,12 @@ public class RenovationDetailActivity extends BaseActivity {
         TitleControl t = new TitleControl(this);
         t.setTitle("装修");
         dialog = new LoadingDialog(RenovationDetailActivity.this, 0);
-        iv_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RenovationDetailActivity.this, Ren_OrderActivity.class));
-            }
-        });
+//        iv_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(RenovationDetailActivity.this, Ren_OrderActivity.class));
+//            }
+//        });
     }
 
     private void createview(RenovaDetailBean renovaDetailBean) {
