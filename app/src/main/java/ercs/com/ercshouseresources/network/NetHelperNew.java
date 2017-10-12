@@ -9,8 +9,8 @@ import java.util.Map;
  */
 
 public class NetHelperNew {
-    public static final String URL = "http://soilcity.vicp.net";//IP地址
-    // public static final String URL = "http://192.168.1.55:8899";//IP地址
+   // public static final String URL = "http://soilcity.vicp.net";//IP地址
+    public static final String URL = "http://192.168.1.55:8899";//IP地址
     private static final String CLERK = "/API/Organization/ttGetUserList";//职员列表
     private static final String LOGIN = "/API/Account/Login";//用户登录
     private static final String BuildingsList = "/API/NewHouse/ttGetBuildingsList";//新房列表
@@ -21,6 +21,7 @@ public class NetHelperNew {
     private static final String CustomersList = "/API/Organization/ttGetCustomersList";//报备客户列表
     private static final String CheapCustomersList = "/API/LowPriceHouses/ttGetRunningsList";//低价房报备客户列表
     private static final String InsertNewCustomer = "/API/Organization/ttInsertNewCustomer";//添加客户
+    private static final String UpdateCustomer = "/API/Organization/ttUpdateCustomer";//编辑客户
     private static final String InsertRunningsModel = "/API/NewHouse/ttInsertRunningsModel";//确认报备信息
     private static final String CheapInsertRunningsModel = "/API/LowPriceHouses/ttInsertRunningsModel";//低价房确认报备信息
     private static final String REPORTINGORDERDETSIL = "/API/NewHouse/ttGetRunningModel";//新房报备订单详情
@@ -52,6 +53,7 @@ public class NetHelperNew {
     private static final String CHECKUPDATE = "/API/Common/ttGetVersionInfo";//检查当前版本是否最新
     private static final String GETBANNER = "/API/AdvertisementInterface/ttGetAdvertisementInterfaceList";//获取广告
     private static final String BANNERDETAIL = "/API/DynamicInterface/ttGetDynamicModel";//获取广告详情
+    private static final String GETCHEAPROOM = "/API/LowPriceHouses/ttGetLowPriceHousesCondition";//获取低价房条件
     /**
      * 登录接口
      *
@@ -89,17 +91,36 @@ public class NetHelperNew {
 
     /**
      * 低价房列表
-     *
      * @param PageIndex
      * @param AreaID
-     * @param BuildingTypeID
+     * @param HouseTypeVal
+     * @param BuildingsTypeVal
+     * @param DecorationConditionVal
+     * @param AreaMax
+     * @param AreaMin
+     * @param StoreyMin
+     * @param StoreyMax
+     * @param CreateYearMin
+     * @param CreateYearMax
+     * @param PriceMin
+     * @param PriceMax
      * @param KeyWord
      * @param callback
      */
-    public static void CheapRoomList(String PageIndex, String AreaID, String BuildingTypeID, String KeyWord, HttpUtils.HttpCallback callback) {
+    public static void CheapRoomList(String PageIndex, String AreaID, String HouseTypeVal,String BuildingsTypeVal,String DecorationConditionVal, String AreaMax,String AreaMin,String StoreyMin,String StoreyMax,String CreateYearMin,String CreateYearMax,String PriceMin,String PriceMax,String KeyWord, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("AreaID", AreaID);
-        map.put("BuildingTypeID", BuildingTypeID);
+        map.put("HouseTypeVal ", HouseTypeVal);
+        map.put("BuildingsTypeVal ", BuildingsTypeVal);
+        map.put("DecorationConditionVal", DecorationConditionVal);
+        map.put("AreaMin", AreaMin);
+        map.put("AreaMax", AreaMax);
+        map.put("StoreyMin", StoreyMin);
+        map.put("StoreyMax", StoreyMax);
+        map.put("CreateYearMin", CreateYearMin);
+        map.put("CreateYearMax", CreateYearMax);
+        map.put("PriceMin", PriceMin);
+        map.put("PriceMax", PriceMax);
         map.put("PageIndex", PageIndex);
         map.put("PageSize", "10");
         map.put("KeyWord", KeyWord);
@@ -205,6 +226,21 @@ public class NetHelperNew {
         String json = MyGson.getInstance().toJson(map);
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + InsertNewCustomer, json, callback);
+    }
+
+    /**
+     * 修改客户
+     * @param CustomerID
+     * @param CustomerPhoneList
+     * @param callback
+     */
+    public static void UpdateCustomer(String CustomerID ,String CustomerPhoneList,HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("CustomerID", CustomerID );
+        map.put("CustomerPhoneList", CustomerPhoneList);
+        String json = MyGson.getInstance().toJson(map);
+        Log.i("Json", json);
+        new HttpUtils().postNewJson(URL + UpdateCustomer, json, callback);
     }
 
     /**
@@ -724,4 +760,16 @@ public class NetHelperNew {
         Log.i("Json", json);
         new HttpUtils().postNewJson(URL + BANNERDETAIL, json, callback);
     }
+
+    /**
+     * 获取低价房的筛选条件
+     * @param
+     * @param callback
+     */
+    public static void getCheapRoomContent(HttpUtils.HttpCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        String json = MyGson.getInstance().toJson(map);
+        new HttpUtils().postNewJson(URL + GETCHEAPROOM, json, callback);
+    }
+
 }

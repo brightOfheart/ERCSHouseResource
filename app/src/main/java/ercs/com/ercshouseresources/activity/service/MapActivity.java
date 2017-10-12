@@ -322,13 +322,13 @@ public class MapActivity extends BaseActivity {
 
                     @Override
                     public void run() {
-                        Toast.makeText(MapActivity.this, authinfo, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(MapActivity.this, authinfo, Toast.LENGTH_LONG).show();
                     }
                 });
             }
 
             public void initSuccess() {
-                Toast.makeText(MapActivity.this, "百度导航引擎初始化成功", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MapActivity.this, "百度导航引擎初始化成功", Toast.LENGTH_SHORT).show();
                 hasInitSuccess = true;
                 initSetting();
             }
@@ -749,6 +749,7 @@ public class MapActivity extends BaseActivity {
      * 添加marker
      */
     private void setMarker(LatLng point) {
+        mBaidumap.clear();
         //构建Marker图标
         BitmapDescriptor bitmap = BitmapDescriptorFactory
                 .fromResource(R.mipmap.icon_gcoding);

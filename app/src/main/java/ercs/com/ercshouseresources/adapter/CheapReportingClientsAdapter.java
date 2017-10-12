@@ -8,9 +8,11 @@ import android.view.View;
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ercs.com.ercshouseresources.R;
+import ercs.com.ercshouseresources.activity.service.EditClientActivity;
 import ercs.com.ercshouseresources.bean.CustomersListBean;
 import ercs.com.ercshouseresources.view.dialog.CheapConfirmationClientsDialog;
 import ercs.com.ercshouseresources.view.dialog.ConfirmationClientsDialog;
@@ -51,15 +53,21 @@ public class CheapReportingClientsAdapter  extends ViewHolderRecyclerAdapter<Cus
             //女
             holder.getView(R.id.tv_title).setBackgroundResource(R.drawable.circle_powder_bg);
         }
-
-        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+        holder.getView(R.id.tv_1).setOnClickListener(new View.OnClickListener() {//编辑
             @Override
             public void onClick(View view) {
 
-                CheapConfirmationClientsDialog confirmationClientsDialog = new CheapConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
-                confirmationClientsDialog.show();
 
+                EditClientActivity.start((Activity) context,(ArrayList<CustomersListBean.DataBean.PhoneListBean>)dataBean.getPhoneList(),dataBean.getName(),dataBean.getId()+"");
             }
         });
+        holder.getView(R.id.tv_2).setOnClickListener(new View.OnClickListener() {//报备
+            @Override
+            public void onClick(View view) {
+                CheapConfirmationClientsDialog confirmationClientsDialog = new CheapConfirmationClientsDialog((Activity) context, dataBean.getName(), dataBean.getPhoneList(),BuildingID,dataBean.getId()+"");
+                confirmationClientsDialog.show();
+            }
+        });
+
     }
 }

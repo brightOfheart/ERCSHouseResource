@@ -32,4 +32,30 @@
         <!-- 文字的字体大小 -->
         <attr name="text_size" format="dimension"/>
     </declare-styleable>
+    <declare-styleable name="RoundProgressBar">
+        <!-- 圆环背景颜色 -->
+        <attr name="roundColor" format="color" />
+        <!-- 圆环进度颜色 -->
+        <attr name="roundProgressColor" format="color" />
+        <!-- 圆环宽度 -->
+        <attr name="roundWidth" format="dimension" />
+        <!-- 圆环被分割的份数 -->
+        <attr name="roundParts" format="integer" />
+        <!-- 圆环中间的字体颜色 -->
+        <attr name="roundProgressTextColor" format="color" />
+        <!-- 圆环中间的字体大小 -->
+        <attr name="roundProgressTextSize" format="dimension" />
+        <!-- 进度条最大值 -->
+        <attr name="max" format="integer" />
+        <!-- 圆环中间的字体是否显示 -->
+        <attr name="textIsDisplayable" format="boolean" />
+        <!-- 圆环是否为实心 -->
+        <attr name="style">
+            <!-- 空心 -->
+            <enum name="STROKE" value="0" />
+            <!-- 实心 -->
+            <enum name="FILL" value="1" />
+        </attr>
+    </declare-styleable>
+
 </resources>

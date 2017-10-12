@@ -8,6 +8,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;

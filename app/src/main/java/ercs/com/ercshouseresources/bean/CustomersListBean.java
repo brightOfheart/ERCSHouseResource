@@ -1,5 +1,6 @@
 package ercs.com.ercshouseresources.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Administrator on 2017/7/28.
  */
 
-public class CustomersListBean {
+public class CustomersListBean implements Serializable {
 
     /**
      * Type : 1
@@ -43,7 +44,7 @@ public class CustomersListBean {
         this.Data = Data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * Id : 2
          * Name : 100
@@ -98,7 +99,7 @@ public class CustomersListBean {
             this.PhoneList = PhoneList;
         }
 
-        public static class PhoneListBean {
+        public static class PhoneListBean implements Serializable{
             /**
              * CustomerPhoneID : 3
              * Phone : 123

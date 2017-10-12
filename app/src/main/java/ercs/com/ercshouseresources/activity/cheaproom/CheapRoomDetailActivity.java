@@ -3,6 +3,7 @@ package ercs.com.ercshouseresources.activity.cheaproom;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,12 +129,13 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
      */
     private void showData(CheapRoomDetailBean newHouseDetailBean) {
         tv_subTitle.setText(newHouseDetailBean.getData().getModel().getBuildingName());
-        tv_address.setText(newHouseDetailBean.getData().getModel().getBuildingAddress());
-        tv_price.setText(newHouseDetailBean.getData().getModel().getLowPrice());
-        tv_subprice.setText(newHouseDetailBean.getData().getModel().getCostPrice());
-        tv_area.setText(newHouseDetailBean.getData().getModel().getArea());
-        tv_shareprice.setText(newHouseDetailBean.getData().getModel().getArea());
-        tv_loan.setText(newHouseDetailBean.getData().getModel().getIsLoan());
+        tv_address.setText(newHouseDetailBean.getData().getAreaName());
+        tv_price.setText(OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getLowPrice()) + "万元");
+        tv_subprice.setText("(原值:" + OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getCostPrice()) + "万元)");
+        tv_subprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        tv_area.setText(OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getArea()));
+        tv_shareprice.setText(OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getArea()));
+        tv_loan.setText(newHouseDetailBean.getData().getModel().getIsLoan().equals("1") ? "可以贷款" : "不可贷款");
         tv_comdes.setText(newHouseDetailBean.getData().getModel().getBrokerage());
         tv_closingbonus.setText(newHouseDetailBean.getData().getModel().getAwardDescription());
         tv_1.setText(newHouseDetailBean.getData().getResidenceType());

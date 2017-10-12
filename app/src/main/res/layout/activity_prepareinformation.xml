@@ -85,6 +85,7 @@
                 android:background="@color/transparent"
                 android:hint="只输入数字"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:textSize="@dimen/d_13" />
         </LinearLayout>
 

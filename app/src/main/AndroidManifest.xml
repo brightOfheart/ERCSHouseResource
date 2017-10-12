@@ -251,6 +251,11 @@
             android:name=".activity.service.NewHouseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!-- 编辑客户 -->
+        <activity
+            android:name=".activity.service.EditClientActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- 报备客户 -->
         <activity
             android:name=".activity.service.ReportingClientsActivity"

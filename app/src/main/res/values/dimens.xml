@@ -29,6 +29,7 @@
     <dimen name="d_7">7dp</dimen>
     <dimen name="d_50">50dp</dimen>
     <dimen name="d_70">70dp</dimen>
+    <dimen name="d_90">90dp</dimen>
     <dimen name="d_100">100dp</dimen>
     <dimen name="d_116">116dp</dimen>
     <dimen name="d_120">120dp</dimen>

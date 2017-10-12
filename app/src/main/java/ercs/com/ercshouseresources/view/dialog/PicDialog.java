@@ -1,24 +1,19 @@
 package ercs.com.ercshouseresources.view.dialog;
-
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.GDynamicDetailActivity;
-import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.NetHelperNew;
-import ercs.com.ercshouseresources.util.CloseActivityClass;
-import ercs.com.ercshouseresources.util.DisplayUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
-import ercs.com.ercshouseresources.view.CountDownProgress;
+import ercs.com.ercshouseresources.view.OvalTimeView;
 
 /**
  * Created by Administrator on 2017/9/13.
@@ -27,28 +22,35 @@ import ercs.com.ercshouseresources.view.CountDownProgress;
 public class PicDialog extends Dialog {
     private ImageView iv;
     private Activity context;
-    private CountDownProgress countdownpro;
+    private OvalTimeView rpb;
+    private int time = 6;
+    private TimerTask timerTask;
+    private Timer timer = new Timer();
     private LinearLayout ly_dis;
     private String string;
     private String id;
+
     public PicDialog(Activity context, int theme, String path, String ids) {
         super(context, theme);
         this.context = context;
         this.string = path;
-        id=ids;
+        id = ids;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.dialog_pics, null);
-        setContentView(view, new ViewGroup.LayoutParams(DisplayUtil.getWidthPixels(context),
+        setContentView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         iv = (ImageView) view.findViewById(R.id.iv);
         GlideUtil.loadImage(context, NetHelperNew.URL + string, iv, R.mipmap.ic_launcher, R.mipmap.ic_launcher);
-        countdownpro = (CountDownProgress) view.findViewById(R.id.countdownpro);
         ly_dis = (LinearLayout) view.findViewById(R.id.ly_dis);
-        countdownpro.setCountdownTime(10 * 600);
+        rpb = (OvalTimeView) view.findViewById(R.id.rpb);
+        rpb.setMax(time);
+        rpb.setProgress(time);
+        timerTask = new MyTimerTask();
+        timer.schedule(timerTask, 1000, 1000);
         ly_dis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,16 +58,11 @@ public class PicDialog extends Dialog {
 
             }
         });
-        countdownpro.startCountDownTime(new CountDownProgress.OnCountdownFinishListener() {
-            @Override
-            public void countdownFinished() {
-                dismiss();
-            }
-        });
+
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GDynamicDetailActivity.start(context,id);
+                GDynamicDetailActivity.start(context, id);
             }
         });
         this.setCanceledOnTouchOutside(false);//点击屏幕不消失
@@ -73,5 +70,25 @@ public class PicDialog extends Dialog {
 
     }
 
+    private class MyTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            rpb.setProgress(time--);
+            if (time == -1) {
+                //倒计时为0的时候做自己需要处理的业务逻辑
+                cancelRestTimerTask();
+            }
+        }
+    }
 
+    /**
+     * 取消RestTimerTask
+     */
+    private void cancelRestTimerTask() {
+        if (timerTask != null) {
+            timerTask.cancel();
+        }
+        dismiss();
+
+    }
 }

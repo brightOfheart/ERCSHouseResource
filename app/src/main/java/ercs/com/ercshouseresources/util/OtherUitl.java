@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.base.BaseApplication;
@@ -420,5 +421,14 @@ public class OtherUitl {
         }
 
         return bitmapArray;
+    }
+
+    public static String getFloatString(String s)
+    {
+        String str="";
+        Float price=Float.valueOf(s);
+        DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        str=decimalFormat.format(price);//format 返回的是字符串
+        return str;
     }
 }

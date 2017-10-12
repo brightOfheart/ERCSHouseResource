@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_10"
+                android:text="装修" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <ercs.com.ercshouseresources.view.MyGridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:id="@+id/gridview1"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:verticalSpacing="@dimen/d_10"
+                android:layout_marginTop="@dimen/d_10"
+                android:horizontalSpacing="@dimen/d_10"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_10"
+                android:text="建筑面积（平）" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:paddingTop="@dimen/d_10">
+
+                <EditText
+                    android:id="@+id/edit_1"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:hint="最小面积"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+
+                <TextView
+                    android:layout_width="@dimen/d_10"
+                    android:layout_height="@dimen/d_2"
+                    android:layout_marginLeft="@dimen/d_5"
+                    android:layout_marginRight="@dimen/d_5"
+                    android:background="@color/gray" />
+
+                <EditText
+                    android:id="@+id/edit_2"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:hint="最大面积"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_16"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_10"
+                android:text="类型" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <ercs.com.ercshouseresources.view.MyGridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:id="@+id/gridview2"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:verticalSpacing="@dimen/d_10"
+                android:layout_marginTop="@dimen/d_10"
+                android:horizontalSpacing="@dimen/d_10"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_16"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_16"
+                android:text="楼层" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/d_16">
+
+                <EditText
+                    android:id="@+id/edit_3"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:hint="最低楼层"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+
+                <TextView
+                    android:layout_width="@dimen/d_10"
+                    android:layout_height="@dimen/d_2"
+                    android:layout_marginLeft="@dimen/d_5"
+                    android:layout_marginRight="@dimen/d_5"
+                    android:background="@color/gray" />
+
+                <EditText
+                    android:id="@+id/edit_4"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:hint="最高楼层"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingTop="@dimen/d_10"
+                android:text="年代" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:paddingTop="@dimen/d_10">
+
+                <EditText
+                    android:id="@+id/edit_5"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+
+                <TextView
+                    android:layout_width="@dimen/d_10"
+                    android:layout_height="@dimen/d_2"
+                    android:layout_marginLeft="@dimen/d_5"
+                    android:layout_marginRight="@dimen/d_5"
+                    android:background="@color/gray" />
+
+                <EditText
+                    android:id="@+id/edit_6"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bgno"
+                    android:gravity="center"
+                    android:inputType="number|numberDecimal"
+                    android:paddingLeft="@dimen/d_5" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1"
+                android:layout_marginLeft="@dimen/d_16"
+                android:layout_marginRight="@dimen/d_16"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/d_10"
+                android:paddingLeft="@dimen/d_16"
+                android:paddingRight="@dimen/d_16"
+                android:paddingTop="@dimen/d_10">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_marginLeft="@dimen/d_16"
+                    android:layout_marginRight="@dimen/d_16"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_gray_bg"
+                    android:gravity="center"
+                    android:text="清空" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="@dimen/d_0"
+                    android:layout_height="@dimen/d_40"
+                    android:layout_marginLeft="@dimen/d_16"
+                    android:layout_marginRight="@dimen/d_16"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_system_bg"
+                    android:gravity="center"
+                    android:text="确认"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/view_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></View>
+</LinearLayout>

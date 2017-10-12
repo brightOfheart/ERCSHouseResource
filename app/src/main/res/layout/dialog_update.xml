@@ -20,12 +20,17 @@
         android:layout_height="@dimen/d_1"
         android:background="@color/white2" />
 
-    <TextView
-        android:id="@+id/tv_content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/d_10"
-        android:textColor="@color/black" />
+        android:layout_height="200dp">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d_10"
+            android:textColor="@color/black" />
+    </ScrollView>
 
     <TextView
         android:layout_width="match_parent"

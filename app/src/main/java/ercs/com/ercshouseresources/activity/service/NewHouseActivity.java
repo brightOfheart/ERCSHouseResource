@@ -82,8 +82,6 @@ public class NewHouseActivity extends BaseActivity {
             getBanner();
             getData(pagenum, true);
         }
-
-
         initHouseLayoutSelectPop();
         downLoadArea();
     }
@@ -94,8 +92,8 @@ public class NewHouseActivity extends BaseActivity {
             public void onSuccess(String data) {
                 final BannerBean bannerBean = MyGson.getInstance().fromJson(data, BannerBean.class);
                 if (bannerBean.getType().equals("1")) {
-                    List<String> list = new ArrayList<String>();
-                    List<String> listid = new ArrayList<String>();
+                   final List<String> list = new ArrayList<String>();
+                    final List<String> listid = new ArrayList<String>();
                     for (int i = 0; i < bannerBean.getData().size(); i++) {
                         if (bannerBean.getData().get(i).getAdvertisementType().equals("1")) {
                             list.add(bannerBean.getData().get(i).getText() + "   ");
@@ -108,6 +106,7 @@ public class NewHouseActivity extends BaseActivity {
 
                     if (bannerBean.getData().size() > 0) {
                         loadBanner(list, listid);
+
                     } else {
                         ly_top.setVisibility(View.GONE);
                     }

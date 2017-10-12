@@ -65,18 +65,26 @@
             android:textSize="@dimen/sp_14" />
         <!--  android:drawableLeft="@mipmap/dizhitubiao"-->
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ly_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/d_3"
-        android:paddingBottom="@dimen/d_3"
         android:background="@color/clor_backgray"
         android:gravity="center"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/d_3"
+        android:paddingTop="@dimen/d_3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1"
+        android:background="@color/white2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F3F3F3"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/d_14"
         android:paddingTop="@dimen/d_14">
@@ -92,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="选择区域" />
+                android:text="区域" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -101,13 +109,9 @@
                 android:src="@mipmap/down_icon" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="@dimen/d_1"
-            android:layout_height="match_parent"
-            android:background="@color/white2" />
 
         <LinearLayout
-            android:id="@+id/ly_housingtype"
+            android:id="@+id/ly_price"
             android:layout_width="@dimen/d_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -117,7 +121,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="房源类型" />
+                android:text="价格" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -126,7 +130,45 @@
                 android:src="@mipmap/down_icon" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ly_housetype"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="房型" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_5"
+                android:src="@mipmap/down_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_more"
+            android:layout_width="@dimen/d_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_5"
+                android:src="@mipmap/down_icon" />
+        </LinearLayout>
     </LinearLayout>
 
     <View

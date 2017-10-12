@@ -1,18 +1,14 @@
 package ercs.com.ercshouseresources.view.dialog;
-
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.UpdateActivity;
-import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.DisplayUtil;
 
 /**
@@ -37,7 +33,7 @@ public class UpdateDialog extends Dialog {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.dialog_update, null);
-        setContentView(view, new ViewGroup.LayoutParams(DisplayUtil.getWidthPixels(context)/2,
+        setContentView(view, new ViewGroup.LayoutParams(DisplayUtil.getWidthPixels(context)/2+150,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
         btn_update = (Button) view.findViewById(R.id.btn_update);
