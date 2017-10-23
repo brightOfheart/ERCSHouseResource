@@ -976,7 +976,11 @@
                 android:background="#424552"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/d_16" />
+                android:textSize="@dimen/d_16"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/d_30"
+                android:paddingRight="@dimen/d_30"/>
 
             <ImageView
                 android:id="@+id/iv_left"

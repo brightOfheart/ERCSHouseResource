@@ -1,17 +1,22 @@
 package ercs.com.ercshouseresources.adapter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
+
 import java.util.List;
+
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.financial.FinancialListActivity;
 import ercs.com.ercshouseresources.activity.financial.FinanicalDetailActivity;
 import ercs.com.ercshouseresources.bean.FinancialListBean;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 /**
@@ -55,8 +60,10 @@ public class FinancialListAdapter extends ViewHolderRecyclerAdapter<FinancialLis
             public void onClick(View view) {
                 if (!datas.getChildren().equals("0"))
                     FinancialListActivity.start(activity, datas.getId(), datas.getText());
-                else
+                else if (datas.getAttr().size() > 0)
                     FinanicalDetailActivity.start(activity, datas.getText(), datas.getAttr().get(num(datas.getAttr())).getName(), datas.getAttr().get(num(datas.getAttr())).getAttrValue(), datas.getId());
+                else
+                    ToastUtil.showToast(activity, "没有数据");
             }
         });
 

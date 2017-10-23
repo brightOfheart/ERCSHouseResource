@@ -661,6 +661,10 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/white"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/d_30"
+                android:paddingRight="@dimen/d_30"
                 android:textSize="@dimen/d_16" />
 
             <ImageView

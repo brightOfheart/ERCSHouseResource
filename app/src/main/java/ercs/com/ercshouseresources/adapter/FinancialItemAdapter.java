@@ -19,6 +19,7 @@ import ercs.com.ercshouseresources.bean.FieldCustomContentBean;
 import ercs.com.ercshouseresources.bean.FinancialChildBean;
 import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
+import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 
 /**
@@ -42,14 +43,22 @@ public class FinancialItemAdapter extends ViewHolderAdapter<FinancialChildBean.D
     @Override
     public void bindViewDatas(ViewHolder holder, final FinancialChildBean.DataBean datas, final int position) {
         holder.setText(R.id.tv_title, datas.getText());
-        GlideUtil.loadImages(context, NetHelperNew.URL + "/" + datas.getIcon(), (ImageView) holder.getView(R.id.iv_pics));
+        GlideUtil.loadImagess(context, NetHelperNew.URL + "/" + datas.getIcon(), (ImageView) holder.getView(R.id.iv_pics), R.mipmap.ic_launcher);
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (datas.getMode().equals("0"))//贷款
                     FinancialListActivity.start(context, datas.getId(), datas.getText());
                 if (datas.getMode().equals("1"))//二手房
-                    FinanicalDetailActivity.start(context, datas.getText(), datas.getAttr().get(num(datas.getAttr())).getName(), datas.getAttr().get(num(datas.getAttr())).getAttrValue(), datas.getId());
+                {
+                    if (datas.getAttr().size() > 0) {
+                        FinanicalDetailActivity.start(context, datas.getText(), datas.getAttr().get(num(datas.getAttr())).getName(), datas.getAttr().get(num(datas.getAttr())).getAttrValue(), datas.getId());
+                    } else {
+                        ToastUtil.showToast(context, "没有数据");
+                    }
+                }
+
+
             }
         });
 //

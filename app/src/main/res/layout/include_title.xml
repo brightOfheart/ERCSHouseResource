@@ -18,7 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/white"
-        android:textSize="@dimen/titile_size"/>
+        android:textSize="@dimen/titile_size"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:paddingLeft="@dimen/d_30"
+        android:paddingRight="@dimen/d_30"/>
     <TextView
         android:id="@+id/title_right"
         android:layout_width="wrap_content"

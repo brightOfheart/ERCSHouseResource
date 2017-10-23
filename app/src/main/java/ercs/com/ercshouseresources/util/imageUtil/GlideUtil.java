@@ -41,6 +41,12 @@ public class GlideUtil {
                 .load(url)
                 .into(imageView);
     }
+    public static void loadImagess(Context context, String url, ImageView imageView,int errorImg) {
+        Glide.with(context)
+                .load(url)
+                .error(errorImg)
+                .into(imageView);
+    }
     /**
      * 加载圆角图片
      *
