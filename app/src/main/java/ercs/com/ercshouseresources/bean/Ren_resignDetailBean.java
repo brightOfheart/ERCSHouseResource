@@ -150,7 +150,7 @@ public class Ren_resignDetailBean extends BaseBean {
 
         public class ItemBean {
             private String title;
-            private String img;
+            private List<String> img;
             private String comtent;
 
             public String getTitle() {
@@ -161,11 +161,11 @@ public class Ren_resignDetailBean extends BaseBean {
                 this.title = title;
             }
 
-            public String getImg() {
+            public List<String> getImg() {
                 return img;
             }
 
-            public void setImg(String img) {
+            public void setImg(List<String> img) {
                 this.img = img;
             }
 

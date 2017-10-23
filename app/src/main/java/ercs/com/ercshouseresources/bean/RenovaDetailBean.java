@@ -475,6 +475,15 @@ public class RenovaDetailBean extends BaseBean {
             private String CaseImagePath;
             private String Name;
             private String Content;
+            private String Id;
+
+            public String getId() {
+                return Id;
+            }
+
+            public void setId(String id) {
+                Id = id;
+            }
 
             public String getCaseImagePath() {
                 return CaseImagePath;

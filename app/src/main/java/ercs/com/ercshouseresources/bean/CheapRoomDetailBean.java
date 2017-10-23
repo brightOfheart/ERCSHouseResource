@@ -25,6 +25,15 @@ public class CheapRoomDetailBean extends BaseBean {
         private String ResidenceType;
         private String Orientations;
         private List<String> ImageList ;
+        private BuildingInfoBean BuildingInfo;
+
+        public BuildingInfoBean getBuildingInfo() {
+            return BuildingInfo;
+        }
+
+        public void setBuildingInfo(BuildingInfoBean buildingInfo) {
+            BuildingInfo = buildingInfo;
+        }
 
         public List<String> getImageList() {
             return ImageList;
@@ -81,35 +90,14 @@ public class CheapRoomDetailBean extends BaseBean {
         public void setModel(BaseInfoBean model) {
             BaseInfo = model;
         }
-
-        public class BaseInfoBean {
-            private String BuildingName;
-            private String BuildingAddress;
-            private String HouseNumber;
+        public class BuildingInfoBean
+        {
+            private String Name;
             private String ProvinceID;
             private String CityID;
             private String AreaID;
-            private String CostPrice;
-            private String LowPrice;
-            private String Poundage;
-            private String Brokerage;
-            private String BandSawBrokerage;
-            private String CommissionAccount;
-            private String AwardDescription;
-            private String Rules;
-            private String IsLoan;
-            private String LoanRules;
-            private String DownPaymentRate;
-            private String Area;
-            private String HouseType;
-            private String HouseTypeRemark;
-            private String ResidenceType;
-            private String BuildingsType;
-            private String BuildingClass;
-            private String DecorationCondition;
-            private String PropertyRight;
-            private String CreateYear;
-            private String Orientations;
+            private String Address;
+            private String Remark;
             private String OpeningTime;
             private String LaunchTime;
             private String Developer;
@@ -133,46 +121,54 @@ public class CheapRoomDetailBean extends BaseBean {
             private String HaveProductComparison;
             private String X;
             private String Y;
-            private String StarTarget;
-            private String StarTargetRemark;
-            private String ShowIndex;
-            private String State;
-            private String Remark;
-            private String AgentID;
-            private String MediumOfCommunicationStaffID;
-            private String StationedStaffID;
-            private String OwnerID;
-            private String ReNameDeadline;
-            private String NegotiatedPrice;
-            private String LowHouseType;
-            private String IsLocked;
-            private String IsDeleted;
-            private String CreatedTime;
             private String Id;
-            private String Storey;
 
-            public String getStorey() {
-                return Storey;
+            public String getName() {
+                return Name;
             }
 
-            public void setStorey(String storey) {
-                Storey = storey;
+            public void setName(String name) {
+                Name = name;
             }
 
-            public String getBrandAdvantage() {
-                return BrandAdvantage;
+            public String getProvinceID() {
+                return ProvinceID;
             }
 
-            public void setBrandAdvantage(String brandAdvantage) {
-                BrandAdvantage = brandAdvantage;
+            public void setProvinceID(String provinceID) {
+                ProvinceID = provinceID;
             }
 
-            public String getOrientations() {
-                return Orientations;
+            public String getCityID() {
+                return CityID;
             }
 
-            public void setOrientations(String orientations) {
-                Orientations = orientations;
+            public void setCityID(String cityID) {
+                CityID = cityID;
+            }
+
+            public String getAreaID() {
+                return AreaID;
+            }
+
+            public void setAreaID(String areaID) {
+                AreaID = areaID;
+            }
+
+            public String getAddress() {
+                return Address;
+            }
+
+            public void setAddress(String address) {
+                Address = address;
+            }
+
+            public String getRemark() {
+                return Remark;
+            }
+
+            public void setRemark(String remark) {
+                Remark = remark;
             }
 
             public String getOpeningTime() {
@@ -327,68 +323,12 @@ public class CheapRoomDetailBean extends BaseBean {
                 Characteristic = characteristic;
             }
 
-            public String getId() {
-                return Id;
+            public String getBrandAdvantage() {
+                return BrandAdvantage;
             }
 
-            public void setId(String id) {
-                Id = id;
-            }
-
-            public String getCreatedTime() {
-                return CreatedTime;
-            }
-
-            public void setCreatedTime(String createdTime) {
-                CreatedTime = createdTime;
-            }
-
-            public String getIsDeleted() {
-                return IsDeleted;
-            }
-
-            public void setIsDeleted(String isDeleted) {
-                IsDeleted = isDeleted;
-            }
-
-            public String getIsLocked() {
-                return IsLocked;
-            }
-
-            public void setIsLocked(String isLocked) {
-                IsLocked = isLocked;
-            }
-
-            public String getLowHouseType() {
-                return LowHouseType;
-            }
-
-            public void setLowHouseType(String lowHouseType) {
-                LowHouseType = lowHouseType;
-            }
-
-            public String getNegotiatedPrice() {
-                return NegotiatedPrice;
-            }
-
-            public void setNegotiatedPrice(String negotiatedPrice) {
-                NegotiatedPrice = negotiatedPrice;
-            }
-
-            public String getReNameDeadline() {
-                return ReNameDeadline;
-            }
-
-            public void setReNameDeadline(String reNameDeadline) {
-                ReNameDeadline = reNameDeadline;
-            }
-
-            public String getOwnerID() {
-                return OwnerID;
-            }
-
-            public void setOwnerID(String ownerID) {
-                OwnerID = ownerID;
+            public void setBrandAdvantage(String brandAdvantage) {
+                BrandAdvantage = brandAdvantage;
             }
 
             public String getHaveProductComparison() {
@@ -415,84 +355,73 @@ public class CheapRoomDetailBean extends BaseBean {
                 Y = y;
             }
 
-            public String getStarTarget() {
-                return StarTarget;
+            public String getId() {
+                return Id;
             }
 
-            public void setStarTarget(String starTarget) {
-                StarTarget = starTarget;
+            public void setId(String id) {
+                Id = id;
+            }
+        }
+        public class BaseInfoBean {
+            private String LowPriceHouseBuildingID;
+            private String HouseNumber;
+            private String CostPrice;
+            private String LowPrice;
+            private String NegotiatedPrice;
+            private String PriceCondition;
+            private String Poundage;
+            private String Brokerage;
+            private String BrokerageAmount;
+            private String BandSawBrokerage;
+            private String CommissionAccount;
+            private String AwardDescription;
+            private String Rules;
+            private String IsLoan;
+            private String LoanRules;
+            private String DownPaymentRate;
+            private String Area;
+            private String UseArea;
+            private String HouseType;
+            private String HouseTypeRemark;
+            private String RoomNumber;
+            private String HallNumber;
+            private String ToiletNumber;
+            private String CookNumber;
+            private String BalconyNumber;
+            private String Installation;
+            private String Nature;
+            private String ResidenceType;
+            private String BuildingsType;
+            private String BuildingClass;
+            private String DecorationCondition;
+            private String PropertyRight;
+            private String PropertyType;
+            private String CreateYear;
+            private String Storey;
+            private String TotalStorey;
+            private String Orientations;
+            private String StarTarget;
+            private String StarTargetRemark;
+            private String ShowIndex;
+            private String State;
+            private String Remark;
+            private String AgentID;
+            private String MediumOfCommunicationStaffID;
+            private String StationedStaffID;
+            private String OwnerID;
+            private String ReNameDeadline;
+            private String LowHouseType;
+            private String IsLocked;
+            private String IsDeleted;
+            private String CreatedTime;
+
+            public String getLowPriceHouseBuildingID() {
+                return LowPriceHouseBuildingID;
             }
 
-            public String getStarTargetRemark() {
-                return StarTargetRemark;
-            }
-
-            public void setStarTargetRemark(String starTargetRemark) {
-                StarTargetRemark = starTargetRemark;
-            }
-
-            public String getState() {
-                return State;
-            }
-
-            public void setState(String state) {
-                State = state;
-            }
-
-            public String getShowIndex() {
-                return ShowIndex;
-            }
-
-            public void setShowIndex(String showIndex) {
-                ShowIndex = showIndex;
-            }
-
-            public String getAgentID() {
-                return AgentID;
-            }
-
-            public void setAgentID(String agentID) {
-                AgentID = agentID;
-            }
-
-            public String getRemark() {
-                return Remark;
-            }
-
-            public void setRemark(String remark) {
-                Remark = remark;
-            }
-
-            public String getMediumOfCommunicationStaffID() {
-                return MediumOfCommunicationStaffID;
-            }
-
-            public void setMediumOfCommunicationStaffID(String mediumOfCommunicationStaffID) {
-                MediumOfCommunicationStaffID = mediumOfCommunicationStaffID;
-            }
-
-            public String getStationedStaffID() {
-                return StationedStaffID;
-            }
-
-            public void setStationedStaffID(String stationedStaffID) {
-                StationedStaffID = stationedStaffID;
-            }
-
-            public String getBuildingName() {
-                return BuildingName;
-            }
-
-            public void setBuildingName(String buildingName) {
-                BuildingName = buildingName;
-            }
-
-            public String getBuildingAddress() {
-                return BuildingAddress;
-            }
-
-            public void setBuildingAddress(String buildingAddress) {
-                BuildingAddress = buildingAddress;
+            public void setLowPriceHouseBuildingID(String lowPriceHouseBuildingID) {
+                LowPriceHouseBuildingID = lowPriceHouseBuildingID;
             }
 
             public String getHouseNumber() {
@@ -503,28 +432,12 @@ public class CheapRoomDetailBean extends BaseBean {
                 HouseNumber = houseNumber;
             }
 
-            public String getProvinceID() {
-                return ProvinceID;
+            public String getCostPrice() {
+                return CostPrice;
             }
 
-            public void setProvinceID(String provinceID) {
-                ProvinceID = provinceID;
-            }
-
-            public String getCityID() {
-                return CityID;
-            }
-
-            public void setCityID(String cityID) {
-                CityID = cityID;
-            }
-
-            public String getAreaID() {
-                return AreaID;
-            }
-
-            public void setAreaID(String areaID) {
-                AreaID = areaID;
+            public void setCostPrice(String costPrice) {
+                CostPrice = costPrice;
             }
 
             public String getLowPrice() {
@@ -535,12 +448,20 @@ public class CheapRoomDetailBean extends BaseBean {
                 LowPrice = lowPrice;
             }
 
-            public String getCostPrice() {
-                return CostPrice;
+            public String getNegotiatedPrice() {
+                return NegotiatedPrice;
             }
 
-            public void setCostPrice(String costPrice) {
-                CostPrice = costPrice;
+            public void setNegotiatedPrice(String negotiatedPrice) {
+                NegotiatedPrice = negotiatedPrice;
+            }
+
+            public String getPriceCondition() {
+                return PriceCondition;
+            }
+
+            public void setPriceCondition(String priceCondition) {
+                PriceCondition = priceCondition;
             }
 
             public String getPoundage() {
@@ -559,6 +480,14 @@ public class CheapRoomDetailBean extends BaseBean {
                 Brokerage = brokerage;
             }
 
+            public String getBrokerageAmount() {
+                return BrokerageAmount;
+            }
+
+            public void setBrokerageAmount(String brokerageAmount) {
+                BrokerageAmount = brokerageAmount;
+            }
+
             public String getBandSawBrokerage() {
                 return BandSawBrokerage;
             }
@@ -567,20 +496,20 @@ public class CheapRoomDetailBean extends BaseBean {
                 BandSawBrokerage = bandSawBrokerage;
             }
 
-            public String getAwardDescription() {
-                return AwardDescription;
-            }
-
-            public void setAwardDescription(String awardDescription) {
-                AwardDescription = awardDescription;
-            }
-
             public String getCommissionAccount() {
                 return CommissionAccount;
             }
 
             public void setCommissionAccount(String commissionAccount) {
                 CommissionAccount = commissionAccount;
+            }
+
+            public String getAwardDescription() {
+                return AwardDescription;
+            }
+
+            public void setAwardDescription(String awardDescription) {
+                AwardDescription = awardDescription;
             }
 
             public String getRules() {
@@ -623,6 +552,14 @@ public class CheapRoomDetailBean extends BaseBean {
                 Area = area;
             }
 
+            public String getUseArea() {
+                return UseArea;
+            }
+
+            public void setUseArea(String useArea) {
+                UseArea = useArea;
+            }
+
             public String getHouseType() {
                 return HouseType;
             }
@@ -637,6 +574,62 @@ public class CheapRoomDetailBean extends BaseBean {
 
             public void setHouseTypeRemark(String houseTypeRemark) {
                 HouseTypeRemark = houseTypeRemark;
+            }
+
+            public String getRoomNumber() {
+                return RoomNumber;
+            }
+
+            public void setRoomNumber(String roomNumber) {
+                RoomNumber = roomNumber;
+            }
+
+            public String getHallNumber() {
+                return HallNumber;
+            }
+
+            public void setHallNumber(String hallNumber) {
+                HallNumber = hallNumber;
+            }
+
+            public String getToiletNumber() {
+                return ToiletNumber;
+            }
+
+            public void setToiletNumber(String toiletNumber) {
+                ToiletNumber = toiletNumber;
+            }
+
+            public String getCookNumber() {
+                return CookNumber;
+            }
+
+            public void setCookNumber(String cookNumber) {
+                CookNumber = cookNumber;
+            }
+
+            public String getBalconyNumber() {
+                return BalconyNumber;
+            }
+
+            public void setBalconyNumber(String balconyNumber) {
+                BalconyNumber = balconyNumber;
+            }
+
+            public String getInstallation() {
+                return Installation;
+            }
+
+            public void setInstallation(String installation) {
+                Installation = installation;
+            }
+
+            public String getNature() {
+                return Nature;
+            }
+
+            public void setNature(String nature) {
+                Nature = nature;
             }
 
             public String getResidenceType() {
@@ -679,12 +672,156 @@ public class CheapRoomDetailBean extends BaseBean {
                 PropertyRight = propertyRight;
             }
 
+            public String getPropertyType() {
+                return PropertyType;
+            }
+
+            public void setPropertyType(String propertyType) {
+                PropertyType = propertyType;
+            }
+
             public String getCreateYear() {
                 return CreateYear;
             }
 
             public void setCreateYear(String createYear) {
                 CreateYear = createYear;
+            }
+
+            public String getStorey() {
+                return Storey;
+            }
+
+            public void setStorey(String storey) {
+                Storey = storey;
+            }
+
+            public String getTotalStorey() {
+                return TotalStorey;
+            }
+
+            public void setTotalStorey(String totalStorey) {
+                TotalStorey = totalStorey;
+            }
+
+            public String getOrientations() {
+                return Orientations;
+            }
+
+            public void setOrientations(String orientations) {
+                Orientations = orientations;
+            }
+
+            public String getStarTarget() {
+                return StarTarget;
+            }
+
+            public void setStarTarget(String starTarget) {
+                StarTarget = starTarget;
+            }
+
+            public String getStarTargetRemark() {
+                return StarTargetRemark;
+            }
+
+            public void setStarTargetRemark(String starTargetRemark) {
+                StarTargetRemark = starTargetRemark;
+            }
+
+            public String getShowIndex() {
+                return ShowIndex;
+            }
+
+            public void setShowIndex(String showIndex) {
+                ShowIndex = showIndex;
+            }
+
+            public String getState() {
+                return State;
+            }
+
+            public void setState(String state) {
+                State = state;
+            }
+
+            public String getRemark() {
+                return Remark;
+            }
+
+            public void setRemark(String remark) {
+                Remark = remark;
+            }
+
+            public String getAgentID() {
+                return AgentID;
+            }
+
+            public void setAgentID(String agentID) {
+                AgentID = agentID;
+            }
+
+            public String getMediumOfCommunicationStaffID() {
+                return MediumOfCommunicationStaffID;
+            }
+
+            public void setMediumOfCommunicationStaffID(String mediumOfCommunicationStaffID) {
+                MediumOfCommunicationStaffID = mediumOfCommunicationStaffID;
+            }
+
+            public String getStationedStaffID() {
+                return StationedStaffID;
+            }
+
+            public void setStationedStaffID(String stationedStaffID) {
+                StationedStaffID = stationedStaffID;
+            }
+
+            public String getOwnerID() {
+                return OwnerID;
+            }
+
+            public void setOwnerID(String ownerID) {
+                OwnerID = ownerID;
+            }
+
+            public String getReNameDeadline() {
+                return ReNameDeadline;
+            }
+
+            public void setReNameDeadline(String reNameDeadline) {
+                ReNameDeadline = reNameDeadline;
+            }
+
+            public String getLowHouseType() {
+                return LowHouseType;
+            }
+
+            public void setLowHouseType(String lowHouseType) {
+                LowHouseType = lowHouseType;
+            }
+
+            public String getIsLocked() {
+                return IsLocked;
+            }
+
+            public void setIsLocked(String isLocked) {
+                IsLocked = isLocked;
+            }
+
+            public String getIsDeleted() {
+                return IsDeleted;
+            }
+
+            public void setIsDeleted(String isDeleted) {
+                IsDeleted = isDeleted;
+            }
+
+            public String getCreatedTime() {
+                return CreatedTime;
+            }
+
+            public void setCreatedTime(String createdTime) {
+                CreatedTime = createdTime;
             }
         }
     }

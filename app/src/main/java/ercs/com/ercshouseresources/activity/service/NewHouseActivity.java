@@ -1,5 +1,7 @@
 package ercs.com.ercshouseresources.activity.service;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -23,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.BaseActivity;
+import ercs.com.ercshouseresources.activity.renovation.Ren_DesignSchemeActivity;
 import ercs.com.ercshouseresources.adapter.NewBuildingAdapter;
 import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.BannerBean;
@@ -68,13 +71,21 @@ public class NewHouseActivity extends BaseActivity {
     private String Imagepath = "";
     private String Imagepathid = "";
     private SPUtil spUtil;
-
+    /**
+     * 页面跳转
+     */
+    public static void start(Activity mactivity, String BuildingTypeID) {
+        Intent intent = new Intent(mactivity, NewHouseActivity.class);
+        intent.putExtra("BuildingTypeID", BuildingTypeID);
+        mactivity.startActivity(intent);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_house);
         ButterKnife.bind(this);
         initview();
+        BuildingTypeID=Integer.valueOf(getIntent().getStringExtra("BuildingTypeID"));
         if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);
         }

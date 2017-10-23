@@ -10,7 +10,9 @@ import java.util.Map;
 
 public class NetHelperNew {
    // public static final String URL = "http://soilcity.vicp.net";//IP地址
-    public static final String URL = "http://192.168.1.55:8899";//IP地址
+    //public static final String URL = "http://192.168.1.55:8899";//IP地址
+    public static final String URL = "http://300.fang101.com";//IP地址
+
     private static final String CLERK = "/API/Organization/ttGetUserList";//职员列表
     private static final String LOGIN = "/API/Account/Login";//用户登录
     private static final String BuildingsList = "/API/NewHouse/ttGetBuildingsList";//新房列表
@@ -110,8 +112,8 @@ public class NetHelperNew {
     public static void CheapRoomList(String PageIndex, String AreaID, String HouseTypeVal,String BuildingsTypeVal,String DecorationConditionVal, String AreaMax,String AreaMin,String StoreyMin,String StoreyMax,String CreateYearMin,String CreateYearMax,String PriceMin,String PriceMax,String KeyWord, HttpUtils.HttpCallback callback) {
         Map<String, String> map = new HashMap<>();
         map.put("AreaID", AreaID);
-        map.put("HouseTypeVal ", HouseTypeVal);
-        map.put("BuildingsTypeVal ", BuildingsTypeVal);
+        map.put("HouseTypeVal", HouseTypeVal);
+        map.put("BuildingsTypeVal", BuildingsTypeVal);
         map.put("DecorationConditionVal", DecorationConditionVal);
         map.put("AreaMin", AreaMin);
         map.put("AreaMax", AreaMax);

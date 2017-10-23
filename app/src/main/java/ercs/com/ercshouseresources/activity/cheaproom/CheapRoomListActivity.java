@@ -1,6 +1,7 @@
 package ercs.com.ercshouseresources.activity.cheaproom;
-
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -11,16 +12,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,7 +40,6 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.view.HorizontalScorllTv;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.dialog.PicDialog;
-import ercs.com.ercshouseresources.view.popupwindow.BuildingTypeSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.MorePop;
 import ercs.com.ercshouseresources.view.popupwindow.NewHouseAreaSelectPop;
 import ercs.com.ercshouseresources.view.popupwindow.PricePop;
@@ -88,12 +85,22 @@ public class CheapRoomListActivity extends BaseActivity {
     private String Imagepathid = "";
     private SPUtil spUtil;
 
+    /**
+     * 页面跳转
+     */
+    public static void start(Activity mactivity, String HouseTypeVal) {
+        Intent intent = new Intent(mactivity, CheapRoomListActivity.class);
+        intent.putExtra("HouseTypeVal", HouseTypeVal);
+        mactivity.startActivity(intent);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheaproomlist);
         ButterKnife.bind(this);
         initview();
+        BuildingsTypeVal = getIntent().getStringExtra("HouseTypeVal");
         downLoadArea();
         if (!CloseActivityClass.activityList.contains(this)) {
             CloseActivityClass.activityList.add(this);

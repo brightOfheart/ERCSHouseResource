@@ -128,7 +128,7 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
      * 显示网络数据
      */
     private void showData(CheapRoomDetailBean newHouseDetailBean) {
-        tv_subTitle.setText(newHouseDetailBean.getData().getModel().getBuildingName());
+        tv_subTitle.setText(newHouseDetailBean.getData().getBuildingInfo().getName());
         tv_address.setText(newHouseDetailBean.getData().getAreaName());
         tv_price.setText(OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getLowPrice()) + "万元");
         tv_subprice.setText("(原值:" + OtherUitl.getFloatString(newHouseDetailBean.getData().getModel().getCostPrice()) + "万元)");
@@ -151,7 +151,7 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
         else
             tv_closingbonus.setText("暂无数据");
         tv_loanrule.setText(newHouseDetailBean.getData().getModel().getRules());
-        tv_subaddress.setText(newHouseDetailBean.getData().getModel().getBuildingAddress());
+        tv_subaddress.setText(newHouseDetailBean.getData().getBuildingInfo().getAddress());
 
     }
 
@@ -197,10 +197,10 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
                 LoanRuleActivity.start(CheapRoomDetailActivity.this, newHouseDetailBean.getData().getModel().getLoanRules());
                 break;
             case R.id.ly_dt://返回点击事件
-                CheapDynamicActivity.start(CheapRoomDetailActivity.this, newHouseDetailBean.getData().getModel().getId());
+                CheapDynamicActivity.start(CheapRoomDetailActivity.this, newHouseDetailBean.getData().getBuildingInfo().getId());
                 break;
             case R.id.fr_address://地址点击事件
-                MapActivity.start(this, Double.valueOf(newHouseDetailBean.getData().getModel().getY()), Double.valueOf(newHouseDetailBean.getData().getModel().getX()), newHouseDetailBean.getData().getModel().getBuildingAddress());
+                MapActivity.start(this, Double.valueOf(newHouseDetailBean.getData().getBuildingInfo().getY()), Double.valueOf(newHouseDetailBean.getData().getBuildingInfo().getX()), newHouseDetailBean.getData().getBuildingInfo().getAddress());
 
                 break;
             case R.id.fr_zyfw://地址点击事件
@@ -208,15 +208,15 @@ public class CheapRoomDetailActivity extends BaseActivity implements ObservableS
 
                 break;
             case R.id.ly_sale://小区卖点
-                String str1 = newHouseDetailBean.getData().getModel().getPriceAdvantage();
-                String str2 = newHouseDetailBean.getData().getModel().getHouseTypeArea();
-                String str3 = newHouseDetailBean.getData().getModel().getLivingFacilities();
-                String str4 = newHouseDetailBean.getData().getModel().getSchoolDistrict();
-                String str5 = newHouseDetailBean.getData().getModel().getTransportation();
-                String str6 = newHouseDetailBean.getData().getModel().getRegionalDevelopment();
-                String str7 = newHouseDetailBean.getData().getModel().getCharacteristic();
-                String str8 = newHouseDetailBean.getData().getModel().getBrandAdvantage();
-                String str9 = newHouseDetailBean.getData().getModel().getHaveProductComparison();
+                String str1 = newHouseDetailBean.getData().getBuildingInfo().getPriceAdvantage();
+                String str2 = newHouseDetailBean.getData().getBuildingInfo().getHouseTypeArea();
+                String str3 = newHouseDetailBean.getData().getBuildingInfo().getLivingFacilities();
+                String str4 = newHouseDetailBean.getData().getBuildingInfo().getSchoolDistrict();
+                String str5 = newHouseDetailBean.getData().getBuildingInfo().getTransportation();
+                String str6 = newHouseDetailBean.getData().getBuildingInfo().getRegionalDevelopment();
+                String str7 = newHouseDetailBean.getData().getBuildingInfo().getCharacteristic();
+                String str8 = newHouseDetailBean.getData().getBuildingInfo().getBrandAdvantage();
+                String str9 = newHouseDetailBean.getData().getBuildingInfo().getHaveProductComparison();
                 ResidePayActivity.start(CheapRoomDetailActivity.this, str1, str2, str3, str4, str5, str6, str7, str8, str9);
 
                 break;

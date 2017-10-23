@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/d_10"
-            android:textSize="@dimen/d_17"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/d_17" />
     </LinearLayout>
 
     <View
@@ -33,11 +33,13 @@
         android:layout_marginRight="@dimen/d_16"
         android:background="@color/white2" />
 
-    <ImageView
-        android:id="@+id/iv_pic"
+    <LinearLayout
+        android:id="@+id/ly_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/d_16" />
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/d_10"
+        android:paddingRight="@dimen/d_10" />
 
     <TextView
         android:id="@+id/tv_content"

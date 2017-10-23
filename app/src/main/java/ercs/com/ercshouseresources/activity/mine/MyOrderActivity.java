@@ -25,7 +25,6 @@ public class MyOrderActivity extends BaseActivity {
     LRecyclerView recyleview;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
     private SPUtil spUtil;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

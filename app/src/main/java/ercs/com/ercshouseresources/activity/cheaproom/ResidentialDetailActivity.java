@@ -2,7 +2,6 @@ package ercs.com.ercshouseresources.activity.cheaproom;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import java.text.ParseException;
 import butterknife.BindView;
@@ -71,27 +70,27 @@ public class ResidentialDetailActivity extends BaseActivity {
 
         //标题
         TitleControl titleControl = new TitleControl(this);
-        titleControl.setTitle(baseInfo.getData().getModel().getBuildingName());
+        titleControl.setTitle(baseInfo.getData().getBuildingInfo().getName());
 
-        tv_developers.setText(baseInfo.getData().getModel().getDeveloper());
+        tv_developers.setText(baseInfo.getData().getBuildingInfo().getDeveloper());
         tv_referenceprice.setText("000");
 
         try {
-            tv_openingtime.setText(TimeUtil.dealDateFormatChinese(baseInfo.getData().getModel().getOpeningTime()));
-            tv_expressingtime.setText(TimeUtil.dealDateFormatChinese(baseInfo.getData().getModel().getLaunchTime()));
+            tv_openingtime.setText(TimeUtil.dealDateFormatChinese(baseInfo.getData().getBuildingInfo().getOpeningTime()));
+            tv_expressingtime.setText(TimeUtil.dealDateFormatChinese(baseInfo.getData().getBuildingInfo().getLaunchTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         tv_buildingclass.setText(baseInfo.getData().getModel().getBuildingClass());
         tv_decorationcondition.setText(baseInfo.getData().getModel().getDecorationCondition());
-        tv_coveredarea.setText(baseInfo.getData().getModel().getCoveredArea());
-        tv_totalhouseholds.setText(baseInfo.getData().getModel().getTotalHouseholds());
-        tv_plotratio.setText(baseInfo.getData().getModel().getPlotRatio());
-        tv_greeningratio.setText(baseInfo.getData().getModel().getGreeningRatio());
-        tv_carnumber.setText(baseInfo.getData().getModel().getCarNumber());
-        tv_propertycompany.setText(baseInfo.getData().getModel().getPropertyManagementCompany());
-        tv_propertyfee.setText(baseInfo.getData().getModel().getPropertyManagementFee());
+        tv_coveredarea.setText(baseInfo.getData().getBuildingInfo().getCoveredArea());
+        tv_totalhouseholds.setText(baseInfo.getData().getBuildingInfo().getTotalHouseholds());
+        tv_plotratio.setText(baseInfo.getData().getBuildingInfo().getPlotRatio());
+        tv_greeningratio.setText(baseInfo.getData().getBuildingInfo().getGreeningRatio());
+        tv_carnumber.setText(baseInfo.getData().getBuildingInfo().getCarNumber());
+        tv_propertycompany.setText(baseInfo.getData().getBuildingInfo().getPropertyManagementCompany());
+        tv_propertyfee.setText(baseInfo.getData().getBuildingInfo().getPropertyManagementFee());
     }
 
     /**

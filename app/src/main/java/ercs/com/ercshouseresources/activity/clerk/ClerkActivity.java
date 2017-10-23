@@ -1,13 +1,9 @@
 package ercs.com.ercshouseresources.activity.clerk;
-
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;
@@ -17,7 +13,6 @@ import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ClerkBean;
 import ercs.com.ercshouseresources.network.HttpUtils;
 import ercs.com.ercshouseresources.network.MyGson;
-import ercs.com.ercshouseresources.network.NetHelper;
 import ercs.com.ercshouseresources.network.NetHelperNew;
 import ercs.com.ercshouseresources.util.CloseActivityClass;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
@@ -107,7 +102,6 @@ public class ClerkActivity extends BaseActivity {
                     @Override
                     public void run() {
                         dialog.dismiss();
-
                     }
                 });
             }

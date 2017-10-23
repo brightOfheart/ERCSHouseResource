@@ -1,4 +1,5 @@
 package ercs.com.ercshouseresources.activity.renovation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +34,7 @@ import ercs.com.ercshouseresources.util.ToastUtil;
 import ercs.com.ercshouseresources.util.imageUtil.GlideUtil;
 import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.item.RenovatinDetailItem;
+
 import static ercs.com.ercshouseresources.base.BaseApplication.context;
 
 /**
@@ -225,10 +229,17 @@ public class RenovationDetailActivity extends BaseActivity {
      *
      * @param list
      */
-    private void loadpager(List<RenovaDetailBean.DataBean.DecorationCasePartListBean> list) {
+    private void loadpager(final List<RenovaDetailBean.DataBean.DecorationCasePartListBean> list) {
         for (int i = 0; i < list.size(); i++) {
             RenovatinDetailItem renovatinDetailItem = new RenovatinDetailItem(this, list.get(i).getCaseImagePath(), list.get(i).getName(), list.get(i).getContent());
             viewList.add(renovatinDetailItem);
+            final int j = i;
+            renovatinDetailItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Ren_resignDetailActivity.start(RenovationDetailActivity.this, list.get(j).getId());
+                }
+            });
         }
         viewpager.setAdapter(new MyViewPagerAdapter(viewList));
     }

@@ -1,5 +1,4 @@
 package ercs.com.ercshouseresources.fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,14 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,8 +28,6 @@ import ercs.com.ercshouseresources.base.BaseApplication;
 import ercs.com.ercshouseresources.bean.ServiceBean;
 import ercs.com.ercshouseresources.util.NetWorkUtil;
 import ercs.com.ercshouseresources.util.SPUtil;
-import ercs.com.ercshouseresources.util.TitleControl;
-import ercs.com.ercshouseresources.view.dialog.LoadingDialog;
 import ercs.com.ercshouseresources.view.lazyviewpager.LazyFragmentPagerAdapter;
 
 /**
@@ -102,7 +95,7 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         String tabs = spUtil.getString(BaseApplication.TABS, "");
         String strs[] = tabs.split(",");
         if (strs.length > 0)
-        addDate(strs);
+            addDate(strs);
         ly_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,14 +108,21 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (str[i].equals("1")) {//新房
-                    startActivity(new Intent(getActivity(), NewHouseActivity.class));
-                } else if (str[i].equals("4"))//低价房
-                    startActivity(new Intent(getActivity(), CheapRoomListActivity.class));
-                else if (str[i].equals("5"))//装修
+                if (list.get(i).getTitle().equals("新房住宅")) {
+                    NewHouseActivity.start(getActivity(),"1");
+                } else if (list.get(i).getTitle().equals("新房商业")) {
+                    NewHouseActivity.start(getActivity(),"2");
+                } else if (list.get(i).getTitle().equals("旅游地产")) {
+                    NewHouseActivity.start(getActivity(),"3");
+                } else if (list.get(i).getTitle().equals("低价住宅")) {
+                    CheapRoomListActivity.start(getActivity(),"住宅");
+                } else if (list.get(i).getTitle().equals("低价商业")) {
+                    CheapRoomListActivity.start(getActivity(),"商业");
+                } else if (list.get(i).getTitle().equals("装修")) {
                     startActivity(new Intent(getActivity(), RenovationListActivity.class));
-                else if (str[i].equals("7"))//金融
+                } else if (list.get(i).getTitle().equals("金融")) {
                     startActivity(new Intent(getActivity(), FinancialActivity.class));
+                }
             }
         });
 
@@ -132,57 +132,71 @@ public class ServiceFragment extends Fragment implements LazyFragmentPagerAdapte
     private void addDate(String str[]) {
         for (int i = 0; i < str.length; i++) {
             ServiceBean serviceBean = new ServiceBean();
-            if(!str[i].equals(""))
-            switch (Integer.valueOf(str[i])) {
-                case 1:
-                    serviceBean.setTitle("新房");
-                    serviceBean.setPic(R.mipmap.xf);
-                    list.add(serviceBean);
-                    break;
-                case 2:
-                    serviceBean.setTitle("二手房");
-                    serviceBean.setPic(R.mipmap.esf);
-                    list.add(serviceBean);
-                    break;
-                case 3:
-                    serviceBean.setTitle("租房");
-                    serviceBean.setPic(R.mipmap.zf);
-                    list.add(serviceBean);
-                    break;
-                case 4:
-                    serviceBean.setTitle("低价房");
-                    serviceBean.setPic(R.mipmap.djf);
-                    list.add(serviceBean);
-                    break;
-                case 5:
-                    serviceBean.setTitle("装修");
-                    serviceBean.setPic(R.mipmap.zx);
-                    list.add(serviceBean);
-                    break;
-                case 6:
-                    serviceBean.setTitle("活动");
-                    serviceBean.setPic(R.mipmap.hd);
-                    list.add(serviceBean);
-                    break;
-                case 7:
-                    serviceBean.setTitle("金融");
-                    serviceBean.setPic(R.mipmap.jr);
-                    list.add(serviceBean);
-                    break;
-                case 8:
-                    serviceBean.setTitle("家政");
-                    serviceBean.setPic(R.mipmap.jz);
-                    list.add(serviceBean);
-                    break;
-                case 9:
-                    serviceBean.setTitle("旅游");
-                    serviceBean.setPic(R.mipmap.ly);
-                    list.add(serviceBean);
-                    break;
-                default:
-                    break;
+            if (!str[i].equals(""))
+                switch (Integer.valueOf(str[i])) {
+                    case 1:
+                        ServiceBean serviceBean0 = new ServiceBean();
+                        serviceBean0.setTitle("新房住宅");
+                        serviceBean0.setPic(R.mipmap.xz);
+                        list.add(serviceBean0);
+                        ServiceBean serviceBean1 = new ServiceBean();
+                        serviceBean1.setTitle("新房商业");
+                        serviceBean1.setPic(R.mipmap.zs);
+                        list.add(serviceBean1);
+                        ServiceBean serviceBean2 = new ServiceBean();
+                        serviceBean2.setTitle("旅游地产");
+                        serviceBean2.setPic(R.mipmap.zy);
+                        list.add(serviceBean2);
+                        break;
+                    case 2:
+                        serviceBean.setTitle("二手房");
+                        serviceBean.setPic(R.mipmap.esf);
+                        list.add(serviceBean);
+                        break;
+                    case 3:
+                        serviceBean.setTitle("租房");
+                        serviceBean.setPic(R.mipmap.zf);
+                        list.add(serviceBean);
+                        break;
+                    case 4:
+                        ServiceBean serviceBean4 = new ServiceBean();
+                        serviceBean4.setTitle("低价住宅");
+                        serviceBean4.setPic(R.mipmap.dz);
+                        list.add(serviceBean4);
+                        ServiceBean serviceBean5 = new ServiceBean();
+                        serviceBean5.setTitle("低价商业");
+                        serviceBean5.setPic(R.mipmap.ds);
+                        list.add(serviceBean5);
+                        break;
+                    case 5:
+                        serviceBean.setTitle("装修");
+                        serviceBean.setPic(R.mipmap.zx);
+                        list.add(serviceBean);
+                        break;
+                    case 6:
+                        serviceBean.setTitle("活动");
+                        serviceBean.setPic(R.mipmap.hd);
+                        list.add(serviceBean);
+                        break;
+                    case 7:
+                        serviceBean.setTitle("金融");
+                        serviceBean.setPic(R.mipmap.jr);
+                        list.add(serviceBean);
+                        break;
+                    case 8:
+                        serviceBean.setTitle("家政");
+                        serviceBean.setPic(R.mipmap.jz);
+                        list.add(serviceBean);
+                        break;
+                    case 9:
+                        serviceBean.setTitle("旅游");
+                        serviceBean.setPic(R.mipmap.ly);
+                        list.add(serviceBean);
+                        break;
+                    default:
+                        break;
 
-            }
+                }
         }
     }
 
