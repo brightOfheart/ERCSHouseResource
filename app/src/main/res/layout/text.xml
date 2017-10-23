@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ercs.com.ercshouseresources.view.OvalTimeView
+        android:id="@+id/rpb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android_custom:roundColor="@color/system_color"
+        android_custom:roundParts="6"
+        android_custom:roundProgressColor="@color/white"
+        android_custom:roundProgressTextColor="@color/system_color"
+        android_custom:roundProgressTextSize="12sp"
+        android_custom:roundWidth="2dp"
+        android_custom:textIsDisplayable="true"
+        android_custom:style="STROKE" />
+</LinearLayout>
