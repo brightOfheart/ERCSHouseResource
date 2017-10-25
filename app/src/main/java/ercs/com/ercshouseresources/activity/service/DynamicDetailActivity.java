@@ -2,14 +2,8 @@ package ercs.com.ercshouseresources.activity.service;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ercs.com.ercshouseresources.R;

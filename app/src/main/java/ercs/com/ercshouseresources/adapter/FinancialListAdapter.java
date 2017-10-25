@@ -1,16 +1,12 @@
 package ercs.com.ercshouseresources.adapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.king.base.adapter.ViewHolderRecyclerAdapter;
 import com.king.base.adapter.holder.ViewHolder;
-
 import java.util.List;
-
 import ercs.com.ercshouseresources.R;
 import ercs.com.ercshouseresources.activity.financial.FinancialListActivity;
 import ercs.com.ercshouseresources.activity.financial.FinanicalDetailActivity;
